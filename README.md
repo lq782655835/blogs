@@ -14,3 +14,5 @@
 * [StyleLine规范样式](https://github.com/lq782655835/blogs/blob/master/StyleLint%E8%A7%84%E8%8C%83%E6%A0%B7%E5%BC%8F.md)
 
 * [VSCODE使用技巧](https://github.com/lq782655835/blogs/blob/master/VSCode%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7.md)
+
+* [H5 Video踩坑记录](https://github.com/lq782655835/blogs/blob/master/H5%20Video%E8%B8%A9%E5%9D%91%E8%AE%B0.md)
