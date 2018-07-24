@@ -38,11 +38,16 @@
 1. Project Manager
 
 1. Auto Import
+
 1. Auto Close Tag
-1.HTML Snippets
-1.vscode-icons
+
+1. HTML Snippets
+
+1. vscode-icons
+
 1. SVG Viewer
-1.Sort lines
+
+1. Sort lines
 
 ### Vue
 1. Vetur
@@ -50,6 +55,6 @@
 
 ### React
 1. React-Native/React/Redux snippets for es6/es7
-2. 
+
 
 

@@ -109,7 +109,7 @@ npm install --save-dev stylelint
 }
 ```
 
-3. 规则检查
+## 规则检查
 
 ``` shell
 stylelint 'src/**/*.vue' --fix
@@ -117,7 +117,7 @@ stylelint 'src/**/*.vue' --fix
 
 > stylelint命令有时候无法解析到，因为使用了全局的sylelint，这时可以指定相对路径`./node_modules/.bin/stylelint`
 
-4. 提交git时检查
+## 提交git时检查
 
 需要用到插件`husky`,该插件会在git提交时，执行`npm run precommit`命令，所以需要在`package.json`中添加如下代码检查：
 
