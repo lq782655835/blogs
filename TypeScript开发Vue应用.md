@@ -1,10 +1,10 @@
 # TypeScript开发Vue应用
 
-本文旨在帮助读者如何在Vue应用中配置TypeScript，使得使用TypeScript强类型验证开发Vue应用。
+本文旨在帮助读者如何在Vue应用中配置TypeScript，使得使用TypeScript强类型验证开发Vue应用。
 
-## 快速开发
+## 快速开发
 
-如果想一键快速搭建TypeScript的Vue环境，[github](https://github.com/SimonZhangITer/vue-typescript-template)有人对vue-cli添加了typescript模板，可直接用来开发。vue-cli官方也正在开发类似的模板。如果对配置TypeScript有兴趣或者对现有应用改造，请接着看下文。
+如果想一键快速搭建TypeScript的Vue环境，[github](https://github.com/SimonZhangITer/vue-typescript-template)有人对vue-cli添加了typescript模板，可直接用来开发。vue-cli官方也正在开发类似的模板。如果对配置TypeScript有兴趣或者对现有应用改造，请接着看下文。
  
  ``` shell
  vue init SimonZhangITer/vue-typescript-template <project-name>
@@ -12,7 +12,7 @@
 
 ## 初始化项目
 
-笔者使用vue-cli的master版本为基础，建立webpack项目。
+笔者使用vue-cli的master版本为基础，建立webpack项目。
 
 ```
 vue init webpack my-project
@@ -20,7 +20,7 @@ vue init webpack my-project
 
 ## 引入TypeScript包
 
-既然需要用到typescript，那就要加入一些core包和第三方支持包。
+既然需要用到typescript，那就要加入一些core包和第三方支持包。
 
 ```
 // 安装vue的官方插件
@@ -29,10 +29,10 @@ npm i vue-class-component vue-property-decorator --save
 // ts-loader typescript 必须安装，其他的相信你以后也会装上的
 npm i ts-loader typescript tslint-loader --save-dev
 ```
-
+
 ## 配置webpack
 
-1. 找到`./build/webpack.base.conf.js`
+1. 找到`./build/webpack.base.conf.js`
 
 2. 将文件`main.js`改为`main.ts`,webpack.base.conf.js入口后缀也改下
 
@@ -47,7 +47,7 @@ resolve: {
   }
 ```
 
-4. 添加module.rules,使得webpack能解析.ts
+4. 添加module.rules,使得webpack能解析.ts
 
 ``` js
 {
@@ -90,9 +90,9 @@ export default class App extends Vue {}
 </script>
  ```
 
-## 配置TypeScript以及环境
+## 配置TypeScript以及环境
 
-修改完以上步骤，npm run dev依然会报错。因为typescript配置以及vue-cli给我们提供的默认配置，依然有些问题。应用typescript中，webpack3/4对应ts-loader有版本要求。所以这里给出我的配置文件，依次替换即可
+修改完以上步骤，npm run dev依然会报错。因为typescript配置以及vue-cli给我们提供的默认配置，依然有些问题。应用typescript中，webpack3/4对应ts-loader有版本要求。所以这里给出我的配置文件，依次替换即可
 
 1. 根目录新增`tsconfig.json`文件，提供typescript配置
 
@@ -150,7 +150,7 @@ export default class App extends Vue {}
 }
  ```
 
-2. `package.json`、`.eslintrc.js`、`.postcssrc.js`修改
+2. `package.json`、`.eslintrc.js`、`.postcssrc.js`修改
 
 ### package.json
 

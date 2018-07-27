@@ -1,8 +1,8 @@
-# VSCode快捷键及常用插件
+# VSCode快捷键及常用插件
 
-本文集合VSCode常用的快捷键和插件，希望能提高读者的开发效率，本篇持续保持更新。
-
-* 快捷键
+>本文集合VSCode常用的快捷键和插件，希望能提高读者的开发效率。
+
+* 快捷键
 * 常用插件
 
 ## 快捷键
@@ -45,16 +45,15 @@
 
 1. vscode-icons
 
+1. Auto-Open Markdown Preview
+
 1. SVG Viewer
 
 1. Sort lines
 
 ### Vue
-1. Vetur
+1. Vetur （推荐）
 1. VueHelper
 
 ### React
 1. React-Native/React/Redux snippets for es6/es7
-
-
-
