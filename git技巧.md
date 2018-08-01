@@ -1,6 +1,31 @@
 # git技巧
 
-> 总结一些常用的git命令操作。Mac推荐可视化软件`Sourcetree`操作
+> 总结团队git规范以及常用的git命令操作。Mac推荐可视化软件`Sourcetree`
+
+## git规范
+
+1. 一张图原理
+
+![image](https://user-images.githubusercontent.com/6310131/43519854-8b1ed5c4-95c3-11e8-931f-2754963333d2.png)
+
+2. 分支规范
+
+  * 核心分支
+    
+    + master
+    + develop
+
+  * 临时分支
+
+    + feature
+    + release
+    + fix
+
+3. 提交规范
+
+type: 功能简述 + 详情
+ 
+ > type: feature、 enhance、 fix、 test
 
 ## 命令式提交代码
 
