@@ -1,4 +1,4 @@
-# git技巧
+# git团队规范和技巧
 
 > 总结团队git规范以及常用的git命令操作。Mac推荐可视化软件`Sourcetree`
 
