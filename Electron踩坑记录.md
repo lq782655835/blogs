@@ -1,8 +1,8 @@
 # Electron踩坑记录
 
-> 最近公司有个新产品线，需要将应用打包成客户端，提供私有化部署。考虑到Web线上已经实现大部分需求，技术选型时使用[Electron](https://electronjs.org)。本文不是帮助读者的扫盲文，只是记录下项目工程中遇到的坑，所以阅读本文需要web和electron知识。
+> 最近公司有个新产品线，需要将应用打包成客户端，提供私有化部署。考虑到Web线上已经实现大部分需求，技术选型时使用Electron。本文不是帮助读者的扫盲文，只是记录下项目工程中遇到的坑，所以阅读本文需要web和electron知识。
 
-应产品要求，私有化部署主要考虑windows端，mac端其次。框架选型使用[electron-vue](https://github.com/SimulatedGREG/electron-vue)脚手架(这里也强烈推荐)，该脚手架包含Vue技术栈单页应用 + electron + 打包完整流程。内置Vuex/Vue-Router/Webpack/electron-builder等。
+应产品要求，私有化部署主要考虑windows端，mac端其次。框架选型使用[electron-vue](https://github.com/SimulatedGREG/electron-vue)脚手架(这里也强烈推荐)，该脚手架包含Vue技术栈单页应用 + electron + 打包完整流程。内置Vuex，Vue-Router，Webpack，electron-builder等。下面的大部分实践[源码放在这](https://github.com/lq782655835/electron-vue-template)
 
 ## 1. 自定义标题栏
 
@@ -32,23 +32,15 @@
 
 解决方案：去掉`-webkit-app-region: drag;`即可。
 
-> 如果要同时保留可拖动并且hover上有变化，在windows暂时无法实现，需要对此进行取舍
+> 如果要同时保留可拖动并且hover上有变化，在windows暂时无法实现，需要对此进行取舍或改变交互设计。
 
 ## 4. 打包后程序调试
 
 electron-vue在开发环境默认启用electron-debug插件开启调试。但打包完成，交付到测试同学手里，需要在错误的时候打开开发者工具定位问题。
 
 解决方案：通过注册快捷键，调开web的开发者模式。
-``` js
-    // method one
-    mainWindow.webContents.openDevTools()
-    // method two: i think it is better for toggle
-    let focusWin = BrowserWindow.getFocusedWindow()
-    focusWin && focusWin.toggleDevTools()
-```
 
-![image](https://user-images.githubusercontent.com/6310131/44989621-05767b80-afc1-11e8-9e1f-9b2f725c3890.png)
-
+![image](https://user-images.githubusercontent.com/6310131/45282618-fede8b80-b50d-11e8-8e7e-f172325a10f7.png)
 
 ## 5. 文本不可选择
 
@@ -105,9 +97,31 @@ scripts: {
 
 electron提供该API能力：`app.setAsDefaultProtocolClient(protocol[, path, args])`
 
-## 9. 最大化无效 -- only windows
+## 9. 禁止多开窗口
+
+多次双击window 的exe文件，会开启多个窗口；mac下默认开1个，但通过命令还是可以多开。
+
+解决方案：判断单实例：`app.makeSingleInstance(callback)`
+
+![image](https://user-images.githubusercontent.com/6310131/45280209-144fb780-b506-11e8-8338-a9b399ad24fb.png)
+
+
+## 10. 网络状态检测
+
+客户端经常遇见断网情况处理，当网络断开时需要给用户提示，当网络连接时继续服务。通常web情况下是采取`轮询`服务器方式，但这种方式比较消耗服务器性能。这里可以利用electron的node工具包`public-ip`进行判断。public-ip查询dns获取公网ip地址，如果能拿到值表示联网正常。本来到此可以很好的解决，但产品要求的客户端，<b>既要提供公共部署，也需要进行无外网情况下的私有化部署</b>。
+
+解决方案：`public-ip + 轮询`方式。优先进行公网IP查询，如果成立则返回网络状态良好，如果查询不到再进行服务器心跳检查。实现方式参考[is-online](https://github.com/sindresorhus/is-online)
+
+
+## 11. 自动更新
+
+支持mac和windows，mac下需要签名。待更
+
+## 12. 日志监听
 
 待更
 
-## 持续更新中...
+最后，附上@changkun的electron深度总结思维导图
+
+![](https://changkun.us/images/posts/217/mind.png)
    
