@@ -39,6 +39,8 @@
 
 1. Auto Import
 
+1. Auto Const
+
 1. Auto Close Tag
 
 1. HTML Snippets
@@ -48,6 +50,8 @@
 1. Auto-Open Markdown Preview
 
 1. SVG Viewer
+
+1. highlight-matching-tag
 
 1. Sort lines
 

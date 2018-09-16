@@ -11,7 +11,7 @@
 2. 分支规范
 
   * 核心分支
-    
+
     + master
     + develop
 
@@ -21,15 +21,17 @@
     + release
     + fix
 
+> 临时分支建议隔段时间清理一下。建议分支命名：type + function + date, 如做了select组件特性，命名为feature-select-0812
+
 3. 提交规范
 
 type: 功能简述 + 详情
- 
+
  > type: feature、 enhance、 fix、 test
 
 ## 命令式提交代码
 
-1. 提交到本地仓库 
+1. 提交到本地仓库
 
 ``` shell
 git add .
@@ -84,3 +86,20 @@ git remote add origin <URL>
      git commit -m 'conflict'
      git push -u origin master
      ```
+
+## 打tag
+
+git这个功能相当于，给项目做一个总结，存档当前代码。
+
+查看tag
+
+``` bash
+git tag
+```
+
+新建tag并推送
+
+``` bash
+git tag -a <tag-name> -m <comment>
+git push origin -tags
+```

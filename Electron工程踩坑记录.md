@@ -1,4 +1,4 @@
-# Electron踩坑记录
+# Electron工程踩坑记录
 
 > 最近公司有个新产品线，需要将应用打包成客户端，提供私有化部署。考虑到Web线上已经实现大部分需求，技术选型时使用Electron。本文不是帮助读者的扫盲文，只是记录下项目工程中遇到的坑，所以阅读本文需要web和electron知识。
 
@@ -14,11 +14,28 @@
 
 `-webkit-app-region: drag`: 渲染进程中设置css。对应的组件可以进行拖动了
 
-![image](https://user-images.githubusercontent.com/6310131/44986573-c9d6b400-afb6-11e8-87e0-b79ea1954717.png)
+```js
+mainWindow = new BrowserWindow({
+    height: 350,
+    width: 550,
+    useContentSize: true,
+    resizable: isDev, // 是否可调整大小
+    alwaysOnTop: !isDev, // 应用是否始终在所有顶层之上
+    transparent: true, // 透明边框
+    frame: false, // 不使用默认边框
+    center: true
+})
+```
 
-![image](https://user-images.githubusercontent.com/6310131/44987282-4a96af80-afb9-11e8-91eb-aac703e9944d.png)
-
-
+``` css
+.u-header {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    -webkit-app-region: drag; /* as window header */
+}
+```
 
 ## 2. 标题栏按钮无效  -- only windows
 
@@ -40,7 +57,12 @@ electron-vue在开发环境默认启用electron-debug插件开启调试。但打
 
 解决方案：通过注册快捷键，调开web的开发者模式。
 
-![image](https://user-images.githubusercontent.com/6310131/45282618-fede8b80-b50d-11e8-8e7e-f172325a10f7.png)
+``` js
+globalShortcut.register('CommandOrControl+Shift+L', () => {
+    let focusWin = BrowserWindow.getFocusedWindow()
+    focusWin && focusWin.toggleDevTools()
+})
+```
 
 ## 5. 文本不可选择
 
@@ -48,7 +70,14 @@ electron-vue在开发环境默认启用electron-debug插件开启调试。但打
 
 解决方案：使用css `-webkit-user-select: none;`
 
-![image](https://user-images.githubusercontent.com/6310131/44989743-7158e400-afc1-11e8-804a-c085008d0857.png)
+``` css
+html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    height: 100%;
+    -webkit-user-select: none; /* disable user select text */
+}
+```
 
 ## 6. 打包参数设置
 
@@ -103,8 +132,22 @@ electron提供该API能力：`app.setAsDefaultProtocolClient(protocol[, path, ar
 
 解决方案：判断单实例：`app.makeSingleInstance(callback)`
 
-![image](https://user-images.githubusercontent.com/6310131/45280209-144fb780-b506-11e8-8338-a9b399ad24fb.png)
-
+``` js
+/**
+ * 防止应用多开。bugfix:sholudQuit总是返回true，故暂时注释以下代码
+ * 当进程是第一个实例时，返回false。
+ * 如果是第二个实例时，返回true，并且执行第一个实例的回调函数
+ */
+const shouldQuit = app.makeSingleInstance((commandLine, workingDir) => {
+    if (mainWindow) {
+        mainWindow.isMinimized() && mainWindow.restore()
+        mainWindow.focus()
+    }
+})
+if (shouldQuit) {
+    app.quit()
+}
+```
 
 ## 10. 网络状态检测
 
@@ -112,16 +155,27 @@ electron提供该API能力：`app.setAsDefaultProtocolClient(protocol[, path, ar
 
 解决方案：`public-ip + 轮询`方式。优先进行公网IP查询，如果成立则返回网络状态良好，如果查询不到再进行服务器心跳检查。实现方式参考[is-online](https://github.com/sindresorhus/is-online)
 
+## 11. 日志监听
 
-## 11. 自动更新
+每个系统的异常监控都必不可少，特别是私有化部署客户端这种模式，日志记录显得必不可少。由于electron拥有node的环境，结合window.onerror收集错误信息,前端把日志记录在本地文件。当出现问题时，用户可以直接把日志文件发给开发者，从而定位原因。如果是网络版模式，可以通过Ajax收集错误信息。如果是程序异常崩溃，window.onerror可能没法监测的到，好在electron提供了CrashReporter收集
 
-支持mac和windows，mac下需要签名。待更
+解决方案：推荐[electron-log](https://github.com/megahertz/electron-log) + [CrashReporter](https://thorsten-hans.com/electron-crashreporter-stay-up-to-date-if-your-app-fucked-up-3e9a989cd0a0)
 
-## 12. 日志监听
+``` js
+const log = require('electron-log')
 
-待更
+log.transports.file.level = 'info'
+log.transports.file.format = '{h}:{i}:{s}:{ms} {text}'
+log.transports.file.maxSize = 5 * 1024 * 1024
+log.transports.console.level = false
 
-最后，附上@changkun的electron深度总结思维导图
+```
+
+## 12. 自动更新
+
+该需求停留在调研，这篇[文章](https://segmentfault.com/a/1190000007616641)讲的非常详细,待实践好再来续更
+
+最后，附上@changkun的electron深度总结思维导图，总结的非常棒，许多细节使笔者受益良多。[出处](https://changkun.us/archives/2017/03/217/)
 
 ![](https://changkun.us/images/posts/217/mind.png)
    
