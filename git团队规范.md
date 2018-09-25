@@ -1,4 +1,4 @@
-# git团队规范和技巧
+# git团队规范
 
 > 总结团队git规范以及常用的git命令操作。Mac推荐可视化软件`Sourcetree`
 
@@ -23,11 +23,14 @@
 
 > 临时分支建议隔段时间清理一下。建议分支命名：type + function + date, 如做了select组件特性，命名为feature-select-0812
 
+![image](https://user-images.githubusercontent.com/6310131/46001964-44d74a00-c0df-11e8-9005-6da4d47b576c.png)
+
+
 3. 提交规范
 
 type: 功能简述 + 详情
 
- > type: feature、 enhance、 fix、 test
+ > type: feature、 enhance、 fix、 test、docs
 
 ## 命令式提交代码
 
@@ -101,5 +104,5 @@ git tag
 
 ``` bash
 git tag -a <tag-name> -m <comment>
-git push origin -tags
+git push origin --tags
 ```
