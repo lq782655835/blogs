@@ -55,6 +55,8 @@
 
 1. Sort lines
 
+1. Markdown PDF
+
 ### Vue
 1. Vetur （推荐）
 1. VueHelper
