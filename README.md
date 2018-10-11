@@ -21,6 +21,10 @@ personal blogs
 
 * [Electron工程踩坑记录](https://github.com/lq782655835/blogs/issues/13)
 
+* [Vue-Router写法推荐](https://github.com/lq782655835/blogs/issues/20)
+
+* [200错误统一处理推荐](https://github.com/lq782655835/blogs/issues/21)
+
 ## 效率工具
 
 * [VSCode快捷键及常用插件](https://github.com/lq782655835/blogs/issues/3)
@@ -30,6 +34,8 @@ personal blogs
 * [npm script技巧](https://github.com/lq782655835/blogs/issues/10)
 
 * [正则表达式一张图总结](https://github.com/lq782655835/blogs/issues/15)
+
+* [前端必备效率工具](https://github.com/lq782655835/blogs/issues/19)
 
 ## ReactNative
 
