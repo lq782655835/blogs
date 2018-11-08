@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>React Native调用原生方法 | springleo&#39;s blog</title>
+    <meta name="description" content="">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
+    
+    <link rel="preload" href="/dist/assets/css/styles.7f78bffa.css" as="style"><link rel="preload" href="/dist/assets/js/app.7f78bffa.js" as="script"><link rel="preload" href="/dist/assets/js/14.0fb99a25.js" as="script"><link rel="prefetch" href="/dist/assets/css/1.styles.e33b547e.css"><link rel="prefetch" href="/dist/assets/css/4.styles.8000c5d8.css"><link rel="prefetch" href="/dist/assets/js/1.e33b547e.js"><link rel="prefetch" href="/dist/assets/js/10.ab6a742b.js"><link rel="prefetch" href="/dist/assets/js/11.ecef489e.js"><link rel="prefetch" href="/dist/assets/js/12.f09d7ea2.js"><link rel="prefetch" href="/dist/assets/js/13.72600a27.js"><link rel="prefetch" href="/dist/assets/js/15.d5595160.js"><link rel="prefetch" href="/dist/assets/js/16.707b5d3e.js"><link rel="prefetch" href="/dist/assets/js/17.b77ab1e5.js"><link rel="prefetch" href="/dist/assets/js/18.6cf833e7.js"><link rel="prefetch" href="/dist/assets/js/19.d19e78bd.js"><link rel="prefetch" href="/dist/assets/js/2.455df29b.js"><link rel="prefetch" href="/dist/assets/js/20.fc023610.js"><link rel="prefetch" href="/dist/assets/js/21.07659299.js"><link rel="prefetch" href="/dist/assets/js/22.5f8a886d.js"><link rel="prefetch" href="/dist/assets/js/23.d91bf757.js"><link rel="prefetch" href="/dist/assets/js/24.c01685ff.js"><link rel="prefetch" href="/dist/assets/js/25.e41e6eb4.js"><link rel="prefetch" href="/dist/assets/js/26.e16b9222.js"><link rel="prefetch" href="/dist/assets/js/27.81eaaf53.js"><link rel="prefetch" href="/dist/assets/js/28.98a4a8f4.js"><link rel="prefetch" href="/dist/assets/js/3.d4aaf8b1.js"><link rel="prefetch" href="/dist/assets/js/4.8000c5d8.js"><link rel="prefetch" href="/dist/assets/js/5.0b38412e.js"><link rel="prefetch" href="/dist/assets/js/6.6fbd47ed.js"><link rel="prefetch" href="/dist/assets/js/7.f5a7ce2c.js"><link rel="prefetch" href="/dist/assets/js/8.b1a52cf1.js"><link rel="prefetch" href="/dist/assets/js/9.edfaeadf.js">
+    <link rel="stylesheet" href="/dist/assets/css/1.styles.e33b547e.css"><link rel="stylesheet" href="/dist/assets/css/4.styles.8000c5d8.css"><link rel="stylesheet" href="/dist/assets/css/styles.7f78bffa.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/dist/" class="home-link router-link-active"><!----> <span class="site-name">springleo's blog</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/dist/" class="sidebar-link">blogs</a></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>规范</span> <!----></p> <ul class="sidebar-group-items"></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>推荐</span> <!----></p> <ul class="sidebar-group-items"></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>总结</span> <!----></p> <ul class="sidebar-group-items"></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>解决方案</span> <!----></p> <ul class="sidebar-group-items"></ul></div></li></ul> </div> <div class="page"> <div class="content"><h4 id="react-native调用原生方法"><a href="#react-native调用原生方法" aria-hidden="true" class="header-anchor">#</a> React Native调用原生方法</h4> <p>在需要调用原生方法的页面添加:</p> <div class="language- extra-class"><pre class="language-text"><code>import ZGIntentModule from '../../components/ZGIntent'
+</code></pre></div><h5 id="获取用户信息"><a href="#获取用户信息" aria-hidden="true" class="header-anchor">#</a> 获取用户信息</h5> <div class="language- extra-class"><pre class="language-text"><code>ZGIntentModule.getUserInfo((userInfo) =&gt; {
+	//userinfo:json字符串
+	alert(msg);
+});
+</code></pre></div><p>userinfo:</p> <div class="language- extra-class"><pre class="language-text"><code>{
+  &quot;token&quot;: &quot;JVWNtFk3PA&quot;,
+  &quot;secret&quot;: &quot;MofeRgGUs3&quot;,
+  &quot;userId&quot;: &quot;57402&quot;,
+  &quot;userName&quot;: &quot;YGKHL6kQEh&quot;,
+  &quot;avatar&quot;: &quot;Qn1lfxbNAM&quot;
+}
+</code></pre></div><h5 id="打开登录页面"><a href="#打开登录页面" aria-hidden="true" class="header-anchor">#</a> 打开登录页面</h5> <div class="language- extra-class"><pre class="language-text"><code>ZGIntentModule.login();
+</code></pre></div><h5 id="启动新页面"><a href="#启动新页面" aria-hidden="true" class="header-anchor">#</a> 启动新页面</h5> <div class="language- extra-class"><pre class="language-text"><code>//url表示需要跳转的页面路径
+ZGIntentModule.startActivity(&quot;url&quot;);
+</code></pre></div><h5 id="关闭当前页面"><a href="#关闭当前页面" aria-hidden="true" class="header-anchor">#</a> 关闭当前页面</h5> <div class="language- extra-class"><pre class="language-text"><code>//result可以不传
+ZGIntentModule.finishActivity(&quot;result&quot;);
+</code></pre></div><h5 id="分享"><a href="#分享" aria-hidden="true" class="header-anchor">#</a> 分享</h5> <h4 id="原生传递数据给react-native"><a href="#原生传递数据给react-native" aria-hidden="true" class="header-anchor">#</a> 原生传递数据给React Native</h4> <h5 id="更新用户信息"><a href="#更新用户信息" aria-hidden="true" class="header-anchor">#</a> 更新用户信息</h5> <p>React Native代码</p> <div class="language- extra-class"><pre class="language-text"><code>//注册监听
+componentDidMount(){
+        DeviceEventEmitter.addListener(&quot;UserInfo&quot;,(msg)=&gt;{
+            alert(&quot;123&quot;);
+        })
+}
+</code></pre></div><p>Android原生代码</p> <div class="language- extra-class"><pre class="language-text"><code>private static final String UPDATE_USER_INFO = &quot;UserInfo&quot;;
+mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit(UPDATE_USER_INFO,json);
+</code></pre></div><p>iOS原生代码</p></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/dist/assets/js/14.0fb99a25.js" defer></script><script src="/dist/assets/js/app.7f78bffa.js" defer></script>
+  </body>
+</html>

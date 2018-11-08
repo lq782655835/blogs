@@ -1,0 +1,14 @@
+{
+  "name": "blogs",
+  "version": "1.0.0",
+  "repository": "https://github.com/lq782655835/blogs.git",
+  "author": "782655835@qq.com",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^0.14.4"
+  }
+}
