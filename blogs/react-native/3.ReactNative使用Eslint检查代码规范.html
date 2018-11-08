@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Eslint代码检查规范 - React/ReactNative | springleo&#39;s blog</title>
+    <meta name="description" content="">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
+    
+    <link rel="preload" href="/blogs/assets/css/23.styles.19f854ff.css" as="style"><link rel="preload" href="/blogs/assets/js/app.f1901604.js" as="script"><link rel="preload" href="/blogs/assets/js/12.c4b532cf.js" as="script"><link rel="prefetch" href="/blogs/assets/js/10.e06eb472.js"><link rel="prefetch" href="/blogs/assets/js/0.a1b1771f.js"><link rel="prefetch" href="/blogs/assets/js/1.b1e19482.js"><link rel="prefetch" href="/blogs/assets/js/2.60ba1414.js"><link rel="prefetch" href="/blogs/assets/js/3.af07ed68.js"><link rel="prefetch" href="/blogs/assets/js/4.9779d34b.js"><link rel="prefetch" href="/blogs/assets/js/5.28dccad6.js"><link rel="prefetch" href="/blogs/assets/js/6.e5b3427d.js"><link rel="prefetch" href="/blogs/assets/js/7.d8a1f8cd.js"><link rel="prefetch" href="/blogs/assets/js/8.dd3f8542.js"><link rel="prefetch" href="/blogs/assets/js/9.277cf951.js"><link rel="prefetch" href="/blogs/assets/js/11.8cf2ea35.js"><link rel="prefetch" href="/blogs/assets/js/13.7b7b15ec.js"><link rel="prefetch" href="/blogs/assets/js/14.c9908b0b.js"><link rel="prefetch" href="/blogs/assets/js/15.f27307d1.js"><link rel="prefetch" href="/blogs/assets/js/16.65637802.js"><link rel="prefetch" href="/blogs/assets/js/17.1fd19329.js"><link rel="prefetch" href="/blogs/assets/js/18.a79fe124.js"><link rel="prefetch" href="/blogs/assets/js/19.37fecebc.js"><link rel="prefetch" href="/blogs/assets/js/20.805bb46f.js"><link rel="prefetch" href="/blogs/assets/js/21.575a3daa.js"><link rel="prefetch" href="/blogs/assets/js/22.5644933a.js">
+    <link rel="stylesheet" href="/blogs/assets/css/23.styles.19f854ff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/blogs/" class="home-link router-link-active"><!----><span class="site-name">
+      springleo's blog
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><!----></div></header><div class="sidebar-mask"></div><div class="sidebar"><!----><ul class="sidebar-links"><li><a href="/blogs/" class="sidebar-link">blogs</a></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>规范</span><!----></p><ul class="sidebar-group-items"></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>推荐</span><!----></p><ul class="sidebar-group-items"></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>总结</span><!----></p><ul class="sidebar-group-items"></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>解决方案</span><!----></p><ul class="sidebar-group-items"></ul></div></li></ul></div><div class="page"><div class="content"><h1 id="eslint代码检查规范-react-reactnative"><a href="#eslint代码检查规范-react-reactnative" aria-hidden="true" class="header-anchor">#</a> Eslint代码检查规范 - React/ReactNative</h1><p>在前端编码时,为了规范每个成员的代码风格以及避免低级的错误,我们可以使用Eslint来制定规则.本文旨在帮助团队成员形成良好的React代码规范。推荐使用<a href="https://github.com/airbnb/javascript/tree/master/react" target="_blank" rel="noopener noreferrer">Airbnb Eslint规范<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>+<a href="http://eslint.cn/docs/rules/" target="_blank" rel="noopener noreferrer">自定义Rules<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>。</p><h2 id="airbnb-eslint规范"><a href="#airbnb-eslint规范" aria-hidden="true" class="header-anchor">#</a> Airbnb Eslint规范</h2><p>目前使用eslint不再需要自己手动装太多npm包，社区已经在最新eslint初始化命令中自动安装。</p><h3 id="安装eslint"><a href="#安装eslint" aria-hidden="true" class="header-anchor">#</a> 安装Eslint</h3><p>有全局安装和本地安装两种方式，推荐本地安装</p><div class="language- extra-class"><pre class="language-text"><code>npm install --save-dev eslint
+</code></pre></div><h3 id="初始化eslint"><a href="#初始化eslint" aria-hidden="true" class="header-anchor">#</a> 初始化Eslint</h3><p>初始化会供用户很多可选的选择，这里推荐使用流行的<code>Airbnb Eslint</code>。安装完后，在<code>package.json</code>中会自动安装需要的依赖,分别为eslint-config-airbnb、eslint-plugin-import、eslint-plugin-jsx-a11y、eslint-plugin-react。同时也会创建<code>.eslintrc</code>配置文件</p><div class="language- extra-class"><pre class="language-text"><code>eslint --init
+</code></pre></div><p><img src="https://upload-images.jianshu.io/upload_images/1474238-c0bc9d15756a4abe.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/555" alt></p><h3 id="eslint检查"><a href="#eslint检查" aria-hidden="true" class="header-anchor">#</a> Eslint检查</h3><p>eslint的<a href="https://eslint.org/docs/user-guide/command-line-interface" target="_blank" rel="noopener noreferrer">Command Line Interface<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>有命令行调用接口，如何搭配命令行取决于项目风格。格式：</p><div class="language- extra-class"><pre class="language-text"><code>eslint [options] [file|dir|glob]*
+</code></pre></div><p>eg：当前app目录下监测js并打印报错</p><div class="language- extra-class"><pre class="language-text"><code>eslint --quiet --ext .js app
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>--ext [String]                 Specify JavaScript file extensions - default: .js
+--quiet                        Report errors only - default: false
+</code></pre></div><blockquote><p>tips: 如果测试执行报错，可能你同时安装了本地和全局eslint，这里可以把eslint命令指定为本地路径：<code>./node_modules/.bin/eslint</code>,参考见该<a href="https://github.com/airbnb/javascript/issues/465" target="_blank" rel="noopener noreferrer">issue<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></blockquote><h2 id="自定义rules"><a href="#自定义rules" aria-hidden="true" class="header-anchor">#</a> 自定义Rules</h2><p>自定义Rules综合考虑了笔者部门小伙伴习惯的Vue风格，如不使用分号结尾，以及React特殊的JSX语法，形成以下推荐配置：</p><div class="language-eslint extra-class"><pre class="language-text"><code>module.exports = {
+    &quot;extends&quot;: [&quot;airbnb&quot;], // 使用airbnb规则
+    &quot;parser&quot;: &quot;babel-eslint&quot;,// React使用了大量ES6语法，使用babel-eslint解析器代替默认的Espree
+    &quot;globals&quot;: { // 全局变量设置
+        &quot;__DEV__&quot;: false // false 表示这个全局变量不允许被重新赋值
+    },
+    &quot;rules&quot;: {
+        // 4个空格
+        &quot;indent&quot;: [2, 4],
+        &quot;react/jsx-indent&quot;: [2, 4],
+        &quot;react/jsx-indent-props&quot;: [2, 4],
+
+        &quot;semi&quot;: [2, &quot;never&quot;], // 是否使用分号结尾
+        &quot;no-console&quot;: 'off', // 允许console
+        &quot;max-len&quot;: &quot;off&quot;, // 单行没有字数限制
+        &quot;object-curly-newline&quot;: &quot;off&quot;, // 关闭大括号内换行符的一致性
+        &quot;comma-dangle&quot;: &quot;off&quot;, // 关闭是否使用拖尾逗号
+        &quot;arrow-parens&quot;: &quot;off&quot;, // 关闭箭头函数是否需要大括号
+
+        &quot;react/jsx-filename-extension&quot;: [1, { &quot;extensions&quot;: [&quot;.js&quot;, &quot;.jsx&quot;] }], // 允许使用js/jsx文件扩展
+        &quot;react/sort-comp&quot;: &quot;off&quot;, // 关闭sort
+        &quot;react/no-array-index-key&quot;: &quot;off&quot;,// 允许使用index作为List的key
+        &quot;no-unused-expressions&quot;: &quot;off&quot;,// 允许三元表达式
+        &quot;import/no-unresolved&quot;: &quot;off&quot;,// 允许require image
+        &quot;react/no-multi-comp&quot;: &quot;off&quot;, // 允许一个文件定义多个组件
+        &quot;react/display-name&quot;: &quot;off&quot;, // 不需要给组件定义displayName
+    }
+
+};
+</code></pre></div><blockquote><p>注意:需要额外安装babel-eslint以解析ES6语法：<code>npm install --save-dev babel-eslint</code></p></blockquote></div><div class="page-edit"><!----><div class="last-updated"><span class="prefix">最后更新时间: </span><span class="time">11/8/2018, 6:18:39 PM</span></div></div><!----></div></div></div>
+    <script src="/blogs/assets/js/12.c4b532cf.js" defer></script><script src="/blogs/assets/js/app.f1901604.js" defer></script>
+  </body>
+</html>
