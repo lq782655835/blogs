@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>AI前端Vue规范 | springleo&#39;s blog</title>
+    <meta name="description" content="">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
+    
+    <link rel="preload" href="/blogs/assets/css/30.styles.b8a42a11.css" as="style"><link rel="preload" href="/blogs/assets/js/app.9fbc6ded.js" as="script"><link rel="preload" href="/blogs/assets/js/8.1da33cd5.js" as="script"><link rel="prefetch" href="/blogs/assets/js/13.0961d3cb.js"><link rel="prefetch" href="/blogs/assets/js/0.871114d3.js"><link rel="prefetch" href="/blogs/assets/js/1.7263c412.js"><link rel="prefetch" href="/blogs/assets/js/2.c2ccccf7.js"><link rel="prefetch" href="/blogs/assets/js/3.49c78a0c.js"><link rel="prefetch" href="/blogs/assets/js/4.8f6f4e12.js"><link rel="prefetch" href="/blogs/assets/js/5.76c8d2ca.js"><link rel="prefetch" href="/blogs/assets/js/6.c9b7f4a2.js"><link rel="prefetch" href="/blogs/assets/js/7.a8a542c1.js"><link rel="prefetch" href="/blogs/assets/js/9.9d5f6602.js"><link rel="prefetch" href="/blogs/assets/js/10.124cd28d.js"><link rel="prefetch" href="/blogs/assets/js/11.25726933.js"><link rel="prefetch" href="/blogs/assets/js/12.59a229c9.js"><link rel="prefetch" href="/blogs/assets/js/14.d7a1844a.js"><link rel="prefetch" href="/blogs/assets/js/15.18f3c9ea.js"><link rel="prefetch" href="/blogs/assets/js/16.dc6b9755.js"><link rel="prefetch" href="/blogs/assets/js/17.a2871778.js"><link rel="prefetch" href="/blogs/assets/js/18.3d534bb6.js"><link rel="prefetch" href="/blogs/assets/js/19.f1bf75a8.js"><link rel="prefetch" href="/blogs/assets/js/20.f137b69b.js"><link rel="prefetch" href="/blogs/assets/js/21.0f3f377b.js"><link rel="prefetch" href="/blogs/assets/js/22.766629de.js"><link rel="prefetch" href="/blogs/assets/js/23.707420b2.js"><link rel="prefetch" href="/blogs/assets/js/24.8dba837e.js"><link rel="prefetch" href="/blogs/assets/js/25.2f7d1341.js"><link rel="prefetch" href="/blogs/assets/js/26.eb179c3f.js"><link rel="prefetch" href="/blogs/assets/js/27.38a23f0d.js"><link rel="prefetch" href="/blogs/assets/js/28.efbd9f17.js"><link rel="prefetch" href="/blogs/assets/js/29.919ba4e5.js">
+    <link rel="stylesheet" href="/blogs/assets/css/30.styles.b8a42a11.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/blogs/" class="home-link router-link-active"><!----><span class="site-name">
+      springleo's blog
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><!----></div></header><div class="sidebar-mask"></div><div class="sidebar"><!----><ul class="sidebar-links"><li><a href="/blogs/" class="sidebar-link">blogs</a></li><li><div class="sidebar-group"><p class="sidebar-heading open"><span>团队规范</span><!----></p><ul class="sidebar-group-items"><li><a href="/blogs/team-standard/standard-ai-js.html" class="sidebar-link">AI前端JS规范</a></li><li><a href="/blogs/team-standard/standard-ai-css.html" class="sidebar-link">AI前端CSS规范</a></li><li><a href="/blogs/team-standard/standard-ai-vue.html" class="active sidebar-link">AI前端Vue规范</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/blogs/team-standard/standard-ai-vue.html#参考连接" class="sidebar-link">参考连接</a></li></ul></li><li><a href="/blogs/team-standard/standard-ai-git.html" class="sidebar-link">AI前端Git规范</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>经验总结</span><!----></p><ul class="sidebar-group-items"></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>源码分析</span><!----></p><ul class="sidebar-group-items"></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>其他</span><!----></p><ul class="sidebar-group-items"></ul></div></li></ul></div><div class="page"><div class="content"><h1 id="ai前端vue规范"><a href="#ai前端vue规范" aria-hidden="true" class="header-anchor">#</a> AI前端Vue规范</h1><h3 id="文件命名"><a href="#文件命名" aria-hidden="true" class="header-anchor">#</a> 文件命名</h3><p>统一小写，多个单词作为文件名使用分隔符<code>-</code></p><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+EntityList<span class="token punctuation">.</span>vue
+entityList<span class="token punctuation">.</span>vue
+
+<span class="token comment">// good</span>
+entity<span class="token operator">-</span>list<span class="token punctuation">.</span>vue
+</code></pre></div><h3 id="紧密耦合的组件命名"><a href="#紧密耦合的组件命名" aria-hidden="true" class="header-anchor">#</a> 紧密耦合的组件命名</h3><p>和父组件紧密耦合的子组件应该以父组件名作为前缀命名</p><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+components<span class="token operator">/</span>
+<span class="token operator">|</span><span class="token operator">-</span> todo<span class="token operator">-</span>list<span class="token punctuation">.</span>vue
+<span class="token operator">|</span><span class="token operator">-</span> todo<span class="token operator">-</span>item<span class="token punctuation">.</span>vue
+└─ todo<span class="token operator">-</span>button<span class="token punctuation">.</span>vue
+
+<span class="token comment">// good</span>
+components<span class="token operator">/</span>
+<span class="token operator">|</span><span class="token operator">-</span> todo<span class="token operator">-</span>list<span class="token punctuation">.</span>vue
+<span class="token operator">|</span><span class="token operator">-</span> todo<span class="token operator">-</span>list<span class="token operator">-</span>item<span class="token punctuation">.</span>vue
+└─ todo<span class="token operator">-</span>list<span class="token operator">-</span>item<span class="token operator">-</span>button<span class="token punctuation">.</span>vue
+</code></pre></div><h3 id="自闭合组件"><a href="#自闭合组件" aria-hidden="true" class="header-anchor">#</a> 自闭合组件</h3><p>在单文件组件中没有内容的组件应该是自闭合的</p><div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- bad --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>u-input</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>u-input</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token comment">&lt;!-- good --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>u-input</span> <span class="token punctuation">/&gt;</span></span>
+</code></pre></div><h3 id="指令缩写"><a href="#指令缩写" aria-hidden="true" class="header-anchor">#</a> 指令缩写</h3><p>用<code>:</code> 表示 <code>v-bind</code>: ，用<code>@</code>表示<code>v-on</code></p><div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- bad --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>value<span class="token punctuation">&quot;</span></span> <span class="token attr-name"><span class="token namespace">v-on:</span>input</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>onInput<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+
+<span class="token comment">&lt;!-- good --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">:value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>value<span class="token punctuation">&quot;</span></span> <span class="token attr-name">@input</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>onInput<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h3 id="组件数据"><a href="#组件数据" aria-hidden="true" class="header-anchor">#</a> 组件数据</h3><p>组件的 data 必须是一个函数,并且建议在此不使用箭头函数</p><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    foo<span class="token punctuation">:</span> <span class="token string">'bar'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  <span class="token function">data</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      foo<span class="token punctuation">:</span> <span class="token string">'bar'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="props命名"><a href="#props命名" aria-hidden="true" class="header-anchor">#</a> props命名</h3><p>小驼峰命名。内容尽量详细，至少有默认值</p><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+greeting<span class="token operator">-</span>text<span class="token punctuation">:</span> String
+
+<span class="token comment">// good</span>
+greetingText<span class="token punctuation">:</span> <span class="token punctuation">{</span> type<span class="token punctuation">:</span> String<span class="token punctuation">,</span> <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">}</span>
+</code></pre></div><h3 id="组件属性顺序和分行规则"><a href="#组件属性顺序和分行规则" aria-hidden="true" class="header-anchor">#</a> 组件属性顺序和分行规则</h3><p>顺序原则：重要属性放前面</p><p>顺序依据：依次<code>指令</code>-&gt;<code>props属性</code>-&gt; <code>事件</code>-&gt;<code>dom属性(class有标记作用，除外)</code></p><p>分行规则：放在一行，重要内容较多时，可放置2～3行</p><div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- bad --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>u-select</span>
+    <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>select<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>s<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">@select</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>searchEntity($event, row)<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">@blur</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>searchEntity($event, row)<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>row.variableId<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">:list</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>variableList<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+
+<span class="token comment">&lt;!-- good --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>u-select</span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>row.variableId<span class="token punctuation">&quot;</span></span> <span class="token attr-name">:list</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>variableList<span class="token punctuation">&quot;</span></span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>s<span class="token punctuation">&quot;</span></span>
+    <span class="token attr-name">@select</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>searchEntity($event, row)<span class="token punctuation">&quot;</span></span> <span class="token attr-name">@blur</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>searchEntity($event, row)<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>select<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+</code></pre></div><h3 id="vue-api顺序"><a href="#vue-api顺序" aria-hidden="true" class="header-anchor">#</a> Vue API顺序</h3><div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    <span class="token comment">/*1. Vue扩展 */</span>
+    <span class="token keyword">extends</span><span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment">// extends和mixins都扩展逻辑，需要重点放前面</span>
+    mixins<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>   
+    components<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">/* 2. Vue数据 */</span>
+    props<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    model<span class="token punctuation">:</span> <span class="token punctuation">{</span> prop<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> event<span class="token punctuation">:</span> <span class="token string">''</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// model 会使用到 props</span>
+    <span class="token function">data</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    computed<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    watch<span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// watch 监控的是 props 和 data，有必要时监控computed</span>
+    <span class="token comment">/* 3. Vue资源 */</span>
+    filters<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    directives<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">/* 4. Vue生命周期 */</span>
+    <span class="token function">created</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">mounted</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">destroy</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">/* 5. Vue方法 */</span>
+    methods<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// all the methods should be put here in the last</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="vue组件顶级标签顺序"><a href="#vue组件顶级标签顺序" aria-hidden="true" class="header-anchor">#</a> Vue组件顶级标签顺序</h3><p>顺序保持一致，且标签之间留有空行。template第一层级下四个空格，script和style第一层级都不加空格</p><div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+<span class="token selector">.app</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h3 id="import引入顺序-v1-1"><a href="#import引入顺序-v1-1" aria-hidden="true" class="header-anchor">#</a> import引入顺序 <code>V1.1</code></h3><p>原则：同等类型的放一起，优先放mixins和components等UI资源。忌随意放置</p><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> getAllEntityList<span class="token punctuation">,</span> getVariableGroup <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/server/api'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> helpers <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vuelidate/lib/validators'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> getRepeatLine <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/utils/common'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CloseModalMixin<span class="token punctuation">,</span> InvalidCheckMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/components/common/mixins'</span>
+<span class="token keyword">import</span> VSearchSelect <span class="token keyword">from</span> <span class="token string">'@/components/variable/v-search-select'</span>
+<span class="token keyword">import</span> EModifyModal <span class="token keyword">from</span> <span class="token string">'@/components/entity/e-modify-modal'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">MODIFY_MODAL_TYPE</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/utils/config'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> botIdLoc<span class="token punctuation">,</span> custIdLoc <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/utils/locs'</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CloseModalMixin<span class="token punctuation">,</span> InvalidCheckMixin <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/components/common/mixins'</span>
+<span class="token keyword">import</span> VSearchSelect <span class="token keyword">from</span> <span class="token string">'@/components/variable/v-search-select'</span>
+<span class="token keyword">import</span> EModifyModal <span class="token keyword">from</span> <span class="token string">'@/components/entity/e-modify-modal'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> getAllEntityList<span class="token punctuation">,</span> getVariableGroup <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/server/api'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> helpers <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vuelidate/lib/validators'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">MODIFY_MODAL_TYPE</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/utils/config'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> getRepeatLine <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/utils/common'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> botIdLoc<span class="token punctuation">,</span> custIdLoc <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/utils/locs'</span>
+</code></pre></div><h3 id="vue-复杂data加注释-分组-v1-1"><a href="#vue-复杂data加注释-分组-v1-1" aria-hidden="true" class="header-anchor">#</a> Vue 复杂data加注释/分组 <code>V1.1</code></h3><p>data数据是连接View和Modal的基础，当ViewModal复杂时，建议进行注释并分组。另外，当data过于复杂时应考虑优化重构。</p><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        isOpenModal<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        list<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        groupList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        searchParams<span class="token punctuation">:</span> <span class="token punctuation">{</span> groupId<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> searchParam<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> searchType<span class="token punctuation">:</span> <span class="token string">''</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        pageParam<span class="token punctuation">:</span> <span class="token punctuation">{</span> currentPage<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> pageSize<span class="token punctuation">:</span> <span class="token number">50</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        totalCount<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        groupId<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+        typeList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        defaultType<span class="token punctuation">:</span> <span class="token string">'paramName'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        variableList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        groupList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        typeList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+        <span class="token comment">/*
+        * 查询参数
+        * 组与组之间通过空行区分
+        */</span>
+        searchParams<span class="token punctuation">:</span> <span class="token punctuation">{</span> groupId<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> searchParam<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> searchType<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> currentPage<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> pageSize<span class="token punctuation">:</span> <span class="token number">50</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        totalCount<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        defaultType<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+
+        isOpenModal<span class="token punctuation">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="参考连接"><a href="#参考连接" aria-hidden="true" class="header-anchor">#</a> 参考连接</h2><p><a href="https://cn.vuejs.org/v2/style-guide/index.html" target="_blank" rel="noopener noreferrer">Vue官方风格指南<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p><p><a href="https://youzan.github.io/vant/#/zh-CN/style-guide" target="_blank" rel="noopener noreferrer">有赞风格指南<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div><div class="page-edit"><!----><div class="last-updated"><span class="prefix">最后更新时间: </span><span class="time">11/14/2018, 6:07:22 PM</span></div></div><div class="page-nav"><p class="inner"><span class="prev">
+        ← <a href="/blogs/team-standard/standard-ai-css.html" class="prev">
+          AI前端CSS规范
+        </a></span><span class="next"><a href="/blogs/team-standard/standard-ai-git.html">
+          AI前端Git规范
+        </a> →
+      </span></p></div></div></div></div>
+    <script src="/blogs/assets/js/8.1da33cd5.js" defer></script><script src="/blogs/assets/js/app.9fbc6ded.js" defer></script>
+  </body>
+</html>
