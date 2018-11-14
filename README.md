@@ -1,6 +1,3 @@
-# blogs
-personal blogs
-
 ## 团队规范
 
 * [前端团队规范总结](https://github.com/lq782655835/blogs/issues/17)

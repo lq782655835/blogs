@@ -11,19 +11,25 @@ module.exports = {
       sidebar: [
         '/',
         {
-          title: "规范",
+          title: "团队规范",
+          collapsable: false,
+          children: [
+            'team-standard/standard-ai-js',
+            'team-standard/standard-ai-css',
+            'team-standard/standard-ai-vue',
+            'team-standard/standard-ai-git'
+          ]
+        },
+        {
+          title: "经验总结",
           collapsable: false
         },
         {
-          title: "推荐",
+          title: "源码分析",
           collapsable: false
         },
         {
-          title: "总结",
-          collapsable: false
-        },
-        {
-          title: "解决方案",
+          title: "其他",
           collapsable: false
         }
       ],
