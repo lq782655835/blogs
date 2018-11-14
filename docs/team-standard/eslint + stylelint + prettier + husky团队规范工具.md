@@ -1,4 +1,4 @@
-# eslint + stylelint + prettier + husky团队规范
+# eslint + stylelint + prettier + husky团队规范工具
 
 > 为了提高整体开发效率，准备在团队中定制一些vue脚手架工具。首先要将一些代码规范考虑在内，需要保持git仓库的代码就像是一个人写出来的。团队根据团队习惯，考虑后使用组合工具：`eslint` + `stylelint` + `prettier` + `husky`。
 

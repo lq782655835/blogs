@@ -1,0 +1,193 @@
+# ES6-解构赋值及原理
+
+## 基础语法
+
+### 数组
+
+``` js
+// 基础类型解构
+let [a, b, c] = [1, 2, 3]
+console.log(a, b, c) // 1, 2, 3
+
+// 对象数组解构
+let [a, b, c] = [{name: '1'}, {name: '2'}, {name: '3'}]
+console.log(a, b, c) // {name: '1'}, {name: '2'}, {name: '3'}
+
+// ...解构
+let [head, ...tail] = [1, 2, 3, 4]
+console.log(head, tail) // 1, [2, 3, 4]
+
+// 嵌套解构
+let [a, [b], [d]] = [1, [2, 3], 4]
+console.log(a, b, d) // 1, 2, 4
+
+// 解构不成功为undefined
+let [a, b, c] = [1]
+console.log(a, b, c) // 1, undefined, undefined
+
+// 解构默认赋值
+let [a = 1, b = 2] = [3]
+console.log(a, b) // 3, 2
+```
+
+### 对象
+
+``` js
+// 对象属性解构
+let { f1, f2 } = { f1: 'test1', f2: 'test2' }
+console.log(f1, f2) // test1, test2
+
+// 可以不按照顺序，这是数组解构和对象解构的区别之一
+let { f2, f1 } = { f1: 'test1', f2: 'test2' }
+console.log(f1, f2) // test1, test2
+
+// 解构对象重命名
+let { f1: rename, f2 } = { f1: 'test1', f2: 'test2' }
+console.log(rename, f2) // test1, test2
+
+// 嵌套解构
+let { f1: {f11}} = { f1: { f11: 'test11', f12: 'test12' } }
+console.log(f11) // test11
+
+// 默认值
+let { f1 = 'test1', f2: rename = 'test2' } = { f1: 'current1', f2: 'current2'}
+console.log(f1, rename) // current1, current2
+```
+
+### 函数参数
+
+``` js
+// 参数解构
+function func1({ x, y }) {
+    return x + y
+}
+func1({ x: 1, y: 2}) // 3
+
+function func1({ x = 1, y = 2 }) {
+    return x + y
+}
+func1({x: 4}) // 6
+```
+
+### String/Map/Set
+
+``` js
+// String
+let [ a, b, c, ...rest ] = 'test123'
+console.log(a, b, c, rest) // t, e, s, [ 't', '1', '2', '3' ]
+
+// Map
+let [a, b] = new Map().set('f1', 'test1').set('f2', 'test2')
+console.log(a, b) // [ 'f1', 'test1' ], [ 'f2', 'test2' ]
+
+// Set
+let [a, b] = new Set([1, 2, 3])
+console.log(a, b) // 1, 2
+```
+
+## 解构原理
+
+解构是ES6提供的语法糖，其实内在是针对`可迭代对象`的`Iterator接口`，通过`遍历器`按顺序获取对应的值进行赋值。这里需要提前懂得ES6的两个概念：
+
+* Iterator
+* 可迭代对象
+
+### Iterator概念
+
+Iterator是一种接口，为各种不一样的数据解构提供统一的访问机制。任何数据解构只要有Iterator接口，就能通过遍历操作，依次按顺序处理数据结构内所有成员。ES6中的for of的语法相当于遍历器，会在遍历数据结构时，自动寻找Iterator接口。
+
+Iterator作用：
+
+* 为各种数据解构提供统一的访问接口
+* 使得数据解构能按次序排列处理
+* 可以使用ES6最新命令 for of进行遍历
+
+``` js
+function makeIterator(array) {
+    var nextIndex = 0
+    return {
+      next: function() {
+        return nextIndex < array.length ?
+            {value: array[nextIndex++]} :
+            {done: true}
+        }
+    };
+  }
+
+
+var it = makeIterator([0, 1, 2])
+
+console.log(it.next().value) // 0
+console.log(it.next().value) // 1
+console.log(it.next().value) // 2
+```
+
+### 可迭代对象
+
+可迭代对象是Iterator接口的实现。这是ECMAScript 2015的补充，它不是内置或语法，而仅仅是`协议`。任何遵循该协议点对象都能成为可迭代对象。可迭代对象得有两个协议：*可迭代协议*和*迭代器协议*。
+
+`可迭代协议`：对象必须实现@@iterator方法。即对象或其原型链上必须有一个名叫`Symbol.iterator`的属性。该属性的值为无参函数，函数返回迭代器协议。
+
+| 属性 | 值 |
+| ---- | ---- |
+| `Symbol.iterator` | 返回一个对象的无参函数，被返回对象符合迭代器协议。|
+
+`迭代器协议`：定义了标准的方式来产生一个有限或无限序列值。其要求必须实现一个next()方法，该方法返回对象有done(boolean)和value属性。
+
+| 属性 | 值 |
+| ---- | ---- |
+| `next` | 返回一个对象的无参函数，被返回对象拥有两个属性：done和value<br>`done` - 如果迭代器已经经过了被迭代序列时为 true。这时 value 可能描述了该迭代器的返回值。如果迭代器可以产生序列中的下一个值，则为 false。这等效于连同 done 属性也不指定。<br>`value` - 迭代器返回的任何 JavaScript 值。done 为 true 时可省略。 |
+
+通过以上可知，自定义数据结构，只要拥有Iterator接口，并将其部署到自己的Symbol.iterator属性上，就可以成为可迭代对象，能被for of循环遍历。
+
+``` js
+// 自定义可迭代对象
+let obj = {
+    [Symbol.iterator] : function() {
+        return{
+            next: function() {
+                return { value: 1, done: true }
+            }
+        }
+    }
+}
+
+for (let item of obj) {
+    console.log(item) // 不会报错，因为obj已经是可迭代对象
+}
+```
+
+### 解构语法糖
+
+String、Array、Map、Set等原生数据结构都是可迭代对象，可以通过for of循环遍历它。故可以通过ES6解构语法糖依次获取对应的值。
+
+``` js
+// String
+let str = 'test'
+let iterFun = str[Symbol.iterator]
+let iterator = str[Symbol.iterator]()
+let first = iterator.next() // 等效于 let [first] = 'test'
+console.log(iterFun, iterator, first)
+// 打印
+// [Function: [Symbol.iterator]], {}, { value: 't', done: false }
+
+// Array
+let arr = ['a', 'b', 'c'];
+let iter = arr[Symbol.iterator]();
+
+// 以下等效于 let [first, second, third, four] = ['a', 'b', 'c']
+let first = iter.next() // { value: 'a', done: false }
+let second = iter.next() // { value: 'b', done: false }
+let third = iter.next() // { value: 'c', done: false }
+let four = iter.next() // { value: undefined, done: true }
+```
+
+原生object对象是默认没有部署Iterator接口，即object不是一个可迭代对象。因为遍历时，不知道到底哪个属性先遍历，哪个属性后遍历，需要开发者手动指定。不过object部署Iterator接口没有必要，因为ES6提供了Map数据结构。实际上对象被解构时，会被当作Map进行解构。所以虽然Map和Object很多地方相似，但ES6引入Map、Set对象是有其原因的。
+
+## 参考文章
+
+[阮一峰ECMAScript 6](http://es6.ruanyifeng.com/#docs/iterator)
+
+[Mozilla - for of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
+
+[Mozilla - Iteration protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol)
