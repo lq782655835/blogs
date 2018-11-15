@@ -25,6 +25,8 @@
 
   * [200错误统一处理推荐](https://github.com/lq782655835/blogs/issues/21)
 
+* [MVC、MVP、MVVM区别](https://github.com/lq782655835/blogs/issues/29)
+
 * [for in和for of区别](https://github.com/lq782655835/blogs/issues/22)
 
 * [官网脚手架思考与实践](https://github.com/lq782655835/blogs/issues/11)
