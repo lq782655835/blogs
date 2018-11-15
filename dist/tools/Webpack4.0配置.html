@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>springleo&#39;s blog</title>
+    <meta name="description" content="">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
+    
+    <link rel="preload" href="/blogs/dist/assets/css/33.styles.fa7f5ed3.css" as="style"><link rel="preload" href="/blogs/dist/assets/js/app.9302f33b.js" as="script"><link rel="preload" href="/blogs/dist/assets/js/4.82d28703.js" as="script"><link rel="prefetch" href="/blogs/dist/assets/js/15.4c90d877.js"><link rel="prefetch" href="/blogs/dist/assets/js/0.72298eaf.js"><link rel="prefetch" href="/blogs/dist/assets/js/1.cbc60f9e.js"><link rel="prefetch" href="/blogs/dist/assets/js/2.9e3b308e.js"><link rel="prefetch" href="/blogs/dist/assets/js/3.a2fa81d0.js"><link rel="prefetch" href="/blogs/dist/assets/js/5.8fb04c96.js"><link rel="prefetch" href="/blogs/dist/assets/js/6.120fe0a6.js"><link rel="prefetch" href="/blogs/dist/assets/js/7.63d7c0d8.js"><link rel="prefetch" href="/blogs/dist/assets/js/8.08410c2a.js"><link rel="prefetch" href="/blogs/dist/assets/js/9.9013fc29.js"><link rel="prefetch" href="/blogs/dist/assets/js/10.dce18fd0.js"><link rel="prefetch" href="/blogs/dist/assets/js/11.51f6b330.js"><link rel="prefetch" href="/blogs/dist/assets/js/12.540422b8.js"><link rel="prefetch" href="/blogs/dist/assets/js/13.ba054f30.js"><link rel="prefetch" href="/blogs/dist/assets/js/14.d0fe5e2b.js"><link rel="prefetch" href="/blogs/dist/assets/js/16.8ef4bcd2.js"><link rel="prefetch" href="/blogs/dist/assets/js/17.57c77ef5.js"><link rel="prefetch" href="/blogs/dist/assets/js/18.4ffa6b0a.js"><link rel="prefetch" href="/blogs/dist/assets/js/19.7beb8bcb.js"><link rel="prefetch" href="/blogs/dist/assets/js/20.8fed1ce6.js"><link rel="prefetch" href="/blogs/dist/assets/js/21.c613405d.js"><link rel="prefetch" href="/blogs/dist/assets/js/22.3e1182ec.js"><link rel="prefetch" href="/blogs/dist/assets/js/23.55e4eb82.js"><link rel="prefetch" href="/blogs/dist/assets/js/24.d4f9d099.js"><link rel="prefetch" href="/blogs/dist/assets/js/25.75a1b605.js"><link rel="prefetch" href="/blogs/dist/assets/js/26.a302885f.js"><link rel="prefetch" href="/blogs/dist/assets/js/27.a4d11347.js"><link rel="prefetch" href="/blogs/dist/assets/js/28.a215fdad.js"><link rel="prefetch" href="/blogs/dist/assets/js/29.f75cd909.js"><link rel="prefetch" href="/blogs/dist/assets/js/30.de51a9b8.js"><link rel="prefetch" href="/blogs/dist/assets/js/31.60a22b63.js"><link rel="prefetch" href="/blogs/dist/assets/js/32.7dfd9cfd.js">
+    <link rel="stylesheet" href="/blogs/dist/assets/css/33.styles.fa7f5ed3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/blogs/dist/" class="home-link router-link-active"><!----><span class="site-name">
+      springleo's blog
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><!----></div></header><div class="sidebar-mask"></div><div class="sidebar"><!----><ul class="sidebar-links"><li><a href="/blogs/dist/" class="sidebar-link">blogs</a></li><li><div class="sidebar-group"><p class="sidebar-heading"><span>团队规范</span><!----></p><ul class="sidebar-group-items"><li><a href="/blogs/dist/team-standard/standard-ai-js.html" class="sidebar-link">AI前端JS规范</a></li><li><a href="/blogs/dist/team-standard/standard-ai-css.html" class="sidebar-link">AI前端CSS规范</a></li><li><a href="/blogs/dist/team-standard/standard-ai-vue.html" class="sidebar-link">AI前端Vue规范</a></li><li><a href="/blogs/dist/team-standard/standard-ai-git.html" class="sidebar-link">AI前端Git规范</a></li></ul></div></li></ul></div><div class="page"><div class="content"><div class="language- extra-class"><pre class="language-text"><code>module.exports = {
+    mode: 'development',     // 模式配置,4.0新增
+    entry: '',               // 入口文件
+    output: {},              // 出口文件
+    plugins: [],             // 对应的插件
+    devServer: {}            // 开发服务器配置
+}
+</code></pre></div><h2 id="loader"><a href="#loader" aria-hidden="true" class="header-anchor">#</a> Loader</h2><h3 id="css"><a href="#css" aria-hidden="true" class="header-anchor">#</a> css</h3><ul><li>style-loader</li><li>css-loader</li><li>postcss-loader</li></ul><h2 id="webpack插件"><a href="#webpack插件" aria-hidden="true" class="header-anchor">#</a> Webpack插件</h2><ul><li>HtmlWebpackPlugin</li><li>ExtractTextWebpackPlugin 拆分css样式的插件</li></ul></div><div class="page-edit"><!----><!----></div><!----></div></div></div>
+    <script src="/blogs/dist/assets/js/4.82d28703.js" defer></script><script src="/blogs/dist/assets/js/app.9302f33b.js" defer></script>
+  </body>
+</html>

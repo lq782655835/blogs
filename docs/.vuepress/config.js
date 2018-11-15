@@ -21,23 +21,23 @@ module.exports = {
             // 'team-standard/stylelint样式规范工具'
           ]
         },
-        {
-          title: "经验总结",
-          collapsable: false,
-          children: [
-            'summary/Vue项目目录结构推荐',
-            // 'summary/Vue实例选项顺序推荐',
-            // 'summary/Vue-Router写法推荐',
-            // 'summary/200错误统一处理推荐',
-            // 'summary/for in和for of区别',
-            // 'summary/官网脚手架思考与实践',
-            // 'summary/Electron工程踩坑记录',
-            // 'summary/H5 Video踩坑记',
-            // 'tools/正则表达式一张图总结',
-            // 'tools/npm script技巧',
-            // 'tools/TypeScript开发Vue应用'
-          ]
-        }
+        // {
+        //   title: "经验总结",
+        //   collapsable: false,
+        //   children: [
+        //     'summary/Vue项目目录结构推荐',
+        //     'summary/Vue实例选项顺序推荐',
+        //     'summary/Vue-Router写法推荐',
+        //     'summary/200错误统一处理推荐',
+        //     'summary/for in和for of区别',
+        //     'summary/官网脚手架思考与实践',
+        //     'summary/Electron工程踩坑记录',
+        //     'summary/H5 Video踩坑记',
+        //     'tools/正则表达式一张图总结',
+        //     'tools/npm script技巧',
+        //     'tools/TypeScript开发Vue应用'
+        //   ]
+        // }
         // {
         //   title: "源码分析",
         //   collapsable: false,
