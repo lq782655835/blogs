@@ -8,6 +8,7 @@ module.exports = {
     base: "/blogs/dist/",
     dest: "dist",
     themeConfig: {
+      sidebarDepth: 0,
       nav: [
         { text: 'Home', link: '/' },
         { text: 'Blogs', items: [
@@ -19,7 +20,7 @@ module.exports = {
       sidebar: [
         {
           title: "团队规范",
-          collapsable: false,
+          collapsable: true,
           children: [
             'team-standard/standard-ai-js',
             'team-standard/standard-ai-css',
@@ -28,17 +29,25 @@ module.exports = {
           ]
         },
         {
+          title: "工程推荐",
+          collapsable: true,
+          children: [
+            'team-standard/Vue项目目录结构推荐',
+            'team-standard/Vue实例选项顺序推荐',
+            'team-standard/Vue-Router写法推荐',
+            'team-standard/200错误统一处理推荐'
+          ]
+        },
+        {
           title: "经验总结",
           collapsable: true,
           children: [
-            'summary/Vue项目目录结构推荐',
-            'summary/Vue实例选项顺序推荐',
-            'summary/Vue-Router写法推荐',
-            'summary/200错误统一处理推荐',
             'summary/for in和for of区别',
             'summary/官网脚手架思考与实践',
             'summary/Electron工程踩坑记录',
             'summary/H5 Video踩坑记',
+            'summary/团队规范工具集',
+            'summary/stylelint样式规范工具',
             'tools/正则表达式一张图总结',
             'tools/npm script技巧',
             'tools/TypeScript开发Vue应用'

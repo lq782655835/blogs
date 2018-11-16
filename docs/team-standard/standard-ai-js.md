@@ -293,6 +293,6 @@ module.exports = {
 
 > 如果是vue-cli3项目，以上配置的eslint插件默认已安装；如果不是vue-cli3项目，需要npm安装对应包：npm install --save-dev babel-eslint eslint-plugin-vue
 
-## 参考链接
+### 参考链接
 
 [百度JS规范](https://github.com/ecomfe/spec/blob/master/javascript-style-guide.md)

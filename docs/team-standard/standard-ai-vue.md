@@ -225,7 +225,7 @@ data() {
 }
 ```
 
-## 参考连接
+### 参考链接
 
 [Vue官方风格指南](https://cn.vuejs.org/v2/style-guide/index.html)
 

@@ -7,7 +7,7 @@
 * 减小包体积，提高加载速度
 * 当页面>20个时，组件定义需要拉到编辑器顶部才知道具体路径
 
-## bad
+### bad
 
 ``` js
 import IntentionList from '@/pages/intention/list'
@@ -26,7 +26,8 @@ import Variable from '@/pages/variable'
 }
 ```
 
-## good
+### good
+
 ``` js
 {
     path: '/intention/list',

@@ -27,7 +27,7 @@ type : subject
 #### subject 指提交描述
 对应内容是commit 目的的简短描述，一般不超过50个字符
 
-推荐文章：
+### 参考链接
 
 [约定式提交](https://www.conventionalcommits.org/zh/v1.0.0-beta.2/)
 

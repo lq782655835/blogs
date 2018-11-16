@@ -24,12 +24,7 @@
   * [Vue-Router写法推荐](https://github.com/lq782655835/blogs/issues/20)
 
   * [200错误统一处理推荐](https://github.com/lq782655835/blogs/issues/21)
-
-* [MVC、MVP、MVVM区别](https://github.com/lq782655835/blogs/issues/29)
-
 * [for in和for of区别](https://github.com/lq782655835/blogs/issues/22)
-
-* [官网脚手架思考与实践](https://github.com/lq782655835/blogs/issues/11)
 
 * [Electron工程踩坑记录](https://github.com/lq782655835/blogs/issues/13)
 
@@ -41,11 +36,17 @@
 
 * [TypeScript开发Vue应用](https://github.com/lq782655835/blogs/issues/4)
 
-## 效率工具
+## 思考
 
-* [前端必备效率工具](https://github.com/lq782655835/blogs/issues/19)
+* [JS设计模式](https://github.com/lq782655835/blogs/issues/30)
 
-* [VSCode快捷键及常用插件](https://github.com/lq782655835/blogs/issues/3)
+* [MVC、MVP、MVVM区别](https://github.com/lq782655835/blogs/issues/29)
+
+* [ES6-解构赋值及原理](https://github.com/lq782655835/blogs/issues/23)
+
+* [Vue2.0源码分析 - 框架结构](https://github.com/lq782655835/blogs/issues/14)
+
+* [官网脚手架思考与实践](https://github.com/lq782655835/blogs/issues/11)
 
 ## ReactNative
 
@@ -55,12 +56,10 @@
 
 * [reactnative-Eslint代码检查规范](https://github.com/lq782655835/blogs/issues/18)
 
-## 源码分析
-
-* [ES6-解构赋值及原理](https://github.com/lq782655835/blogs/issues/23)
-
-* [Vue2.0源码分析 - 框架结构](https://github.com/lq782655835/blogs/issues/14)
-
 ## 其他
 
 * [一个程序员的成长之路](https://github.com/lq782655835/blogs/issues/16)
+
+* [前端必备效率工具](https://github.com/lq782655835/blogs/issues/19)
+
+* [VSCode快捷键及常用插件](https://github.com/lq782655835/blogs/issues/3)

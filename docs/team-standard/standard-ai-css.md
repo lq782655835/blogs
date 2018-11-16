@@ -85,7 +85,7 @@ module.exports = {
 }
 ```
 
-## 参考连接
+### 参考连接
 
 [百度CSS规范指南](https://github.com/ecomfe/spec/blob/master/css-style-guide.md)
 
