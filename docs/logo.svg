@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256px" height="256px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>定稿-优化-反白</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M192,23.9912115 L192,69.3907339 C176.074121,46.7751751 149.762524,32 120,32 C71.398942,32 32,71.398942 32,120 C32,168.601058 71.398942,208 120,208 C167.597037,208 206.368232,170.212084 207.949823,123.000017 L208,123 L208,48 L216.008788,48 C231.073324,68.0558527 240,92.985458 240,120 C240,186.27417 186.27417,240 120,240 C53.72583,240 0,186.27417 0,120 C0,53.72583 53.72583,0 120,0 C147.014542,0 171.944147,8.92667573 192,23.9912115 Z" id="path-1"></path>
+        <linearGradient x1="78.0512469%" y1="91.053407%" x2="50%" y2="67.4966169%" id="linearGradient-3">
+            <stop stop-color="#A5ACB8" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="55.9144491%" x2="33.7389618%" y2="17.8851173%" id="linearGradient-4">
+            <stop stop-color="#A5ACB8" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <path d="M56,0 L88,0 L88,44 C88,68.300529 68.300529,88 44,88 C19.699471,88 0,68.300529 0,44 L0,0 L32,0 L32,44 C32,50.627417 37.372583,56 44,56 C50.627417,56 56,50.627417 56,44 L56,0 Z" id="path-5"></path>
+        <linearGradient x1="78.627008%" y1="89.7274585%" x2="23.5570985%" y2="50%" id="linearGradient-7">
+            <stop stop-color="#A5ACB8" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="定稿-优化-反白" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Combined-Shape" transform="translate(8.000000, 8.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <path d="M0,123 L0,0 L192,0 L192,67.5490257 C202.134858,83.5991883 208,102.614655 208,123 C208,180.437614 161.437614,227 104,227 C46.562386,227 0,180.437614 0,123 Z" fill="url(#linearGradient-3)" fill-rule="nonzero" mask="url(#mask-2)"></path>
+            <path d="M64.2158078,187.853156 C36.6582817,165.865775 19,131.995044 19,94 C19,27.72583 72.72583,-26 139,-26 C205.27417,-26 259,27.72583 259,94 C259,99.8217472 258.585427,105.546666 257.784192,111.146844 C237.27355,94.7819741 211.279126,85 183,85 C122.547577,85 72.5357459,129.701486 64.2158078,187.853156 Z" fill="url(#linearGradient-4)" fill-rule="nonzero" mask="url(#mask-2)"></path>
+        </g>
+        <path d="M216,56 L248,56 L248,248 L248,248 C230.326888,248 216,233.673112 216,216 L216,56 Z" id="Rectangle-13" fill="#FFFFFF" fill-rule="nonzero"></path>
+        <rect id="Rectangle-13" fill="#FFFFFF" fill-rule="nonzero" x="216" y="8" width="32" height="32"></rect>
+        <g id="Oval-5" transform="translate(84.000000, 92.000000)">
+            <mask id="mask-6" fill="white">
+                <use xlink:href="#path-5"></use>
+            </mask>
+            <use id="Mask" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-5"></use>
+            <path d="M64,16.2835554 C77.5691766,18.2244741 88,29.8941124 88,44 C88,59.463973 75.463973,72 60,72 C45.5495048,72 33.6557483,61.0533 32.1588306,47 L32,47 L32,-2 L64,-2 L64,16.2835554 Z" id="Combined-Shape" fill="url(#linearGradient-7)" fill-rule="nonzero" mask="url(#mask-6)" transform="translate(60.000000, 35.000000) scale(-1, 1) translate(-60.000000, -35.000000) "></path>
+        </g>
+    </g>
+</svg>
