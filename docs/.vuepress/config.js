@@ -52,23 +52,27 @@ module.exports = {
           title: "经验总结",
           collapsable: true,
           children: [
+            'summary/Nginx反向代理',
             'summary/for in和for of区别',
-            'summary/官网脚手架思考与实践',
             'summary/Electron工程踩坑记录',
             'summary/H5 Video踩坑记',
-            'summary/团队规范工具集',
-            'summary/stylelint样式规范工具',
             'tools/正则表达式一张图总结',
             'tools/npm script技巧',
-            'tools/TypeScript开发Vue应用'
+            'tools/TypeScript开发Vue应用',
+            'summary/团队规范工具集',
+            'summary/stylelint样式规范工具'
           ]
         },
         {
-          title: "源码分析",
+          title: "源码与思考",
           collapsable: true,
           children: [
+            'code-analysis/谈谈前端天花板问题',
+            'code-analysis/JS设计模式',
+            'code-analysis/MVC、MVP、MVVM区别',
+            'code-analysis/ES6-解构赋值及原理',
             'code-analysis/Vue2.0源码分析 - 1. 框架结构',
-            'code-analysis/ES6-解构赋值及原理'
+            'code-analysis/官网脚手架思考与实践'
           ]
         },
         {

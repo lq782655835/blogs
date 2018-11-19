@@ -26,6 +26,8 @@
   * [200错误统一处理推荐](https://github.com/lq782655835/blogs/issues/21)
 * [for in和for of区别](https://github.com/lq782655835/blogs/issues/22)
 
+* [Nginx反向代理](https://github.com/lq782655835/blogs/issues/32)
+
 * [Electron工程踩坑记录](https://github.com/lq782655835/blogs/issues/13)
 
 * [H5 Video踩坑记录](https://github.com/lq782655835/blogs/issues/5)
@@ -37,6 +39,8 @@
 * [TypeScript开发Vue应用](https://github.com/lq782655835/blogs/issues/4)
 
 ## 思考
+
+* [谈谈前端天花板问题](https://github.com/lq782655835/blogs/issues/31)
 
 * [JS设计模式](https://github.com/lq782655835/blogs/issues/30)
 
