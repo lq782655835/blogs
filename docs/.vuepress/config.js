@@ -9,13 +9,23 @@ module.exports = {
     dest: "dist",
     themeConfig: {
       sidebarDepth: 0,
+      // displayAllHeaders: true, // 默认值：false
+      repo: 'https://github.com/lq782655835/blogs',
+      docsRepo: 'https://github.com/lq782655835/blogs',
+      // 如果你的文档不在仓库的根目录下：
+      docsDir: 'docs',
+      // 如果你的文档在某个特定的分支（默认是 'master' 分支）：
+      docsBranch: 'master',
+      // 默认为 false，设置为 true 来启用
+      editLinks: true,
+      // 自定义编辑链接的文本。默认是 "Edit this page"
+      editLinkText: '帮助我改进页面内容！',
       nav: [
         { text: 'Home', link: '/' },
         { text: 'Blogs', items: [
           { text: 'Standard', link: '/team-standard/standard-ai-js.html' },
           { text: 'Recommend', link: '/summary/Vue%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E6%8E%A8%E8%8D%90.html' }
-        ] },
-        { text: 'GitHub', link: 'https://github.com/lq782655835/blogs' },
+        ] }
       ],
       sidebar: [
         {

@@ -30,7 +30,7 @@ for (let key in obj) {
 // f2 test2
 ```
 
-## for in 缺点
+### for in 缺点
 
 1. for in 迭代顺序依赖于执行环境，不一定保证顺序
 1. for in 不仅会遍历当前对象，还包括原型链上的可枚举属性
@@ -58,7 +58,7 @@ for(let {age} of arr) {
 // 5
 ```
 
-## 优点
+### for of 优点
 
 1. for of 有与for in 一样的简洁语法（这也是两者容易混乱的点），但没有for in的缺点
 1. for of 保证顺序且不会仅遍历当前对象
