@@ -40,6 +40,10 @@
 
 ## 思考
 
+* [ES6-Object](https://github.com/lq782655835/blogs/issues/34)
+
+* [ES6-新增特性一览](https://github.com/lq782655835/blogs/issues/33)
+
 * [谈谈前端天花板问题](https://github.com/lq782655835/blogs/issues/31)
 
 * [JS设计模式](https://github.com/lq782655835/blogs/issues/30)
