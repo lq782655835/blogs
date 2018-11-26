@@ -1,0 +1,96 @@
+# ES6-新增特性一览
+
+[ecma-263](https://www.ecma-international.org/ecma-262/6.0/)是ES6规格的官网文档，该文档是英文版。如果英文稍差的同学，推荐@阮一峰老师的[ECMAScript 6 入门](http://es6.ruanyifeng.com)。
+
+以下默认陈述的是ES6标准，部分标注ES7、`ES8`标准是为了表明其最终发布时间（严谨）。其实大部分在2015年6月（ES6发布时间）都进入了草案阶段（Stage 2），故在babel等转译工具下，都可以使用这些特性在前端工程项目中。
+
+## 1. [let/const取代var](https://github.com/lukehoban/es6features#let--const)
+
+## 2. [字符串模板](https://github.com/lukehoban/es6features#template-strings)
+
+## 3. [对象解构](https://github.com/lukehoban/es6features#destructuring)
+* Destructuring
+* enhanced object literals({foo} === {foo:foo})
+
+## 4. 新数据类型[Symbol](https://github.com/lukehoban/es6features#symbols)
+
+## 5. 新数据结构[Map/Set/WeakMap/WeakSet](https://github.com/lukehoban/es6features#map--set--weakmap--weakset)
+
+## 6. [Proxy](https://github.com/lukehoban/es6features#proxies)、Reflect
+
+## 7. 扩展
+
+* Array
+    * Array.from()
+    * Array.of()
+    * Array.copyWithin()
+    * Array.find()
+    * Array.findIndex()
+    * Array.fill()
+    * Array.includes()<sup>`ES7`</sup>
+* Object
+    * Object.keys()
+    * Object.values()<sup>`ES8`</sup>
+    * Object.entries()<sup>`ES8`</sup>
+    * Object.assign()
+    * Object. is()
+* [Function]()
+    * default
+    * [arraw function](https://github.com/lukehoban/es6features#arrows)
+    * ...rest运算符
+* Number
+    * Number.isNuN()
+    * Number.isFinite()
+    * Number.parseInt()
+    * Number.parseFloat()
+    * Number.isInteger()
+    * Number.isSafeInteger()
+* Math
+    * Math.max(x, y)
+    * Math.trunc(x)
+    * Math.sign(x)
+    * Math.acosh(x)
+    * Math.asinh(x)
+    * Math.atanh(x)；
+    * Math.cbrt(x)
+    * Math.clz32(x)
+    * Math.cosh(x)
+    * Math.expm1(x)
+    * Math.fround(x)
+    * Math.hypot(...values)
+    * Math.imul(x, y)
+    * Math.log1p(x)
+    * Math.log10(x)
+    * Math.log2(x)
+    * Math.tanh(x)
+
+## 8. 异步
+* [Promise](https://github.com/lukehoban/es6features#promises)
+    * Promise.prototype.then
+    * Promise.prototype.catch
+    * Promise.prototype.finally<sup>`ES9`</sup>
+    * Promise.all()
+    * Promise.rece()
+* [Iterator](https://github.com/lukehoban/es6features#iterators--forof)
+    * Iterator接口
+    * for of
+* [Generator](https://github.com/lukehoban/es6features#generators)
+    * yield*
+* async/await<sup>`ES8`</sup>
+
+## 9. [Class类](https://github.com/lukehoban/es6features#classes)
+* class
+* extends
+* decorator<sup>ES7</sup>
+
+## 10. [Module](https://github.com/lukehoban/es6features#modules)
+* import
+* export
+
+## 参考文档
+
+* [es6features](https://github.com/lukehoban/es6features)
+
+* [Finished Proposals](https://github.com/tc39/proposals/blob/master/finished-proposals.md)
+
+* [ryf es6 reference](http://es6.ruanyifeng.com/#docs/reference)

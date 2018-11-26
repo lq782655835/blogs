@@ -4,25 +4,89 @@
 
 单例模式定义了一个对象的创建过程，此对象只有一个单独的实例，并提供一个访问它的全局访问点。
 
+ES5闭包实现：
+
 ``` js
 var single = (function(){
     var unique;
 
-    function XXX(){
+    function singleXXX(){
         // ... 生成单例的构造函数的代码
     }
 
-    function getInstance(){　　　　// 如果该实例存在，则直接返回，否则就对其实例化
-        if( unique === undefined ){
-            unique = new XXX();
-        }
-        return unique;
-    }
-
     return {
-        getInstance : getInstance
+        getInstance : function() {
+            if (unique === undefined) {
+                unique = new singleXXX()
+            }
+            return unique
+        }
     }
 })();
+
+let singleXXX1 = single.getInstance()
+let singleXXX2 = single.getInstance()
+console.log(singleXXX1 === singleXXX2) // true
+```
+
+ES5缓存实现：
+``` js
+function SingleXXX() {
+    if (typeof SingleXXX.instance === 'object') {
+        return SingleXXX.instance
+    }
+
+    // ...生成单例的构造函数的代码
+
+    // 缓存实例
+    SingleXXX.instance = this
+}
+
+let singleXXX1 = new SingleXXX()
+let singleXXX2 = new SingleXXX()
+console.log(singleXXX1 === singleXXX2) // true
+```
+
+ES6 Object实现：
+``` js
+function singleXXX(){}
+let single = {
+    unique: null,
+    getInstance: function() {
+        if (this.unique === undefined) {
+            this.unique = new singleXXX()
+        }
+        return this.unique
+    }
+}
+ // 保证实例不被改写
+Object.defineProperty(single, 'unique', {
+    writable: false,
+    configurable: false
+})
+// 或Object.freeze(single)
+
+let singleXXX1 = single.getInstance()
+let singleXXX2 = single.getInstance()
+console.log(singleXXX1 === singleXXX2) // true
+```
+
+ES6 Class实现,跟Java、C#等面向对象语言写法一致：
+``` js
+class SingleXXX {
+    constructor() {
+        // ...生成单例的构造函数的代码
+    }
+    static getInstance() {
+        if(!this.instance) {
+            this.instance = new SingleXXX()
+        }
+        return this.instance
+    }
+}
+let singleXXX1 = SingleXXX.getInstance()
+let singleXXX2 = SingleXXX.getInstance()
+console.log(singleXXX1 === singleXXX2) // true
 ```
 
 ## 职责链模式
@@ -197,3 +261,7 @@ var calculatePrice =function(level,price) {
 };
 console.log(calculatePrice('vip',200));
 ```
+
+## 参考文档
+
+* [design-patterns](https://github.com/shichuan/javascript-patterns/blob/master/design-patterns/builder.html)
