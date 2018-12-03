@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "sh deploy.sh",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "setting": "node setting.js"
   },
   "license": "MIT",
   "devDependencies": {
