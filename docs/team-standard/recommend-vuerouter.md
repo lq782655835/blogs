@@ -1,4 +1,4 @@
-# Vue-Router写法推荐
+# 推荐-Vue-Router写法
 
 使用路由懒加载，实现方式是结合Vue异步组件和Webpack代码分割功能。
 

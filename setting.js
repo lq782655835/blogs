@@ -45,9 +45,11 @@ function findSync(startPath, excludeDirs, titleMap) {
 function getConfigByDir() {
     let excludeDirs = ['.DS_Store', '.vuepress', 'temp']
     let folderTitleMap = {
-        'team-standard': '团队规范',
-        'code-analysis': '源码与思考',
+        'team-standard': '团队规范与推荐',
+        'js': 'JS',
+        'think': '人生与思考',
         'react-native': 'ReacNative',
+        'tools': '效率工具'
     }
 
     return findSync('./docs', excludeDirs, folderTitleMap)

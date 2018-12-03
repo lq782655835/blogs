@@ -3,6 +3,8 @@
 # 确保脚本抛出遇到的错误
 set -e
 
+# 自动根据文件结构设置排序
+npm run setting
 # 生成静态文件
 npm run docs:build
 
