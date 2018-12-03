@@ -262,6 +262,72 @@ var calculatePrice =function(level,price) {
 console.log(calculatePrice('vip',200));
 ```
 
+## 观察者模式
+js中最常用的设计模式。在观察者模式中，观察者需要直接订阅目标事件；在目标发出内容改变的事件后，直接接收事件并作出响应。很多库都有该模式的实现，比如vue、redux等。
+
+![image](https://user-images.githubusercontent.com/6310131/49351340-0026eb00-f6ee-11e8-8b78-dd823d4a96fc.png)
+
+``` js
+function Dep() {
+    this.subs = [];
+}
+Dep.prototype.addSub = function (sub) {
+    this.subs.push(sub);
+}
+Dep.prototype.notify = function () {
+    this.subs.forEach(sub=>sub.update());
+}
+function Watcher(fn) {
+    this.fn = fn;
+}
+Watcher.prototype.update = function () {
+     this.fn();
+}
+
+var dep = new Dep(); // 观察者
+dep.addSub(new Watcher(function () { // 观察者直接订阅观察者
+    console.log('okokok');
+}))
+dep.notify();
+```
+
+## 发布订阅模式
+
+发布订阅模式属于广义上的观察者模式，也是最常用的观察者模式实现。在发布订阅模式中，发布者和订阅者之间多了一个发布通道；一方面从发布者接收事件，另一方面向订阅者发布事件；订阅者需要从事件通道订阅事件，以此避免发布者和订阅者之间产生依赖关系。发布者和订阅者不知道对方的存在，所以解耦更彻底。NodeJS的EventEmitter对象即为该模式的实现。
+
+![image](https://user-images.githubusercontent.com/6310131/49351401-51cf7580-f6ee-11e8-9573-ed96842e9657.png)
+
+> 简单理解，观察者模式中，发布者和订阅者是知道对方存在的，实现上使用了array；发布订阅模式，发布者和订阅者都不知道对方存在，定义了一个中介对象（可抽离成单独文件），实现上使用了object。
+
+``` js
+class EmitEvent {
+    constructor() {
+        this._events = {}
+    }
+
+    on(type, callback) {
+        if(!this._events[type]) this._events[type] = []
+
+        this._events[type].push(callback)
+    }
+
+    emit(type, ...args) {
+        if(this._events[type]) {
+            this._events[type].forEach(fn => fn.call(this, ...args))
+        }
+    }
+}
+
+// EmitEvent作为事件通道
+let emitEvent = new EmitEvent()
+emitEvent.on('a', (data) => console.log('123', data))
+emitEvent.emit('a', { field: 1 })
+```
+
 ## 参考文档
 
 * [design-patterns](https://github.com/shichuan/javascript-patterns/blob/master/design-patterns/builder.html)
+
+* [观察者模式和发布订阅模式有什么不同](https://www.zhihu.com/question/23486749)
+
+* [观察者模式 vs 发布-订阅模式](https://juejin.im/post/5a14e9edf265da4312808d86)
