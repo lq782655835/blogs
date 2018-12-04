@@ -1,16 +1,20 @@
 {
-  "name": "blogs",
-  "version": "1.0.0",
-  "repository": "https://github.com/lq782655835/blogs.git",
-  "author": "782655835@qq.com",
-  "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "sh deploy.sh",
-    "docs:build": "vuepress build docs",
-    "setting": "node setting.js"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "vuepress": "^0.14.4"
-  }
+    "name": "blogs",
+    "version": "1.0.0",
+    "repository": "https://github.com/lq782655835/blogs.git",
+    "author": "782655835@qq.com",
+    "scripts": {
+        "dev": "vuepress dev docs",
+        "build": "sh deploy.sh",
+        "docs:build": "npm run setting && vuepress build docs",
+        "setting": "node setting.js && npm run format",
+        "format": "prettier --write './**/*.{js,ts,vue,json}'"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "vuepress": "^0.14.4"
+    },
+    "dependencies": {
+        "prettier": "^1.15.3"
+    }
 }

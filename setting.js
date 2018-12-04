@@ -7,12 +7,12 @@ const { join } = require('path')
  * @returns {Array}
  */
 function findSync(startPath, excludeDirs, titleMap) {
-    let result=[];
+    let result = []
     function finder(path) {
-        let files=fs.readdirSync(path);
+        let files = fs.readdirSync(path)
         for (val of files) {
-            let fPath=join(path,val)
-            let stats=fs.statSync(fPath)
+            let fPath = join(path, val)
+            let stats = fs.statSync(fPath)
 
             let isValidDir = stats.isDirectory() && !excludeDirs.includes(val)
             let isValidFile = stats.isFile() && val.endsWith('.md')
@@ -46,10 +46,10 @@ function getConfigByDir() {
     let excludeDirs = ['.DS_Store', '.vuepress', 'temp']
     let folderTitleMap = {
         'team-standard': '团队规范与推荐',
-        'js': 'JS',
-        'think': '人生与思考',
+        js: 'JS',
+        think: '人生与思考',
         'react-native': 'ReacNative',
-        'tools': '效率工具'
+        tools: '效率工具'
     }
 
     return findSync('./docs', excludeDirs, folderTitleMap)
@@ -67,7 +67,7 @@ function overrideConfigFile(path) {
         jsonData.themeConfig.sidebar = getConfigByDir()
         let overrideStr = jsPrefix + JSON.stringify(jsonData)
 
-        fs.writeFile(path, overrideStr, 'utf8', (err) => err ? err : 'OverRide Succesful')
+        fs.writeFile(path, overrideStr, 'utf8', err => (err ? err : 'OverRide Succesful'))
     })
 }
 
