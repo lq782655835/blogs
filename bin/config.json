@@ -1,0 +1,10 @@
+{
+    "folderTitleMap": {
+        "team-standard": "团队规范",
+        "js": "前端总结",
+        "think": "思考与总结",
+        "react-native": "ReacNative",
+        "tools": "效率工具"
+    },
+    "excludeDirs": [".DS_Store", ".vuepress", "temp"]
+}

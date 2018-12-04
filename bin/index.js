@@ -1,5 +1,6 @@
 const fs = require('fs')
 const { join } = require('path')
+const { folderTitleMap, excludeDirs } = require('./config.json')
 
 /**
  *
@@ -43,15 +44,6 @@ function findSync(startPath, excludeDirs, titleMap) {
 }
 
 function getConfigByDir() {
-    let excludeDirs = ['.DS_Store', '.vuepress', 'temp']
-    let folderTitleMap = {
-        'team-standard': '团队规范',
-        js: '前端总结',
-        think: '思考与总结',
-        'react-native': 'ReacNative',
-        tools: '效率工具'
-    }
-
     let getSideBar = findSync('./docs', excludeDirs, folderTitleMap)
     let resultOrderSideBar = []
     Object.keys(folderTitleMap).forEach(key =>
