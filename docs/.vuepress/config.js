@@ -31,8 +31,19 @@ module.exports = {
         ],
         sidebar: [
             {
+                key: 'team-standard',
+                title: '团队规范',
+                collapsable: true,
+                children: [
+                    'team-standard/standard-ai-css.md',
+                    'team-standard/standard-ai-git.md',
+                    'team-standard/standard-ai-js.md',
+                    'team-standard/standard-ai-vue.md'
+                ]
+            },
+            {
                 key: 'js',
-                title: 'JS',
+                title: '前端总结',
                 collapsable: true,
                 children: [
                     'js/ES6-destruction.md',
@@ -41,11 +52,30 @@ module.exports = {
                     'js/different MVC、MVP、MVVM.md',
                     'js/different for in、for of.md',
                     'js/js-design-pattern.md',
+                    'js/nginx.md',
+                    'js/npm script.md',
                     'js/project-electron-summary.md',
                     'js/project-h5-video-summary.md',
+                    'js/recommend-code200.md',
+                    'js/recommend-vue-api-order.md',
+                    'js/recommend-vue-project-structure.md',
+                    'js/recommend-vuerouter.md',
                     'js/regex.md',
+                    'js/tool-stylelint.md',
+                    'js/tool-team.md',
                     'js/ts in vue project.md',
                     'js/vue-code-frame.md'
+                ]
+            },
+            {
+                key: 'think',
+                title: '思考与总结',
+                collapsable: true,
+                children: [
+                    'think/grow-up-front.md',
+                    'think/grow-up-life-it.md',
+                    'think/standard-ai-summary.md',
+                    'think/think-cli-official-website.md'
                 ]
             },
             {
@@ -59,43 +89,10 @@ module.exports = {
                 ]
             },
             {
-                key: 'team-standard',
-                title: '团队规范与推荐',
-                collapsable: true,
-                children: [
-                    'team-standard/recommend-code200.md',
-                    'team-standard/recommend-vue-api-order.md',
-                    'team-standard/recommend-vue-project-structure.md',
-                    'team-standard/recommend-vuerouter.md',
-                    'team-standard/standard-ai-css.md',
-                    'team-standard/standard-ai-git.md',
-                    'team-standard/standard-ai-js.md',
-                    'team-standard/standard-ai-vue.md'
-                ]
-            },
-            {
-                key: 'think',
-                title: '人生与思考',
-                collapsable: true,
-                children: [
-                    'think/grow-up-front.md',
-                    'think/grow-up-life-it.md',
-                    'think/nginx.md',
-                    'think/standard-ai-summary.md',
-                    'think/think-cli-official-website.md'
-                ]
-            },
-            {
                 key: 'tools',
                 title: '效率工具',
                 collapsable: true,
-                children: [
-                    'tools/npm script.md',
-                    'tools/summary.md',
-                    'tools/tool-stylelint.md',
-                    'tools/tool-team.md',
-                    'tools/vscode.md'
-                ]
+                children: ['tools/1.summary.md', 'tools/record-solution.md', 'tools/vscode.md']
             }
         ],
         lastUpdated: '最后更新时间'

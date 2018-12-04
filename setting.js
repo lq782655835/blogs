@@ -45,14 +45,19 @@ function findSync(startPath, excludeDirs, titleMap) {
 function getConfigByDir() {
     let excludeDirs = ['.DS_Store', '.vuepress', 'temp']
     let folderTitleMap = {
-        'team-standard': '团队规范与推荐',
-        js: 'JS',
-        think: '人生与思考',
+        'team-standard': '团队规范',
+        js: '前端总结',
+        think: '思考与总结',
         'react-native': 'ReacNative',
         tools: '效率工具'
     }
 
-    return findSync('./docs', excludeDirs, folderTitleMap)
+    let getSideBar = findSync('./docs', excludeDirs, folderTitleMap)
+    let resultOrderSideBar = []
+    Object.keys(folderTitleMap).forEach(key =>
+        resultOrderSideBar.push(getSideBar.find(item => item.key === key))
+    )
+    return resultOrderSideBar
 }
 
 function overrideConfigFile(path) {
@@ -62,6 +67,8 @@ function overrideConfigFile(path) {
             console.log(err)
             return
         }
+
+        // override sidebar
         let jsonStr = data.replace('module.exports = ', '')
         let jsonData = eval(`(${jsonStr})`)
         jsonData.themeConfig.sidebar = getConfigByDir()
