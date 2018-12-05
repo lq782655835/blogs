@@ -5,6 +5,5 @@
         "think": "思考与总结",
         "react-native": "ReacNative",
         "tools": "效率工具"
-    },
-    "excludeDirs": [".DS_Store", ".vuepress", "temp"]
+    }
 }
