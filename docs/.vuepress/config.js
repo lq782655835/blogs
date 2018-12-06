@@ -53,6 +53,8 @@ module.exports = {
                     'js/different for in、for of.md',
                     'js/js-design-pattern.md',
                     'js/nginx.md',
+                    'js/node-api-summary.md',
+                    'js/node-tool-summary.md',
                     'js/npm script.md',
                     'js/project-electron-summary.md',
                     'js/project-h5-video-summary.md',
