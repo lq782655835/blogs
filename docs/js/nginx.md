@@ -52,3 +52,31 @@ nginx -s stop
 ``` shell
 nginx -s reload // 每次修改完nginx.conf文件就需要重启nginx
 ```
+
+### config配置
+
+```
+# 虚拟主机配置
+server {
+    server_name test-openai.com; # 请求到达的服务器名
+    listen 80;
+    listen 443 ssl;
+
+    # 对 / 所有做负载均衡+反向代理
+    location / {
+        proxy_pass http://dramatic-offical-website; # 代理
+    }
+
+    # 静态文件，nginx自己处理
+    location /images/ {
+        root /data; # 映射到/data目录下
+    }
+}
+
+# 设定负载均衡后台服务器列表
+upstream dramatic-offical-website {
+    server 10.192.106.133;
+    server 10.192.106.134;
+}
+
+```

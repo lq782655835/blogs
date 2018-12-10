@@ -1,4 +1,45 @@
-# Node事件驱动
+# Node-初识
+
+Node.js已经出来很久了，但依然是一门火热的技术，值得前端开发人员进行投入。网上Node.js的介绍和教程也非常多，笔者这里对一些容易疑惑的地方进行解释。
+
+## Node和Javascript的关系
+**Node.js是一个Javascript运行环境，依赖于Chrome V8引擎进行代码解释**。熟悉javascript历史的人知道，最初的js定位作为一个脚本语言，只能应用在web浏览器上，写一些表单校验和页面特效等。在很长一段时间里，js依然是前端开发把玩的工具，只操作一些页面DOM元素。直到2009年 Ryan Dahl开发了Node.js，基于google开源的javascript运行时环境-V8引擎上，结合Libuv扩展了javascript的能力。使得javascript不仅可以操作前端页面DOM元素，同时可以对文件读写、I/O操作、数据库读写等后端语言才有的能力。这也让全栈开发工程师门槛变得简单，只要学会一门javascript语言。当然，全栈工程师所在的价值不仅是只会一门或多门语言，而是碰到具体问题，能综合考量技术与非技术因素，使用符合团队的技术解决方案。
+
+## Node解决了什么
+
+
+## 异步I/O
+
+很多教程里都会描述到node的这个特性。先来解释下I/O，I/O是input/output（输入/输出）简写。像平时的读写文件、http请求响应，都属于input/output操作。I/O操作通常比较费时，比如读取一个大文件，可能完全读取好需要10s以上。在等待的10s时间里，线程啥也干不了，空闲着，等文件读取好后才继续耗时间走接下来的流程。试想下按照以上模式，100个请求过来，线程空闲的时间得多少。这种情况，我们叫它**阻塞I/O**，如何解决这个问题呢？对于其他后端语言如Java、C#，可以通过多线程解决这个问题，开启一个新线程进行读取文件数据，再把结果合并回主进程中。但对于javasciript语言不行，因为**js是单线程**的，无法通过js语法创建新的线程（service work是后面补充的规范），但node是一个可以执行多线程的环境。如何使用node的多线程呢？通过源码可以知道，当遇到I/O操作时，JS主进程将调用node Libuv，把请求对象推入线程池，以此实现新开线程，这样不会阻塞主进程执行。
+
+### 事件循环
+以上解决了异步I/O，但解析数据后回调顺序如何界定呢。这里就涉及事件循环了。假设主进程进行了100个I/O操作，等于将100个线程推进线程池。线程池工作好一个线程上的I/O操作，就会把结果(包含回调函数)返回给一个事件队列Event Queu，再通知Event Loop进行调用。Event Loop根据先进先出的方式依次排列好这些回调函数，等到JS主进程执行完毕后，再开始依次序一条条将队列中的函数推到主进程中执行。总起起来，事件循环事实上是对I/O操作的回调函数的集合做循环
+
+* 
+js通过事件循环(event loop)来达到异步I/O（也叫非阻塞I/O）。
+
+### 事件循环
+js是单线程的，所以服务器端js主进程也是运行在单线程的。但node
+
+Node.js的异步机制是基于事件的，所有磁盘I/O、网络通信、数据库查询都以非阻塞的方式请求，返回的结果由事件循环来处理。
+``` js
+var fs = require("fs");
+fs.readFile("./testfile", "utf8", function(error, file) {
+     if (error) throw error;
+     console.log("我读完文件了！");
+});
+console.log("我不会被阻塞！");
+```
+
+## Node基本原理
+
+
+
+Node的成功使得最简单的全栈。Webpack
+
+
+
+Node包含很多模块，比如常用的http、fs、stream等。通过这些模块，使得node可以类似服务端语言，操作文件以及http流处理等。
 
 Node.js 是基于 Chrome V8引擎构建的，由事件循环（Event Loop）分发 I/O 任务，最终工作线程（Work Thread）将任务丢到线程池（Thread Pool）里去执行，而事件循环只要等待执行结果就可以了。
 
@@ -54,8 +95,3 @@ Node.js 使用事件驱动模型，当web server接收到请求，就把它关�
 * [nodejs-event-loop](http://www.runoob.com/nodejs/nodejs-event-loop.html)
 
 https://loveky.github.io/2017/06/05/translate-node-stream-everything-you-need-to-know/
-
-wget
-brew install wget 下载、扒站神器
-
-brew install ack 搜索代码神器

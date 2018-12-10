@@ -1,5 +1,5 @@
 # Node-常用API
-总结NodeJS常用的API，重点地方有笔者的释义以及详细说明;关联度高的模块放一起叙述，并有对比说明。比如buffer与fs，stream与http，process与child_process。本文尽量做到兼具实用与API广度，建议多读读[Node JS官网文档](https://nodejs.org/dist/latest-v11.x/docs/api/)。
+总结NodeJS常用的API，重点地方有笔者的释义以及详细说明。关联度高的模块放一起叙述，并有对比说明，比如buffer与fs，stream与http，process与child_process。本文尽量做到兼具实用与API广度，更多详细内容请看[Node.JS官网文档](https://nodejs.org/dist/latest-v11.x/docs/api/)。
 
 ## [path](https://nodejs.org/dist/latest-v11.x/docs/api/path.html)
 
@@ -61,7 +61,7 @@ url 模块提供了两套 API 来处理 URL 字符串：一个是Node.js特有�
     * **write()** 写入数据到流
     * **end()** 表明已没有数据要被写入
     * Events
-        * **drain**。 **每个**数据块写入成功后回调事件。
+        * **drain**。 每个数据块写入成功后回调事件，可能多次触发。
         * pipe。当readableStream.pipe()调用时回调事件
         * finish。 当writeableStream.end()调用并数据读完后回调事件。
         * close
@@ -72,7 +72,7 @@ url 模块提供了两套 API 来处理 URL 字符串：一个是Node.js特有�
     * resume() 流重启。重新开始emit 'data'事件
     * unpipe()
     * Events
-        * **data**。**每次**读取完一段数据块回调事件。
+        * **data**。每次读取完一段数据块回调事件，可能多次触发。
         * readable。数据读取可用时回调事件。
         * **end**。 数据全部读取完成回调事件。
         * close
@@ -191,16 +191,16 @@ http
     * equals()
     * fill()
 
-    ``` js
-    let buf = new Buffer('hello world') // 初始化之后,实例buf长度无法改变
-    console.log(buf.length, buf.toString()) // 11, hello world
+``` js
+let buf = new Buffer('hello world') // 初始化之后,实例buf长度无法改变
+console.log(buf.length, buf.toString()) // 11, hello world
 
-    buf.write('temp')
-    console.log(buf.length, buf.toString()) // 11, tempo world
+buf.write('temp')
+console.log(buf.length, buf.toString()) // 11, tempo world
 
-    buf.write('01234567891234567890')
-    console.log(buf.length, buf.toString()) // 11, 01234567891
-    ```
+buf.write('01234567891234567890')
+console.log(buf.length, buf.toString()) // 11, 01234567891
+```
 
 ## [File System](https://nodejs.org/dist/latest-v11.x/docs/api/fs.html)
 
@@ -227,6 +227,17 @@ http
     * **readdir(path[, options], callback)**。读目录，获取目录下的`所有文件和文件夹`名称。
     * rmdir(path, callback)。移除目录
 > 文件操作的path参数，绝对路径和相对路径都支持（相对路径基于process.cwd()）。
+
+``` js
+const fs = require('fs')
+const path = require('path')
+let dir = './node/snapshot'
+fs.readFile(path.join(dir, 'test1.png'), (err, data) => {
+    console.log(Buffer.isBuffer(data)) // true
+
+    fs.writeFile(path.join(dir, 'test1_copy.png'), data, (error) => console.log(error)
+})
+```
 
 ## [Process](https://nodejs.org/api/process.html)<sup>`global`</sup>
 
@@ -280,7 +291,7 @@ process对象是一个提供当前node进程信息的全局对象，所以该对
 * child_process.execFile(file[, args][, options][, callback])
 * child_process.fork(modulePath[, args][, options])
 
-### **child_process**
+### create child_process
 
 * `child_process.spawn`。Node.js 的父进程与衍生的子进程之间会建立 stdin、stdout 和 stderr 的管道。
     * `options.stdio`: stdio(标准输入输出) 用来配置子进程和父进程之间的 IO 通道,可以传递一个数组或者字符串。如，['pipe', 'pipe', 'pipe']，分别配置：标准输入、标准输出、标准错误。如果传递字符串，则三者将被配置成一样的值。简要介绍其中三个可以取的值：
@@ -325,6 +336,19 @@ exec('ls -al', function(error, stdout, stderr){
     * `error`。当子进程不能关闭时，关闭它会报error事件。调用kill()可能会触发该事件。
     * `message`。跟child_process.send方法有关,父子进程间通信。
     * `disconnect`。跟child_process.disconnect方法有关。
+
+``` js
+var child_process = require('child_process')
+
+var proc = child_process.spawn('pm2-runtime', ['proxy-server', '--', './dist'], { stdio: 'inherit' })
+
+process.on('SIGTERM', () => proc.kill('SIGTERM'))
+process.on('SIGINT', () => proc.kill('SIGINT'))
+process.on('SIGBREAK', () => proc.kill('SIGBREAK'))
+process.on('SIGHUP', () => proc.kill('SIGHUP'))
+
+proc.on('exit', process.exit)
+```
 
 ## 参考文章
 

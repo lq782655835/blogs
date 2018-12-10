@@ -49,6 +49,7 @@ module.exports = {
                     'js/ES6-1.new-feature.md',
                     'js/ES6-2.destruction.md',
                     'js/ES6-3.object.md',
+                    'js/axios用法和原理.md',
                     'js/different MVC、MVP、MVVM.md',
                     'js/different for in、for of.md',
                     'js/js-design-pattern.md',

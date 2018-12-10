@@ -41,7 +41,7 @@
 * 状态库
     * [react-redux](https://github.com/reduxjs/react-redux)
     * [mobx](https://github.com/mobxjs/mobx)
-* `RxJS`githug
+* `RxJS`
 * `Next.js` - React 同构框架
 * ReactNative
     * `react-native-scrollable-tab-view` 可滚动tab标签

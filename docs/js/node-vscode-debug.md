@@ -27,7 +27,7 @@
 5. 设置断点，点击开始调试按钮（绿色三角形），就可以开始调试。
 
 ## 调试参数配置
-lanuch.json配置项较多，可查看[官方文档](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)详细了解。VSCode也集成了一些常用的调试配置，有Node、Chrome、Electron、Gulp等。以下说明几个重要参数：
+lanuch.json配置项较多，可查看[官方文档](https://code.visualstudio.com/docs/nodejs/nodejs-debugging)详细了解。VSCode也集成了一些常用的调试配置片段，有Node、Chrome、Electron、Gulp等。以下说明几个重要参数：
 * `name`: 给该配置项取个名字
 * `type`: 通常有node、chrome等参数
 * `request`: launch/attach
