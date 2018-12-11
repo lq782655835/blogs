@@ -1,5 +1,5 @@
 # axios用法和原理
-axios是一个非常小巧而好用的http请求库，支持promise以及同时支持浏览器和node端。该项目使用简单，配置灵活，也是vue官方推荐的请求库。另外该项目[github源码](https://github.com/axios/axios)层次清晰明了，非常适合阅读。
+axios是一个非常小巧而好用的http请求库，支持promise以及同时支持浏览器和node端。axios使用简单，配置灵活，也是vue官方推荐的请求库。另外[axios源码](https://github.com/axios/axios)层次清晰明了，非常适合阅读。
 
 ## 特性
 * 从浏览器中创建 XMLHttpRequest
@@ -13,15 +13,15 @@ axios是一个非常小巧而好用的http请求库，支持promise以及同时�
 
 ## API
 * 全局
-    * axios.request(config) 最终的都是这个方法请求出去
-    * axios(config) 和axios.request()等价
-    * axios(url[, config]) axios(config)url快捷方式
-    * axios.[METHODS](url, config) axios.request()的快捷使用
+    * `axios.request(config)` 最终http请求都是执行这个方法
+    * `axios(config)` 和axios.request()等价
+    * `axios(url[, config])` axios(config)快捷方式
+    * `axios.[METHODS](url, config)` axios(config)快捷方式
 * 自定义实例
-    * axios.create(config) 自定义配置，创建实例instance。调用方式和axios方法一致
+    * `axios.create(config)` 自定义配置，创建实例instance。调用方式和axios方法一致
 * 拦截器
-    * axios.interceptors.request.use
-    * axios.interceptors.response.use
+    * `axios.interceptors.request.use`
+    * `axios.interceptors.response.use`
 
 ``` js
 // 以下实例等价

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>AI前端JS规范 | springleo&#39;s blog</title>
+    <meta name="description" content="">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
+    
+    <link rel="preload" href="/blogs/dist/assets/css/0.styles.4c11730f.css" as="style"><link rel="preload" href="/blogs/dist/assets/js/app.c81208a4.js" as="script"><link rel="preload" href="/blogs/dist/assets/js/26.1d3d19fe.js" as="script"><link rel="prefetch" href="/blogs/dist/assets/js/10.93853b75.js"><link rel="prefetch" href="/blogs/dist/assets/js/11.6cd803fd.js"><link rel="prefetch" href="/blogs/dist/assets/js/12.ea7e0bfe.js"><link rel="prefetch" href="/blogs/dist/assets/js/13.52290729.js"><link rel="prefetch" href="/blogs/dist/assets/js/14.84de6b6b.js"><link rel="prefetch" href="/blogs/dist/assets/js/15.0c8e2881.js"><link rel="prefetch" href="/blogs/dist/assets/js/16.e6d21b38.js"><link rel="prefetch" href="/blogs/dist/assets/js/17.7d6aa04c.js"><link rel="prefetch" href="/blogs/dist/assets/js/18.7222b6b0.js"><link rel="prefetch" href="/blogs/dist/assets/js/19.cd672e3e.js"><link rel="prefetch" href="/blogs/dist/assets/js/2.0ba09275.js"><link rel="prefetch" href="/blogs/dist/assets/js/20.d23070a3.js"><link rel="prefetch" href="/blogs/dist/assets/js/21.7ead3235.js"><link rel="prefetch" href="/blogs/dist/assets/js/22.280a7526.js"><link rel="prefetch" href="/blogs/dist/assets/js/23.6f02b4ca.js"><link rel="prefetch" href="/blogs/dist/assets/js/24.41e78c17.js"><link rel="prefetch" href="/blogs/dist/assets/js/25.d75d1e10.js"><link rel="prefetch" href="/blogs/dist/assets/js/27.c9339207.js"><link rel="prefetch" href="/blogs/dist/assets/js/28.f2c0b411.js"><link rel="prefetch" href="/blogs/dist/assets/js/29.4ca3b0d0.js"><link rel="prefetch" href="/blogs/dist/assets/js/3.d5171b82.js"><link rel="prefetch" href="/blogs/dist/assets/js/30.fdb205e3.js"><link rel="prefetch" href="/blogs/dist/assets/js/31.f485aae7.js"><link rel="prefetch" href="/blogs/dist/assets/js/32.88605b5e.js"><link rel="prefetch" href="/blogs/dist/assets/js/33.22b5649b.js"><link rel="prefetch" href="/blogs/dist/assets/js/34.caa76307.js"><link rel="prefetch" href="/blogs/dist/assets/js/35.02411dff.js"><link rel="prefetch" href="/blogs/dist/assets/js/36.8ef57b32.js"><link rel="prefetch" href="/blogs/dist/assets/js/37.19aca000.js"><link rel="prefetch" href="/blogs/dist/assets/js/38.f5ea6efb.js"><link rel="prefetch" href="/blogs/dist/assets/js/39.3503ec8d.js"><link rel="prefetch" href="/blogs/dist/assets/js/4.78c2e315.js"><link rel="prefetch" href="/blogs/dist/assets/js/40.d40ec27a.js"><link rel="prefetch" href="/blogs/dist/assets/js/41.c3a17288.js"><link rel="prefetch" href="/blogs/dist/assets/js/42.e08b5f3e.js"><link rel="prefetch" href="/blogs/dist/assets/js/43.db377fc0.js"><link rel="prefetch" href="/blogs/dist/assets/js/44.61cde79f.js"><link rel="prefetch" href="/blogs/dist/assets/js/45.ffd5fac5.js"><link rel="prefetch" href="/blogs/dist/assets/js/46.41ad728a.js"><link rel="prefetch" href="/blogs/dist/assets/js/47.36fcaac7.js"><link rel="prefetch" href="/blogs/dist/assets/js/48.fab71065.js"><link rel="prefetch" href="/blogs/dist/assets/js/49.4da24a36.js"><link rel="prefetch" href="/blogs/dist/assets/js/5.9db7dcff.js"><link rel="prefetch" href="/blogs/dist/assets/js/50.5f1ac70b.js"><link rel="prefetch" href="/blogs/dist/assets/js/51.94c149cd.js"><link rel="prefetch" href="/blogs/dist/assets/js/52.e2561b2f.js"><link rel="prefetch" href="/blogs/dist/assets/js/53.96454930.js"><link rel="prefetch" href="/blogs/dist/assets/js/54.674d813a.js"><link rel="prefetch" href="/blogs/dist/assets/js/55.e2308904.js"><link rel="prefetch" href="/blogs/dist/assets/js/6.981dd02d.js"><link rel="prefetch" href="/blogs/dist/assets/js/7.c3859aac.js"><link rel="prefetch" href="/blogs/dist/assets/js/8.1ff38158.js"><link rel="prefetch" href="/blogs/dist/assets/js/9.b47b98fe.js">
+    <link rel="stylesheet" href="/blogs/dist/assets/css/0.styles.4c11730f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blogs/dist/" class="home-link router-link-active"><!----> <span class="site-name">springleo's blog</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blogs/dist/" class="nav-link">Home</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Blogs</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blogs/dist/team-standard/standard-ai-js.html" class="nav-link">Standard</a></li><li class="dropdown-item"><!----> <a href="/blogs/dist/summary/Vue项目目录结构推荐.html" class="nav-link">Recommend</a></li></ul></div></div> <a href="https://github.com/lq782655835/blogs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blogs/dist/" class="nav-link">Home</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Blogs</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blogs/dist/team-standard/standard-ai-js.html" class="nav-link">Standard</a></li><li class="dropdown-item"><!----> <a href="/blogs/dist/summary/Vue项目目录结构推荐.html" class="nav-link">Recommend</a></li></ul></div></div> <a href="https://github.com/lq782655835/blogs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first collapsable"><p class="sidebar-heading open"><span>团队规范</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/blogs/dist/team-standard/0.standard-ai-summary.html" class="sidebar-link">前端团队规范总结</a></li><li><a href="/blogs/dist/team-standard/1.standard-ai-css.html" class="sidebar-link">AI前端CSS规范</a></li><li><a href="/blogs/dist/team-standard/1.standard-ai-git.html" class="sidebar-link">AI前端Git规范</a></li><li><a href="/blogs/dist/team-standard/1.standard-ai-js.html" class="active sidebar-link">AI前端JS规范</a></li><li><a href="/blogs/dist/team-standard/1.standard-ai-vue.html" class="sidebar-link">AI前端Vue规范</a></li><li><a href="/blogs/dist/team-standard/1.standard-ai-vutool.html" class="sidebar-link">AI前端工程工具链</a></li><li><a href="/blogs/dist/team-standard/recommend-code200.html" class="sidebar-link">推荐-200错误统一处理</a></li><li><a href="/blogs/dist/team-standard/recommend-vue-api-order.html" class="sidebar-link">推荐-Vue实例选项顺序</a></li><li><a href="/blogs/dist/team-standard/recommend-vue-project-structure.html" class="sidebar-link">推荐-Vue项目目录结构</a></li><li><a href="/blogs/dist/team-standard/recommend-vuerouter.html" class="sidebar-link">推荐-Vue-Router写法</a></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>前端总结</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>思考与总结</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>ReacNative</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>效率工具</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="ai前端js规范"><a href="#ai前端js规范" aria-hidden="true" class="header-anchor">#</a> AI前端JS规范</h1> <h3 id="变量"><a href="#变量" aria-hidden="true" class="header-anchor">#</a> 变量</h3> <p>命名方式：小驼峰</p> <p>命名规范：前缀名词</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token keyword">let</span> setCount <span class="token operator">=</span> <span class="token number">10</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">let</span> maxCount <span class="token operator">=</span> <span class="token number">10</span>
+</code></pre></div><h3 id="常量"><a href="#常量" aria-hidden="true" class="header-anchor">#</a> 常量</h3> <p>命名方式：全部大写</p> <p>命名规范：多个单词时使用分隔符<code>_</code></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token keyword">const</span> serverErrorCode <span class="token operator">=</span> <span class="token punctuation">{</span>
+    success<span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    repeat<span class="token punctuation">:</span> <span class="token number">444</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">const</span> <span class="token constant">SERVER_ERROR_CODE</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token constant">SUCCESS</span><span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token constant">REPEAT</span><span class="token punctuation">:</span> <span class="token number">444</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="函数"><a href="#函数" aria-hidden="true" class="header-anchor">#</a> 函数</h3> <p>命名方式：小驼峰</p> <p>命名规范：前缀动词</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token keyword">function</span> <span class="token function">wordClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">function</span> <span class="token function">saveWordClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>常用动词：can、has、is、load、get、set</p></blockquote> <h3 id="类"><a href="#类" aria-hidden="true" class="header-anchor">#</a> 类</h3> <p>命名方式：大驼峰</p> <p>命名规范：前缀名词</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token keyword">class</span> <span class="token class-name">person</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><h3 id="注释"><a href="#注释" aria-hidden="true" class="header-anchor">#</a> 注释</h3> <h4 id="单行"><a href="#单行" aria-hidden="true" class="header-anchor">#</a> 单行</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 单行注释，注意前面的空格</span>
+<span class="token keyword">let</span> maxCount <span class="token operator">=</span> <span class="token number">123</span>
+</code></pre></div><h4 id="多行"><a href="#多行" aria-hidden="true" class="header-anchor">#</a> 多行</h4> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/**
+ * 多行注释
+ * /
+ 
+</span></code></pre></div><h3 id="减少嵌套"><a href="#减少嵌套" aria-hidden="true" class="header-anchor">#</a> 减少嵌套</h3> <p>确定条件不允许时，尽早返回。经典使用场景：校验数据</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>condition1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>condition2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>condition1<span class="token punctuation">)</span> <span class="token keyword">return</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>condition2<span class="token punctuation">)</span> <span class="token keyword">return</span>
+<span class="token operator">...</span>
+</code></pre></div><h3 id="减少特定标记值"><a href="#减少特定标记值" aria-hidden="true" class="header-anchor">#</a> 减少特定标记值</h3> <p>使用常量进行自解释</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+type<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token comment">// 1代表新增  2代表修改</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">const</span> <span class="token constant">MODIFY_TYPE</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token constant">ADD</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token constant">EDIT</span><span class="token punctuation">:</span> <span class="token number">2</span>
+<span class="token punctuation">}</span>
+
+type<span class="token punctuation">:</span> <span class="token constant">MODIFY_TYPE</span><span class="token punctuation">.</span><span class="token constant">ADD</span>
+</code></pre></div><h3 id="表达式"><a href="#表达式" aria-hidden="true" class="header-anchor">#</a> 表达式</h3> <p>尽可能简洁表达式</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>name <span class="token operator">===</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>collection<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>notTrue <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>collection<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>notTrue<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><h3 id="分支较多处理"><a href="#分支较多处理" aria-hidden="true" class="header-anchor">#</a> 分支较多处理</h3> <p>对于相同变量或表达式的多值条件，用<code>switch</code>代替<code>if</code>。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token keyword">let</span> type <span class="token operator">=</span> <span class="token keyword">typeof</span> variable
+<span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">===</span> <span class="token string">'object'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ......</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">===</span> <span class="token string">'number'</span> <span class="token operator">||</span> type <span class="token operator">===</span> <span class="token string">'boolean'</span> <span class="token operator">||</span> type <span class="token operator">===</span> <span class="token string">'string'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ......</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">switch</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> variable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">'object'</span><span class="token punctuation">:</span>
+        <span class="token comment">// ......</span>
+        <span class="token keyword">break</span>
+    <span class="token keyword">case</span> <span class="token string">'number'</span><span class="token punctuation">:</span>
+    <span class="token keyword">case</span> <span class="token string">'boolean'</span><span class="token punctuation">:</span>
+    <span class="token keyword">case</span> <span class="token string">'string'</span><span class="token punctuation">:</span>
+        <span class="token comment">// ......</span>
+        <span class="token keyword">break</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="使用变量名自解释-v1-1"><a href="#使用变量名自解释-v1-1" aria-hidden="true" class="header-anchor">#</a> 使用变量名自解释 <code>V1.1</code></h3> <p><strong>逻辑复杂</strong>时，建议使用变量名自解释，而不是晦涩难懂的简写。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">!</span>helpers<span class="token punctuation">.</span><span class="token function">req</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>entity<span class="token punctuation">.</span>entVocabularyEntries<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>item <span class="token operator">=&gt;</span> item<span class="token punctuation">.</span>vocabularyEntryName <span class="token operator">===</span> value<span class="token punctuation">)</span><span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">2</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+<span class="token keyword">function</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> entVocabularyList <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>entity<span class="token punctuation">.</span>entVocabularyEntries
+    <span class="token keyword">let</span> repeatCount <span class="token operator">=</span> entVocabularyList<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>item <span class="token operator">=&gt;</span> item<span class="token punctuation">.</span>vocabularyEntryName <span class="token operator">===</span> value<span class="token punctuation">)</span><span class="token punctuation">.</span>length
+    <span class="token keyword">return</span> <span class="token operator">!</span>helpers<span class="token punctuation">.</span><span class="token function">req</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token operator">||</span> repeatCount <span class="token operator">&lt;</span> <span class="token number">2</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="使用函数名自解释-v1-1"><a href="#使用函数名自解释-v1-1" aria-hidden="true" class="header-anchor">#</a> 使用函数名自解释 <code>V1.1</code></h3> <p><strong>遵循单一职责</strong>的基础上，可以把逻辑隐藏在函数中，同时使用准确的函数名自解释。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// bad</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>modifyType <span class="token operator">===</span> <span class="token constant">MODIFY_TYPE</span><span class="token punctuation">.</span><span class="token constant">ADD</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">batchVariableAPI</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">closeModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$toast<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token string">'添加变量成功'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token function">updateVariableAPI</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">closeModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$toast<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token string">'修改变量成功'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// good</span>
+modifyType <span class="token operator">===</span> <span class="token constant">MODIFY_TYPE</span><span class="token punctuation">.</span><span class="token constant">ADD</span> ？ <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_insertVariable</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_updateVariable</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+
+<span class="token function">_insertVariable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">batchVariableAPI</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_successOperation</span><span class="token punctuation">(</span><span class="token string">'添加变量成功'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">_updateVariable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">updateVariableAPI</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_successOperation</span><span class="token punctuation">(</span><span class="token string">'修改变量成功'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">_successOperation</span><span class="token punctuation">(</span>toastMsg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">closeModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>$toast<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span>toastMsg<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="其他规范"><a href="#其他规范" aria-hidden="true" class="header-anchor">#</a> 其他规范</h3> <p>使用prettier格式化工具以及eslint校验</p> <ul><li>格式自动化</li> <li>4个缩进</li> <li>全部单引号</li> <li>方法if / else / for / while / function / switch / do / try / catch / finally 关键字后有一个空格</li> <li>自动省略分号</li></ul> <p>.prettierrc配置：</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    printWidth<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token comment">// 设置prettier单行输出（不折行）的（最大）长度</span>
+
+    tabWidth<span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token comment">// 设置工具每一个水平缩进的空格数</span>
+
+    useTabs<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 使用tab（制表位）缩进而非空格</span>
+
+    semi<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 在语句末尾添加分号</span>
+
+    singleQuote<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 使用单引号而非双引号</span>
+
+    trailingComma<span class="token punctuation">:</span> <span class="token string">'none'</span><span class="token punctuation">,</span> <span class="token comment">// 在任何可能的多行中输入尾逗号</span>
+
+    bracketSpacing<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 在对象字面量声明所使用的的花括号后（{）和前（}）输出空格</span>
+
+    arrowParens<span class="token punctuation">:</span> <span class="token string">'avoid'</span><span class="token punctuation">,</span> <span class="token comment">// 为单行箭头函数的参数添加圆括号，参数个数为1时可以省略圆括号</span>
+
+    <span class="token comment">// parser: 'babylon', // 指定使用哪一种解析器</span>
+
+    jsxBracketSameLine<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 在多行JSX元素最后一行的末尾添加 &gt; 而使 &gt; 单独一行（不适用于自闭和元素）</span>
+
+    rangeStart<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">// 只格式化某个文件的一部分</span>
+
+    rangeEnd<span class="token punctuation">:</span> <span class="token number">Infinity</span><span class="token punctuation">,</span> <span class="token comment">// 只格式化某个文件的一部分</span>
+
+    filepath<span class="token punctuation">:</span> <span class="token string">'none'</span><span class="token punctuation">,</span> <span class="token comment">// 指定文件的输入路径，这将被用于解析器参照</span>
+
+    requirePragma<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// (v1.7.0+) Prettier可以严格按照按照文件顶部的一些特殊的注释格式化代码，这些注释称为“require pragma”(必须杂注)</span>
+
+    insertPragma<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">//  (v1.8.0+) Prettier可以在文件的顶部插入一个 @format的特殊注释，以表明改文件已经被Prettier格式化过了。</span>
+
+    proseWrap<span class="token punctuation">:</span> <span class="token string">'preserve'</span> <span class="token comment">// (v1.8.2+)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>.eslintrc.js规则：</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    root<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    env<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        browser<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        node<span class="token punctuation">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token keyword">extends</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'plugin:vue/essential'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    parserOptions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        parser<span class="token punctuation">:</span> <span class="token string">'babel-eslint'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'vue'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token comment">// add your custom rules here</span>
+    rules<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'arrow-parens'</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">// allow paren-less arrow functions</span>
+
+        <span class="token string">'generator-star-spacing'</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">// allow async-await</span>
+
+        <span class="token string">'no-unused-vars'</span><span class="token punctuation">:</span> <span class="token string">'error'</span><span class="token punctuation">,</span> <span class="token comment">// disabled no ununsed var  `V1.1`</span>
+
+        <span class="token string">'no-debugger'</span><span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'production'</span> <span class="token operator">?</span> <span class="token string">'error'</span> <span class="token punctuation">:</span> <span class="token string">'off'</span><span class="token punctuation">,</span> <span class="token comment">// no use debugger in production</span>
+
+        <span class="token string">'indent'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> SwitchCase<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 4 space for tab for perttier</span>
+
+        <span class="token string">'space-before-function-paren'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'error'</span><span class="token punctuation">,</span> <span class="token string">'never'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// no space in function name for perttier</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>如果是vue-cli3项目，以上配置的eslint插件默认已安装；如果不是vue-cli3项目，需要npm安装对应包：npm install --save-dev babel-eslint eslint-plugin-vue</p></blockquote> <h3 id="参考链接"><a href="#参考链接" aria-hidden="true" class="header-anchor">#</a> 参考链接</h3> <p><a href="https://github.com/ecomfe/spec/blob/master/javascript-style-guide.md" target="_blank" rel="noopener noreferrer">百度JS规范<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <div class="page-edit"><div class="edit-link"><a href="https://github.com/lq782655835/blogs/edit/master/docs/team-standard/1.standard-ai-js.md" target="_blank" rel="noopener noreferrer">帮助我改进页面内容！</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blogs/dist/team-standard/1.standard-ai-git.html" class="prev">
+          AI前端Git规范
+        </a></span> <span class="next"><a href="/blogs/dist/team-standard/1.standard-ai-vue.html">
+          AI前端Vue规范
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/blogs/dist/assets/js/26.1d3d19fe.js" defer></script><script src="/blogs/dist/assets/js/app.c81208a4.js" defer></script>
+  </body>
+</html>

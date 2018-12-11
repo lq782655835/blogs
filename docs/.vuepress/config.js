@@ -35,10 +35,16 @@ module.exports = {
                 title: '团队规范',
                 collapsable: true,
                 children: [
-                    'team-standard/standard-ai-css.md',
-                    'team-standard/standard-ai-git.md',
-                    'team-standard/standard-ai-js.md',
-                    'team-standard/standard-ai-vue.md'
+                    'team-standard/0.standard-ai-summary.md',
+                    'team-standard/1.standard-ai-css.md',
+                    'team-standard/1.standard-ai-git.md',
+                    'team-standard/1.standard-ai-js.md',
+                    'team-standard/1.standard-ai-vue.md',
+                    'team-standard/1.standard-ai-vutool.md',
+                    'team-standard/recommend-code200.md',
+                    'team-standard/recommend-vue-api-order.md',
+                    'team-standard/recommend-vue-project-structure.md',
+                    'team-standard/recommend-vuerouter.md'
                 ]
             },
             {
@@ -58,15 +64,8 @@ module.exports = {
                     'js/node-tool-package.md',
                     'js/node-vscode-debug.md',
                     'js/npm script.md',
-                    'js/project-electron-summary.md',
-                    'js/project-h5-video-summary.md',
-                    'js/recommend-code200.md',
-                    'js/recommend-vue-api-order.md',
-                    'js/recommend-vue-project-structure.md',
-                    'js/recommend-vuerouter.md',
                     'js/regex.md',
                     'js/tool-stylelint.md',
-                    'js/tool-team.md',
                     'js/ts in vue project.md',
                     'js/vue-code-frame.md'
                 ]
@@ -78,7 +77,8 @@ module.exports = {
                 children: [
                     'think/grow-up-front.md',
                     'think/grow-up-life-it.md',
-                    'think/standard-ai-summary.md',
+                    'think/project-electron-summary.md',
+                    'think/project-h5-video-summary.md',
                     'think/think-cli-official-website.md'
                 ]
             },
