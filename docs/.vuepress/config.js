@@ -20,12 +20,8 @@ module.exports = {
             {
                 text: 'Blogs',
                 items: [
-                    { text: 'Standard', link: '/team-standard/standard-ai-js.html' },
-                    {
-                        text: 'Recommend',
-                        link:
-                            '/summary/Vue%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E6%8E%A8%E8%8D%90.html'
-                    }
+                    { text: 'Standard', link: '/team-standard/0.standard-ai-summary.html' },
+                    { text: 'Recommend', link: '/summary/recommend-vue-project-structure.html' }
                 ]
             }
         ],
@@ -61,6 +57,7 @@ module.exports = {
                     'js/js-design-pattern.md',
                     'js/nginx.md',
                     'js/node-api-summary.md',
+                    'js/node-mongodb.md',
                     'js/node-tool-package.md',
                     'js/node-vscode-debug.md',
                     'js/npm script.md',
