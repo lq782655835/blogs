@@ -68,7 +68,7 @@
     * 客户端代理
         * `http.request()/http.get()` node原生
         * [request](https://github.com/request/request) 老牌客户端请求代理模块，包装原生Node的http.request,使得调用更加简单。
-        * [superagent](https://github.com/visionmedia/superagent) 客户端请求代理模块。轻量的,渐进式的ajax api，特色是链式调用，只支持Node端。
+        * [superagent](https://github.com/visionmedia/superagent) 客户端请求代理模块。轻量的,渐进式的ajax api，特色是链式调用，支持Node和浏览器。
         * [got](https://github.com/sindresorhus/got) 轻量级，但也支持promise。
         * [axios](https://github.com/axios/axios) 客户端请求代理模块。功能丰富，支持Promise，支持Node和浏览器
     * `cheerio` nodejs dom解析库,常用来做爬虫
