@@ -76,7 +76,8 @@ module.exports = {
                     'think/grow-up-life-it.md',
                     'think/project-electron-summary.md',
                     'think/project-h5-video-summary.md',
-                    'think/think-cli-official-website.md'
+                    'think/think-cli-official-website.md',
+                    'think/《agile-software》-reader-response.md'
                 ]
             },
             {
