@@ -24,7 +24,9 @@ app.listen(3000, () => console.log('success'))
 ```
 
 * request
-* req.params
+    * req.params
+    * req.query 返回查询参数object对象。url?type=guess
+    * req.headers 返回object对象
 
 * response
     * 发送数据

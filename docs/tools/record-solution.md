@@ -1,5 +1,5 @@
 
-# 优秀解决方案
+# 解决方案
 
 [git 配置多个SSH-Key](https://my.oschina.net/stefanzhlg/blog/529403)
 
@@ -7,4 +7,6 @@
 
 iframe刷新，单页应用保持当前路由 - `sessionStorage`
 
-pc兼容性，safari底部莫名有个横条  - 禁用/卸载`迅雷`插件
+pc兼容性，safari底部莫名有个横条 - 禁用/卸载`迅雷`插件
+
+npm查看全局安装过的包 - `npm list -g --depth 0`
