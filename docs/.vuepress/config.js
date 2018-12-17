@@ -58,6 +58,7 @@ module.exports = {
                     'js/js-design-pattern.md',
                     'js/nginx.md',
                     'js/node-api-summary.md',
+                    'js/node-express-api.md',
                     'js/node-mongodb.md',
                     'js/node-tool-package.md',
                     'js/node-vscode-debug.md',

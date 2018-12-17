@@ -115,8 +115,10 @@ writeStream.on('drain', () => readStream.resume())
     * `可写流`
     * write(chunk[, encoding][, callback])
     * end([data][, encoding][, callback])
-    * setHeader(name, value)
-    * writeHead(statusCode[, statusMessage][, headers])
+        * 如果带data数据，相当于`response.write(data, encoding) + response.end(callback)`
+    * getHeader(name) 获得name指定头信息
+    * setHeader(name, value) 设置name头信息
+    * writeHead(statusCode[, statusMessage][, headers]) 设置头信息，包括状态码
 
 ``` js
 // Node作为客户端发送请求
