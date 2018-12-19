@@ -118,7 +118,7 @@ app.use((req, res, next) => {
 })
 ```
 
-# Response
+## Response
 Express Response扩展了node http.ServerResponse类,主要是增加一些便捷api以及返回数据时一些默认参数处理。[源代码在这](https://github.com/expressjs/express/blob/master/lib/response.js)
 * 发送数据
     * `res.write(chunk[, encoding][, callback])`<sup>`extend http`</sup> 写入数据
@@ -246,7 +246,7 @@ proto.route = function route(path) {
 };
 ```
 
-### express/router.all/METHOD(path, callback)
+### **express/router.all/METHOD(path, callback)**
 该方法用于注册一个get/post/...路由。从源码中可以看出，先实例化一个Route对象，最终执行的是该对象的METHOD方法。`简单理解，express.get(args) = new Route().get(args)`
 ```js
 // application L472行
@@ -282,7 +282,7 @@ methods.forEach(function(method){
 });
 ```
 
-### 路由匹配调用
+### **路由匹配调用**
 在哪里判断是否匹配呢？从源码看你能得到app.handle-->Router.handle。以下是抽取的主要代码以及详细注视，以下的代码解释中能理解上面提到的所有内容。随手画了个执行流程图：
 ![image](https://user-images.githubusercontent.com/6310131/50197417-d8888180-0381-11e9-9f84-fdf2642e33db.png)
 ``` js
@@ -358,7 +358,7 @@ Layer.prototype.handle_request = function handle(req, res, next) {
 };
 ```
 
-### 总结
+### **总结**
 * Route模块对应的是route.js，主要是来处理路由信息的，每条路由都会生成一个Route实例。
 * Router模块下可以定义多个路由，也就是说，一个Router模块会包含多个Route模块。
 * exress实例化了一个new Router()，实际上注册和执行路由都是通过调用Router实例的方法。类似于中介者模式

@@ -12,3 +12,5 @@ pc兼容性，safari底部莫名有个横条 - 禁用/卸载`迅雷`插件
 npm查看全局安装过的包 - `npm list -g --depth 0`
 
 svg-icon - css能控制svg颜色等，但内部fill属性优先级大于外层fill或css属性
+
+跳页锚点 - 考虑兼容性，使用`隐藏的a标签作为暗锚`即可

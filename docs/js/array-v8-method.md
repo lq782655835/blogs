@@ -76,7 +76,7 @@ function InnerArrayReduce(callback, current, array, length, argumentsLength) {
 * begin
     * 如果begin省略，则从0开始
     * 如果begin超过数组长度，则直接返回[]空数组
-    * begin为负数，一般等同于begin+arr.length
+    * begin为负数，一般等同于begin+arr.length。如果读String.prototype.slice源码，也是这种处理。
 * end
     * 如果end省略，则为arr.length
     * 如果end超过数组长度，则为arr.length
