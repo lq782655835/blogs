@@ -1,4 +1,4 @@
-# Express API以及源码解析
+# Express API及源码解析
 
 nodejs使得可以用javascirpt语言编写后台应用，但使用原生nodejs开发web应用非常复杂。Express是目前最流行的基于Node.js的Web开发框架，可以快速地搭建一个完整功能的网站。以下结合[开发文档](https://expressjs.com/en/4x/api.html)和[express源码](https://github.com/expressjs/express/blob/master/lib/express.js)，整理出常用的一些API以及它们的关系，使得读者理解更加通透。
 
@@ -9,15 +9,15 @@ nodejs使得可以用javascirpt语言编写后台应用，但使用原生nodejs�
 * instance
     * 路由相关
         * `app.use(path, callback)` 主要用来添加非路由中间件,`底层调用router.use()`。
-            * use.path未设置代表匹配所有http请求,匹配Path的方式：
+            * 匹配Path的方式：
                 * 路径: /abcd
                 * 路径模式: /abc?d
                 * 正则表达式: /\/abc|\/xyz/
                 * 数组合集: ['/abcd', '/abc?e', /\/abc|\/xyz/]
-        * `app.all/METHOD(path, callback [, callback ...])` 路由一个http请求，`底层调用router.METHOD()`
-        * `app.route(path)` 获得route实例。app.route(path).METHOD=app.METHOD(path)
+        * `app.all/METHOD(path, callback [, callback ...])` 注册一个http请求路由
+        * `app.route(path)` 获得route实例
     * 实例方法
-        * `app.get(name)`
+        * `app.get(name)` 获取app上定义属性
         * `app.set(name, value)` 绑定或设置属性到app上
         * `app.listen()` 跟Node的http.Server.listen()一致
 > 大部分情况app.use()和app.all()使用相似，最大不一样是中间件执行顺序。app.use()针对主进程，放前面跟放最后不一样；但app.all针对应用的路由，放的位置与中间件执行无关。[stackoverflow](https://stackoverflow.com/questions/14125997/difference-between-app-all-and-app-use)
@@ -35,6 +35,7 @@ app.listen(3000, () => console.log('success'))
 ```
 
 ## Router
+跟express路由API相似：
 * `router.use(path, callback)`
 * `router.all/METHOD(path, [callback])`
 * `router.route()`
@@ -43,13 +44,13 @@ app.listen(3000, () => console.log('success'))
 var express = require('express');
 var app = express();
 
-// 基础路由
+// method方式路由
 app.get('/api', (req, res) => res.send('api router'))
 app.get('/api/:id', (req, res) => {
     res.send('api detail')
 })
 
-// 多方法路由
+// method多回调路由
 var cb0 = function (req, res, next) {
     console.log('CB0');
     next();
@@ -146,7 +147,7 @@ res.set('Content-Type', 'text/plain');
 ```
 
 ## 路由机制源码解析
-路由机制是express精髓。阅读源码中，request、response、view模块都清晰易懂，可能就是router这块容易让人看糊涂。这里对express路由机制做下个人整理：
+路由机制是express精髓。源码中，request、response、view模块都清晰易懂，可能就是router这块容易让人看糊涂。这里对express路由机制源码做下个人整理：
 
 ### **express与子路由有相同API**
 细心的读者可以发现，express实例和new Router()有一样的API：
@@ -154,7 +155,7 @@ res.set('Content-Type', 'text/plain');
 * `express/router.all/METHOD(path, callback)`。all只是METHOD的合集，故分为一类
 * `express/router.route(path)`
 
-这是因为express实例中保存着一个单例模式的主Router对象（下文都叫主路由），这就意味着Router有的方法都可以在express实例上。源码在application.js的[137行](https://github.com/expressjs/express/blob/master/lib/application.js#L137)：
+这是因为express实例中保存着一个单例模式的主Router对象（下文都叫主路由），这就意味着Router有的API都可以在express实例上。源码在application.js的[137行](https://github.com/expressjs/express/blob/master/lib/application.js#L137)：
 ``` js
 app.lazyrouter = function lazyrouter() {
   if (!this._router) {
@@ -199,8 +200,9 @@ proto.use = function use(fn) {
       strict: false,
       end: false
     }, fn);
-    layer.route = undefined; // use通常是非路由中间件，故没有route对爱哪个
-    // 压入stack中，调用时会从stack遍历
+    // use通常是非路由中间件，故没有route实例
+    layer.route = undefined;
+    // 压入stack中，路由匹配时会从stack遍历
     this.stack.push(layer);
 
   return this;
@@ -216,20 +218,27 @@ app.route = function route(path) {
   return this._router.route(path);
 };
 ```
-router.route方法主要是新建了Route对象，同样经过layer包装，压入stack(这里非常重要的一点是`layer.route = route`,但不详细展开讲了)。`所以简单理解，express.route(path) = new Route(path)`
+router.route方法是每次新建一个Route对象（存储了定义的路由METHOD方法），同样经过Layer包装，压入stack，并最终返回该Route实例。`所以简单理解，express.route(path) = new Route(path)`
+
+重点讲下为什么需要layer.route = route。`路由匹配的两个必备匹配条件：path路径 + method方法`。express.use这种执行中间件方法只要求有path就可以；express.get/post/...需要同时给到path和method，express.get/post/...底层都会调用express.route以得到一个Route实例。Route实例存储了对应路由上哪些方法被注册，比如只有get方式可以匹配到。所以当实际匹配路由时，从router的stack遍历找到对应layer后，如果是中间件就不找了，如果是路由方法则需要通过layer找到对应Route实例，再继续匹配。
 ``` js
 // router/index.js L491行
 proto.route = function route(path) {
   // 创建了path下的Route
   var route = new Route(path);
 
-  // 同样用layer包装
+  // 同样用layer包装。
+  // 注意回调函数传递的是route.dispatch函数，这里是逻辑递增的关键
+  // 保证了定义在路由上的多个中间件函数被按照定义的顺序依次执行
   var layer = new Layer(path, {
     sensitive: this.caseSensitive,
     strict: this.strict,
     end: true
   }, route.dispatch.bind(route));
-  layer.route = route; // route方法通常用于路由，故route对象需要反链到layer上
+  // route方法通常用于路由，需要知道具体的请求method
+  // 所以需要从statck找到layer，再找到具体route
+  // route实例上存储了对应path路由的哪些method
+  layer.route = route; 
   this.stack.push(layer);
 
   // 返回该route实例
@@ -251,7 +260,7 @@ methods.forEach(function(method){
 });
 
 ```
-接下来让我们看下Route对象下的METHOD方法。该方法也对回调函数进行了包装并且也存入stack中。由此可知，`凡是路由机制API中有回调函数的，都会经过Layer进行包装。路由匹配到的时候会被调用。`在哪里判断是否匹配呢？从源码看你能得到app.handle-->Router.handle(该方法是重点，路由匹配机制在这)-->layer.handle_request
+接下来让我们看下Route对象下的METHOD方法。该方法也对回调函数进行了包装并且也存入stack中。由此可知，`凡是路由机制API中有回调函数的，都会经过Layer进行包装。路由匹配到的时候会被调用`。
 ``` js
 // router/route.js L92
 methods.forEach(function(method){
@@ -271,6 +280,82 @@ methods.forEach(function(method){
     return this;
   };
 });
+```
+
+### 路由匹配调用
+在哪里判断是否匹配呢？从源码看你能得到app.handle-->Router.handle。以下是抽取的主要代码以及详细注视，以下的代码解释中能理解上面提到的所有内容。随手画了个执行流程图：
+![image](https://user-images.githubusercontent.com/6310131/50197417-d8888180-0381-11e9-9f84-fdf2642e33db.png)
+``` js
+proto.handle = function handle(req, res, out) {
+  var self = this;
+  // 拿到主路由的stack
+  var stack = self.stack;
+
+  // next方法循环处理stack
+  next();
+
+  function next(err) {
+    var layer;
+    var match;
+    var route;
+
+    // match为true以及idx小于stack长度才继续循环
+    // 其他情况都跳出循环
+    while (match !== true && idx < stack.length) {
+      layer = stack[idx++];
+      // 匹配path
+      match = matchLayer(layer, path);
+      route = layer.route;
+      // 没有匹配到，继续下次循环
+      if (match !== true) {
+        continue;
+      }
+
+      // 无路由的中间件，跳出while循环(此时match = true)
+      if (!route) {
+        continue;
+      }
+
+      // 有路由的需要拿到route实例，再判断是否匹配到method
+      var method = req.method;
+      var has_method = route._handles_method(method);
+      // 没有匹配到则继续循环，否则跳出循环
+      if (!has_method && method !== 'HEAD') {
+        match = false;
+        continue;
+      }
+    }
+
+    // 匹配到的layer都会执行到这
+    // process_params主要处理express.param API，这里不展开
+    self.process_params(layer, paramcalled, req, res, function (err) {
+      if (err) {
+        return next(layerError || err);
+      }
+
+      // layer的handle_request函数是执行回调函数
+      // 把next函数传递下去是为了继续循环执行
+      layer.handle_request(req, res, next);
+    });
+  }
+```
+``` js
+Layer.prototype.handle_request = function handle(req, res, next) {
+  var fn = this.handle;
+
+  if (fn.length > 3) {
+    // not a standard request handler
+    return next();
+  }
+
+  try {
+    // 暴露给外面的回调函数，包含三个参数req、res、next
+    // 所以这就解释了为什么一定要执行next()方法才能路由链路一直走下去
+    fn(req, res, next);
+  } catch (err) {
+    next(err);
+  }
+};
 ```
 
 ### 总结
