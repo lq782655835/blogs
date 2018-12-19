@@ -4,8 +4,8 @@
     "repository": "https://github.com/lq782655835/blogs.git",
     "author": "782655835@qq.com",
     "scripts": {
+        "github": "sh deploy.sh",
         "dev": " npm run config && vuepress dev docs",
-        "build": "sh deploy.sh",
         "docs:build": "npm run config && vuepress build docs",
         "config": "node ./bin/index.js && npm run format",
         "format": "prettier --write './**/*.{js,ts,vue,json}'"
