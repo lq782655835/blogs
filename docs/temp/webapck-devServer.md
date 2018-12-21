@@ -4,7 +4,9 @@
 webpack-dev-server是一个封装好的webpack开发服务器，底层使用express。通常用在开发环境的webpack打包，它有以下这些作用：
 1. 读取webpack.config.js并使用webpack进行编译
 2. **默认集成一些第三方插件并可供配置，都在webpack.config.js下的`devServer`节点下（本节重点）**
-3. 开启一个websocket以实现热加载
+3. 开启一个websocket以实现热更新
+    * 基于[webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware)实现
+    * 编译输出放到内存中，不会生成真实的文件
 4. 开启本地express服务器以实现网址预览
 > webpack打包和webpack-dev-server开启服务的区别:webpack输出真实的文件，而webpack-dev-server输出的文件只存在于内存中,不输出真实的文件
 
@@ -26,9 +28,14 @@ devServer: {
     compress: true,
     // 是否隐藏bundle信息
     noInfo: true,
-    overlay: true, // 发生错误是否覆盖在页面上
+    // 发生错误是否覆盖在页面上
+    overlay: true,
     // 是否开启热加载
+    // 必须搭配webpack.HotModuleReplacementPlugin 才能完全启用 HMR。
+    // 如果 webpack 或 webpack-dev-server 是通过 --hot 选项启动的，那么这个插件会被自动添加
     hot: true,
+    // 热加载模式
+    // true代表inline模式，false代表iframe模式
     inline: true, // 默认是true
     // 是否自动打开
     open: true,
@@ -38,19 +45,18 @@ devServer: {
     // 代理
     // 基于node http-proxy-middleware包实现
     proxy: {
-      // 匹配api前缀时，则代理到3001端口
-      // 即http://localhost:8080/api/123 = http://localhost:3001/api/123
-      '/api': 'http://localhost:3001',
-      // 设置为true, 本地就会虚拟一个服务器接收你的请求并代你发送该请求
-      //  changes the origin of the host header to the target URL
-      // 主要解决跨域问题
-      changeOrigin: true,
-      // 针对代理https
-      secure: false,
-      // 覆写路径：http://localhost:8080/api/123 = http://localhost:3001/123
-      pathRewrite: {'^/api' : ''}
+        // 匹配api前缀时，则代理到3001端口
+        // 即http://localhost:8080/api/123 = http://localhost:3001/api/123
+        '/api': 'http://localhost:3001',
+        // 设置为true, 本地就会虚拟一个服务器接收你的请求并代你发送该请求
+        // 主要解决跨域问题
+        changeOrigin: true,
+        // 针对代理https
+        secure: false,
+        // 覆写路径：http://localhost:8080/api/123 = http://localhost:3001/123
+        pathRewrite: {'^/api' : ''}
     }
-  },
+}
 ```
 
 ## 源码解析

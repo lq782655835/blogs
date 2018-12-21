@@ -25,16 +25,49 @@ url 模块提供了两套 API 来处理 URL 字符串：一个是Node.js特有�
 旧版url api，[新版URL Standard见这](http://nodejs.cn/api/url.html#url_the_whatwg_url_api)：
 
 * `url.parse(urlString[, parseQueryString[, slashesDenoteHost]])`。把url字符串解析为url对象
+    * host
+    * hostname
+    * **href**
+    * **path**
+    * pathname
+    * port
+    * protocol
+    * **query**
+    * search
+``` js
+const url = require('url');
+const myURL = url.parse('https://example.org/foo?type=123#123');
+console.log(myURL)
+/* Url {
+  protocol: 'https:',
+  slashes: true,
+  auth: null,
+  host: 'example.org',
+  port: null,
+  hostname: 'example.org',
+  hash: '#123',
+  search: '?type=123',
+  query: 'type=123',
+  pathname: '/foo',
+  path: '/foo?type=123',
+  href: 'https://example.org/foo?type=123#123'
+} */
+```
 * `url.format(urlObject)`。把url对象解析为字符串
 * `url.resolve(from, to)`。以一种 Web 浏览器解析超链接的方式, 基于一个基础 URL,对目标 URL进行解析。查看其源码实现：
-    ``` js
-    Url.prototype.resolve = function(relative) {
-    return this.resolveObject(urlParse(relative, false, true)).format();
-    };
-    ```
+``` js
+Url.prototype.resolve = function(relative) {
+return this.resolveObject(urlParse(relative, false, true)).format();
+};
+```
 
 ## [querystring]()
 * `querystring.parse`。一个URL查询字符串 str 解析成一个键值对的集合。
+``` js
+const querystring = require('querystring')
+let query = querystring.parse('type=123')
+console.log(query) // { type: '123' }
+```
 * `querystring.stringify`。遍历给定的 obj 对象的自身属性，生成 URL 查询字符串。
 
 ## [Stream]()
@@ -104,22 +137,45 @@ writeStream.on('drain', () => readStream.resume())
 
 ## [http]()
 
-* `http.Server`。http.createServer(function(req, res){})返回该类。
+* `http.Server`。http.createServer(function(req, res){})返回该类实例。
     * listen()
-* `http.ClientRequest`。`Node作为客户端`。http.get()/http.request()返回该类。
-    * `可写流`。详细参见上章节stream.Writable
-    * write(chunk[, encoding][, callback])。stream继承，请求写入数据，一般是POST请求需要。
-    * end([data][, encoding][, callback])。stream继承，请求发出。
-    * `回调函数res是可读流`
-* `http.ServerResponse`。`Node作为服务端`。服务端res即是该类的实例。
+* `http.IncomingMessage`。 请求类。http.createServer回调函数中req参数即是该类的实例。
+    * headers
+        * accept
+        * host
+        * cookie 未经过处理的cookie字符串，所以一般需要cookie-parse等第三方包处理
+        * referer
+    * url
+    * method
+* `http.ServerResponse`。`Node作为服务端`。http.createServer回调函数中res参数即是该类的实例。
     * `可写流`
     * write(chunk[, encoding][, callback])
     * end([data][, encoding][, callback])
         * 如果带data数据，相当于`response.write(data, encoding) + response.end(callback)`
+    * setHeader(name, value) 设置name头信息。[所有HTTP消息头](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers)
+        * Content-Type。[所有Content-Type](http://tool.oschina.net/commons)
+            * application/json
+            * text/html
+            * text/plain
+            * text/xml
+            * application/x-www-form-urlencoded
+            * multipart/form-data。常用来上传图片等数据
+        * Content-Length
+        * Access-Control-Allow-Origin
+        * Access-Control-Allow-Headers
+        * Access-Control-Allow-Methods
+        * Access-Control-Allow-Credentials
+        * X-Powered-By
     * getHeader(name) 获得name指定头信息
-    * setHeader(name, value) 设置name头信息
     * writeHead(statusCode[, statusMessage][, headers]) 设置头信息，包括状态码
-
+* `http.ClientRequest`。`Node作为客户端`。http.get()/http.request()返回该类。
+    * `可写流`。跟http.ServerResponse有些类似
+    * write(chunk[, encoding][, callback])。stream继承，请求写入数据，一般是POST请求需要。
+    * end([data][, encoding][, callback])。stream继承，请求发出。
+    * setHeader(name, value) 设置name头信息
+    * getHeader(name) 获得name指定头信息
+    * `回调函数res参数是可读流`
+> IncomingMessage对象是由http.Server或http.ClientRequest创建的
 ``` js
 // Node作为客户端发送请求
 const postData = querystring.stringify({
@@ -146,21 +202,19 @@ req.on('error', (e) => {
   console.error(`problem with request: ${e.message}`);
 });
 
-// req作为客户端请求，是个writeable.Stream。添加上参数并请求出去
-req.write(postData);
-req.end();
+// req作为客户端请求，是个writeable.Stream。
+req.write(postData); // 带上参数
+req.end(); // 结束写入，开始发送请求。如果是http.get() API会自动带req.end()
 ```
 
 ``` js
 // Node作为服务端，res(response)参数继承的是writeable.Stream
 const http = require('http')
 
-http
-    .createServer((req, res) => {
-        res.write('hello world')
-        res.end()
-    })
-    .listen(3001)
+http.createServer((req, res) => {
+    res.write('hello world')
+    res.end()
+}).listen(3001)
 ```
 
 > http.get()与 http.request() 唯一的区别是它设置请求方法为 GET 且自动调用 req.end()

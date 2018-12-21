@@ -97,8 +97,8 @@ Express Request扩展了node http.IncomingMessage类,主要是增强了一些获
 * `req.method`<sup>`extend http`</sup> 返回请求类型GET、POST等
 * `req.get(name)/req.header(name)` 底层调用node http 模块的req.headers
 * `req.params` 返回参数对象，对应的属性名由定义路由时确定。比如app.get('/user/:id')路由时，可以通过req。params.id取得参数
-* `req.query` 返回查询参数object对象。等同于require('url').parse(req.url,true).query;底层中使用parseurl模块
-* `req.path` 返回字符串。跟req.url比，不带query后缀
+* `req.query` 返回查询参数object对象。等同于qs.parse(url.parse(req.url,true).query)。
+* `req.path` 返回字符串。等同于url.parse(req.url).pathname。pathname跟req.url比，不带query后缀
 * `req.body` post请求获取到数据。需要使用[body-parser](https://www.npmjs.com/package/body-parser)中间件
 * `req.cookies` 拿到cookies值。需要使用[cookie-parser](https://www.npmjs.com/package/cookie-parser)中间件
 ``` js
@@ -120,6 +120,15 @@ app.use((req, res, next) => {
 
 ## Response
 Express Response扩展了node http.ServerResponse类,主要是增加一些便捷api以及返回数据时一些默认参数处理。[源代码在这](https://github.com/expressjs/express/blob/master/lib/response.js)
+* 设置响应头
+    * `res.getHeader(name, value)`<sup>`extend http`</sup>
+    * `res.setHeader(name, value)`<sup>`extend http`</sup>
+    * `res.get(field)` 底层调用res.getHeader()
+    * `res.set(field [, value])/res.header()` 底层调用res.setHeader()
+    * `res.status(code)` 底层直接赋值statusCode属性
+    * `res.type(type)` 快捷设置Content-Type,底层调用res.set('Content-Type', type)
+    * `res.cookie(name, value, options)` 设置指定name的cookie。该功能express提供，而不是cookie-parser包实现。
+    * `res.clearCookie(name, options)` 清楚指定name的cookie。
 * 发送数据
     * `res.write(chunk[, encoding][, callback])`<sup>`extend http`</sup> 写入数据
     * `res.end([data] [, encoding])`<sup>`extend http`</sup>。
@@ -128,22 +137,14 @@ Express Response扩展了node http.ServerResponse类,主要是增加一些便捷
     * `res.redirect([status,] path)` 302转发url
     * `res.render(view [, locals] [, callback])` 输出对应html数据
     * `res.sendStatus(statusCode)` status和send的快捷键
-* 设置响应头
-    * `res.getHeader(name, value)`<sup>`extend http`</sup>
-    * `res.setHeader(name, value)`<sup>`extend http`</sup>
-    * `res.get(field)` 底层调用res.getHeader()
-    * `res.set(field [, value])/res.header()` 底层调用res.setHeader()
-    * `res.status(code)` 底层直接赋值statusCode属性
-    * `res.type(type)` 快捷设置Content-Type,底层调用res.set('Content-Type', type)
-    * `res.cookie(name, value, options)` 获取cookie
 ``` js
+res.type('json'); // => 'application/json'
+res.header('Content-Type', 'text/plain');
+
 res.status(404).end();
 res.status(404).send('Sorry, we cannot find that!');
 res.status(500).json({ error: 'message' });
-
 res.sendStatus(200); // equivalent to res.status(200).send('OK')
-res.type('json'); // => 'application/json'
-res.set('Content-Type', 'text/plain');
 ```
 
 ## 路由机制源码解析

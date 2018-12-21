@@ -65,14 +65,24 @@
     * `pm2` - 支持热启动、负载、集群、监控、重启等功能
     * `http-server` 静态文件服务器命令行工具，无需配置，一条命令开启 http 服务
 * 模块
-    * 客户端代理
+    * web常用
+        * `connect-history-api-fallback` 没有匹配到路径时，导航到index.html
+        * `body-parser` 解析req.body
+        * `cookie-parser`
+        * `chalk` 粉笔，使得字符串带颜色、背景色等
+        * `crypto` 加密库
+    * 客户端请求
         * `http.request()/http.get()` node原生
         * [request](https://github.com/request/request) 老牌客户端请求代理模块，包装原生Node的http.request,使得调用更加简单。
         * [superagent](https://github.com/visionmedia/superagent) 客户端请求代理模块。轻量的,渐进式的ajax api，特色是链式调用，支持Node和浏览器。
         * [got](https://github.com/sindresorhus/got) 轻量级，但也支持promise。
         * [axios](https://github.com/axios/axios) 客户端请求代理模块。功能丰富，支持Promise，支持Node和浏览器
+    * http代理
+        * `http-proxy` - node http代理库，使用起来较原生
+        * `http-proxy-middleware` express中间件，使用简单。底层使用http-proxy
+    * mongodb
+        * `mongodb` mongodb驱动
+        * `mongoose` - 全能的 MongoDB ORM 库。底层使用mongodb Client
     * `cheerio` nodejs dom解析库,常用来做爬虫
-    * `http-proxy` - 功能全面的http代理库
-    * `mongoose` - 全能的 MongoDB ORM 库
 
 持续更新中...
