@@ -1,14 +1,16 @@
 
-# Webpack devServer配置解析
+# Webpack4 devServer配置详解
 
-webpack-dev-server作用：
+webpack-dev-server是一个封装好的webpack开发服务器，底层使用express。通常用在开发环境的webpack打包，它有以下这些作用：
 1. 读取webpack.config.js并使用webpack进行编译
-2. 默认一些第三方插件feature可供配置，都在webpack.config.js下的`devServer`节点下（本节重点）
+2. **默认集成一些第三方插件并可供配置，都在webpack.config.js下的`devServer`节点下（本节重点）**
 3. 开启一个websocket以实现热加载
 4. 开启本地express服务器以实现网址预览
+> webpack打包和webpack-dev-server开启服务的区别:webpack输出真实的文件，而webpack-dev-server输出的文件只存在于内存中,不输出真实的文件
 
-webpack的devServer配置基于[webpack-dev-server](https://github.com/webpack/webpack-dev-server)插件。该插件提供了proxy代理配置，基于express中间件 [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)实现，该中间件又基于node [http-proxy](https://github.com/nodejitsu/node-http-proxy),所以如果要详细知道proxy各个参数的意义和实现方式，可以阅读下http-proxy的源码。
+## devServer配置
 
+webpack的devServer配置基于[webpack-dev-server](https://github.com/webpack/webpack-dev-server)集成的插件。该插件提供了proxy代理配置，基于express中间件 [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)实现，该中间件又基于node [http-proxy](https://github.com/nodejitsu/node-http-proxy),所以如果要详细知道proxy各个参数的意义和实现方式，可以阅读下http-proxy的源码。
 > proxy作用：解决开发环境的跨域问题(不用再去配置nginx）
 
 ``` js
