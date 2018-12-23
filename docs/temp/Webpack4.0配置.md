@@ -1,4 +1,13 @@
 
+## Webpack3.x升级到Webpack4
+
+``` shell
+npm uninstall webpack webpack-dev-server -D
+npm i webpack webpack-dev-server webpack-merge webpack-cli -D
+```
+
+## 配置
+
 ```
 module.exports = {
     mode: 'development',     // 模式配置,4.0新增

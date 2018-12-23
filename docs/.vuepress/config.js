@@ -51,6 +51,7 @@ module.exports = {
                     'js/ES6-1.new-feature.md',
                     'js/ES6-2.destruction.md',
                     'js/ES6-3.object.md',
+                    'js/Webapck-devServer\b.md',
                     'js/array-v8-method.md',
                     'js/axios-usage-theory.md',
                     'js/different MVC、MVP、MVVM.md',
@@ -74,12 +75,13 @@ module.exports = {
                 title: '思考与总结',
                 collapsable: true,
                 children: [
+                    'think/book-agile-software.md',
+                    'think/book-soft-skills.md',
                     'think/grow-up-front.md',
                     'think/grow-up-life-it.md',
                     'think/project-electron-summary.md',
                     'think/project-h5-video-summary.md',
-                    'think/think-cli-official-website.md',
-                    'think/《agile-software》-reader-response.md'
+                    'think/think-cli-official-website.md'
                 ]
             },
             {
