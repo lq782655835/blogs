@@ -37,10 +37,11 @@ npm install --save-dev webpack webpack-cli
         * 更小的bundle大小
         * 去除掉只在开发阶段运行的代码
         * Scope hoisting和Tree-shaking
-* 使用CommonsChunkPlugin替换为optimization.splitChunks
+* 使用CommonsChunkPlugin替换为optimization.splitChunks。其他还有：
     * NoEmitOnErrorsPlugin 废弃，使用optimization.noEmitOnErrors替代，在生产环境中默认开启该插件。
     * ModuleConcatenationPlugin 废弃，使用optimization.concatenateModules替代，在生产环境默认开启该插件。
     * NamedModulesPlugin 废弃，使用optimization.namedModules替代，在生产环境默认开启。
+    * DefinePlugin 废弃，使用optimization.nodeEnv替代，在生产环境默认开启该插件。
     * uglifyjs-webpack-plugin升级到了v1.0版本, 默认开启缓存和并行功能。
 * 支持ES6的方式导入JSON文件，并且可以过滤无用的代码
 ``` js
