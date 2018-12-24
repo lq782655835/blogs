@@ -1,5 +1,29 @@
-# Webpack插件原理
+# Webpack插件
 
+Webpack插件
+处理 webpack 在编译过程中的某个特定的任务。满足一个插件需要如下特性：
+* 是一个独立的模块。
+* 模块对外暴露一个 js 函数。
+* 函数的原型 (prototype) 上定义了一个注入 compiler 对象* 的 apply 方法。
+* apply 函数中需要有通过 compiler 对象挂载的 webpack 事件钩子，钩子的回调中能拿到当前编译的 compilation 对象，如果是异步编译插件的话可以拿到回调 callback。
+* 完成自定义子编译流程并处理 complition 对象的内部数据。
+* 如果异步编译插件的话，数据处理完成后执行 callback 回调。
+
+``` js
+const webpack = require('webpack');
+
+const HelloWorldPlugin = require('./hello-world-plugin');
+
+webpack({
+    // ...
+    plugins: [
+        new HelloWorldPlugin({/* some plugin options */})
+    ]
+    // ...
+});
+```
+
+## compiler & compilation 对象
 compilation 对象是整个 webpack 最核心的两个对象，是扩展 webpack 功能的关键。
 
 ## compiler 对象
@@ -32,12 +56,3 @@ compiler.hooks.run.tapAsync('MyPlugin', (compiler, callback) => {
 [compiler-hooks](https://www.webpackjs.com/api/compiler-hooks/#hooks)
 
 [compilation-hooks](https://www.webpackjs.com/api/compilation-hooks/)
-
-## 插件特性
-
-* 是一个独立的模块。
-* 模块对外暴露一个 js 函数。
-* 函数的原型 (prototype) 上定义了一个注入 compiler 对象* 的 apply 方法。
-* apply 函数中需要有通过 compiler 对象挂载的 webpack 事件钩子，钩子的回调中能拿到当前编译的 compilation 对象，如果是异步编译插件的话可以拿到回调 callback。
-* 完成自定义子编译流程并处理 complition 对象的内部数据。
-* 如果异步编译插件的话，数据处理完成后执行 callback 回调。

@@ -67,7 +67,8 @@ module.exports = {
                     'js/regex.md',
                     'js/tool-stylelint.md',
                     'js/ts in vue project.md',
-                    'js/vue-code-frame.md'
+                    'js/vue-code-frame.md',
+                    'js/webpack3.x-to-webpack4.md'
                 ]
             },
             {
