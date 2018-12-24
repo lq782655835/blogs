@@ -48,20 +48,33 @@ module.exports = {
                 title: '前端总结',
                 collapsable: true,
                 children: [
-                    'js/ES6-1.new-feature.md',
-                    'js/ES6-2.destruction.md',
-                    'js/ES6-3.object.md',
-                    'js/Webapck-devServer\b.md',
                     'js/array-v8-method.md',
                     'js/axios-usage-theory.md',
                     'js/different for in、for of.md',
+                    'js/es6-1.new-feature.md',
+                    'js/es6-2.destruction.md',
+                    'js/es6-3.object.md',
                     'js/js-design-pattern.md',
                     'js/npm script.md',
                     'js/regex.md',
                     'js/tool-stylelint.md',
                     'js/ts in vue project.md',
                     'js/vue-code-frame.md',
+                    'js/webapck-devServer\b.md',
                     'js/webpack3.x-to-webpack4.md'
+                ]
+            },
+            {
+                key: 'node',
+                title: 'NodeJS',
+                collapsable: true,
+                children: [
+                    'node/nginx.md',
+                    'node/node-api-summary.md',
+                    'node/node-express-api.md',
+                    'node/node-mongodb.md',
+                    'node/node-tool-package.md',
+                    'node/node-vscode-debug.md'
                 ]
             },
             {
