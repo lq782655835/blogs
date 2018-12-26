@@ -74,9 +74,9 @@
     * 客户端请求
         * `http.request()/http.get()` node原生
         * [request](https://github.com/request/request) 老牌客户端请求代理模块，包装原生Node的http.request,使得调用更加简单。
-        * [superagent](https://github.com/visionmedia/superagent) 客户端请求代理模块。轻量的,渐进式的ajax api，特色是链式调用，支持Node和浏览器。
+        * [superagent](https://github.com/visionmedia/superagent) <sup>`node端推荐`</sup>轻量级客户端请求代理模块。渐进式的ajax api，特色是链式调用以及json数据传递参数，支持Node和浏览器。
         * [got](https://github.com/sindresorhus/got) 轻量级，但也支持promise。
-        * [axios](https://github.com/axios/axios) 客户端请求代理模块。功能丰富，支持Promise，支持Node和浏览器
+        * [axios](https://github.com/axios/axios)<sup>`web端推荐`</sup> 客户端请求代理模块。功能丰富，支持Promise，支持Node和浏览器。但Node端传递数据需要qs等第三方库进行数据stringfy，同时难以支持嵌套的对象数据，故在node端不推荐使用。
     * http代理
         * `http-proxy` - node http代理库，使用起来较原生
         * `http-proxy-middleware` express中间件，使用简单。底层使用http-proxy
