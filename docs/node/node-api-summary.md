@@ -406,6 +406,20 @@ process.on('SIGHUP', () => proc.kill('SIGHUP'))
 proc.on('exit', process.exit)
 ```
 
+### [assert]()
+* `assert(value[, message])` assert.ok()的别名
+* `assert.equal(actual, expected[, message])` 比较是否相等。equal是非严格模式，官方推荐使用严格模式assert.strictEqual()。
+* assert.notEqual(actual, expected[, message])
+* `assert.ok(value[, message])` 测试 value 是否为真值。相当于 assert.equal(!!value, true, message)
+* `assert.fail([message])` 抛出 AssertionError，并带上提供的错误信息或默认的错误信息。
+
+```js
+assert.equal(1, '1'); // OK, 1 == '1'
+assert.notEqual(1, 2); // OK
+assert.ok(1); // 测试通过。
+assert.ok(typeof 123 === 'string'); // // 抛出 AssertionError: false == true
+assert.fail('失败'); // 抛出 AssertionError [ERR_ASSERTION]: 失败
+```
 ## 参考文章
 
 * [Nodejs进阶：如何玩转子进程（child_process）](https://www.cnblogs.com/chyingp/p/node-learning-guide-child_process.html)
