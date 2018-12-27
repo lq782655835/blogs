@@ -7,11 +7,20 @@
         "github": "sh deploy.sh",
         "dev": " npm run config && vuepress dev docs",
         "docs:build": "npm run config && vuepress build docs",
-        "config": "node ./bin/index.js && npm run format",
+        "config": "vuepress-auto-read && npm run format",
         "format": "prettier --write './**/*.{js,ts,vue,json}'"
+    },
+    "folderTitleMap": {
+        "team-standard": "团队规范",
+        "js": "前端总结",
+        "node": "NodeJS",
+        "think": "思考与总结",
+        "react-native": "ReacNative",
+        "tools": "效率工具"
     },
     "license": "MIT",
     "devDependencies": {
+        "node-vuepress-auto-read": "0.0.3",
         "vuepress": "^0.14.4"
     },
     "dependencies": {
