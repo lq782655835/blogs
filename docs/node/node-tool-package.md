@@ -69,20 +69,32 @@
         * `connect-history-api-fallback` 没有匹配到路径时，导航到index.html
         * `body-parser` 解析req.body
         * `cookie-parser`
-        * `chalk` 粉笔，使得字符串带颜色、背景色等
-        * `crypto` 加密库
+        * http代理
+            * `http-proxy` - node http代理库，使用起来较原生
+            * `http-proxy-middleware`<sup>`推荐`</sup> express中间件，使用简单。底层使用http-proxy
+    * node常用
+        * `chalk` 粉笔，使得字符串带颜色、背景色等。类似包：`colors`
+        * `cheerio` nodejs dom解析库,常用来做爬虫
+        * `shelljs` shelljs重新包装了 child_process，调用系统命令更加方便
+        * 命令行
+            * `commander.js` 使得命令行更简单，API丰富，tj大神之作
+            * `yargs` 更简易的处理命令行参数小工具，比commander.js优秀的是参数不全会自动给出提示。常用在node小工具中
+            * `Inquirer.js` 用户交互式命令行。常用在cli脚手架中
+    * 测试
+        * `mocha`<sup>`推荐`</sup> 测试框架，支持node和web端
+            * –-recursive 使全部子目录下的测试用例都能被执行
+            * --watch/-w 用来监视指定的测试脚本。当脚本发生变化，就会自动运行mocha。
+            * –-bail/-b 只要有一个测试用例没有通过，就会停止执行后面的测试用例。
+        * `chai`<sup>`推荐`</sup> 断言库。BDD（行为驱动开发）/TDD（测试驱动开发）风格，同时支持should，assert，expect。支持node端和web端
+        * `should` 断言库。BDD风格
     * 客户端请求
         * `http.request()/http.get()` node原生
         * [request](https://github.com/request/request) 老牌客户端请求代理模块，包装原生Node的http.request,使得调用更加简单。
         * [superagent](https://github.com/visionmedia/superagent) <sup>`node端推荐`</sup>轻量级客户端请求代理模块。渐进式的ajax api，特色是链式调用以及json数据传递参数，支持Node和浏览器。
         * [got](https://github.com/sindresorhus/got) 轻量级，但也支持promise。
         * [axios](https://github.com/axios/axios)<sup>`web端推荐`</sup> 客户端请求代理模块。功能丰富，支持Promise，支持Node和浏览器。但Node端传递数据需要qs等第三方库进行数据stringfy，同时难以支持嵌套的对象数据，故在node端不推荐使用。
-    * http代理
-        * `http-proxy` - node http代理库，使用起来较原生
-        * `http-proxy-middleware` express中间件，使用简单。底层使用http-proxy
     * mongodb
         * `mongodb` mongodb驱动
-        * `mongoose` - 全能的 MongoDB ORM 库。底层使用mongodb Client
-    * `cheerio` nodejs dom解析库,常用来做爬虫
+        * `mongoose`<sup>`推荐`</sup> - 全能的 MongoDB ORM 库。底层使用mongodb Client
 
 持续更新中...
