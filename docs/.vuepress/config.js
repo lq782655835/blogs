@@ -69,13 +69,13 @@ module.exports = {
                 title: 'NodeJS',
                 collapsable: true,
                 children: [
-                    'node/linux-vim.md',
                     'node/nginx.md',
                     'node/node-api-summary.md',
                     'node/node-express-api.md',
                     'node/node-mongodb.md',
                     'node/node-tool-package.md',
-                    'node/node-vscode-debug.md'
+                    'node/node-vscode-debug.md',
+                    'node/shell-vim.md'
                 ]
             },
             {
