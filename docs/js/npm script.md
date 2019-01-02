@@ -68,7 +68,7 @@ scripts监听(示例监听svg文件变化，以处理最新svg文件):
     "svg": "vsvg -s ./assets/svg -t ./assets/icon",
 }
 ```
-
+> npm中`--`后面代表着参数
 ## 5. git钩子
 
 这也是非常实用功能之一，可以利用git钩子构建代码约束。经常用到的工具包是[`husky`](https://github.com/typicode/husky),通过husky源码知道，它替换了项目中.git/hooks钩子。项目中常用钩子是`precommit`,`prepush`, `commit-msg`

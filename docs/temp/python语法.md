@@ -1,4 +1,4 @@
-# python基本语法快速入门
+# python语法
 
 Python 与其他语言最大的区别就是，Python 的代码块不使用大括号 {} 来控制类，函数以及其他逻辑判断。python 最具特色的就是用缩进来写模块。
 
@@ -8,7 +8,7 @@ Python 中的变量赋值不需要类型声明。Python有五个标准的数据�
 * String（字符串）
 * List（列表）
 * Tuple（元组）。类似于List，但不能二次赋值，相当于只读列表
-* Dictionary（字典）。类似于javascript的Map类型j a
+* Dictionary（字典）。类似于javascript的Map类型
 
 ``` python
 print 'Hello, Python!'
@@ -83,3 +83,26 @@ fruits = ['banana', 'apple',  'mango']
 for fruit in fruits:        # 第二个实例
    print '当前水果 :', fruit
 ```
+
+## 内置函数
+
+* range(number, number)
+* len(list)
+
+``` python
+for i in range(5): print i # 0 1 2 3 4
+list = range(5)
+print len(list) # 5
+```
+
+## 内置库
+* os
+* glob
+* re 字符串匹配
+* math
+* random
+* datetime
+* unittest
+* threading、zipfile
+* logging
+* [其他](https://docs.python.org/2.7/library/index.html#library-index)

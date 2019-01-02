@@ -21,3 +21,5 @@ svg-icon - css能控制svg颜色等，但内部fill属性优先级大于外层fi
 span包含长文字不换行 - 块级元素自动换行，内联元素分两种：`全英文内联元素不会自动换行`，包含中文过长会换行
 
 node中客户端http请求库选择 - 建议选择`superagent`,支持链式调用以及post json数据解析。node环境中不建议axios，因为axios请求需要qs等第三方库进行post数据stringfy，而且不支持发送嵌套的object数据。
+
+在线压缩图片 - [tinypng](https://tinypng.com/) or [squoosh](https://squoosh.app/)

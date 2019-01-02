@@ -14,7 +14,7 @@
     path.resolve('/a', '/b') // '/b'
     path.resolve('./a', './b') // '/User/../a/b'
     ```
-* `path.dirname(path(string))`。返回指定的路径 所在文件夹的绝对路径
+* `path.dirname(path(string))`。返回指定路径所在文件夹的绝对路径
 * `path.basename(path(string))`。返回指定Path路径所在文件的名字
 * `path.extname(path | string)`。获取指定字符串或者文件路径名字的后缀名，带.比如.txt
 
