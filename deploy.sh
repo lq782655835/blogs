@@ -6,8 +6,13 @@ set -e
 # 生成静态文件
 npm run docs:build
 
+# Commit changes.
+msg="deploy at `date`"
+if [ $# != 0 ]
+  then msg="$*"
+fi
 git add -A
-git commit -m 'deploy'
+git commit -m "$msg"
 echo 'local commited'
 
 git push -f https://github.com/lq782655835/blogs.git master
