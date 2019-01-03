@@ -6,19 +6,25 @@
 * `__filename`。全局值，当前文件绝对路径
 * `__dirname`。全局值，当前文件夹绝对路径。等效于path.resolve(__filename, '..')
 * `path.join([...paths])`。相当于把所传入的任意多的参数 按照顺序 进行命令行般的推进
-    ``` js
-    path.join('a','b','../c/lolo') // a/c/lolo
-    ```
-* `path.resolve([...paths])`。以当前文件的路径为起点，返回绝对路径。可以理解为每次都是新建cd命令
-    ``` js
-    path.resolve('/a', '/b') // '/b'
-    path.resolve('./a', './b') // '/User/../a/b'
-    ```
-* `path.dirname(path(string))`。返回指定路径所在文件夹的绝对路径
-* `path.basename(path(string))`。返回指定Path路径所在文件的名字
-* `path.extname(path | string)`。获取指定字符串或者文件路径名字的后缀名，带.比如.txt
+* `path.resolve([...paths])`。以当前文件的路径为起点，**返回绝对路径**。可以理解为每次都是新建cd命令
+* `path.dirname(path)`。返回指定路径**所在文件夹的路径**
+* `path.basename(path)`。返回指定Path路径**所在文件的名字**
+* `path.extname(path)`。获取指定字符串或者文件路径**名字的后缀名**，带.比如.txt
+* `path.isAbsolute(path)` 是否是绝对路径,返回boolean值
+``` js
+path.join('a','b','../c/lolo') // a/c/lolo
 
-## [url]()
+path.resolve('/a', '/b') // '/b'
+path.resolve('./a', './b') // '/User/../a/b'
+
+const filePath = './bar/baz/asdf/quux.html'
+path.basename(filePath) // quux.html
+path.dirname(filePath) // ./bar/baz/asdf
+path.extname(filePath) // .html
+path.isAbsolute(filePath) // false
+```
+
+## [url](https://nodejs.org/dist/latest-v11.x/docs/api/url.html)
 
 url 模块提供了两套 API 来处理 URL 字符串：一个是Node.js特有的API，是旧版本的遗留；另一个则是实现了WHATWG URL Standard的 API (const {URL} = require('url')方式)，该标准也在各种浏览器中被使用。
 

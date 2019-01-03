@@ -33,21 +33,21 @@
 
 ``` bash
 # run: sh depoly.sh 123 123
-# 变量定义，注意不需要空格
-str='test'
-str2="this is $str"
+# 变量定义
+str='test' # 注意赋值不需要空格
+str2="this is $str" # 双引号可以直接写入变量
 str3="this is ${str}"
 arr=('1' '2') # 数组
 
 # echo打印
-echo this is test # this is test
-echo $str # test
+echo this is test # this is test # 被默认为字符串，不会报错
+echo $str # test # 变量引用需要家$符号
 echo $str2 # this is test
 echo $str3 # this is test
 echo ${arr[1]} # 2 # 数组切割
 
 # if判断
-if [ $str == "test" ] # 需要在方括号中，并且注意需要空格
+if [ $str == "test" ] # if条件需要在方括号中，并且注意需要空格
 then
     echo 'successed'
 fi
