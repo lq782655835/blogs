@@ -74,13 +74,14 @@
             * `http-proxy-middleware`<sup>`推荐`</sup> express中间件，使用简单。底层使用http-proxy
     * node常用
         * `chalk` 粉笔，使得字符串带颜色、背景色等。类似包：`colors`
-        * `cheerio` nodejs dom解析库,常用来做爬虫
+        * `figlet`：使用普通字符制作大字母的程序（注：使用标准字符，拼凑出图片）
         * `shelljs` shelljs重新包装了 child_process，调用系统命令更加方便
         * 命令行
             * `commander.js` 使得命令行更简单，API丰富，tj大神之作
             * `yargs` 更简易的处理命令行参数小工具，比commander.js优秀的是参数不全会自动给出提示。常用在node小工具中
             * `Inquirer.js` 用户交互式命令行。常用在cli脚手架中
             * `minimist` 简单的参数处理包，对process.argv.slice(2)数组进行key-value处理
+        * `cheerio` nodejs dom解析库,常用来做爬虫
     * 测试
         * `mocha`<sup>`推荐`</sup> 测试框架，支持node和web端。好处是灵活，可扩展性高，自己选择对应工具；坏处是你必须搭配一些断言库 + 代码覆盖率库
             * –-recursive 使全部子目录下的测试用例都能被执行

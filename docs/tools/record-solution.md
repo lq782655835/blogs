@@ -1,25 +1,45 @@
 # 解决方案
 
-[git 配置多个SSH-Key](https://my.oschina.net/stefanzhlg/blog/529403)
+## 问题
+* [git 配置多个SSH-Key](https://my.oschina.net/stefanzhlg/blog/529403)
 
-[使用Visual Studio Code对Node.js进行断点调试](https://segmentfault.com/a/1190000009084576)
+* [使用Visual Studio Code对Node.js进行断点调试](https://segmentfault.com/a/1190000009084576)
 
-iframe刷新，单页应用保持当前路由 - `sessionStorage`
+* iframe刷新，单页应用保持当前路由 - `sessionStorage`
 
-pc兼容性，safari底部莫名有个横条 - 禁用/卸载`迅雷`插件
+* pc兼容性，safari底部莫名有个横条 - 禁用/卸载`迅雷`插件
 
-npm查看全局安装过的包 - `npm list -g --depth 0`
+* npm查看全局安装过的包 - `npm list -g --depth 0`
 
-npm管理员彻底删除包 - `npm unpublish <package-name> --force`
+* npm管理员彻底删除包 - `npm unpublish <package-name> --force`
 
-svg-icon - css能控制svg颜色等，但内部fill属性优先级大于外层fill或css属性
+* svg-icon - css能控制svg颜色等，但内部fill属性优先级大于外层fill或css属性
 
-跳页锚点 - 考虑兼容性，使用`隐藏的a标签作为暗锚`即可
+* 跳页锚点 - 考虑兼容性，使用`隐藏的a标签作为暗锚`即可
 
-长文字只能控制在n行内 - [vue-clamp](https://github.com/Justineo/vue-clamp),原理使用`Element.getClientRects()`这个API
+* 长文字只能控制在n行内 - [vue-clamp](https://github.com/Justineo/vue-clamp),原理使用`Element.getClientRects()`这个API
 
-span包含长文字不换行 - 块级元素自动换行，内联元素分两种：`全英文内联元素不会自动换行`，包含中文过长会换行
+* span包含长文字不换行 - 块级元素自动换行，内联元素分两种：`全英文内联元素不会自动换行`，包含中文过长会换行
 
-node中客户端http请求库选择 - 建议选择`superagent`,支持链式调用以及post json数据解析。node环境中不建议axios，因为axios请求需要qs等第三方库进行post数据stringfy，而且不支持发送嵌套的object数据。
+## 技术选型
 
-在线压缩图片 - [tinypng](https://tinypng.com/) or [squoosh](https://squoosh.app/)
+* svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
+* 日期选择: [vue-datepicker-local](https://github.com/weifeiyue/vue-datepicker-local)
+* 表单验证: [vuelidate](https://github.com/monterail/vuelidate)
+* node中客户端http请求库选择 [superagent]()
+    * 建议选择`superagent`,支持链式调用以及post json数据解析。node环境中不建议axios，因为axios请求需要qs等第三方库进行post数据stringfy，而且不支持发送嵌套的object数据。
+* 富文本编辑器 [vue-quill-editor](https://github.com/surmon-china/vue-quill-editor/blob/master/src/editor.vue)
+    * 底层使用[quill](https://github.com/quilljs/quill)，较好的界面和扩展性
+* markdown编辑器 [tui.editor](https://github.com/nhnent/tui.editor)
+* 复制到剪切板 [clipboard.js]()
+
+## 工具集
+
+* [css代码片段](https://30-seconds.github.io/30-seconds-of-css/#transform-centering)
+* 在线图片压缩工具
+    * [squoosh](https://squoosh.app/)
+    * [tinypng](https://tinypng.com/)
+
+## Github优秀源码
+* Vue
+    * [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 完整的项目案例，界面精良，较多的第三方组件方案
