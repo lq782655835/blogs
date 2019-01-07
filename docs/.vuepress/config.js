@@ -6,7 +6,7 @@ module.exports = {
         ['meta', { 'http-equiv': 'expires', content: '0' }]
     ],
     base: '/blogs/dist/',
-    dest: 'dist',
+    dest: 'dist/site',
     themeConfig: {
         sidebarDepth: 0,
         repo: 'https://github.com/lq782655835/blogs',
@@ -57,6 +57,7 @@ module.exports = {
                     'js/es6-1.new-feature.md',
                     'js/es6-2.destruction.md',
                     'js/es6-3.object.md',
+                    'js/es6-latest.md',
                     'js/js-design-pattern.md',
                     'js/npm script.md',
                     'js/regex.md',
