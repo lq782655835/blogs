@@ -21,6 +21,9 @@
 
 * span包含长文字不换行 - 块级元素自动换行，内联元素分两种：`全英文内联元素不会自动换行`，包含中文过长会换行
 
+* 'abc'[0] = 'a' - [深入理解JavaScript类数组](https://segmentfault.com/a/1190000005076858)
+
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
@@ -39,6 +42,7 @@
 * 在线图片压缩工具
     * [squoosh](https://squoosh.app/)
     * [tinypng](https://tinypng.com/)
+* [Node.js 最佳实践](https://github.com/i0natan/nodebestpractices/blob/master/README.chinese.md)
 
 ## Github优秀源码
 * Vue

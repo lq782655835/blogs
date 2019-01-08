@@ -94,6 +94,7 @@ module.exports = {
                     'think/grow-up-life-it.md',
                     'think/project-electron-summary.md',
                     'think/project-h5-video-summary.md',
+                    'think/refactor-your-js-code.md',
                     'think/think-cli-official-website.md'
                 ]
             },
