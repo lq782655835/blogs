@@ -181,7 +181,7 @@ let getSpeed = type => speedMap[type] && speedMap[type]()
 * 尽量不写全局函数与变量
 * 采用函数式编程，ES6 Array支持的很好
 * 移除重复的代码
-* 移除注视的代码
+* 移除注释的代码
 
 ## 参考文章
 * [clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript)
