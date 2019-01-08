@@ -148,7 +148,7 @@ let payAmount = () => {
 ### 5. 以HashMap取代条件表达式
 ``` js
 // bad
-let getSpeed = (type) {
+let getSpeed = type => {
   switch (type) {
     case SPEED_TYPE.AIR:
     return getAirSpeed()
@@ -163,7 +163,7 @@ let speedMap = {
   [SPEED_TYPE.AIR]: getAirSpeed,
   [SPEED_TYPE.WATER]: getWaterSpeed
 }
-let getSpeed = (type) => speedMap[type] && speedMap[type]()
+let getSpeed = type => speedMap[type] && speedMap[type]()
 ```
 
 ## 其他
