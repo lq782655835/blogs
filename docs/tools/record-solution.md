@@ -23,6 +23,8 @@
 
 * 'abc'[0] = 'a' - [深入理解JavaScript类数组](https://segmentfault.com/a/1190000005076858)
 
+* git命令删除远程分支 - git push origin --delete branchName
+
 
 ## 技术选型
 
