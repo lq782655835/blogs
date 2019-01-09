@@ -6,7 +6,7 @@ module.exports = {
         ['meta', { 'http-equiv': 'expires', content: '0' }]
     ],
     base: '/blogs/',
-    dest: 'dist',
+    dest: 'site',
     themeConfig: {
         sidebarDepth: 0,
         repo: 'https://github.com/lq782655835/blogs',
