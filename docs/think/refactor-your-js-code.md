@@ -92,14 +92,12 @@ if (isMacOs && isIEBrowser && wasInitialized() && isResize) {
 ``` js
 // bad
 const cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
-saveCityState(cityStateRegex.match(cityStateRegex)[1], cityStateRegex.match(cityStateRegex)[2]);
+saveCityState(ADDRESS.match(cityStateRegex)[1], ADDRESS.match(cityStateRegex)[2]);
 
 // good
-const ADDRESS = 'One Infinite Loop, Cupertino 95014';
 var cityStateRegex = /^(.+)[,\\s]+(.+?)\s*(\d{5})?$/;
 var match = ADDRESS.match(cityStateRegex)
-var city = match[1];
-var state = match[2];
+let [, city, state] = match
 saveCityState(city, state);
 ```
 
@@ -141,7 +139,7 @@ let payAmount = () => {
   if (_isDead) return deadAmount()
   if (_isSeparated) return separatedAmount()
   if (_isRetired) return retiredAmount()
-  return normalPayAmount()88
+  return normalPayAmount()
 }
 ```
 
