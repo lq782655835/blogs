@@ -2023,92 +2023,29 @@ function calculateBill() {
 **[回到目录](#目录)**
 
 ## 补充
-
-* 好的命名
-* 函数单一职责
-* 通过引入解释性变量或函数，使得表达更清晰
-``` js
-// bad
-if (platform.toUpperCase().indexOf('MAC') > -1 && browser.toUpperCase().indexOf('IE') > -1 && wasInitialized() && resize > 0) {
-  // do something
-}
-
-// good
-let isMacOs = platform.toUpperCase().indexOf('MAC') > -1
-let isIEBrowser = browser.toUpperCase().indexOf('IE') > -1
-let isResize = resize > 0
-if (isMacOs && isIEBrowser && wasInitialized() && isResize) {
-  // do something
-}
-
-// bad
-if (date.before(SUMMER_START) || date.after(SUMMER_END)) {
-  charge = quantity * _winterRate + _winterServiceCharge
-} else {
-  charge = quantity * _summerRate
-}
-
-// good
-if (notSummer(date)) {
-  charge = winterCharge(quantity)
-} else {
-  charge = summerCharge(quantity)
-}
-```
-* 更少的嵌套，尽早 return
-``` js
-// bad
-let getPayAmount = () => {
-  let result
-  if (_isDead) result = deadAmount()
-  else {
-    if (_isSeparated) result = separatedAmount()
-    else {
-      if (_isRetired) result = retiredAmount()
-      else result = normalPayAmount()
-    }
-  }
-
-  return result
-}
-
-// good
-let payAmount = () => {
-  if (_isDead) return deadAmount()
-  if (_isSeparated) return separatedAmount()
-  if (_isRetired) return retiredAmount()
-  return normalPayAmount()88
-}
-```
-* 以多态取代条件表达式
-``` js
-// bad
-let getSpeed = (type) {
-  switch (type) {
-    case SPEED_TYPE.AIR:
-    return getAirSpeed()
-    case SPEED_TYPE.WATER:
-    return getWaterSpeed()
-    ...m
-  }
-}
-
-// good
-let speedMap = {
-  [SPEED_TYPE.AIR]: getAirSpeed,
-  [SPEED_TYPE.WATER]: getWaterSpeed
-}
-let getSpeed = (type) => speedMap[type] && speedMap[type]()
-```
-* 使用默认参数和解构
-* 倾向于遍历对象而不是 Switch 语句
-* 多重判断时使用 Array.includes
-* 对 所有/部分 判断使用 Array.every & Array.some
 * 大概率坏代码判断
   * 重复代码
   * 过长函数
   * 过大的类
   * 过长参数列表
+* 好的命名
+* 函数单一职责
+* 通过引入解释性变量或函数，使得表达更清晰
+* 更少的嵌套，尽早 return
+* 以多态取代条件表达式
+* 倾向于遍历对象而不是 Switch 语句
+* 使用默认参数和解构
+* 善于利用ES6 Array处理数组
+  * Array.find()
+  * Array.forEach(),Array.filter(),Array.map(),Array.reduce()
+  * 数组rest运算符
+  * 多重判断时使用 Array.includes
+  * 对 所有/部分 判断使用 Array.every & Array.some
+* 善于利用ES6 Object处理对象
+  * 对象解构
+  * rest(ES9开始支持)
+  * Object.assign()
+  * Object.keys(),Object.values()
 
 ## 参考文章
 * [写好 JS 条件语句的 5 条守则](https://mp.weixin.qq.com/s/JMwPdQSSTLWPSrLda5Yo5g)
