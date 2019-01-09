@@ -5,7 +5,7 @@ module.exports = {
         ['meta', { 'http-equiv': 'pragma', content: 'no-cache' }],
         ['meta', { 'http-equiv': 'expires', content: '0' }]
     ],
-    base: '/blogs/dist/',
+    base: '/blogs/',
     dest: 'dist',
     themeConfig: {
         sidebarDepth: 0,
