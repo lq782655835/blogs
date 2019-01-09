@@ -31,6 +31,8 @@
 
 ## Shell编程
 
+### 基础
+
 ``` bash
 # run: sh depoly.sh 123 123
 # 变量定义
@@ -63,6 +65,33 @@ fi
 echo $1 # 123 #第一个参数
 echo $# # 2 # 参数个数
 echo $* # 123 123 所有参数
+```
+
+### 常用
+* $相关
+    * ${ } $var 与${var} 并没有啥不一样。但是用 ${ } 会比较精确的界定变量名称的范围
+    * $()和 ` ` 都是用来做命令替换用
+* if 参数
+    * [-z string] “string”的长度为零则为真。-n相反
+    * -o(相当于||)	或运算，有一个表达式为 true 则返回 true。
+    * -a（相当于&&）与运算，两个表达式都为 true 才返回 true。
+* grep 文本搜索工具，常搭配cat命令
+* awk 文本分析工具
+* sed 在线编辑器
+``` bash
+aaa=1
+bbb=2
+echo $aaa == ${aaa} # 1==1
+echo $(git remote -v)
+echo `date`
+
+if [ -z "$(git status --porcelain)" ]; then
+  echo "Deploying gh-pages..."
+else
+  echo "Uncommitted git changes! Deploy failed."
+fi
+
+VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g');
 ```
 
 ## Vim
