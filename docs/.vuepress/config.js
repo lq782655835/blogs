@@ -57,6 +57,7 @@ module.exports = {
                     'js/Webapck-devServer\b.md',
                     'js/array-v8-method.md',
                     'js/axios-usage-theory.md',
+                    'js/diff-vue-vs-react.md',
                     'js/different for in、for of.md',
                     'js/es6-latest.md',
                     'js/js-design-pattern.md',
