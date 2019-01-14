@@ -66,3 +66,4 @@ fetch('file.json')
 ## 参考文章
 * [JavaScript 完全手册（2018版）](https://www.css88.com/archives/9965)
 * [TC39 处理 ECMAScript 新特性的工作流程](https://www.css88.com/archives/7742)
+* [New ES2018 Features Every JavaScript Developer Should Know](https://css-tricks.com/new-es2018-features-every-javascript-developer-should-know/)

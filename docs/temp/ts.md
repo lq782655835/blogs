@@ -1,6 +1,13 @@
-# TypeScript
+# Vue项目TypeScript指南
 
-## 基础类型
+## TypeScript优势
+* Javascript的超集，完美兼容js
+* 强类型语言（最重要特性之一），易于重构与理解。
+* 强大IDE支持，VSCode前端必备
+* 微软大厂保证
+* 社区统一共识，npm下载量非常高，复杂业务不再慌。
+
+## TypeScript基础类型
 * boolean
 * number
 * string
@@ -17,7 +24,7 @@
     * ?: 可选属性
     * readonly 只读属性
     * 额外的属性检查
-* 类
+* 类(跟ES6类类似，但早于ES6)
 * 函数
 ``` ts
 let isDone: boolean = false;
@@ -25,6 +32,7 @@ let decLiteral: number = 6;
 let name: string = "bob";
 let list: number[] = [1, 2, 3];
 let x: [string, number] = ['hello', 10];
+let name: string | number = 1 // string or number options
 
 enum Color {Red = 1, Green = 2, Blue = 4}
 let c: Color = Color.Green; // 2
@@ -38,32 +46,127 @@ interface SquareConfig {
 }
 let createSquare = (config: SquareConfig): void => console.log(1)
 ```
-## ts环境配置
+## TypeScript Vue环境配置
+现在vue-cli3.0安装时有typescript选项，可以非常便捷的在vue项目中应用上typescript环境。其实现方式是通过[cli-plugin-typescript](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript)插件。如果想知道其过程，可以看其源码或者笔者之前改造的基于vue-cli2.x项目博客文章：[TypeScript开发Vue应用](../js/ts-in-vue-project.md)。
 
-## ts使用
-Vue单文件组件，推荐使用官方维护的 vue-class-component 装饰器，它是基于类的 API
+## TypeScript Vue使用
+### vue-class-component
+[vue-class-component](https://github.com/vuejs/vue-class-component)是官方维护的TypeScript装饰器,它是基于类的 API，Vue对其做到完美兼容。因为是vue官方出的，所以可以保证其稳定性，但缺点是特性太少了，只有如下几个feature：
+* Component
+* mixins
+* createDecorator
 
+``` ts
+import Vue from "vue";
+import Component from "vue-class-component";
+
+@Component
+export default class App extends Vue {
+  name:string = 'Simon Zhang'
+
+  // computed
+  get MyName():string {
+    return `My name is ${this.name}`
+  }
+
+  mounted() {
+    this.sayHello();
+  }
+
+  // methods
+  sayHello():void {
+    alert(`Hello ${this.name}`)
+  }
+}
+```
+### vue-property-decorator
+vue-property-decorator完全基于vue-class-component，但它扩展了很多特性。详细用法看其[github的readme](https://github.com/kaorun343/vue-property-decorator)，讲解的非常清晰易懂
+* @Emit
+* @Inject
+* @Model
+* @Prop
+* @Provide
+* @Watch
+* @Component (provided by vue-class-component)
+* Mixins (the helper function named mixins provided by vue-class-component)
+``` ts
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
+
+@Component
+export default class YourComponent extends Vue {
+  @Prop(Number) propA!: number
+  @Prop({ default: 'default value' }) propB!: string
+  @Prop([String, Boolean]) propC!: string | boolean
+
+  @Watch('person', { immediate: true, deep: true })
+  onPersonChanged1(val: Person, oldVal: Person) { }
+  /* equal 
+    watch: {
+    'person': [
+      {
+        handler: 'onPersonChanged1',
+        immediate: true,
+        deep: true
+      }
+    ]
+  }
+  */
+
+  @Emit()
+  returnValue() {
+    return 10
+  }
+  /* equal 
+    returnValue() {
+      this.$emit('return-value', 10)
+    }
+  */
+}
+```
+
+### Vuex-Class
+[vuex-class](https://github.com/ktsn/vuex-class)是基于基于vue-class-component对Vuex提供的装饰器。它的作者同时也是vue-class-component的主要贡献者，质量还是有保证的。但不知道vue3.0出来后是否会有官方维护的针对Vuex的TypeScript装饰器。
 ``` ts
 import Vue from 'vue'
 import Component from 'vue-class-component'
+import {
+  State,
+  Getter,
+  Action,
+  Mutation,
+  namespace
+} from 'vuex-class'
 
-// @Component 修饰符注明了此类为一个 Vue 组件
-@Component({
-  // 所有的组件选项都可以放在这里
-  template: '<button @click="onClick">Click!</button>'
-})
-export default class MyComponent extends Vue {
-  // 初始数据可以直接声明为实例的属性
-  message: string = 'Hello!'
+const someModule = namespace('path/to/module')
 
-  // 组件方法也可以直接声明为实例的方法
-  onClick (): void {
-    window.alert(this.message)
+@Component
+export class MyComp extends Vue {
+  @State('foo') stateFoo
+  @State(state => state.bar) stateBar
+  @Getter('foo') getterFoo
+  @Action('foo') actionFoo
+  @Mutation('foo') mutationFoo
+  @someModule.Getter('foo') moduleGetterFoo
+
+  // If the argument is omitted, use the property name
+  // for each state/getter/action/mutation type
+  @State foo
+  @Getter bar
+  @Action baz
+  @Mutation qux
+
+  created () {
+    this.stateFoo // -> store.state.foo
+    this.stateBar // -> store.state.bar
+    this.getterFoo // -> store.getters.foo
+    this.actionFoo({ value: true }) // -> store.dispatch('foo', { value: true })
+    this.mutationFoo({ value: true }) // -> store.commit('foo', { value: true })
+    this.moduleGetterFoo // -> store.getters['path/to/module/foo']
   }
 }
 ```
 
-## ts 描述文件
+## TypeScript 描述文件
 Declaration Type	Namespace	Type	Value
 Namespace	X	 	X
 Class	 	X	X
@@ -170,8 +273,10 @@ People.staticA()
 ```
 
 ## tsconfig.json
+待更新...
 
 ## 参考文章
 
 * [如何编写一个 d.ts 文件](https://juejin.im/entry/5907f5020ce46300617bfb44)
 * [Declaration Merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
+* [vue-typescript-dpapp-demo](https://github.com/SimonZhangITer/vue-typescript-dpapp-demo)
