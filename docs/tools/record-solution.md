@@ -25,6 +25,7 @@
 
 * git命令删除远程分支 - git push origin --delete branchName
 
+* axios get请求参数，要么带在url，要么设置到config.params中，不能设置到config.data（该选项会设置在body中，post请求才这样做）。 -- [github axios](https://github.com/axios/axios) / [GET request does not send data (JSON)](https://github.com/axios/axios/issues/787)
 
 ## 技术选型
 
