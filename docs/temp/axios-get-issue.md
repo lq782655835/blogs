@@ -1,4 +1,4 @@
-# 记录一个axios issue
+# 记录一个Axios GET request issue
 
 在写项目过程中，遇到一个axios请求的问题，[GET request does not send data (JSON). ](https://github.com/axios/axios/issues/787)
 

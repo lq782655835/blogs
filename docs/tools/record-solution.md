@@ -27,6 +27,8 @@
 
 * axios get请求参数，要么带在url，要么设置到config.params中，不能设置到config.data（该选项会设置在body中，post请求才这样做）。 -- [github axios](https://github.com/axios/axios) / [GET request does not send data (JSON)](https://github.com/axios/axios/issues/787)
 
+* 统一的项目开发环境，检验node版本 -- package.json中engines字段配置即可。[JavaScript工程项目的一系列最佳实践策略](https://mp.weixin.qq.com/s/FroImJAuAO05BY1rZAhMkQ)
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
