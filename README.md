@@ -5,6 +5,7 @@
 * [MVC、MVP、MVVM区别](https://lq782655835.github.io/blogs/think/different%20MVC%E3%80%81MVP%E3%80%81MVVM.html)
 * [谈谈前端天花板问题](https://lq782655835.github.io/blogs/think/grow-up-front.html)
 * [一个程序员的成长之路](https://lq782655835.github.io/blogs/think/grow-up-life-it.html)
+* [如何做到十倍阅读量](https://lq782655835.github.io/blogs/think/how-to-improve-reading.html)
 * [Electron工程踩坑记录](https://lq782655835.github.io/blogs/think/project-electron-summary.html)
 * [H5 Video踩坑记录](https://lq782655835.github.io/blogs/think/project-h5-video-summary.html)
 * [重构你的javascript代码](https://lq782655835.github.io/blogs/think/refactor-your-js-code.html)

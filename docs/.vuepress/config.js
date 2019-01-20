@@ -94,6 +94,7 @@ module.exports = {
                     'think/different MVC、MVP、MVVM.md',
                     'think/grow-up-front.md',
                     'think/grow-up-life-it.md',
+                    'think/how-to-improve-reading.md',
                     'think/project-electron-summary.md',
                     'think/project-h5-video-summary.md',
                     'think/refactor-your-js-code.md',
