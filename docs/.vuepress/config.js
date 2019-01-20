@@ -114,7 +114,12 @@ module.exports = {
                 key: 'tools',
                 title: '效率工具',
                 collapsable: true,
-                children: ['tools/1.summary.md', 'tools/record-solution.md', 'tools/vscode.md']
+                children: [
+                    'tools/1.summary.md',
+                    'tools/python语法.md',
+                    'tools/record-solution.md',
+                    'tools/vscode.md'
+                ]
             }
         ],
         lastUpdated: '最后更新时间'

@@ -7,7 +7,8 @@
         "github": "sh deploy.sh",
         "dev": " npm run config && vuepress dev docs",
         "docs:build": "npm run config && vuepress build docs",
-        "config": "vuepress-auto-read && npm run format",
+        "config": "npm run auto && npm run format",
+        "auto": "vuepress-auto-read --blogUrl=https://lq782655835.github.io/blogs",
         "format": "prettier --write './**/*.{js,ts,vue,json}'"
     },
     "folderTitleMap": {
@@ -20,7 +21,7 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "node-vuepress-auto-read": "0.0.3",
+        "node-vuepress-auto-read": "0.0.6",
         "vuepress": "^0.14.4"
     },
     "dependencies": {
