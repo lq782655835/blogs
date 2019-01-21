@@ -79,8 +79,7 @@ module.exports = {
                     'node/node-express-api.md',
                     'node/node-mongodb.md',
                     'node/node-tool-package.md',
-                    'node/node-vscode-debug.md',
-                    'node/shell-vim.md'
+                    'node/node-vscode-debug.md'
                 ]
             },
             {
@@ -119,6 +118,7 @@ module.exports = {
                     'tools/1.summary.md',
                     'tools/python语法.md',
                     'tools/record-solution.md',
+                    'tools/shell-vim.md',
                     'tools/vscode.md'
                 ]
             }
