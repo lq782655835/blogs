@@ -29,6 +29,8 @@
 
 * 统一的项目开发环境，检验node版本 -- package.json中engines字段配置即可。[JavaScript工程项目的一系列最佳实践策略](https://mp.weixin.qq.com/s/FroImJAuAO05BY1rZAhMkQ)
 
+* 部署代码报错：[cannot read property 'startsWith' of undefined](https://github.com/geowarin/friendly-errors-webpack-plugin/issues/69) -- 使用了动态导入（如import或requext.context等API），但没有创建对应的路径。
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
