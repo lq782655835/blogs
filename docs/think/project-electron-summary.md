@@ -1,6 +1,6 @@
 # Electron工程踩坑记录
 
-> 最近公司有个新产品线，需要将应用打包成客户端，提供私有化部署。考虑到Web线上已经实现大部分需求，技术选型时使用Electron。本文不是帮助读者的扫盲文，只是记录下项目工程中遇到的坑，所以阅读本文需要web和electron知识。
+> 最近公司有个新产品线，需要将应用打包成客户端，提供私有化部署。考虑到Web线上已经实现大部分需求，技术选型使用Electron。本文不是帮助读者的扫盲文，只是记录下项目工程中遇到的坑，所以阅读本文需要web和electron知识。
 
 应产品要求，私有化部署主要考虑windows端，mac端其次。框架选型使用[electron-vue](https://github.com/SimulatedGREG/electron-vue)脚手架(这里也强烈推荐)，该脚手架包含Vue技术栈单页应用 + electron + 打包完整流程。内置Vuex，Vue-Router，Webpack，electron-builder等。下面的大部分实践[源码放在这](https://github.com/lq782655835/electron-vue-template)
 
