@@ -14,12 +14,6 @@
 * [ReactNative Mac开发环境搭建](https://lq782655835.github.io/blogs/react-native/1.%20ReactNative%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html)
 * [ReactNative Mac调试技巧](https://lq782655835.github.io/blogs/react-native/2.ReactNative%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7.html)
 * [Eslint代码检查规范 - React/ReactNative](https://lq782655835.github.io/blogs/react-native/3.ReactNative%E4%BD%BF%E7%94%A8Eslint%E6%A3%80%E6%9F%A5%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html)
-# 效率工具
-* [前端必备效率工具](https://lq782655835.github.io/blogs/tools/1.summary.html)
-* [python语法](https://lq782655835.github.io/blogs/tools/python%E8%AF%AD%E6%B3%95.html)
-* [解决方案](https://lq782655835.github.io/blogs/tools/record-solution.html)
-* [Shell && Vim](https://lq782655835.github.io/blogs/tools/shell-vim.html)
-* [VSCode快捷键及常用插件](https://lq782655835.github.io/blogs/tools/vscode.html)
 # 前端总结
 * [ES6-新增特性一览](https://lq782655835.github.io/blogs/js/ES6-1.new-feature.html)
 * [ES6-解构赋值及原理](https://lq782655835.github.io/blogs/js/ES6-2.destruction.html)
@@ -38,6 +32,12 @@
 * [TypeScript开发Vue应用](https://lq782655835.github.io/blogs/js/ts-in-vue-project.html)
 * [Vue2.0源码分析 - 框架结构](https://lq782655835.github.io/blogs/js/vue-code-frame.html)
 * [Webpack3.x升级Webpack4](https://lq782655835.github.io/blogs/js/webpack3.x-to-webpack4.html)
+# 效率工具
+* [前端必备效率工具](https://lq782655835.github.io/blogs/tools/1.summary.html)
+* [python语法](https://lq782655835.github.io/blogs/tools/python%E8%AF%AD%E6%B3%95.html)
+* [解决方案](https://lq782655835.github.io/blogs/tools/record-solution.html)
+* [Shell && Vim](https://lq782655835.github.io/blogs/tools/shell-vim.html)
+* [VSCode快捷键及常用插件](https://lq782655835.github.io/blogs/tools/vscode.html)
 # NodeJS
 * [Nginx反向代理](https://lq782655835.github.io/blogs/node/nginx.html)
 * [Node-常用API](https://lq782655835.github.io/blogs/node/node-api-summary.html)

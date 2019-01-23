@@ -10,7 +10,7 @@
 
 2. muted: 静音. **建议添加**
 
-3. webkit-playsinline/playsinline: 视频播放时局域播放，不脱离文档流 。基本保证**iphone**手机在H5页面内播放。个别不支持可以引入第三方库[iphone-inlie-video]('https://github.com/bfred-it/iphone-inline-video)。**建议添加**
+3. webkit-playsinline/playsinline: 视频播放时局域播放，不脱离文档流 。基本保证**iphone**手机在H5页面内播放。个别不支持可以引入第三方库[iphone-inline-video]('https://github.com/bfred-it/iphone-inline-video)。**建议添加**
 
 4. x5-video-player-type="h5"/x5-playsinline: 启用同层H5播放器，保证anroid手机在H5页面内播放，但在各android机型下表现不一。**建议添加**
 
