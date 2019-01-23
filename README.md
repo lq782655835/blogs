@@ -1,7 +1,3 @@
-# ReacNative
-* [ReactNative Mac开发环境搭建](https://lq782655835.github.io/blogs/react-native/1.%20ReactNative%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html)
-* [ReactNative Mac调试技巧](https://lq782655835.github.io/blogs/react-native/2.ReactNative%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7.html)
-* [Eslint代码检查规范 - React/ReactNative](https://lq782655835.github.io/blogs/react-native/3.ReactNative%E4%BD%BF%E7%94%A8Eslint%E6%A3%80%E6%9F%A5%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html)
 # 思考与总结
 * [《敏捷开发》读后总结](https://lq782655835.github.io/blogs/think/book-agile-software.html)
 * [《给大家看的设计书》笔记](https://lq782655835.github.io/blogs/think/book-design-for-all.html)
@@ -14,6 +10,10 @@
 * [H5 Video踩坑记录](https://lq782655835.github.io/blogs/think/project-h5-video-summary.html)
 * [重构你的javascript代码](https://lq782655835.github.io/blogs/think/refactor-your-js-code.html)
 * [官网脚手架思考与实践](https://lq782655835.github.io/blogs/think/think-cli-official-website.html)
+# ReacNative
+* [ReactNative Mac开发环境搭建](https://lq782655835.github.io/blogs/react-native/1.%20ReactNative%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA.html)
+* [ReactNative Mac调试技巧](https://lq782655835.github.io/blogs/react-native/2.ReactNative%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7.html)
+* [Eslint代码检查规范 - React/ReactNative](https://lq782655835.github.io/blogs/react-native/3.ReactNative%E4%BD%BF%E7%94%A8Eslint%E6%A3%80%E6%9F%A5%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.html)
 # 效率工具
 * [前端必备效率工具](https://lq782655835.github.io/blogs/tools/1.summary.html)
 * [python语法](https://lq782655835.github.io/blogs/tools/python%E8%AF%AD%E6%B3%95.html)

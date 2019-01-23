@@ -18,7 +18,7 @@
 * 补充
   * 联合类型 属性为多种类型之一，如 let name: string | number = 123
   * 元组类型 如 let nameNumber: [string, number] = ['Jenny', 221345]
-  * 枚举 对JavaScript标准数据类型的一个补充
+  * 枚举enum 对JavaScript标准数据类型的一个补充
   * 接口interface
       * ?: 可选属性
       * readonly 只读属性
@@ -27,7 +27,7 @@
 * 特殊类型
   * any 类型检查器不检查
   * void 通常见于函数没有返回值时
-  * null、undefined。因为这两个类型没有太大意义
+  * null、undefined。
   * object 除number，string，boolean，symbol，null或undefined之外的类型。因为ts就是解决强类型问题，所以object也没太大意义
 * 函数
 * 类(跟ES6类类似，但早于ES6)
@@ -36,11 +36,12 @@
 let isDone: boolean = false;
 let decLiteral: number = 6;
 let name: string = "bob";
+// 联合类型
 let name: string | number = 1 // string or number options
-
 // 数组
 let list: number[] = [1, 2, 3];
-let x: [string, number] = ['hello', 10]; // 元祖
+ // 元祖
+let x: [string, number] = ['hello', 10];
 
 
 enum Color {Red = 1, Green = 2, Blue = 4}
@@ -67,30 +68,42 @@ let name: {
 ```
 
 ## TypeScript Vue环境配置
-现在vue-cli3.0安装时有typescript选项，可以非常便捷的在vue项目中应用上typescript环境。其实现方式是通过[cli-plugin-typescript](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript)插件。如果想知道其过程，可以看其源码或者笔者之前改造的基于vue-cli2.x项目博客文章：[TypeScript开发Vue应用](../js/ts-in-vue-project.md)。
+vue-cli3.0安装时有typescript选项，可以非常便捷的在vue项目中应用上typescript环境。其实现方式是通过[cli-plugin-typescript](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript)插件。如果想知道其过程，可以看其源码或者笔者之前改造的基于vue-cli2.x项目博客文章：[TypeScript开发Vue应用](../js/ts-in-vue-project.md)。
 
 ## TypeScript Vue使用
+TS除了类型系统以及IDE提示外，最重要特性之一就是可以使用装饰器。使用装饰器可以用极简的代码代替以前冗长的代码。以下介绍在Vue 2.x工程项目(Vue3.0计划原生支持Typescript，所以将来或许存在变数)中，必备的三个工具包。
+
 ### vue-class-component
-[vue-class-component](https://github.com/vuejs/vue-class-component)是官方维护的TypeScript装饰器,它是基于类的 API，Vue对其做到完美兼容。因为是vue官方出的，所以可以保证其稳定性，但缺点是特性太少了，只有如下几个feature：
-* Component
+[vue-class-component](https://github.com/vuejs/vue-class-component)是官方维护的TypeScript装饰器,它是基于类的 API，Vue对其做到完美兼容。因为是vue官方出的，所以可以保证其稳定性，但缺点是特性太少了，只有三个feature：
+* Component 官方提供的Component装饰器
 * mixins
-* createDecorator
+* createDecorator 官方提供的创建装饰器函数。vue-property-decorator/vuex-class库中的各个属性/方法装饰器底层都是调用该函数
 
 ``` ts
 import Vue from "vue";
 import Component from "vue-class-component";
 
-@Component
+@Component({
+  props: {
+    propMessage: String
+  },
+  components: {},
+  filters: {},
+  directive: {}
+})
 export default class App extends Vue {
+  // data
   name:string = 'Simon Zhang'
+  helloMsg = 'Hello, ' + this.propMessage // use prop values for initial data
 
   // computed
   get MyName():string {
     return `My name is ${this.name}`
   }
 
+  // lifecycle hook
   mounted() {
-    this.sayHello();
+    this.sayHello()
   }
 
   // methods
@@ -99,16 +112,18 @@ export default class App extends Vue {
   }
 }
 ```
+
 ### vue-property-decorator
-vue-property-decorator完全基于vue-class-component，但它扩展了很多特性。详细用法看其[github的readme](https://github.com/kaorun343/vue-property-decorator)，讲解的非常清晰易懂
-* @Emit
-* @Inject
-* @Model
+[vue-property-decorator](https://github.com/kaorun343/vue-property-decorator)完全基于vue-class-component，但它扩展了很多特性，极大的方便Vue的写法。它包含7个装饰器以及1个函数：
 * @Prop
-* @Provide
 * @Watch
 * @Component (provided by vue-class-component)
+* @Emit
+* @Model
+* @Inject
+* @Provide
 * Mixins (the helper function named mixins provided by vue-class-component)
+
 ``` ts
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 
@@ -143,7 +158,7 @@ export default class YourComponent extends Vue {
   */
 }
 ```
-
+更多详细用法看[vue-property-decorator README](https://github.com/kaorun343/vue-property-decorator)，讲解的非常清晰易懂
 ### Vuex-Class
 [vuex-class](https://github.com/ktsn/vuex-class)是基于基于vue-class-component对Vuex提供的装饰器。它的作者同时也是vue-class-component的主要贡献者，质量还是有保证的。但不知道vue3.0出来后是否会有官方维护的针对Vuex的TypeScript装饰器。
 * @State
@@ -167,15 +182,16 @@ const someModule = namespace('path/to/module')
 
 @Component
 export class MyComp extends Vue {
+  // 多种方式
   @State('foo') stateFoo
   @State(state => state.bar) stateBar
   @Getter('foo') getterFoo
   @Action('foo') actionFoo
   @Mutation('foo') mutationFoo
+  // 子模块处理
   @someModule.Getter('foo') moduleGetterFoo
 
-  // If the argument is omitted, use the property name
-  // for each state/getter/action/mutation type
+  // 如果参数省略，则使用属性名
   @State foo
   @Getter bar
   @Action baz
@@ -192,6 +208,19 @@ export class MyComp extends Vue {
 }
 ```
 
+注意：使用vuex-class等库，需要在tsconfig.json配置中打开TypeScript装饰器。建议在工程目录中设置如下三个配置：`experimentalDecorators`、`strictFunctionTypes`、`strictPropertyInitialization`
+``` json
+{
+  "compilerOptions": {
+    // 启用装饰器.启用 vue-class-component 及 vuex-class 需要开启此选项，设置值为true
+    "experimentalDecorators": true,
+    // 启用 vuex-class 需要开启此选项，设置值为false
+    "strictFunctionTypes": false,
+    // 是否必须要有初始值。vuex-class最好开启此项，不然所有的@State等装饰器都需要设置初始值。设置值为false
+    "strictPropertyInitialization": false,
+  }
+}
+```
 ## TypeScript 描述文件
 Declaration Type	Namespace	Type	Value
 Namespace	X	 	X
@@ -201,6 +230,26 @@ Interface	 	X
 Type Alias	 	X	 
 Function	 	 	X
 Variable	 	 	X
+``` ts
+namespace TestNamespace {
+    let aaa: string
+}
+console.log(TestNamespace) // undefined
+
+enum JobState {
+    Pending = 'Pending',
+    Running = 'Running'
+}
+console.log(JobState) // Object:{Pending: "Pending" Running: "Running"}
+
+class Person {
+    aaa: string
+}
+console.log(Person) // f Person() {...}
+
+type TestType = 'Pending' | 'Running'
+console.log(TestType) // ts error
+```
 typescript的描述文件，以d.ts结尾的文件名，比如xxx.d.ts。大部分编辑器能识别d.ts文件，当你写js代码的时候给你智能提示。
 * declare 全局声明，使得ts可以找到并识别出
     * 声明全局变量/函数/类
@@ -357,13 +406,16 @@ People.staticA()
 > strictPropertyInitialization 设为 false，不然你定义一个变量就必须给它一个初始值
 > "allowSyntheticDefaultImports": true,  // 允许从没有设置默认导出的模块中默认导入。
 > "experimentalDecorators": true,        // 启用装饰器
+> 如果定义了 .d.ts 文件，请重新启动服务让你的服务能够识别你定义的模块，并重启 vscode 让编辑器也能够识别（真的恶心）
+> 设置好你的 tsconfig ，比如记得把 strictPropertyInitialization 设为 false，不然你定义一个变量就必须给它一个初始值。
 ## 参考文章
 
 * [如何编写一个 d.ts 文件](https://juejin.im/entry/5907f5020ce46300617bfb44)
-* [Declaration Merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
+* [Declaration Merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)
 * [vue-typescript-dpapp-demo](https://github.com/SimonZhangITer/vue-typescript-dpapp-demo)
 * [typescript-book](https://github.com/basarat/typescript-book/)
-
+* [templates/module-d-ts](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html)
+* [Vue2.5+ Typescript 引入全面指南 - Vuex篇](https://segmentfault.com/a/1190000011864013)
 interface可以作为定义类型，也可以作为class接口；
 但namespace可以作为定义类型，也可以作为value
 ``` ts
