@@ -74,7 +74,7 @@
             * `http-proxy-middleware`<sup>`推荐`</sup> express中间件，使用简单。底层使用http-proxy
     * node常用
         * `chalk` 粉笔，使得字符串带颜色、背景色等。类似包：`colors`
-        * fs-extra 拓展原生的nodejs fs模块，支持async/await
+        * `fs-extra` 拓展原生的nodejs fs模块，支持async/await
         * `figlet`：使用普通字符制作大字母的程序（注：使用标准字符，拼凑出图片）
         * `shelljs` shelljs重新包装了 child_process，调用系统命令更加方便
         * 命令行

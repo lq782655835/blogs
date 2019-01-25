@@ -31,6 +31,10 @@
 
 * 部署代码报错：[cannot read property 'startsWith' of undefined](https://github.com/geowarin/friendly-errors-webpack-plugin/issues/69) -- 使用了动态导入（如import或requext.context等API），但没有创建对应的路径。
 
+* function(...args){ console.log(args)} -- 解构后，args是个数组对象
+
+* 后台302重定向一定需要是在页面上（window.location.href） -- 不能通过ajax请求让后端页面重定向，ajax只接收json/txt/stream等格式
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)

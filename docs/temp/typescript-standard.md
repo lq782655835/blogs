@@ -2,6 +2,9 @@
     1. 放在.d.ts描述文件中，每次都需要重启vscode才能不报错
     2. 不使用export as namespace myLib;因为每次interface都需要带上myLib名称，不需要。
     3. 参考后端java代码，都是通过import导入
+* Vuex
+    * store/modules下的每个子模块，均维护自己名为 State 的 Interface 声明
+    * store/index.ts 文件中，汇总各子模块，维护一个总的State声明
 
 
 // 在表达式和声明上有隐含的any类型时报错
