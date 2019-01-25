@@ -21,7 +21,8 @@ module.exports = function bind(fn, context) {
 
 ``` js
 /*
-实现柯里化函数
+实现柯里化函数。
+实现没有考虑this问题，不能应用到生产环境中。生产环境考虑loadsh的curry实现
 let abc = curry(addFun)
 abc(1)(2)(3) = 6
 */
@@ -35,6 +36,17 @@ var curry = function(fn) {
                 return judgeCurry.apply(null, args.concat(args2))
             }
         }
+    }
+}
+
+// or
+var curry = function(fn, ...args) {
+    if (args.length > fn.length) {
+        return fn(...args)
+    }
+
+    return function (...args2) {
+        return curry(fn, ...args, ...args2)
     }
 }
 ```

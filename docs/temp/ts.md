@@ -338,7 +338,7 @@ interface People_Static{
     new (name: string, age: number): People
     /** 静态方法 */
     staticA():number
-    
+
     (w:number):number
 }
 declare var People:People_Static // 声明全局的静态类
@@ -348,6 +348,60 @@ People.staticA()
 ```
 
 ## tsconfig.json
+
+TypeScript编译的配置文件，对书写TypeScript十分重要。最后会附上tsconfig所有选项以及相关解释，这里详细说明下项目中常用的配置项：
+
+* 装饰器
+  * `experimentalDecorators`: 启用装饰器.启用 vue-class-component 及 vuex-class 需要开启此选项，设置值为true
+  * `strictFunctionTypes`:启用 vuex-class 需要开启此选项，设置值为false
+* 重要
+  * `strictPropertyInitialization`: 是否变量必须要有初始值。vuex-class最好设置为false，不然所有的@State等装饰器都需要设置初始值。
+  * `noImplicitAny`: 在表达式和声明上有隐含的any类型时报错。如果想省略写any，可以把该值设置为false。默认值为true
+  * `noUnusedLocals`: true,有未使用的变量时，抛出错误
+  * `noUnusedParameters`: true,有未使用的参数时，抛出错误
+* `moduleResolution` 模块解析策略，也就是遇到import { AAA } from './aaa'该如何去找对应文件模块解析。有“classic”和“node”两个选项，默认值为“classic”。对于工程项目，笔者建议大家使用node（vue-cli3默认模板默认设置为node）策略，因为这个更符合平时我们的书写习惯以及认知。解析策略详细解释：[Module Resolution
+](https://www.typescriptlang.org/docs/handbook/module-resolution.html#classic)
+```
+// 在源文件/root/src/A.ts中import { b } from "./moduleB"
+// 两种解析方式查找文件方式不同
+
+// classic模块解析方式
+1. /root/src/moduleB.ts
+2. /root/src/moduleB.d.ts
+
+// node模块解析方式
+1. /root/src/moduleB.ts
+2. /root/src/moduleB.tsx
+3. /root/src/moduleB.d.ts
+4. /root/src/moduleB/package.json (if it specifies a "types" property)
+5. /root/src/moduleB/index.ts
+6. /root/src/moduleB/index.tsx
+7. /root/src/moduleB/index.d.ts
+```
+* `strictNullChecks` 启用严格的 null/undefined 检查，默认值为true。null和undefined经常会导致BUG的产生，所以TypeScript包含了strictNullChecks选项来帮助我们减少对这种情况的担忧。当启用了strictNullChecks，null和undefined获得了它们自己各自的类型null和undefined。 当任何值 可能为null，你可以使用联合类型。笔者这里建议开启该选项。
+``` ts
+let foo: string[] | undefined
+foo.push('1') // error - 'foo' is possibly 'undefined'
+foo && foo.push('1') // okay
+```
+
+* 编译文件
+  * `allowJs` 编译时是否允许js文件（.js后缀）
+  * `files、include和exclude`: 编译文件包含哪些文件以及排除哪些文件。未设置include时，编译器默认包含当前目录和子目录下所有的TypeScript文件（.ts, .d.ts 和 .tsx）。如果allowJs被设置成true，JS文件（.js和.jsx）也被包含进来。
+  ``` ts
+  {
+      "compilerOptions": {},
+      "include": [
+          "src/**/*"
+      ],
+      "exclude": [
+          "node_modules",
+          "**/*.spec.ts"
+      ]
+  }
+  ```
+  * `typeRoots和types` 默认所有可见的"@types"包会在编译过程中被包含进来。如果指定了typeRoots，只有typeRoots下面的包才会被包含进来。如果指定了types，只有被列出来的npm包才会被包含进来（所以可以指定"types": []来禁用自动引入@types包。）。
+
 ``` json
 {
   "compilerOptions": {
@@ -383,7 +437,7 @@ People.staticA()
     "noFallthroughCasesInSwitch": true,    // 报告 switch 语句的 fallthrough 错误。（即，不允许 switch 的 case 语句贯穿）
 
     /* 模块解析选项 */
-    "moduleResolution": "node",            // 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)
+    "moduleResolution": "node",            // 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)。默认是classic
     "baseUrl": "./",                       // 用于解析非相对模块名称的基目录
     "paths": {},                           // 模块名到基于 baseUrl 的路径映射的列表
     "rootDirs": [],                        // 根文件夹列表，其组合内容表示项目运行时的结构内容
@@ -400,14 +454,30 @@ People.staticA()
     /* 其他选项 */
     "experimentalDecorators": true,        // 启用装饰器
     "emitDecoratorMetadata": true          // 为装饰器提供元数据的支持
-  }
+  },
+  /* 指定编译文件或排除指定编译文件 */
+  "include": [
+      "src/**/*"
+  ],
+  "exclude": [
+      "node_modules",
+      "**/*.spec.ts"
+  ],
+  "files": [
+    "core.ts",
+    "sys.ts"
+  ],
+  // 从另一个配置文件里继承配置
+  "extends": './config/base',
+  // 让IDE在保存文件的时候根据tsconfig.json重新生成文件
+  "compileOnSave": true // 支持这个特性需要Visual Studio 2015， TypeScript1.8.4以上并且安装atom-typescript插件
 }
 ```
-> strictPropertyInitialization 设为 false，不然你定义一个变量就必须给它一个初始值
+
 > "allowSyntheticDefaultImports": true,  // 允许从没有设置默认导出的模块中默认导入。
-> "experimentalDecorators": true,        // 启用装饰器
 > 如果定义了 .d.ts 文件，请重新启动服务让你的服务能够识别你定义的模块，并重启 vscode 让编辑器也能够识别（真的恶心）
 > 设置好你的 tsconfig ，比如记得把 strictPropertyInitialization 设为 false，不然你定义一个变量就必须给它一个初始值。
+
 ## 参考文章
 
 * [如何编写一个 d.ts 文件](https://juejin.im/entry/5907f5020ce46300617bfb44)
@@ -418,6 +488,8 @@ People.staticA()
 * [Vue2.5+ Typescript 引入全面指南 - Vuex篇](https://segmentfault.com/a/1190000011864013)
 interface可以作为定义类型，也可以作为class接口；
 但namespace可以作为定义类型，也可以作为value
+* [Typescript-tsconfig.json](https://www.tslang.cn/docs/handbook/tsconfig-json.html)
+
 ``` ts
 interface Process {
   exit(code?: number): void;
