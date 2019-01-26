@@ -407,7 +407,7 @@ foo && foo.push('1') // okay
   "compilerOptions": {
 
     /* 基本选项 */
-    "target": "es5",                       // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
+    "target": "es5",                       // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'（"ESNext"表示最新的ES语法，包括还处在stage X阶段）
     "module": "commonjs",                  // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'
     "lib": [],                             // 指定要包含在编译中的库文件
     "allowJs": true,                       // 允许编译 javascript 文件
@@ -453,7 +453,8 @@ foo && foo.push('1') // okay
 
     /* 其他选项 */
     "experimentalDecorators": true,        // 启用装饰器
-    "emitDecoratorMetadata": true          // 为装饰器提供元数据的支持
+    "emitDecoratorMetadata": true,          // 为装饰器提供元数据的支持
+    "strictFunctionTypes": false // 禁用函数参数双向协变检查。
   },
   /* 指定编译文件或排除指定编译文件 */
   "include": [
@@ -486,9 +487,12 @@ foo && foo.push('1') // okay
 * [typescript-book](https://github.com/basarat/typescript-book/)
 * [templates/module-d-ts](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html)
 * [Vue2.5+ Typescript 引入全面指南 - Vuex篇](https://segmentfault.com/a/1190000011864013)
-interface可以作为定义类型，也可以作为class接口；
-但namespace可以作为定义类型，也可以作为value
 * [Typescript-tsconfig.json](https://www.tslang.cn/docs/handbook/tsconfig-json.html)
+
+
+
+
+
 
 ``` ts
 interface Process {
