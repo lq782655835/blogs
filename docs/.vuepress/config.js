@@ -18,10 +18,36 @@ module.exports = {
         nav: [
             { text: 'Home', link: '/' },
             {
-                text: 'Blogs',
+                text: 'tools',
                 items: [
-                    { text: 'Standard', link: '/team-standard/0.standard-ai-summary.html' },
-                    { text: 'Recommend', link: '/summary/recommend-vue-project-structure.html' }
+                    {
+                        text: 'node-vuepress-auto-read',
+                        link: 'https://github.com/lq782655835/node-vuepress-auto-read'
+                    },
+                    {
+                        text: 'node-vuepress-auto-read',
+                        link: 'https://github.com/lq782655835/json2ts'
+                    }
+                ]
+            },
+            {
+                text: 'templates',
+                items: [
+                    { text: 'yiai-cli', link: 'https://github.com/lq782655835/yiai-cli' },
+                    { text: 'vue', link: 'https://github.com/lq782655835/standard-vue-project' },
+                    {
+                        text: 'typescript',
+                        link: 'https://github.com/lq782655835/standard-vue-typescript-project'
+                    },
+                    {
+                        text: 'official-website',
+                        link: 'https://github.com/lq782655835/official-website-template'
+                    },
+                    {
+                        text: 'electron',
+                        link: 'https://github.com/lq782655835/electron-vue-template'
+                    },
+                    { text: 'mpvue', link: 'https://github.com/lq782655835/mpvue-project' }
                 ]
             }
         ],
