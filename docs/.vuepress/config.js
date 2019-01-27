@@ -24,10 +24,7 @@ module.exports = {
                         text: 'node-vuepress-auto-read',
                         link: 'https://github.com/lq782655835/node-vuepress-auto-read'
                     },
-                    {
-                        text: 'node-vuepress-auto-read',
-                        link: 'https://github.com/lq782655835/json2ts'
-                    }
+                    { text: 'json2ts', link: 'https://github.com/lq782655835/json2ts' }
                 ]
             },
             {
