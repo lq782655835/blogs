@@ -20,17 +20,21 @@ module.exports = {
             {
                 text: 'tools',
                 items: [
+                    { text: 'yiai-cli', link: 'https://github.com/lq782655835/yiai-cli' },
                     {
                         text: 'node-vuepress-auto-read',
                         link: 'https://github.com/lq782655835/node-vuepress-auto-read'
                     },
-                    { text: 'json2ts', link: 'https://github.com/lq782655835/json2ts' }
+                    { text: 'json2ts', link: 'https://github.com/lq782655835/json2ts' },
+                    {
+                        text: 'svg-icon-webpack-plugin',
+                        link: 'https://github.com/lq782655835/svg-icon-webpack-plugin'
+                    }
                 ]
             },
             {
                 text: 'templates',
                 items: [
-                    { text: 'yiai-cli', link: 'https://github.com/lq782655835/yiai-cli' },
                     { text: 'vue', link: 'https://github.com/lq782655835/standard-vue-project' },
                     {
                         text: 'typescript',
