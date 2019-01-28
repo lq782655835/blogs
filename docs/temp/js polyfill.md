@@ -2,8 +2,12 @@
 项目中常用的一些垫片，对js基础是个很好的总结。
 
 ## bind
-实现函数绑定到指定上下文context
+
 ``` js
+/*
+实现函数绑定到指定上下文context
+使用： bind(Class1.prototype.method1, new Class1(config))
+*/
 module.exports = function bind(fn, context) {
     return function() {
         var args = new Array(arguments.length)
@@ -14,7 +18,8 @@ module.exports = function bind(fn, context) {
     }
 }
 
-// 使用： bind(Class1.prototype.method1, new Class1(config))
+// or
+const bind = (fn, context, ...boundArgs) => (...args) => fn.apply(context, [...boundArgs, ...args]);
 ```
 
 ## curry
