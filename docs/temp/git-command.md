@@ -107,6 +107,7 @@ git tag -a <tag-name> -m <comment>
 git push origin --tags
 ```
 
+## git命令
 * git init
 * git clone [url]
 * git config
@@ -195,7 +196,7 @@ $ git branch --set-upstream [branch] [remote-branch]
 $ git branch -d [branch-name]
 
 # 删除远程分支
-$ git push origin --delete [branch-name]
+$ git push origin --delete [branch-name]（或者git push origin :branch-name）
 $ git branch -dr [remote/branch]
 ```
 * git tag

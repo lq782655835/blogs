@@ -12,11 +12,23 @@
   * boolean 
   * number
   * string
+* 特殊类型
+  * any 类型检查器不检查
+  * void 通常见于函数没有返回值时
+  * null
+  * undefined
+  * object 除number，string，boolean，symbol，null或undefined之外的类型。
 * 数组
-    * number[]
-    * Array<number> 泛型写法
+    * T[]
+    * Array<T> 泛型写法
 * 补充
-  * 联合类型 属性为多种类型之一，如 let name: string | number = 123
+  * 联合类型 属性为多种类型之一
+  ``` ts
+  let name: string | number = 123
+  let names: (string | number)[] = [123, '123']
+  let names: Array<string | number> = [123, '123']
+  let funcs: Array<() => string> = [() => {return '123'}]
+  ```
   * 元组类型 如 let nameNumber: [string, number] = ['Jenny', 221345]
   * 枚举enum 对JavaScript标准数据类型的一个补充
   * 接口interface
@@ -24,11 +36,6 @@
       * readonly 只读属性
       * 额外的属性检查
       * 内联类型注解 let name: {first: string;second: string;}
-* 特殊类型
-  * any 类型检查器不检查
-  * void 通常见于函数没有返回值时
-  * null、undefined。
-  * object 除number，string，boolean，symbol，null或undefined之外的类型。因为ts就是解决强类型问题，所以object也没太大意义
 * 函数
 * 类(跟ES6类类似，但早于ES6)
 
