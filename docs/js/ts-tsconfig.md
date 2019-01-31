@@ -27,9 +27,7 @@ class C {
 ## 2. strictPropertyInitialization
 `是否类的非undefined属性已经在构造函数里初始化`。 boolean类型，默认值：false
 
-直白点，就是所有的属性值，都需要赋有初始值。**建议把strictPropertyInitialization设置为false**，这样就不需要定义一个变量就必须赋有初始值。**对使用vuex-class库的同学，建议请把这个值设为false，绝对能省很多事。**
-
-> 如果设置该选项为true，需要同时启用--strictNullChecks或启用--strict
+直白点，就是所有的属性值，都需要赋有初始值。**建议把strictPropertyInitialization设置为false**，这样就不需要定义一个变量就必须赋有初始值。对使用vuex-class库的同学，建议请把这个值设为false，绝对能省很多事。
 
 ``` ts
 export default class Home extend Vue{
@@ -40,6 +38,7 @@ export default class Home extend Vue{
     }
 }
 ```
+> 如果设置该选项为true，需要同时启用--strictNullChecks或启用--strict
 
 ## 3. noImplicitAny
 `有隐含的 any类型时是否报错`。boolean值，默认值：false
@@ -96,7 +95,7 @@ TypeScript是ES6的超集，所以你可以使用ES6来编写ts代码（通常�
 ## 8. paths
 `模块名或路径映射的列表`。Object值
 
-这是一个非常有用的选项，比如我们经常使用'@/util/help'来代替'./src/util/help'，省的每次在不同层级文件import模块时都纠结于是否'./'还是'../'。该选项告诉编译器遇到匹配的值时，去映射的路径下加载模块。
+这是一个非常有用的选项，比如我们经常使用'@/util/help'来代替'./src/util/help'，省的每次在不同层级文件import模块时,都纠结于是'./'还是'../'。该选项告诉编译器遇到匹配的值时，去映射的路径下加载模块。
 
 ``` ts
 {
@@ -107,10 +106,14 @@ TypeScript是ES6的超集，所以你可以使用ES6来编写ts代码（通常�
         "src/*"
       ],
       "moduleA": [
-        "libs/moduleA"
+        "src/libs/moduleA"
       ]
     }
 }
+
+// in ts code
+import Setting from '@/components/Setting.vue' // 模块实际位置: src/components/Setting.vue
+import TestModule from 'moduleA/index.js' // 模块实际位置: src/libs/moduleA/index.js
 ```
 
 ## 9. strictNullChecks
@@ -153,7 +156,7 @@ foo && foo.push('1') // okay
 
 > 可以指定"types": []来禁用自动引入@types包
 
-## 6.files、include和exclude
+## 14. files、include和exclude
 `编译文件包含哪些文件以及排除哪些文件`。
 
 未设置include时，编译器默认包含当前目录和子目录下所有的TypeScript文件（.ts, .d.ts 和 .tsx）。如果allowJs被设置成true，JS文件（.js和.jsx）也被包含进来。exclude排除那些不需要编译的文件或文件夹。
