@@ -27,6 +27,7 @@
 * [正则表达式一张图总结](https://lq782655835.github.io/blogs/js/regex.html)
 * [stylelint样式规范工具](https://lq782655835.github.io/blogs/js/tool-stylelint.html)
 * [TypeScript开发Vue应用](https://lq782655835.github.io/blogs/js/ts-in-vue-project.html)
+* [Typescript tsconfig.json全解析](https://lq782655835.github.io/blogs/js/ts-tsconfig.html)
 * [Vue2.0源码分析 - 框架结构](https://lq782655835.github.io/blogs/js/vue-code-frame.html)
 * [Webpack3.x升级Webpack4](https://lq782655835.github.io/blogs/js/webpack3.x-to-webpack4.html)
 # NodeJS
