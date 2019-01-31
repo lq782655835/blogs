@@ -84,6 +84,7 @@
             * `minimist` 简单的参数处理包，对process.argv.slice(2)数组进行key-value处理
         * `cheerio` nodejs dom解析库,常用来做爬虫
         * `markdown` 把markdown字符转为html字符
+        * `semver` 语义化node，常用来作为最小node版本要求
     * 测试
         * `mocha`<sup>`推荐`</sup> 测试框架，支持node和web端。好处是灵活，可扩展性高，自己选择对应工具；坏处是你必须搭配一些断言库 + 代码覆盖率库
             * –-recursive 使全部子目录下的测试用例都能被执行

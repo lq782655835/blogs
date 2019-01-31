@@ -35,6 +35,10 @@
 
 * 后台302重定向一定需要是在页面上（window.location.href） -- 不能通过ajax请求让后端页面重定向，ajax只接收json/txt/stream等格式
 
+* [Vue后台权限方案](https://segmentfault.com/a/1190000009506097) - 原理通过登录获得用户拥有的roles，然后根据整个前端路由表（meta包含这个路由项是哪些roles有权限访问），最后根据两者交集得到routers并通过`router.addRoutes`动态添加
+
+* 面包屑导航 - $route.matched，这个API完美解决
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
@@ -57,6 +61,6 @@
 
 ## Github优秀源码
 * Vue
-    * [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 完整的项目案例，界面精良，较多的第三方组件方案
+    * [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 完整的项目案例，界面精良，较多的第三方组件方案（icon、permission...）
 * JS
     * [30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code) 短小精悍的js代码片段
