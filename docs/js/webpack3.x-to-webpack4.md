@@ -30,7 +30,7 @@ mode: process.env.NODE_ENV !== 'production' ? 'development' : 'production',
 ### 4.1 升级vue-loader
 对应webpack4升级的是vue-loader@15，该版本迁移有两个重大改变(不兼容)：
 1. 需要配合一个插件VueLoaderPlugin，[详细](https://vue-loader.vuejs.org/zh/migrating.html#%E5%80%BC%E5%BE%97%E6%B3%A8%E6%84%8F%E7%9A%84%E4%B8%8D%E5%85%BC%E5%AE%B9%E5%8F%98%E6%9B%B4)
-2. Loader推导规则改变。这影响的是如sass-resource-loader插件配置。
+2. Loader推导规则改变。直白点就是以前写在vue-loader options下的配置项（如css、sass配置）等，不需要再写了，而是直接使用对应css、sass的rule规则。当然，升级时可以暂时不做修改，多个options也不会报错。
 
 第一步：升级安装包
 ``` shell

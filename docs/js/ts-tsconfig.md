@@ -7,7 +7,7 @@ tsconfig.json是编译TypeScript的配置文件，对书写TypeScript代码十�
 ## 1. experimentalDecorators
 `是否启用实验性的ES装饰器`。boolean类型，默认值：false。[官方解释](https://www.typescriptlang.org/docs/handbook/decorators.html)
 
-TypeScript和ES6中引入了Class的概念，同时在[stage 2 proposal](https://github.com/tc39/proposal-decorators)提出了Java等服务器端语言早就有的装饰器模式。通过引入装饰器模式，能极大简化书写代码，把一些通用逻辑封装到装饰器中。很多库都有用到该特性，比如vue-class-component 及 vuex-class等库。当你使用这些库时，必须开启experimentalDecorators。
+TypeScript和ES6中引入了Class的概念，同时在[stage 2 proposal](https://github.com/tc39/proposal-decorators)提出了Java等服务器端语言早就有的装饰器模式。通过引入装饰器模式，能极大简化书写代码，把一些通用逻辑封装到装饰器中。很多库都有用到该特性，比如vue-class-component 及 vuex-class等库。**当你使用这些库时，必须开启experimentalDecorators**。
 
 ``` ts
 function f() {
@@ -174,7 +174,7 @@ foo && foo.push('1') // okay
 }
 ```
 
-## 总结
+## tsconfig.json全解析
 ``` json
 {
   "compilerOptions": {
