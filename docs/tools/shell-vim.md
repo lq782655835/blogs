@@ -5,8 +5,8 @@
 | ---        |   ----    | ---        |
 | **mkdir**      | mkdir dirname | 创建一个目录 |
 | rmdir      | rmdir dirname | 删除一个目录 |
-| mvdir      | cp -r sourcedir destdir | 移动或重命名一个目录 |
-| **cp**      | mvdir dir1 dir2 | 复制文件夹（-r递归） |
+| mvdir      | mvdir dir1 dir2 | 移动或重命名一个目录 |
+| **cp**      | cp -r sourcedir destdir | 复制文件夹（-r递归） |
 | **rm**      | rm -rf dirname |  删除文件或目录（-r递归 -f强制）
 | **cd**      | cd dirname | 改变当前目录 |
 | **ls**      | ls -la | 显示当前目录的内容 |
