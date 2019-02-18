@@ -37,7 +37,9 @@
 
 * [Vue后台权限方案](https://segmentfault.com/a/1190000009506097) - 原理通过登录获得用户拥有的roles，然后根据整个前端路由表（meta包含这个路由项是哪些roles有权限访问），最后根据两者交集得到routers并通过`router.addRoutes`动态添加
 
-* 面包屑导航 - $route.matched，这个API完美解决
+* [面包屑导航](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/Breadcrumb/index.vue) - $route.matched，这个API完美解决
+
+* [export * from './child'](https://stackoverflow.com/questions/38077164/es6-export-from-import/38077264) - ES6模块导入，重构将大文件拆分成多个小文件
 
 ## 技术选型
 
