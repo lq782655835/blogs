@@ -16,6 +16,7 @@
 * [ES6-解构赋值及原理](https://lq782655835.github.io/blogs/js/ES6-2.destruction.html)
 * [ES6-Object](https://lq782655835.github.io/blogs/js/ES6-3.object.html)
 * [ECMAScript特性](https://lq782655835.github.io/blogs/js/ES6-latest-feature.html)
+* [ES6 模块](https://lq782655835.github.io/blogs/js/ES6-module.html)
 * [PostCSS](https://lq782655835.github.io/blogs/js/PostCSS.html)
 * [Webpack4 devServer配置详解](https://lq782655835.github.io/blogs/js/Webapck-devServer%08.html)
 * [Array API与V8源码解析](https://lq782655835.github.io/blogs/js/array-v8-method.html)

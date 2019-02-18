@@ -81,6 +81,7 @@ module.exports = {
                     'js/ES6-2.destruction.md',
                     'js/ES6-3.object.md',
                     'js/ES6-latest-feature.md',
+                    'js/ES6-module.md',
                     'js/PostCSS.md',
                     'js/Webapck-devServer\b.md',
                     'js/array-v8-method.md',
