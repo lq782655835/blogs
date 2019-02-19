@@ -145,6 +145,7 @@ module.exports = {
                 collapsable: true,
                 children: [
                     'tools/0.tool-summary.md',
+                    'tools/charles-tool.md',
                     'tools/python语法.md',
                     'tools/record-solution.md',
                     'tools/shell-vim.md',
