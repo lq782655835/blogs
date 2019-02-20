@@ -146,7 +146,7 @@ module.exports = {
                 children: [
                     'tools/0.tool-summary.md',
                     'tools/charles-tool.md',
-                    'tools/python语法.md',
+                    'tools/python-grammar.md',
                     'tools/record-solution.md',
                     'tools/shell-vim.md',
                     'tools/vscode.md'

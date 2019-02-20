@@ -35,7 +35,7 @@
 * [Nginx反向代理](https://lq782655835.github.io/blogs/node/nginx.html)
 * [Node-常用API](https://lq782655835.github.io/blogs/node/node-api-summary.html)
 * [Express API及源码解析](https://lq782655835.github.io/blogs/node/node-express-api.html)
-* [mongodb指南](https://lq782655835.github.io/blogs/node/node-mongodb.html)
+* [MongoDB指南](https://lq782655835.github.io/blogs/node/node-mongodb.html)
 * [Node-常用包总结](https://lq782655835.github.io/blogs/node/node-tool-package.html)
 * [Node-Debug for VSCode](https://lq782655835.github.io/blogs/node/node-vscode-debug.html)
 # 思考与总结
@@ -57,7 +57,7 @@
 # 效率工具
 * [前端必备效率工具](https://lq782655835.github.io/blogs/tools/0.tool-summary.html)
 * [前端神器Charles](https://lq782655835.github.io/blogs/tools/charles-tool.html)
-* [python语法](https://lq782655835.github.io/blogs/tools/python%E8%AF%AD%E6%B3%95.html)
+* [Python语法](https://lq782655835.github.io/blogs/tools/python-grammar.html)
 * [解决方案](https://lq782655835.github.io/blogs/tools/record-solution.html)
 * [Shell && Vim](https://lq782655835.github.io/blogs/tools/shell-vim.html)
 * [VSCode快捷键及常用插件](https://lq782655835.github.io/blogs/tools/vscode.html)
