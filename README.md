@@ -29,6 +29,7 @@
 * [stylelint样式规范工具](https://lq782655835.github.io/blogs/js/tool-stylelint.html)
 * [TypeScript开发Vue应用](https://lq782655835.github.io/blogs/js/ts-in-vue-project.html)
 * [Typescript tsconfig.json全解析](https://lq782655835.github.io/blogs/js/ts-tsconfig.html)
+* [TypeScript在Vue2.x中的坑](https://lq782655835.github.io/blogs/js/ts-vue-shortcoming.html)
 * [Vue2.0源码分析 - 框架结构](https://lq782655835.github.io/blogs/js/vue-code-frame.html)
 * [Webpack3.x升级Webpack4](https://lq782655835.github.io/blogs/js/webpack3.x-to-webpack4.html)
 # NodeJS

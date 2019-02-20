@@ -61,7 +61,7 @@
     * [tinypng](https://tinypng.com/)
 * [在线画图ProcessOn](https://www.processon.com/organizations/5c653312e4b0f0908a940a64#diagrams)
 * [抓包工具Charles]() - [配置教程](https://blog.csdn.net/windy135/article/details/79086270)
-* [Node.js 最佳实践](https://github.com/i0natan/nodebestpractices/blob/master/README.chinese.md)
+* [transactional-email-templates](https://github.com/mailgun/transactional-email-templates) 响应式html邮件模板
 
 
 ## Github优秀源码
@@ -72,4 +72,4 @@
 * Common
     * [quicklink](https://github.com/GoogleChromeLabs/quicklink) 兼容性好的页面资源预加载解决方案
     * [clean-code-typescript](https://github.com/labs42io/clean-code-typescript) ts最佳实践
-    * [sb](https://github.com/jaywcjlove/sb) 在线svg图标
+    * [sb](https://github.com/jaywcjlove/sb) 在线多种svg图标
