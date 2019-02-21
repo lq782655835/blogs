@@ -47,7 +47,7 @@ Vue.mixin({
 ```
 
 ## 3. 装饰器 this !== target 问题
-正常的Class在加装饰器的时候使用method.apply(target, args)是没有问题的。但是vue在注册组件的时候会进行初始化，this在这个时候被改变了（class内部的的this变了，此时 this !== target了
+正常的Class在加装饰器的时候使用method.apply(target, args)是没有问题的。但是vue在注册组件的时候会进行初始化，this在这个时候被改变了(class内部的的this变了，此时 this !== target了)
 
 ``` ts
 const log = (target, name, descriptor) => {
