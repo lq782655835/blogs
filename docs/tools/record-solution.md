@@ -41,6 +41,8 @@
 
 * [export * from './child'](https://stackoverflow.com/questions/38077164/es6-export-from-import/38077264) - ES6模块导入，重构将大文件拆分成多个小文件
 
+* [当前页下载文件](http://www.alloyteam.com/2014/01/use-js-file-download/) 通过H5中，给a标签加download属性
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
@@ -62,6 +64,9 @@
 * [在线画图ProcessOn](https://www.processon.com/organizations/5c653312e4b0f0908a940a64#diagrams)
 * [抓包工具Charles]() - [配置教程](https://blog.csdn.net/windy135/article/details/79086270)
 * [transactional-email-templates](https://github.com/mailgun/transactional-email-templates) 响应式html邮件模板
+* 在线svg
+    * [badgen-service](https://github.com/amio/badgen-service) 在线图标生成服务
+    * [sb](https://github.com/jaywcjlove/sb) 在线多种svg图标
 
 
 ## Github优秀源码
@@ -72,4 +77,4 @@
 * Common
     * [quicklink](https://github.com/GoogleChromeLabs/quicklink) 兼容性好的页面资源预加载解决方案
     * [clean-code-typescript](https://github.com/labs42io/clean-code-typescript) ts最佳实践
-    * [sb](https://github.com/jaywcjlove/sb) 在线多种svg图标
+    

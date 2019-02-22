@@ -46,3 +46,7 @@ Put an x in the boxes once you've completed each step. You can also fill these o
 If this is a relatively large or complex change, kick off the discussion by explaining why you chose the solution you did and what alternatives you considered, etc...
 
 ```
+
+## 参考文章
+
+* [Pull Request 书写指南](https://segmentfault.com/a/1190000006699503)
