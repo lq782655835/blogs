@@ -47,6 +47,7 @@ devServer: {
     proxy: {
         // 匹配api前缀时，则代理到3001端口
         // 即http://localhost:8080/api/123 = http://localhost:3001/api/123
+        // 注意:这里是把当前server8080代理到3001，而不是任意端口的api代理到3001
         '/api': 'http://localhost:3001',
         // 设置为true, 本地就会虚拟一个服务器接收你的请求并代你发送该请求
         // 主要解决跨域问题
