@@ -55,3 +55,19 @@ function HelloWorldComponent() {
 }
 ```
 > 推荐[classnames](https://github.com/JedWatson/classnames)包配合
+
+## React State
+``` js
+class ColorBox extends Component {
+    state = { color: 'red' }
+    getColor() {
+        return this.state.color
+    }
+
+    render() {
+        return <div>
+            this is test - {this.getColor()}
+        </div>
+    }
+}
+```
