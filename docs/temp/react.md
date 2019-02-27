@@ -59,7 +59,13 @@ function HelloWorldComponent() {
 ## React State
 ``` js
 class ColorBox extends Component {
+    // constructor(props) {
+    //     super(props)
+    //     this.state = { color: 'red' }
+    // }
+    // or
     state = { color: 'red' }
+
     getColor() {
         return this.state.color
     }
@@ -70,4 +76,117 @@ class ColorBox extends Component {
         </div>
     }
 }
+```
+
+## React-Router
+
+``` js
+// 从 react-router-dom 中导入它
+// <Switch> 来启用排他路由
+import { BrowserRouter, Route } from 'react-router-dom'
+
+const PrimaryLayout = () => (
+  <div className="primary-layout">
+    <header>
+      Our React Router 4 App
+    </header>
+    <main>
+      <Route path="/" exact component={HomePage} />
+      <Route path="/users" component={UsersPage} />
+    </main>
+  </div>
+)
+
+const HomePage =() => <div>Home Page</div>
+const UsersPage = () => <div>Users Page</div>
+
+const App = () => (
+  <BrowserRouter>
+    <PrimaryLayout />
+  </BrowserRouter>
+)
+
+render(<App />, document.getElementById('root'))
+```
+
+``` js
+import {Link} from 'react-router'
+
+export default class Header extends React.Component {
+   public render() {
+       return (
+        <div className="row">
+          <nav className="navbar navbar-default">
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul className="nav navbar-nav">
+                  <li><Link to="/about">About</Link></li>
+                  <li><Link to="/members">Members</Link></li>
+                </ul>
+            </div>
+          </nav>
+        </div>
+       );
+  }
+}
+```
+
+## React-Redux
+``` js
+// yarn add redux react-redux react-thunk
+
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import reduxThunk from 'redux-thunk';
+
+// reducers - store - action
+
+let store = createStore(
+  reducers
+  ,applyMiddleware(reduxThunk)
+);
+
+export default class App extends React.Component {
+   public render() {
+       return (
+         <Provider store={store}>
+            <div className="container-fluid">
+              <Header/>
+                {this.props.children}
+              </div>
+         </Provider>
+       );
+  }
+}
+
+```
+
+``` js
+// react-redux in page
+const mapStateToProps = (state) => {
+    return {
+      member: state.member.member
+      ,errors : state.member.errors
+      ,saveCompleted : state.member.saveCompleted
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadMember: (id : number) => {return dispatch(loadMember(id))}
+    ,fireFieldValueChanged: (fieldName : string, value : any) => {return dispatch(uiInputMember(fieldName, value))}
+    ,saveMember: (member: MemberEntity) =>  {return dispatch(saveMember(member))}
+    ,resetSaveCompletedFlag: () => {return dispatch(resetSaveCompleted())}
+    ,initializeNewMember: () => {return dispatch(initializeNewMember())
+    }
+  }
+}
+
+const ContainerMemberPage = connect(
+                                   mapStateToProps
+                                  ,mapDispatchToProps
+                                )(MemberPage)
+
+
+export default ContainerMemberPage;
 ```
