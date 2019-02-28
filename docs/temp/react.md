@@ -28,6 +28,10 @@ Buttons.propTypes = {
   prevHandler: propTypes.func,
   nextHandler: propTypes.func
 }
+
+Buttons.defaultProps = {
+    total: 123
+}
 ```
 
 ## React css in js
@@ -133,34 +137,48 @@ export default class Header extends React.Component {
 ## React-Redux
 ``` js
 // yarn add redux react-redux react-thunk
+// store - reducers - action
+import { Provider } from 'react-redux'
+import store from './store'
 
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
-import reduxThunk from 'redux-thunk';
-
-// reducers - store - action
-
-let store = createStore(
-  reducers
-  ,applyMiddleware(reduxThunk)
-);
-
-export default class App extends React.Component {
-   public render() {
-       return (
-         <Provider store={store}>
-            <div className="container-fluid">
-              <Header/>
-                {this.props.children}
-              </div>
-         </Provider>
-       );
-  }
+let render = Components => {
+    let App = () => (
+        <Provider store={store}>
+            <Components />
+        </Provider>
+    )
+    ReactDOM.render(<App />, document.getElementById('root'))
 }
-
+render(RouteConfig)
 ```
 
 ``` js
+// 设置reducer的方式，都能达到state： state.demo.XXX state.home.XXX方式
+
+// 1. export default (state, action) =>{}方式(一个文件导出只能一个reducer)
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import home from './home/reducer'
+import demo from './demo/reducer'
+import thunk from 'redux-thunk'
+
+let store = createStore(combineReducers({ demo, home }), applyMiddleware(thunk))
+
+export default store
+
+//2. export const demo = (state, action) =>{}方式(一个文件能导出多个reducer)
+// export const home = (state, action) =>{}方式
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import * as allReducer from './demo/reducer' // 导出就是个object对象
+import thunk from 'redux-thunk'
+
+let store = createStore(combineReducers({ ...allReducer }), applyMiddleware(thunk))
+
+export default store
+```
+
+``` js
+import {loadMember, uiInputMember, saveMember, ...} from '...actions'
+
 // react-redux in page
 const mapStateToProps = (state) => {
     return {
@@ -181,6 +199,8 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
+// 如果不重命名可以写为object
+const mapDispatchToProps = {loadMember, uiInputMember, saveMember, ...}
 
 const ContainerMemberPage = connect(
                                    mapStateToProps

@@ -331,3 +331,5 @@ emitEvent.emit('a', { field: 1 })
 * [观察者模式和发布订阅模式有什么不同](https://www.zhihu.com/question/23486749)
 
 * [观察者模式 vs 发布-订阅模式](https://juejin.im/post/5a14e9edf265da4312808d86)
+
+* [设计模式推演——组合与继承](https://blog.csdn.net/crylearner/article/details/8888372)

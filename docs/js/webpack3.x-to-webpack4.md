@@ -1,4 +1,4 @@
-# Webpack3.x升级Webpack4
+# Webpack3.x升级Webpack4指南
 
 自从Parcel零配置方案得到程序员青睐，Webapck才幡然醒悟。相对于以前Webapck3.x复杂的loader、plugin等配置，Webpack4遵循约定大于配置，做了很多默认话配置。Webpack官方也出了[v3到v4升级指南](https://webpack.js.org/migrate/4/)，但没有写的很具体，特别是第三方插件升级这块。以下跟随笔者项目实例，看看如何把3.x版本项目升级到webpack4。升级实例：[node-vue-ui-website](https://github.com/lq782655835/node-vue-ui-website)
 （node-vue-ui-website是一个基于node+vue+mongoose前后端一体的yi-ui官网）
