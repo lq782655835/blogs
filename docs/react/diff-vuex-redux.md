@@ -1,6 +1,6 @@
 # Vuex与Redux比较
 
-由于Vuex和Redux都是从Flux中衍生出来，同时Vuex对Redux部分思想也有一些借鉴，所以Vuex和Redux有很多相同点。很多资料也有介绍两者的对比，但大部分讲解的比较抽象，较难理解。笔者整理两者异同点，同时配有标准案例进行说明。
+由于Vuex和Redux都是从Flux中衍生出来，同时Vuex对Redux部分思想也有一些借鉴，所以Vuex和Redux有很多相同点。很多资料也有介绍两者的对比，但大部分讲解的比较抽象，较难理解。笔者整理两者异同点，同时配有标准案例进行说明。注意本文不是科普vuex和redux相关概念，相关知识内容可以在官方文档中查看。[Vuex](https://vuex.vuejs.org/zh/guide/) 、[Redux](https://redux.js.org/introduction/getting-started)
 
 ## 异同点
 

@@ -4,10 +4,10 @@
 * class -> className
 * onclick -> onClick
 
-## React定义组件
-
+## React组件形式
+总共有三种：React.createClass, class 和 Stateless Functional Component。React.createClass是ES5形式，不推荐使用。推荐使用Stateless Functional Component，保持简洁和无状态，没有this作用域，没有生命周期，是pure function。
 ``` js
-// 1. Function and Class Components
+// 1. Stateless Functional Component
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
@@ -37,6 +37,7 @@ class Welcome extends React.Component {
 
 // or
 class Button extends Component {
+    // static是类的静态属性，不会被实例继承
     static defaultProps = {
         class: 'button-private'
     }
@@ -56,6 +57,7 @@ class ColorBox extends Component {
     //     this.state = { color: 'red' }
     // }
     // or
+    // ES6 特性写法
     state = { color: 'red' }
 
     getColor() {
@@ -99,6 +101,30 @@ class Button extends Component {
 }
 ```
 
+## 解构以及扩展
+``` js
+class AutoloadingPostsGrid extends React.Component {
+  render() {
+    const {
+      className,
+      ...others,  // contains all properties of this.props except for className
+    } = this.props;
+    return (
+      <div className={className}>
+        <PostsGrid {...others} />
+        <button onClick={this.handleLoadMoreClick}>Load more</button>
+      </div>
+    );
+  }
+}
+
+// with arrow function
+const App = ({className, ...rest}) => (
+  <div className={classnames(className)} {...rest}>
+    <MyComponent />
+  </div>
+);
+```
 
 ## React css in js
 
@@ -126,11 +152,13 @@ function HelloWorldComponent() {
 ```
 > 推荐[classnames](https://github.com/JedWatson/classnames)包配合
 
+## React生命周期
+![](https://user-images.githubusercontent.com/20860159/29051854-318bdb44-7c18-11e7-918c-a51f5e96fde4.png)
 
-## React-Router
+## React-Router V4
 
 ``` js
-// 从 react-router-dom 中导入它
+// v4版本从 react-router-dom 中导入它，并且不再推荐集中式管理路由
 // <Switch> 来启用排他路由
 import { BrowserRouter, Route } from 'react-router-dom'
 
@@ -159,7 +187,7 @@ render(<App />, document.getElementById('root'))
 ```
 
 ``` js
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 
 export default class Header extends React.Component {
    public render() {
@@ -198,9 +226,9 @@ render(RouteConfig)
 ```
 
 ``` js
-// 设置reducer的方式，都能达到state： state.demo.XXX state.home.XXX方式
+// 设置reducer的方式，都能达到state.demo.XXX state.home.XXX方式
 
-// 1. export default (state, action) =>{}方式(一个文件导出只能一个reducer)
+// 1. export default (state, action) =>{}方式(一个文件导出default reducer)
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import home from './home/reducer'
 import demo from './demo/reducer'
@@ -222,9 +250,10 @@ export default store
 ```
 
 ``` js
+// react-redux in page
+
 import {loadMember, uiInputMember, saveMember, ...} from '...actions'
 
-// react-redux in page
 const mapStateToProps = (state) => {
     return {
       member: state.member.member
@@ -234,24 +263,20 @@ const mapStateToProps = (state) => {
 }
 
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadMember: (id : number) => {return dispatch(loadMember(id))}
-    ,fireFieldValueChanged: (fieldName : string, value : any) => {return dispatch(uiInputMember(fieldName, value))}
-    ,saveMember: (member: MemberEntity) =>  {return dispatch(saveMember(member))}
-    ,resetSaveCompletedFlag: () => {return dispatch(resetSaveCompleted())}
-    ,initializeNewMember: () => {return dispatch(initializeNewMember())
-    }
-  }
-}
-// 如果不重命名可以写为object
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     loadMember: (id : number) => {return dispatch(loadMember(id))}
+//     ,fireFieldValueChanged: (fieldName : string, value : any) => {return dispatch(uiInputMember(fieldName, value))}
+//     ,saveMember: (member: MemberEntity) =>  {return dispatch(saveMember(member))}
+//   }
+// }
+// or
+// 如果不重命名可以写为object。原理是调用bindActionCreators
 const mapDispatchToProps = {loadMember, uiInputMember, saveMember, ...}
 
-const ContainerMemberPage = connect(
-                                   mapStateToProps
-                                  ,mapDispatchToProps
-                                )(MemberPage)
-
-
-export default ContainerMemberPage;
+export default connect(mapStateToProps,mapDispatchToProps)(MemberPage)
 ```
+
+## 参考文章
+* [react-redux Connect: Dispatching Actions with mapDispatchToProps](https://react-redux.js.org/using-react-redux/connect-mapdispatch#defining-the-mapdispatchtoprops-function-with-bindactioncreators)
+* [React知识地图](https://github.com/YutHelloWorld/Blog/issues/2)
