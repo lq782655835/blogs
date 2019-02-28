@@ -73,6 +73,7 @@
 * Vue
     * [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 完整的项目案例，界面精良，较多的第三方组件方案（icon、permission...）
 * React
+    * [react-redux-todo](https://codesandbox.io/s/9on71rvnyo) 经典的react-redux TodoList示例
     * [react-pxq](https://github.com/bailicangdu/react-pxq) 清晰易懂的react入门项目
 * JS
     * [30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code) 短小精悍的js代码片段

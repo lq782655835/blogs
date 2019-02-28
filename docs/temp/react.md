@@ -1,16 +1,18 @@
 
-# React
-个人认为，React核心思想是万物皆是函数，一个入参，一个出参。入参既可以是传统的string、number、function，也可以是一个html或者css，或者是顶层的React组件。
+# React注意事项
+
+* class -> className
+* onclick -> onClick
 
 ## React定义组件
 
 ``` js
-// Function and Class Components
+// 1. Function and Class Components
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 
-// ES6 class
+// 2. ES6 class
 class Welcome extends React.Component {
   render() {
     return <h1>Hello, {this.props.name}</h1>;
@@ -21,18 +23,82 @@ class Welcome extends React.Component {
 ## React 类型检查
 
 ``` js
-// 单独的propTypes库
-Buttons.propTypes = {
-  index: propTypes.number.isRequired,
-  total: propTypes.number.isRequired,
-  prevHandler: propTypes.func,
-  nextHandler: propTypes.func
-}
+// // 单独的propTypes库
+// Buttons.propTypes = {
+//   index: propTypes.number.isRequired,
+//   total: propTypes.number.isRequired,
+//   prevHandler: propTypes.func,
+//   nextHandler: propTypes.func
+// }
 
-Buttons.defaultProps = {
-    total: 123
+// Buttons.defaultProps = {
+//     total: 123
+// }
+
+// or
+class Button extends Component {
+    static defaultProps = {
+        class: 'button-private'
+    }
+
+    static propTypes = {
+        class: PropTypes.string,
+        onClick: PropTypes.func
+    }
 }
 ```
+
+## React State
+``` js
+class ColorBox extends Component {
+    // constructor(props) {
+    //     super(props)
+    //     this.state = { color: 'red' }
+    // }
+    // or
+    state = { color: 'red' }
+
+    getColor() {
+        return this.state.color
+    }
+
+    render() {
+        return <div>
+            this is test - {this.getColor()}
+        </div>
+    }
+}
+```
+
+## Component this问题
+``` js
+class Button extends Component {
+    static propTypes = {
+        onClick: PropTypes.func
+    }
+
+    // 函数方法需要在render中bind(this)
+    // handleClick(e) {
+    //     const { onClick } = this.props
+    //     onClick && this.props.onClick(e)
+    // }
+
+    // render() {
+    //     return <div onClick=     {this.handleClick.bind(this)}>{this.props.children}</div>
+    // }
+    // or
+    // 箭头函数绑定了this
+    handleClick = (e) => {
+        const { onClick } = this.props
+        onClick && this.props.onClick(e)
+    }
+
+    render() {
+        return <div onClick={this.handleClick}>{this.props.children}</div>
+    }
+}
+```
+
 
 ## React css in js
 
@@ -60,27 +126,6 @@ function HelloWorldComponent() {
 ```
 > 推荐[classnames](https://github.com/JedWatson/classnames)包配合
 
-## React State
-``` js
-class ColorBox extends Component {
-    // constructor(props) {
-    //     super(props)
-    //     this.state = { color: 'red' }
-    // }
-    // or
-    state = { color: 'red' }
-
-    getColor() {
-        return this.state.color
-    }
-
-    render() {
-        return <div>
-            this is test - {this.getColor()}
-        </div>
-    }
-}
-```
 
 ## React-Router
 
