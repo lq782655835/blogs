@@ -138,7 +138,8 @@ module.exports = {
                     'react/diff-vuex-redux.md',
                     'react/react-eslint.md',
                     'react/react-native-debug-skill.md',
-                    'react/react-native-environment-mac.md'
+                    'react/react-native-environment-mac.md',
+                    'react/react.md'
                 ]
             },
             {
