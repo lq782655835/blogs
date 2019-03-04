@@ -154,6 +154,10 @@ function HelloWorldComponent() {
 > 推荐[classnames](https://github.com/JedWatson/classnames)包配合
 
 ## React生命周期
+16.4版本开始生命周期变化较大，详细看[官方文档](https://reactjs.org/docs/react-component.html)
+![image](https://user-images.githubusercontent.com/6310131/53708732-cd68cc00-3e6f-11e9-832d-64688cc5a7d5.png)
+
+下图是16.3以前的组件生命周期：
 ![](https://user-images.githubusercontent.com/20860159/29051854-318bdb44-7c18-11e7-918c-a51f5e96fde4.png)
 
 ## React-Router V4
