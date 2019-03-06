@@ -77,6 +77,7 @@
         * `fs-extra` 拓展原生的nodejs fs模块，支持async/await
         * `figlet`：使用普通字符制作大字母的程序（注：使用标准字符，拼凑出图片）
         * `shelljs` shelljs重新包装了 child_process，调用系统命令更加方便
+        * `execa` 更好的child_process
         * 命令行
             * `commander.js` 使得命令行更简单，API丰富，tj大神之作
             * `yargs` 更简易的处理命令行参数小工具，比commander.js优秀的是参数不全会自动给出提示。常用在node小工具中
@@ -85,6 +86,12 @@
         * `cheerio` nodejs dom解析库,常用来做爬虫
         * `markdown` 把markdown字符转为html字符
         * `semver` 语义化node，常用来作为最小node版本要求
+    * express/koa
+        * `get-port` 获取有效端口号
+        * `open` 自动打开浏览器
+        * `morgan` 日志中间件
+        * `koa-router` 相当于app.Router;
+        * `koa-static` 相当于express.static
     * 测试
         * `mocha`<sup>`推荐`</sup> 测试框架，支持node和web端。好处是灵活，可扩展性高，自己选择对应工具；坏处是你必须搭配一些断言库 + 代码覆盖率库
             * –-recursive 使全部子目录下的测试用例都能被执行
