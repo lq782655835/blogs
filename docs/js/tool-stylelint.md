@@ -1,24 +1,87 @@
 # stylelint样式规范工具
 
-笔者近期做代码优化，其中就重要的一块就是代码规范。之前的文章写过[ESLint](http://doc.hz.netease.com/pages/viewpage.action?pageId=105038244)，用来规范js写法，现在使用StyleLint来规范css写法。  
+笔者近期做代码优化，其中就重要的一块就是代码规范。之前的文章写过[ESLint](http://doc.hz.netease.com/pages/viewpage.action?pageId=105038244)，用来规范js写法，现在使用StyleLint来规范css写法。
 
 * 安装和使用
 * 添加例外
 * 自动修复
 
-## 安装和使用
+## 1. 安装和使用
 
-### 安装
+#### 安装
 
 ```
 npm install --save-dev stylelint
 ```
 
-### 使用
+#### 使用
 
 1. 新增`.stylelintrc`文件
 
-2. 在文件中设置规则，以下是笔者部门使用的css规范
+2. 在文件中设置规则，文末附上笔者部门使用的css规范
+
+#### 规则检查
+
+``` shell
+stylelint 'src/**/*.vue' --fix
+```
+
+> stylelint命令有时候无法解析到，因为使用了全局的sylelint，这时可以指定相对路径`./node_modules/.bin/stylelint`
+
+#### 提交git时检查
+
+需要用到插件`husky`,该插件会在git提交时，执行`npm run precommit`命令，所以需要在`package.json`中添加如下代码检查：
+
+```
+"lint": "eslint --quiet --ext .js,.vue src",
+"style": "stylelint 'src/**/*.vue' --fix",
+"precommit": "npm run lint && npm run style",
+```
+
+## 2. 添加例外
+
+在stylelint使用过程中，有时候会对某条css添加例外，不要适用规则或部分规则
+
+#### 关闭全部规则：
+
+``` css
+/* stylelint-disable */
+a {}
+/* stylelint-enable */
+```
+
+#### 关闭部分规则：
+``` css
+/* stylelint-disable selector-no-id, declaration-no-important   */
+#id {
+    color: pink !important;
+}
+/* stylelint-enable */
+```
+
+## 3. 自动修复
+
+有些项目是开发到一半时，添加了StyleLint进行css约束，这时候需要自动化对不满足条件的Rule进行修复，如下是使用到的几种：
+
+1.`--fix`命令
+
+该命令能fix大部分格式问题，具体哪些规则可以自动fix可以看[这里](http://stylelint.cn/user-guide/rules/)
+
+2.`Vetur`插件--格式化文件
+
+优点是可以统一格式化文件，缺点是只能单个文件操作
+
+3.`vscode-stylefmt`插件
+
+类似Vetur插件，但该插件可定制化更多，详情请移至[github](https://github.com/mrmlnc/vscode-stylefmt)
+
+4.`stylefmt`
+
+该工具也是官方推荐，可以批量修改，使用如下命令修改，详情见 [github](https://github.com/morishitter/stylefmt)
+
+```
+stylefmt --stdin-filename input.css
+```
 
 ```
 {
@@ -107,67 +170,4 @@ npm install --save-dev stylelint
         "media-feature-colon-space-before": "never"
     }
 }
-```
-
-## 规则检查
-
-``` shell
-stylelint 'src/**/*.vue' --fix
-```
-
-> stylelint命令有时候无法解析到，因为使用了全局的sylelint，这时可以指定相对路径`./node_modules/.bin/stylelint`
-
-## 提交git时检查
-
-需要用到插件`husky`,该插件会在git提交时，执行`npm run precommit`命令，所以需要在`package.json`中添加如下代码检查：
-
-```
-"lint": "eslint --quiet --ext .js,.vue src",
-"style": "stylelint 'src/**/*.vue' --fix",
-"precommit": "npm run lint && npm run style",
-```
-
-## 添加例外
-
-在stylelint使用过程中，有时候会对某条css添加例外，不要适用规则或部分规则
-
-### 关闭全部规则：
-
-``` css
-/* stylelint-disable */
-a {}
-/* stylelint-enable */
-```
-
-### 关闭部分规则：
-``` css
-/* stylelint-disable selector-no-id, declaration-no-important   */
-#id {
-    color: pink !important;
-}
-/* stylelint-enable */
-```
-
-## 自动修复
-
-有些项目是开发到一半时，添加了StyleLint进行css约束，这时候需要自动化对不满足条件的Rule进行修复，如下是使用到的几种：
-
-1.`--fix`命令
-
-该命令能fix大部分格式问题，具体哪些规则可以自动fix可以看[这里](http://stylelint.cn/user-guide/rules/)
-
-2.`Vetur`插件--格式化文件
-
-优点是可以统一格式化文件，缺点是只能单个文件操作
-
-3.`vscode-stylefmt`插件
-
-类似Vetur插件，但该插件可定制化更多，详情请移至[github](https://github.com/mrmlnc/vscode-stylefmt)
-
-4.`stylefmt`
-
-该工具也是官方推荐，可以批量修改，使用如下命令修改，详情见 [github](https://github.com/morishitter/stylefmt)
-
-```
-stylefmt --stdin-filename input.css
 ```

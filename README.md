@@ -19,7 +19,8 @@
 * [ES6-解构赋值及原理](https://lq782655835.github.io/blogs/js/es6-2.destruction.html)
 * [ES6-Object](https://lq782655835.github.io/blogs/js/es6-3.object.html)
 * [ES6-模块详解](https://lq782655835.github.io/blogs/js/es6-4.module.html)
-* [ECMAScript特性](https://lq782655835.github.io/blogs/js/es6-latest-feature.html)
+* [ES6-ECMAScript特性汇总](https://lq782655835.github.io/blogs/js/es6-latest-feature.html)
+* [git实用命令](https://lq782655835.github.io/blogs/js/git-command.html)
 * [JS设计模式](https://lq782655835.github.io/blogs/js/js-design-pattern.html)
 * [npm script技巧](https://lq782655835.github.io/blogs/js/npm%20script.html)
 * [PostCSS](https://lq782655835.github.io/blogs/js/postcss.html)
@@ -31,13 +32,6 @@
 * [Vue2.0源码分析 - 框架结构](https://lq782655835.github.io/blogs/js/vue-code-frame.html)
 * [Webpack4 devServer配置详解](https://lq782655835.github.io/blogs/js/webapck-devServer%08.html)
 * [Webpack3.x升级Webpack4指南](https://lq782655835.github.io/blogs/js/webpack3.x-to-webpack4.html)
-# NodeJS
-* [Nginx反向代理](https://lq782655835.github.io/blogs/node/nginx.html)
-* [Node-常用API](https://lq782655835.github.io/blogs/node/node-api-summary.html)
-* [Express API及源码解析](https://lq782655835.github.io/blogs/node/node-express-api.html)
-* [MongoDB指南](https://lq782655835.github.io/blogs/node/node-mongodb.html)
-* [Node-常用包总结](https://lq782655835.github.io/blogs/node/node-tool-package.html)
-* [Node-Debug for VSCode](https://lq782655835.github.io/blogs/node/node-vscode-debug.html)
 # 思考与总结
 * [《敏捷开发》读后总结](https://lq782655835.github.io/blogs/think/book-agile-software.html)
 * [《给大家看的设计书》笔记](https://lq782655835.github.io/blogs/think/book-design-for-all.html)
@@ -50,6 +44,13 @@
 * [H5 Video踩坑记录](https://lq782655835.github.io/blogs/think/project-h5-video-summary.html)
 * [重构你的javascript代码](https://lq782655835.github.io/blogs/think/refactor-your-js-code.html)
 * [官网脚手架思考与实践](https://lq782655835.github.io/blogs/think/think-cli-official-website.html)
+# NodeJS
+* [Nginx反向代理](https://lq782655835.github.io/blogs/node/nginx.html)
+* [Node-常用API](https://lq782655835.github.io/blogs/node/node-api-summary.html)
+* [Express API及源码解析](https://lq782655835.github.io/blogs/node/node-express-api.html)
+* [MongoDB指南](https://lq782655835.github.io/blogs/node/node-mongodb.html)
+* [Node-常用包总结](https://lq782655835.github.io/blogs/node/node-tool-package.html)
+* [Node-Debug for VSCode](https://lq782655835.github.io/blogs/node/node-vscode-debug.html)
 # React
 * [Vue与React比较](https://lq782655835.github.io/blogs/react/diff-vue-vs-react.html)
 * [Vuex与Redux比较](https://lq782655835.github.io/blogs/react/diff-vuex-redux.html)

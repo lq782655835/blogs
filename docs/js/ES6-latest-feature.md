@@ -1,4 +1,4 @@
-# ECMAScript特性
+# ES6-ECMAScript特性汇总
 ES6+不仅给javascript语言带来质的飞跃，也在语法层面对开发人员友好了很多，js代码可以写的简洁与工整。这里也推荐大家看笔者整理的[AI Javascript风格指南 ](https://lq782655835.github.io/blogs/team-standard/clean-code-javascript.html)，有很多较长ES5代码转为简洁ES6+的例子。以下汇总ES6+新增的特性，帮助大家更好的在实际编码过程中，应用上这些特性。从[tc39/proposals](https://github.com/tc39/proposals/blob/master/finished-proposals.md)可以看到Javascript 发展委员会TC39已经纳入标准的提案。
 
 ## ES6

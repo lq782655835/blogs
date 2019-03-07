@@ -85,6 +85,7 @@ module.exports = {
                     'js/es6-3.object.md',
                     'js/es6-4.module.md',
                     'js/es6-latest-feature.md',
+                    'js/git-command.md',
                     'js/js-design-pattern.md',
                     'js/npm script.md',
                     'js/postcss.md',
@@ -96,19 +97,6 @@ module.exports = {
                     'js/vue-code-frame.md',
                     'js/webapck-devServer\b.md',
                     'js/webpack3.x-to-webpack4.md'
-                ]
-            },
-            {
-                key: 'node',
-                title: 'NodeJS',
-                collapsable: true,
-                children: [
-                    'node/nginx.md',
-                    'node/node-api-summary.md',
-                    'node/node-express-api.md',
-                    'node/node-mongodb.md',
-                    'node/node-tool-package.md',
-                    'node/node-vscode-debug.md'
                 ]
             },
             {
@@ -127,6 +115,19 @@ module.exports = {
                     'think/project-h5-video-summary.md',
                     'think/refactor-your-js-code.md',
                     'think/think-cli-official-website.md'
+                ]
+            },
+            {
+                key: 'node',
+                title: 'NodeJS',
+                collapsable: true,
+                children: [
+                    'node/nginx.md',
+                    'node/node-api-summary.md',
+                    'node/node-express-api.md',
+                    'node/node-mongodb.md',
+                    'node/node-tool-package.md',
+                    'node/node-vscode-debug.md'
                 ]
             },
             {

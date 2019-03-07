@@ -1,7 +1,6 @@
+# AI JavaScript 风格指南
 
 Original Repository: [ryanmcdermott/clean-code-javascript](https://github.com/ryanmcdermott/clean-code-javascript)
-
-# AI JavaScript 风格指南
 
 > 笔者注：本文[原文地址](https://github.com/alivebao/clean-code-js),作者根据 Robert C. Martin 《代码整洁之道》总结了适用于 JavaScript 的软件工程原则。该风格指南全面而实用，非常适合作为前端团队代码质量参考标准，也为新融入团队的同学提供一份代码质量指南。
 

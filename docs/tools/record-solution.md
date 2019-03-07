@@ -45,6 +45,12 @@
 
 * [拖拽动态改变宽度](https://github.com/bokuweb/re-resizable) 依赖原生mousedown/move/up事件
 
+* 拖拽事件 - dragenter、dragleave
+
+* [webworker](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API/Using_web_workers) 可用于拆分出一些复杂逻辑，比如大文件上传、文件批量下载、轮询等。- [实用的封装webpack worker loader - workerize-loader](https://github.com/developit/workerize-loader)
+
+* electron的render进程也可以直接使用nodejs api，如果使用import方式使用模块，需要babel转译
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
