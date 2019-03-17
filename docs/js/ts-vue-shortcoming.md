@@ -53,7 +53,7 @@ Vue.mixin({
 const log = (target, name, descriptor) => {
   const method = descriptor.value
   descriptor.value = function(...args) {
-    console.log(target, descriptor)
+    console.log(`你点击了 ${name} 方法`)
     method.apply(target, args)
   }
   return descriptor
@@ -62,12 +62,15 @@ const log = (target, name, descriptor) => {
 @Component
 export default class Home extends Vue {
     @State jobId: string
+    @Mutation('SET_JOB_ID') setJobId: (jobid: string) => void
 
     @log
-    startDashboard(): void {
+    startDashboard(row: JobItem): void {
+        let { jobId } = row
         // below will throw error:
         // "TypeError: this.setJobId is not a function"
         // because now this !== target
+        this.setJobId(jobId)
         console.log(this.jobId)
     }
 }
@@ -77,3 +80,4 @@ export default class Home extends Vue {
 * [TypeScirpt - Modules](https://www.typescriptlang.org/docs/handbook/modules.html)
 
 * [Vue - TypeScript](https://cn.vuejs.org/v2/guide/typescript.html)
+* [Element/Component name with vue-class-component](https://medium.com/haiiro-io/element-component-name-with-vue-class-component-f3b435656561)

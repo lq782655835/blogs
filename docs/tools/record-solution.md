@@ -66,12 +66,13 @@
 ## 工具集
 
 * [css代码片段](https://30-seconds.github.io/30-seconds-of-css/#transform-centering)
+* [licecap](https://github.com/justinfrankel/licecap) - 录屏gif工具
+* [ProcessOn](https://www.processon.com/organizations/5c653312e4b0f0908a940a64#diagrams) - 在线画图
+* [Charles]() - 抓包工具[配置教程](https://blog.csdn.net/windy135/article/details/79086270)
+* [transactional-email-templates](https://github.com/mailgun/transactional-email-templates) 响应式html邮件模板
 * 在线图片压缩工具
     * [squoosh](https://squoosh.app/)
     * [tinypng](https://tinypng.com/)
-* [在线画图ProcessOn](https://www.processon.com/organizations/5c653312e4b0f0908a940a64#diagrams)
-* [抓包工具Charles]() - [配置教程](https://blog.csdn.net/windy135/article/details/79086270)
-* [transactional-email-templates](https://github.com/mailgun/transactional-email-templates) 响应式html邮件模板
 * 在线svg
     * [badgen-service](https://github.com/amio/badgen-service) 在线图标生成服务
     * [sb](https://github.com/jaywcjlove/sb) 在线多种svg图标
