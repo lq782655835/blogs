@@ -90,6 +90,7 @@
         * `get-port` 获取有效端口号
         * `open` 自动打开浏览器
         * `morgan` 日志中间件
+        * `serve-static` 静态服务中间件
         * `koa-router` 相当于app.Router;
         * `koa-static` 相当于express.static
     * 测试
