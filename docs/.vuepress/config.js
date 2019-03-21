@@ -96,6 +96,7 @@ module.exports = {
                     'js/ts-vue-shortcoming.md',
                     'js/vue-code-frame.md',
                     'js/webapck-devServer\b.md',
+                    'js/webpack-module.md',
                     'js/webpack3.x-to-webpack4.md'
                 ]
             },
