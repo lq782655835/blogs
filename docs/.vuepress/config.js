@@ -106,6 +106,7 @@ module.exports = {
                 children: [
                     'think/book-agile-software.md',
                     'think/book-design-for-all.md',
+                    'think/book-head-first-design-patterns.md',
                     'think/book-soft-skills.md',
                     'think/different MVC、MVP、MVVM.md',
                     'think/grow-up-front.md',

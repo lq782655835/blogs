@@ -35,6 +35,7 @@
 # 思考与总结
 * [《敏捷开发》读后总结](https://lq782655835.github.io/blogs/think/book-agile-software.html)
 * [《给大家看的设计书》笔记](https://lq782655835.github.io/blogs/think/book-design-for-all.html)
+* [《Head First Design Patterns》读后总结](https://lq782655835.github.io/blogs/think/book-head-first-design-patterns.html)
 * [程序员软技能指南](https://lq782655835.github.io/blogs/think/book-soft-skills.html)
 * [MVC、MVP、MVVM区别](https://lq782655835.github.io/blogs/think/different%20MVC%E3%80%81MVP%E3%80%81MVVM.html)
 * [谈谈前端天花板问题](https://lq782655835.github.io/blogs/think/grow-up-front.html)
