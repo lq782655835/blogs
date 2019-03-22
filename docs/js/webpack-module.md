@@ -46,7 +46,7 @@ webpack根据webpack.config.js中的入口文件，在入口文件里识别模�
 
 同时以上意味着在webapck环境下，你可以只使用ES6 模块语法书写代码（通常我们都是这么做的），也可以使用CommonJS模块语法，甚至可以两者混合使用。因为从webpack2开始，内置了对ES6、CommonJS、AMD 模块化语句的支持，`webpack会对各种模块进行语法分析，并做转换编译`。
 
-我们举个例子来分析下打包后的源码文件：
+我们举个例子来分析下打包后的源码文件，例子源代码在 [webpack-module-example](https://github.com/lq782655835/webpack-module-example)
 ``` js
 // webpack.config.js
 const path = require('path');
@@ -173,7 +173,7 @@ this.hooks.render.tap( "MainTemplate",
 ## Webpack ES6语法支持
 可能细心的读者看到，以上打包后的add模块代码中依然还是ES6语法，在低端的浏览器中不支持。这是因为没有对应的loader去解析js代码，webpack把所有的资源都视作模块，不同的资源使用不同的loader进行转换。
 
-这里需要使用babel-loader及其插件进行处理，把ES6代码转换成可在浏览器中跑的es5代码。
+这里需要使用babel-loader及其插件@babel/preset-env进行处理，把ES6代码转换成可在浏览器中跑的es5代码。
 
 ``` js
 // webpack.config.js
@@ -207,8 +207,8 @@ __webpack_exports__["default"] = (function (a, b) {
 
 ## 总结
 1. webpack对于ES模块/CommonJS模块的实现，是基于自己实现的webpack_require，所以代码能跑在浏览器中。
-2. 从 Webpack2 开始，已经内置了对 ES6、CommonJS、AMD 模块化语句的支持。但不包括新的ES6语法转为ES5代码，这部分工作还是留给了babel及其插件（需要安装babel-loader和@babel/preset-env）。
-3. 在webpack中可以同时使用ES6模块和CommonJS模块。因为 module.exports 很像 export default 所以 ES6模块 可以很方便兼容 CommonJS。反过来CommonJS兼容ES6模块，需要额外处理：require('es-module').default
+2. 从 webpack2 开始，已经内置了对 ES6、CommonJS、AMD 模块化语句的支持。但不包括新的ES6语法转为ES5代码，这部分工作还是留给了babel及其插件。
+3. 在webpack中可以同时使用ES6模块和CommonJS模块。因为 module.exports很像export default，所以ES6模块可以很方便兼容 CommonJS：import XXX from 'commonjs-module'。反过来CommonJS兼容ES6模块，需要额外加上default：require('es-module').default。
 
 ## 参考文章
 
