@@ -138,7 +138,39 @@ console.log(Add, Add(1, 2))
 ```
 以上核心代码中，能让打包后的代码直接跑在浏览器中，是因为webpack通过__webpack_require__ 函数模拟了模块的加载（类似于node中的require语法），把定义的模块内容挂载到module.exports上。同时__webpack_require__函数中也对模块缓存做了优化，防止模块二次重新加载，优化性能。
 
-## webpack ES6语法支持
+再让我们看下webpack的源码：
+``` js
+// webpack/lib/MainTemplate.js
+
+// 主文件模板
+// webpack生成的最终文件叫chunk，chunk包含若干的逻辑模块，即为module
+this.hooks.render.tap( "MainTemplate",
+(bootstrapSource, chunk, hash, moduleTemplate, dependencyTemplates) => {
+  const source = new ConcatSource();
+  source.add("/******/ (function(modules) { // webpackBootstrap\n");
+  // 入口内容，__webpack_require__就在bootstrapSource中
+  source.add(new PrefixSource("/******/", bootstrapSource));
+  source.add("/******/ })\n");
+  source.add(
+    "/************************************************************************/\n"
+  );
+  source.add("/******/ (");
+  source.add(
+    // 依赖的module都会写入对应数组
+    this.hooks.modules.call(
+      new RawSource(""),
+      chunk,
+      hash,
+      moduleTemplate,
+      dependencyTemplates
+    )
+  );
+  source.add(")");
+  return source;
+}
+```
+
+## Webpack ES6语法支持
 可能细心的读者看到，以上打包后的add模块代码中依然还是ES6语法，在低端的浏览器中不支持。这是因为没有对应的loader去解析js代码，webpack把所有的资源都视作模块，不同的资源使用不同的loader进行转换。
 
 这里需要使用babel-loader及其插件进行处理，把ES6代码转换成可在浏览器中跑的es5代码。
@@ -183,3 +215,4 @@ __webpack_exports__["default"] = (function (a, b) {
 * [前端模块化：CommonJS,AMD,CMD,ES6](https://juejin.im/post/5aaa37c8f265da23945f365c)
 * [深入 CommonJs 与 ES6 Module](https://segmentfault.com/a/1190000017878394)
 * [Webpack将代码打包成什么样子](https://github.com/Pines-Cheng/blog/issues/45)
+* [Webpack源码分析](https://zhuanlan.zhihu.com/p/29551683)
