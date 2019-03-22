@@ -39,7 +39,7 @@ export default { age: 1, a: 'hello', foo:function(){} }
 import foo from './foo'
 ```
 
-## webpack模块打包
+## Webpack模块打包
 既然模块规范有这么多，那webpack是如何去解析不同的模块呢？
 
 webpack根据webpack.config.js中的入口文件，在入口文件里识别模块依赖，不管这里的模块依赖是用CommonJS写的，还是ES6 Module规范写的，webpack会自动进行分析，并通过转换、编译代码，打包成最终的文件。`最终文件中的模块实现是基于webpack自己实现的webpack_require（es5代码）`，所以打包后的文件可以跑在浏览器上。
