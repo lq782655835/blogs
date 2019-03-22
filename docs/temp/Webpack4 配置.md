@@ -11,6 +11,35 @@ module.exports = {
 
 ## Loader
 
+rules 配置模块的读取和解析规则， 通常用来配置loader， 其类型是一个数组， 数组里每一项都描述了如何去处理部分文件。
+
+配置一项rules大致通过以下方式：
+1. 条件匹配： 通过test、include、exclude三个配置来命中Loader要应用的规则文件。(三个配置都可以是正则，也支持数组)
+2. 应用规则： 对选中后的文件通过use配置项来应用loader，可以应用一个loader或者按照从后往前的顺序应用一组loader。同时还可以分别给loader传入参数。
+3. 重置顺序： 一组loader的执行顺序默认是从有道左执行，通过exforce选项可以让其中一个loader的执行顺序放到最前或者是最后。
+
+``` js
+module: {
+    rules: [
+        {
+            test: /\.m?js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            }
+        },
+        {
+            test: /\.scss$/,
+            use: ['style-loader', 'css-loader', 'sass-loader'],
+            exclude: path.resolve(__dirname, 'node_modules')
+        }
+    ]
+}
+```
+
 ### css
 
 * style-loader

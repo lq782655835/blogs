@@ -1,4 +1,4 @@
-# webpack 模块打包原理
+# Webpack 模块打包原理
 
 在使用webpack的过程中，你是否好奇webpack打包的代码为什么可以直接在浏览器中跑？为什么webpack可以支持各种ES6最新语法？为什么在webpack中可以书写import ES6模块，也支持require CommonJS模块？
 
@@ -75,7 +75,7 @@ import Add from './add'
 console.log(Add, Add(1, 2))
 ```
 
-打包后的bundle.js文件如下:
+打包后精简的bundle.js文件如下:
 ``` js
 // modules是存放所有模块的数组，数组中每个元素存储{ 模块路径: 模块导出代码函数 }
 (function(modules) {
@@ -97,14 +97,15 @@ console.log(Add, Add(1, 2))
 		};
 
     // 把要加载的模块内容，挂载到module.exports上
-		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+    modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
     module.l = true; // 标记为已加载
 
     // 返回加载的模块，调用方直接调用即可
 		return module.exports;
 	}
 	
-	// __webpack_require__对象下的r函数：在module.exports上定义__esModule为true，表明是一个模块对象
+	// __webpack_require__对象下的r函数
+  // 在module.exports上定义__esModule为true，表明是一个模块对象
 	__webpack_require__.r = function(exports) {
 		Object.defineProperty(exports, '__esModule', { value: true });
   };
@@ -115,7 +116,8 @@ console.log(Add, Add(1, 2))
 ({
   // add模块
   "./src/add.js": (function(module, __webpack_exports__, __webpack_require__) {
-    __webpack_require__.r(__webpack_exports__); // 在module.exports上定义__esModule为true
+    // 在module.exports上定义__esModule为true
+    __webpack_require__.r(__webpack_exports__);
     // 直接把add模块内容，赋给module.exports.default对象上
     __webpack_exports__["default"] = (function(a, b) {
       let { name } = { name: 'hello world,'}
@@ -126,9 +128,10 @@ console.log(Add, Add(1, 2))
   // 入口模块
   "./src/main.js": (function(module, __webpack_exports__, __webpack_require__) {
     __webpack_require__.r(__webpack_exports__)
-    // 拿到add模块的定义：_add__WEBPACK_IMPORTED_MODULE_0__ = module.exports，有点类似require
+    // 拿到add模块的定义
+    // _add__WEBPACK_IMPORTED_MODULE_0__ = module.exports，有点类似require
     var _add__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/add.js");
-    // add模块内容：_add__WEBPACK_IMPORTED_MODULE_0__["default"]
+    // add模块内容: _add__WEBPACK_IMPORTED_MODULE_0__["default"]
     console.log(_add__WEBPACK_IMPORTED_MODULE_0__["default"], Object(_add__WEBPACK_IMPORTED_MODULE_0__["default"])(1, 2))
   })
 });
@@ -170,11 +173,10 @@ __webpack_exports__["default"] = (function (a, b) {
 });
 ```
 
-
 ## 总结
-1. webpack对于es模块/commonjs模块的实现，是基于自己实现的webpack_require 和webpack_exports，所以代码能跑在浏览器中。
+1. webpack对于ES模块/CommonJS模块的实现，是基于自己实现的webpack_require，所以代码能跑在浏览器中。
 2. 从 Webpack2 开始，已经内置了对 ES6、CommonJS、AMD 模块化语句的支持。但不包括新的ES6语法转为ES5代码，这部分工作还是留给了babel及其插件（需要安装babel-loader和@babel/preset-env）。
-3. 在webpack中可以同时使用ES6模块和commonjs模块。因为 module.exports 很像 export default 所以 ES6模块 可以很方便兼容 CommonJs。反过来CommonJS兼容ES6模块，需要额外default(require('es-module').default)
+3. 在webpack中可以同时使用ES6模块和CommonJS模块。因为 module.exports 很像 export default 所以 ES6模块 可以很方便兼容 CommonJS。反过来CommonJS兼容ES6模块，需要额外处理：require('es-module').default
 
 ## 参考文章
 

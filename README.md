@@ -31,7 +31,7 @@
 * [TypeScript在Vue2.x中的坑](https://lq782655835.github.io/blogs/js/ts-vue-shortcoming.html)
 * [Vue2.0源码分析 - 框架结构](https://lq782655835.github.io/blogs/js/vue-code-frame.html)
 * [Webpack4 devServer配置详解](https://lq782655835.github.io/blogs/js/webapck-devServer%08.html)
-* [webpack 模块打包原理](https://lq782655835.github.io/blogs/js/webpack-module.html)
+* [Webpack 模块打包原理](https://lq782655835.github.io/blogs/js/webpack-module.html)
 * [Webpack3.x升级Webpack4指南](https://lq782655835.github.io/blogs/js/webpack3.x-to-webpack4.html)
 # 思考与总结
 * [《敏捷开发》读后总结](https://lq782655835.github.io/blogs/think/book-agile-software.html)
