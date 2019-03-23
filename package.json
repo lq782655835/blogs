@@ -21,6 +21,8 @@
     },
     "license": "MIT",
     "devDependencies": {
+        "@vuepress/plugin-back-to-top": "^1.0.0-alpha.0",
+        "@vuepress/plugin-medium-zoom": "^1.0.0-alpha.0",
         "node-vuepress-auto-read": "^0.1.0"
     },
     "dependencies": {

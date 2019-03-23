@@ -7,6 +7,7 @@ module.exports = {
     ],
     base: '/blogs/',
     dest: 'site',
+    plugins: ['@vuepress/medium-zoom', '@vuepress/back-to-top'],
     themeConfig: {
         sidebarDepth: 0,
         repo: 'https://github.com/lq782655835/blogs',

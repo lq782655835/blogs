@@ -502,39 +502,3 @@ foo && foo.push('1') // okay
 * [templates/module-d-ts](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/module-d-ts.html)
 * [Vue2.5+ Typescript 引入全面指南 - Vuex篇](https://segmentfault.com/a/1190000011864013)
 * [Typescript-tsconfig.json](https://www.tslang.cn/docs/handbook/tsconfig-json.html)
-
-
-
-
-
-
-``` ts
-interface Process {
-  exit(code?: number): void;
-}
-
-declare let process: Process;
-
-// 调用
-process.exit();
-```
-
-> namespace当作value？yes。同样的还有enum
-``` ts
-namespace Utility {
-  export function log(msg) {
-    console.log(msg);
-  }
-  export function error(msg) {
-    console.log(msg);
-  }
-}
-
-// usage
-Utility.log('Call me');
-Utility.error('maybe');
-// or
-(function (Utility) {
-  // 添加属性至 Utility
-})(Utility || Utility = {});
-```

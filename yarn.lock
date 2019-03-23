@@ -757,6 +757,12 @@
   dependencies:
     lodash.throttle "^4.1.1"
 
+"@vuepress/plugin-back-to-top@^1.0.0-alpha.0":
+  version "1.0.0-alpha.0"
+  resolved "http://registry.npm.taobao.org/@vuepress/plugin-back-to-top/download/@vuepress/plugin-back-to-top-1.0.0-alpha.0.tgz#401513b39d5dd081f49404c35ab6f51002c1cca0"
+  dependencies:
+    lodash.debounce "^4.0.8"
+
 "@vuepress/plugin-container@^1.0.0-alpha.42":
   version "1.0.0-alpha.42"
   resolved "http://registry.npm.taobao.org/@vuepress/plugin-container/download/@vuepress/plugin-container-1.0.0-alpha.42.tgz#c61ec31ba088b62f0f78431399f3686d99179308"
@@ -768,6 +774,12 @@
   resolved "http://registry.npm.taobao.org/@vuepress/plugin-last-updated/download/@vuepress/plugin-last-updated-1.0.0-alpha.42.tgz#51b888da72ad6bb8d7912275f9604232c756743b"
   dependencies:
     cross-spawn "^6.0.5"
+
+"@vuepress/plugin-medium-zoom@^1.0.0-alpha.0":
+  version "1.0.0-alpha.0"
+  resolved "http://registry.npm.taobao.org/@vuepress/plugin-medium-zoom/download/@vuepress/plugin-medium-zoom-1.0.0-alpha.0.tgz#efb6bd10d41c64161e3e25d6108fe527ebd4abad"
+  dependencies:
+    medium-zoom "^0.4.0"
 
 "@vuepress/plugin-nprogress@^1.0.0-alpha.42":
   version "1.0.0-alpha.42"
@@ -3705,6 +3717,10 @@ mdurl@^1.0.1:
 media-typer@0.3.0:
   version "0.3.0"
   resolved "http://registry.npm.taobao.org/media-typer/download/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
+
+medium-zoom@^0.4.0:
+  version "0.4.0"
+  resolved "http://registry.npm.taobao.org/medium-zoom/download/medium-zoom-0.4.0.tgz#8e13c9b754903c0c903220611af0d3cd373a4222"
 
 mem@^4.0.0:
   version "4.1.0"
