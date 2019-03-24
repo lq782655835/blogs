@@ -88,6 +88,7 @@ module.exports = {
                     'js/es6-latest-feature.md',
                     'js/git-command.md',
                     'js/js-design-pattern.md',
+                    'js/js-polyfill.md',
                     'js/npm script.md',
                     'js/postcss.md',
                     'js/regex.md',
@@ -140,6 +141,7 @@ module.exports = {
                 children: [
                     'react/diff-vue-vs-react.md',
                     'react/diff-vuex-redux.md',
+                    'react/function-program.md',
                     'react/react-eslint.md',
                     'react/react-native-debug-skill.md',
                     'react/react-native-environment-mac.md',
