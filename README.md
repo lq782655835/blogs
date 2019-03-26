@@ -51,6 +51,7 @@
 * [Nginx反向代理](https://lq782655835.github.io/blogs/node/nginx.html)
 * [Node-常用API](https://lq782655835.github.io/blogs/node/node-api-summary.html)
 * [Express API及源码解析](https://lq782655835.github.io/blogs/node/node-express-api.html)
+* [Node-模块源码分析](https://lq782655835.github.io/blogs/node/node-module.html)
 * [MongoDB指南](https://lq782655835.github.io/blogs/node/node-mongodb.html)
 * [Node-常用包总结](https://lq782655835.github.io/blogs/node/node-tool-package.html)
 * [Node-Debug for VSCode](https://lq782655835.github.io/blogs/node/node-vscode-debug.html)

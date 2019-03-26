@@ -129,6 +129,7 @@ module.exports = {
                     'node/nginx.md',
                     'node/node-api-summary.md',
                     'node/node-express-api.md',
+                    'node/node-module.md',
                     'node/node-mongodb.md',
                     'node/node-tool-package.md',
                     'node/node-vscode-debug.md'

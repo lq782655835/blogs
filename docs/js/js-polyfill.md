@@ -116,7 +116,33 @@ function removeRepeat(arr) {
 
 // or es6
 let removeRepeat = arr =>  Array.from(new Set(...arr))
+```
 
+## 浅拷贝、深拷贝
+
+``` js
+// 浅拷贝
+const clone = target => Object.assign({}, target)
+const clone = target => { ...target }
+```
+
+``` js
+// 深拷贝
+// 递归赋值
+const deepClone = target => {
+    if (!traget || typeof traget !== 'object') {
+        throw new Error('error arguments', 'shallowClone')
+    }
+
+    let targetObj = target.constructor === Array ? [] : {}
+    for (let key in target) {
+        targetObj[key] = typeof target[key] === 'object' ？ deepClone(target[key]) : target[key]
+    }
+    return targetObj
+}
+
+// or 注意这种取巧方法是有限制的，只能解析Number、String、Array等能够被json表示的数据结构
+const deepClone = target => JSON.parse(JSON.stringify(target))
 ```
 
 ## 参考文章
