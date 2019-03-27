@@ -1,4 +1,4 @@
-# js polyfill
+# JS polyfill
 项目中常用的一些垫片，对js基础是个很好的总结。
 
 ## bind

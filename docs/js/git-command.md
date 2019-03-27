@@ -1,4 +1,4 @@
-# git实用命令
+# Git实用命令
 
 > 总结最常用的git命令操作。Mac推荐可视化软件`Sourcetree`
 

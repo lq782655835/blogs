@@ -80,12 +80,7 @@ module.exports = {
                 children: [
                     'js/array-v8-method.md',
                     'js/axios-usage-theory.md',
-                    'js/different for in、for of.md',
-                    'js/es6-1.new-feature.md',
-                    'js/es6-2.destruction.md',
-                    'js/es6-3.object.md',
-                    'js/es6-4.module.md',
-                    'js/es6-latest-feature.md',
+                    'js/different-for-in-for-of.md',
                     'js/git-command.md',
                     'js/http-cross-domain.md',
                     'js/js-design-pattern.md',
@@ -98,7 +93,7 @@ module.exports = {
                     'js/ts-tsconfig.md',
                     'js/ts-vue-shortcoming.md',
                     'js/vue-code-frame.md',
-                    'js/webapck-devServer\b.md',
+                    'js/webapck4-devServer.md',
                     'js/webpack-module.md',
                     'js/webpack3.x-to-webpack4.md'
                 ]
@@ -108,18 +103,13 @@ module.exports = {
                 title: '思考与总结',
                 collapsable: true,
                 children: [
-                    'think/book-agile-software.md',
-                    'think/book-design-for-all.md',
-                    'think/book-head-first-design-patterns.md',
-                    'think/book-soft-skills.md',
-                    'think/different MVC、MVP、MVVM.md',
                     'think/grow-up-front.md',
                     'think/grow-up-life-it.md',
-                    'think/how-to-improve-reading.md',
                     'think/project-electron-summary.md',
                     'think/project-h5-video-summary.md',
                     'think/refactor-your-js-code.md',
-                    'think/think-cli-official-website.md'
+                    'think/think-cli-official-website.md',
+                    'think/think-different-MVC-MVP-MVVM.md'
                 ]
             },
             {
@@ -148,6 +138,30 @@ module.exports = {
                     'react/react-native-debug-skill.md',
                     'react/react-native-environment-mac.md',
                     'react/react.md'
+                ]
+            },
+            {
+                key: 'es6',
+                title: 'ES6',
+                collapsable: true,
+                children: [
+                    'es6/es6-1.new-feature.md',
+                    'es6/es6-2.destruction.md',
+                    'es6/es6-3.object.md',
+                    'es6/es6-4.module.md',
+                    'es6/es6-latest-feature.md'
+                ]
+            },
+            {
+                key: 'read-books',
+                title: '读书笔记',
+                collapsable: true,
+                children: [
+                    'read-books/0.how-to-improve-reading.md',
+                    'read-books/book-agile-software.md',
+                    'read-books/book-design-for-all.md',
+                    'read-books/book-head-first-design-patterns.md',
+                    'read-books/book-soft-skills.md'
                 ]
             },
             {

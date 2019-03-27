@@ -1,4 +1,4 @@
-# axios用法和原理
+# Axios用法与原理
 axios是一个非常小巧而好用的http请求库，支持promise以及同时支持浏览器和node端。axios使用简单，配置灵活，也是vue官方推荐的请求库。另外[axios源码](https://github.com/axios/axios)层次清晰明了，非常适合阅读。
 
 ## 特性
