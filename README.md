@@ -21,6 +21,7 @@
 * [ES6-模块详解](https://lq782655835.github.io/blogs/js/es6-4.module.html)
 * [ES6-ECMAScript特性汇总](https://lq782655835.github.io/blogs/js/es6-latest-feature.html)
 * [git实用命令](https://lq782655835.github.io/blogs/js/git-command.html)
+* [HTTP跨域解决方案](https://lq782655835.github.io/blogs/js/http-cross-domain.html)
 * [JS设计模式](https://lq782655835.github.io/blogs/js/js-design-pattern.html)
 * [js polyfill](https://lq782655835.github.io/blogs/js/js-polyfill.html)
 * [npm script技巧](https://lq782655835.github.io/blogs/js/npm%20script.html)

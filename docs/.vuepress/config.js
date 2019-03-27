@@ -87,6 +87,7 @@ module.exports = {
                     'js/es6-4.module.md',
                     'js/es6-latest-feature.md',
                     'js/git-command.md',
+                    'js/http-cross-domain.md',
                     'js/js-design-pattern.md',
                     'js/js-polyfill.md',
                     'js/npm script.md',
