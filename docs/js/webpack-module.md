@@ -210,7 +210,7 @@ __webpack_exports__["default"] = (function (a, b) {
 ## Webpack 模块异步加载
 以上webpack把所有模块打包到主文件中，所以模块加载方式都是同步方式。但在开发应用过程中，按需加载（也叫懒加载）也是经常使用的优化技巧之一。按需加载，通俗讲就是代码执行到异步模块（模块内容在另外一个js文件中），通过网络请求即时加载对应的异步模块代码，再继续接下去的流程。那webpack是如何执行代码时，判断哪些代码是异步模块呢？webpack又是如何加载异步模块呢？
 
-webpack有个[require.ensure](https://webpack.js.org/api/module-methods/#requireensure) api语法来标记为异步加载模块，最新的webpack4推荐使用新的[import()](https://webpack.js.org/api/module-methods/#import-1) api(需要配合@babel/plugin-syntax-dynamic-import插件)。因为require.ensure是通过回调函数执行接下来的流程，而import()返回promise，这意味着可以使用到最新的ES8 async/await语法，使得可以像书写同步代码一样，执行异步流程。
+webpack有个[require.ensure](https://webpack.js.org/api/module-methods/#requireensure) api语法来标记为异步加载模块，最新的webpack4推荐使用新的[import()](https://webpack.js.org/api/module-methods/#import-1) api(需要配合@babel/plugin-syntax-dynamic-import插件)。因为require.ensure是通过回调函数执行接下来的流程，而import()返回promise，这意味着可以使用最新的ES8 async/await语法，使得可以像书写同步代码一样，执行异步流程。
 
 现在我们从webpack打包后的源码来看下，webpack是如何实现异步模块加载的。修改入口文件main.js，引入异步模块async.js：
 ``` js
