@@ -1,4 +1,42 @@
-# js核心
+# js继承
+
+对于ES5来说，没有class的概念。在es5中，类其实就是保存了一个函数的变量，这个函数有自己的属性和方法。将属性和方法组成一个类的过程就是封装。
+
+js的继承是利用原型链来实现的
+
+var o = new Object()
+
+新建一个对象o
+o. __proto__ = Object.prototype 将新创建的对象的__proto__属性指向构造函数的prototype
+将this指向新创建的对象
+返回新对象，但是这里需要看构造函数有没有返回值，如果构造函数的返回值为基本数据类型string,boolean,number,null,undefined,那么就返回新对象，如果构造函数的返回值为对象类型，那么就返回这个对象类型
+
+``` js
+// 定义Animal类
+function Animal(name, obj) {
+    this.name = name
+    this.obj = obj
+}
+Animal.prototype.sleep = function() {
+    return this.name + ' sleep'
+}
+
+var animal = new Animal('tom')
+console.log(animal.sleep())
+
+// 继承
+function Bird(name, obj) {
+    Animal.call(this, name, obj)
+    this.wing = true
+}
+Bird.prototype = new Animal() // Bird共享原型对象Animal中的所有属性和方法
+Bird.prototype.constructor = Bird
+
+var bird = new Bird('jim')
+console.log(bird)
+console.log(Bird.prototype.constructor)
+```
+
 
 ## 原型链
 * 含有__protp__的对象都是实例
@@ -64,3 +102,8 @@ console.log(
 ## 参考文章
 
 * [汤姆大叔-JavaScript核心](https://www.cnblogs.com/TomXu/archive/2012/01/12/2308594.html#4187939)
+
+ES5中：
+
+利用借用构造函数实现 实例属性和方法的继承 ；
+利用原型链或者寄生式继承实现 共享的原型属性和方法的继承 

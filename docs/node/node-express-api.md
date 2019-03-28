@@ -366,7 +366,6 @@ Layer.prototype.handle_request = function handle(req, res, next) {
 * 凡事有回调的都是用Layer对象包装，Layer对象中有match函数来检验是否匹配到路由，handle_request函数来执行回调
 * 路由流程总结：当客户端发送一个http请求后，会先进入express实例对象对应的router.handle函数中，router.handle函数会通过next()遍历stack中的每一个layer进行match，如果match返回true，则获取layer.route，执行route.dispatch函数，route.dispatch同样是通过next()遍历stack中的每一个layer，然后执行layer.handle_request，也就是调用中间件函数。直到所有的中间件函数被执行完毕，整个路由处理结束。
 
-
 ## 参考文章
 
 * [Express源码学习-路由篇](https://juejin.im/post/5ab545a66fb9a028b92d15e7)
