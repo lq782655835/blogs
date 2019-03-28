@@ -19,8 +19,7 @@ input: 'http://localhost:8081/#/demo' ]
 ### regex.test(string)
 查看正则表达式与指定的字符串是否匹配。返回 true 或 false
 ``` js
-let regexTest = /#(.*)$/.test('http://localhost:8081/#/demo')
-// true
+let regexTest = /#(.*)$/.test('http://localhost:8081/#/demo') // true
 ```
 
 ### string.match(regex)
@@ -36,11 +35,22 @@ let stringMatch = 'http://localhost:8081/#/demo'.match(/#(.*)$/)
 ### string.search(regex)
 匹配成功，search() 返回正则表达式在字符串中首次匹配项的索引。否则，返回 -1。类似regex.test()
 ``` js
-let stringSearch = 'http://localhost:8081/#/demo'.search(/#(.*)$/)
-// 22
-
+let stringSearch = 'http://localhost:8081/#/demo'.search(/#(.*)$/) // 22
 ```
 
+## 贪婪模式/非贪婪模式
+贪婪模式：在整个表达式匹配成功的前提下，尽可能多的匹配。
+``` js
+/.*/g
+```
+
+非贪婪模式：在整个表达式匹配成功的前提下，尽可能少的匹配。
+``` js
+// 遇到？，尽可能少的匹配
+/.*?/g
+```
+
+## 其他
 其他正则相关语法[@jawil](https://github.com/jawil/blog/issues/32)总结的十分详细，故转载在此：
 
 ![](https://camo.githubusercontent.com/0c015371b3762c589971a7b227c47b17791b1123/68747470733a2f2f73332e353163746f2e636f6d2f7779667330322f4d30312f38452f35362f774b696f4c31692d4a7a65546650394541414f6c376749536d6a343938302e676966)
