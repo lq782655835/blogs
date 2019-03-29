@@ -46,6 +46,7 @@
 * [MongoDB指南](https://lq782655835.github.io/blogs/node/node-mongodb.html)
 * [Node-常用包总结](https://lq782655835.github.io/blogs/node/node-tool-package.html)
 * [Node-Debug for VSCode](https://lq782655835.github.io/blogs/node/node-vscode-debug.html)
+* [Redis简介](https://lq782655835.github.io/blogs/node/redis.html)
 # React
 * [Vue与React比较](https://lq782655835.github.io/blogs/react/diff-vue-vs-react.html)
 * [Vuex与Redux比较](https://lq782655835.github.io/blogs/react/diff-vuex-redux.html)

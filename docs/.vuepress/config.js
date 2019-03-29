@@ -3,7 +3,8 @@ module.exports = {
     head: [
         ['meta', { 'http-equiv': 'cache-control', content: 'no-cache, no-store, must-revalidate' }],
         ['meta', { 'http-equiv': 'pragma', content: 'no-cache' }],
-        ['meta', { 'http-equiv': 'expires', content: '0' }]
+        ['meta', { 'http-equiv': 'expires', content: '0' }],
+        ['link', { rel: 'icon', href: './favicon.ico' }]
     ],
     base: '/blogs/',
     dest: 'site',
@@ -30,6 +31,10 @@ module.exports = {
                     {
                         text: 'svg-icon-webpack-plugin',
                         link: 'https://github.com/lq782655835/svg-icon-webpack-plugin'
+                    },
+                    {
+                        text: 'cache-manage-js',
+                        link: 'https://github.com/lq782655835/cache-manage-js'
                     }
                 ]
             },
@@ -123,7 +128,8 @@ module.exports = {
                     'node/node-module.md',
                     'node/node-mongodb.md',
                     'node/node-tool-package.md',
-                    'node/node-vscode-debug.md'
+                    'node/node-vscode-debug.md',
+                    'node/redis.md'
                 ]
             },
             {
