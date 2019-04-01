@@ -4,7 +4,7 @@ module.exports = {
         ['meta', { 'http-equiv': 'cache-control', content: 'no-cache, no-store, must-revalidate' }],
         ['meta', { 'http-equiv': 'pragma', content: 'no-cache' }],
         ['meta', { 'http-equiv': 'expires', content: '0' }],
-        ['link', { rel: 'icon', href: './favicon.ico' }]
+        ['link', { rel: 'icon', href: '/blogs/favicon.ico' }]
     ],
     base: '/blogs/',
     dest: 'site',
@@ -79,43 +79,46 @@ module.exports = {
                 ]
             },
             {
-                key: 'js',
-                title: '前端总结',
-                collapsable: true,
-                children: [
-                    'js/array-v8-method.md',
-                    'js/axios-usage-theory.md',
-                    'js/different-for-in-for-of.md',
-                    'js/git-command.md',
-                    'js/http-cross-domain.md',
-                    'js/js-design-pattern.md',
-                    'js/js-polyfill.md',
-                    'js/markdown-it-code.md',
-                    'js/npm script.md',
-                    'js/postcss.md',
-                    'js/regex.md',
-                    'js/tool-stylelint.md',
-                    'js/ts-in-vue-project.md',
-                    'js/ts-tsconfig.md',
-                    'js/ts-vue-shortcoming.md',
-                    'js/vue-code-frame.md',
-                    'js/webapck4-devServer.md',
-                    'js/webpack-module.md',
-                    'js/webpack3.x-to-webpack4.md'
-                ]
-            },
-            {
-                key: 'think',
+                key: 'project',
                 title: '思考与总结',
                 collapsable: true,
                 children: [
-                    'think/grow-up-front.md',
-                    'think/grow-up-life-it.md',
-                    'think/project-electron-summary.md',
-                    'think/project-h5-video-summary.md',
-                    'think/refactor-your-js-code.md',
-                    'think/think-cli-official-website.md',
-                    'think/think-different-MVC-MVP-MVVM.md'
+                    'project/axios-usage-theory.md',
+                    'project/grow-up-front.md',
+                    'project/grow-up-life-it.md',
+                    'project/markdown-it-code.md',
+                    'project/postcss.md',
+                    'project/project-electron-summary.md',
+                    'project/project-h5-video-summary.md',
+                    'project/refactor-your-js-code.md',
+                    'project/think-cli-official-website.md',
+                    'project/tool-stylelint.md',
+                    'project/ts-in-vue-project.md',
+                    'project/ts-tsconfig.md',
+                    'project/ts-vue-shortcoming.md',
+                    'project/vue-code-frame.md',
+                    'project/webapck4-devServer.md',
+                    'project/webpack-module.md',
+                    'project/webpack3.x-to-webpack4.md'
+                ]
+            },
+            {
+                key: 'js',
+                title: 'JS',
+                collapsable: true,
+                children: [
+                    'js/array-v8-method.md',
+                    'js/different-for-in-for-of.md',
+                    'js/es6-1.new-feature.md',
+                    'js/es6-2.destruction.md',
+                    'js/es6-3.object.md',
+                    'js/es6-4.module.md',
+                    'js/es6-latest-feature.md',
+                    'js/http-cross-domain.md',
+                    'js/js-design-pattern.md',
+                    'js/js-polyfill.md',
+                    'js/regex.md',
+                    'js/think-different-MVC-MVP-MVVM.md'
                 ]
             },
             {
@@ -148,15 +151,19 @@ module.exports = {
                 ]
             },
             {
-                key: 'es6',
-                title: 'ES6',
+                key: 'tools',
+                title: '效率工具',
                 collapsable: true,
                 children: [
-                    'es6/es6-1.new-feature.md',
-                    'es6/es6-2.destruction.md',
-                    'es6/es6-3.object.md',
-                    'es6/es6-4.module.md',
-                    'es6/es6-latest-feature.md'
+                    'tools/0.tool-summary.md',
+                    'tools/charles-tool.md',
+                    'tools/git-command.md',
+                    'tools/npm script.md',
+                    'tools/python-grammar.md',
+                    'tools/record-solution.md',
+                    'tools/shell-vim.md',
+                    'tools/vscode.md',
+                    'tools/yarn-vs-npm.md'
                 ]
             },
             {
@@ -169,20 +176,6 @@ module.exports = {
                     'read-books/book-design-for-all.md',
                     'read-books/book-head-first-design-patterns.md',
                     'read-books/book-soft-skills.md'
-                ]
-            },
-            {
-                key: 'tools',
-                title: '效率工具',
-                collapsable: true,
-                children: [
-                    'tools/0.tool-summary.md',
-                    'tools/charles-tool.md',
-                    'tools/python-grammar.md',
-                    'tools/record-solution.md',
-                    'tools/shell-vim.md',
-                    'tools/vscode.md',
-                    'tools/yarn-vs-npm.md'
                 ]
             }
         ],

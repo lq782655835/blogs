@@ -1,4 +1,4 @@
-# 前端神器Charles
+# 前端抓包神器Charles
 
 ## Q: Charles是什么
 A: Charles是一个抓包工具，类似工具还有Fiddler。Charles相当于一个插在服务器和客户端之间的“过滤器”；当客户端向服务器发起请求的时候，先到Charles进行过滤，然后Charles在把最终的数据发送给服务器；
