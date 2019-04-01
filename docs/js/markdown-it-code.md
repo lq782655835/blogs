@@ -1,6 +1,6 @@
 # Markdown-It 解析过程
 
-markdown-it是目前使用最广泛的`markdown解析器工具`。它将markdown语法的文件，解析为最终的html文件。绝大部分文档中心框架工具如Vuepress，处理markdown文件部分都是使用该工具以及扩展出的插件。所以了解它的解析过程，是进行自定义markdown插件的前提。
+markdown-it是目前使用最广泛的`markdown解析器工具`。它将markdown语法的文件，解析为最终的html文件。绝大部分文档中心框架工具如Vuepress，处理markdown文件部分都是使用该工具以及扩展出的插件。了解它的解析过程，是进行自定义markdown插件的前提。
 
 解析主要分两步：
 1. Parser：将md文档解析为Tokens（类似ATS）
@@ -8,6 +8,7 @@ markdown-it是目前使用最广泛的`markdown解析器工具`。它将markdown
 
 ``` js
 var md = require('markdown-it')();
+// render函数包含了parser和renderer阶段
 var result = md.render('# markdown-it rulezz!');
 ```
 
@@ -41,7 +42,6 @@ var _rules = [
 function Core() {
     // Ruler类在Block Chain和Inline Chain都有应用
   this.ruler = new Ruler();
-
   for (var i = 0; i < _rules.length; i++) {
     this.ruler.push(_rules[i][0], _rules[i][1]);
   }
@@ -49,7 +49,6 @@ function Core() {
 
 Core.prototype.process = function (state) {
   var i, l, rules;
-
   rules = this.ruler.getRules('');
 
   for (i = 0, l = rules.length; i < l; i++) {

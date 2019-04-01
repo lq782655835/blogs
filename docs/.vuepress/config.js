@@ -90,7 +90,7 @@ module.exports = {
                     'js/http-cross-domain.md',
                     'js/js-design-pattern.md',
                     'js/js-polyfill.md',
-                    'js/markdown-it\b-code.md',
+                    'js/markdown-it-code.md',
                     'js/npm script.md',
                     'js/postcss.md',
                     'js/regex.md',
