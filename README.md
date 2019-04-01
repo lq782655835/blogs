@@ -19,6 +19,7 @@
 * [HTTP跨域解决方案](https://lq782655835.github.io/blogs/js/http-cross-domain.html)
 * [JS设计模式](https://lq782655835.github.io/blogs/js/js-design-pattern.html)
 * [JS polyfill](https://lq782655835.github.io/blogs/js/js-polyfill.html)
+* [Markdown-It 解析过程](https://lq782655835.github.io/blogs/js/markdown-it%08-code.html)
 * [npm script技巧](https://lq782655835.github.io/blogs/js/npm%20script.html)
 * [PostCSS](https://lq782655835.github.io/blogs/js/postcss.html)
 * [正则表达式一张图总结](https://lq782655835.github.io/blogs/js/regex.html)
