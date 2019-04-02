@@ -4,7 +4,7 @@ module.exports = {
         ['meta', { 'http-equiv': 'cache-control', content: 'no-cache, no-store, must-revalidate' }],
         ['meta', { 'http-equiv': 'pragma', content: 'no-cache' }],
         ['meta', { 'http-equiv': 'expires', content: '0' }],
-        ['link', { rel: 'icon', href: '/blogs/favicon.ico' }]
+        ['link', { rel: 'icon', href: '/favicon.ico' }]
     ],
     base: '/blogs/',
     dest: 'site',
