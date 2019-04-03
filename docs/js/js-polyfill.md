@@ -116,6 +116,11 @@ function flatDeep(arr) {
 
     return res.reverse()
 }
+
+// 取巧方式
+function flatDeep(arr) {
+    return arr.toString().split(',')
+}
 ```
 
 ``` js
@@ -149,29 +154,41 @@ let removeRepeat = arr =>  [...new Set(arr)]
 
 ``` js
 // 浅拷贝
-const clone = target => Object.assign({}, target)
-const clone = target => { ...target }
+function clone(source) {
+    var target = {}
+    for (var i in source) {
+        source.hasOwnProperty(i) && target[i] = source[i]
+    }
+
+    return target
+}
+
+// es6
+const clone = source => Object.assign({}, source)
+const clone = source => { ...source }
 ```
 
 ``` js
 // 深拷贝
 // 递归赋值
-const deepClone = target => {
-    if (!traget || typeof traget !== 'object') {
+const deepClone = source => {
+    if (!source || typeof source !== 'object') {
         throw new Error('error arguments', 'shallowClone')
     }
 
     // 区分array和object对象
-    let targetObj = target.constructor === Array ? [] : {}
-    for (let key in target) {
-        targetObj[key] = typeof target[key] === 'object' ？ deepClone(target[key]) : target[key]
+    let target = source.constructor === Array ? [] : {}
+    for (let key in source) {
+        target[key] = typeof source[key] === 'object' ？ deepClone(source[key]) : source[key]
     }
-    return targetObj
+    return target
 }
 
-// or 最简单的深拷贝
-// 注意这种取巧方法是有限制的，只能解析Number、String、Array等能够被json表示的数据结构
-const deepClone = target => JSON.parse(JSON.stringify(target))
+// or 取巧方法
+// 注意这种取巧方法是有限制的
+// 1. 只能解析Number、String、Array等能够被json表示的数据结构
+// 2. 不能处理循环引用
+const deepClone = source => JSON.parse(JSON.stringify(source))
 ```
 
 ## 参考文章

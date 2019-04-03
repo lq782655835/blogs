@@ -49,7 +49,7 @@
 
 * [webworker](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API/Using_web_workers) 可用于拆分出一些复杂逻辑，比如大文件上传、文件批量下载、轮询等。- [实用的封装webpack worker loader - workerize-loader](https://github.com/developit/workerize-loader)
 
-* electron的render进程也可以直接使用nodejs api，如果使用import方式使用模块，需要babel转译
+* electron的render进程也可以直接使用nodejs api
 
 ## 技术选型
 
