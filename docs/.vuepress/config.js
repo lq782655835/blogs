@@ -18,28 +18,31 @@ module.exports = {
         editLinks: true,
         editLinkText: '帮助我改进页面内容！',
         nav: [
-            { text: 'Home', link: '/' },
+            { text: '首页', link: '/' },
             {
-                text: 'tools',
+                text: '工具',
                 items: [
-                    { text: 'yiai-cli', link: 'https://github.com/lq782655835/yiai-cli' },
+                    { text: 'yiai-cli脚手架工具', link: 'https://github.com/lq782655835/yiai-cli' },
                     {
-                        text: 'node-vuepress-auto-read',
+                        text: 'node-vuepress-auto-read 自动生成blog目录工具',
                         link: 'https://github.com/lq782655835/node-vuepress-auto-read'
                     },
-                    { text: 'json2ts', link: 'https://github.com/lq782655835/json2ts' },
                     {
-                        text: 'svg-icon-webpack-plugin',
+                        text: 'json2ts url转TypeScript工具',
+                        link: 'https://github.com/lq782655835/json2ts'
+                    },
+                    {
+                        text: 'svg-icon-webpack-plugin svg转vue组件工具',
                         link: 'https://github.com/lq782655835/svg-icon-webpack-plugin'
                     },
                     {
-                        text: 'cache-manage-js',
+                        text: 'cache-manage-js缓存管理工具',
                         link: 'https://github.com/lq782655835/cache-manage-js'
                     }
                 ]
             },
             {
-                text: 'templates',
+                text: '工程模板',
                 items: [
                     { text: 'vue', link: 'https://github.com/lq782655835/standard-vue-project' },
                     {

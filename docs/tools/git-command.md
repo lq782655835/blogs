@@ -53,6 +53,20 @@ git tag -a <tag-name> -m <comment> # 新建tag
 git push origin --tags # 推送tag
 ```
 
+# 4. 常用
+``` bash
+// 部署gh-pages主页
+
+# 1. 切换到gh-pages分支
+git checkout -b gh-pages
+# 2. 执行build生成打包后文件
+npm run build
+# 3. 只把打包后的文件夹（如dist）推送到gh-pages分支
+git add -f dist
+git commit -m 'Initial the page of project'
+git subtree push --prefix dist origin gh-pages
+```
+
 ## 参考文章
 * [常用 Git 命令清单](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 * [Git远程操作详解](http://www.ruanyifeng.com/blog/2014/06/git_remote.html)
