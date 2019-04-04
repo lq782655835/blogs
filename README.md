@@ -40,6 +40,7 @@
 * [HTTP跨域解决方案](https://lq782655835.github.io/blogs/js/http-cross-domain.html)
 * [JS设计模式](https://lq782655835.github.io/blogs/js/js-design-pattern.html)
 * [JS polyfill](https://lq782655835.github.io/blogs/js/js-polyfill.html)
+* [详解JavaScript原型](https://lq782655835.github.io/blogs/js/js-prototype.html)
 * [正则表达式一张图总结](https://lq782655835.github.io/blogs/js/regex.html)
 * [MVC、MVP、MVVM区别](https://lq782655835.github.io/blogs/js/think-different-MVC-MVP-MVVM.html)
 # NodeJS

@@ -117,6 +117,7 @@ module.exports = {
                     'js/http-cross-domain.md',
                     'js/js-design-pattern.md',
                     'js/js-polyfill.md',
+                    'js/js-prototype.md',
                     'js/regex.md',
                     'js/think-different-MVC-MVP-MVVM.md'
                 ]
