@@ -17,6 +17,8 @@
 1. 服务器收到请求后，经过后端处理返回结果。（前后端分离）
 1. 返回Html页面等资源，html包含css/js等资源，重复以上http请求
 
+1. 构建DOM树以及CSS DOM树、Render树
+
 script标签阻止html渲染
 脚本运行延迟html解析
 http请求数减少
