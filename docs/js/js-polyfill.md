@@ -1,23 +1,52 @@
 # JS polyfill
-常用的一些垫片，对js基础是个很好的总结。
 
+常用的一些函数垫片，意在加深js基础概念，同时对js也是个很好的总结。以下案例为个人实践，考虑主流程完整，但有些边界问题未考虑，不推荐在工程项目中使用。正式项目推荐使用[lodash](https://github.com/lodash/lodash)。
+
+## call/apply
+
+``` js
+/*
+var foo = { value: 1 }
+function bar() { console.log(this.value) }
+bar.call(foo) // 1
+
+思路：call立即执行函数，同时函数中的this改为指向context。类似等价于以下
+var foo = {
+    value: 1,
+    fn: function bar() { console.log(this.value) }
+}
+*/
+Function.prototype.call = function(context, ...args) {
+    context = context || window
+    context.fn = this // 这里的this代表函数
+    context.fn(...args) // 给context添加属性fn，所以执行fn方法时，里面的this代表context
+    delete context.fn
+}
+
+Function.prototype.apply = function(context, ...args) {
+    context = context || window
+    context.fn = this
+    context.fn(args) // apply传递数组
+    delete context.fn
+}
+```
 ## bind
 
 ``` js
 /*
-实现函数绑定到指定上下文context
-使用： bind(method1, new Class1(config))
-思路：使用apply改变this
+var foo = { value: 1 }
+function bar() { console.log(this.value) }
+let barBind = bar.bind(foo)
+barBind() // 1
+
+思路：通过apply改变this，并且返回一个函数
 */
-module.exports = function bind(fn, context) {
+Function.prototype.bind = function (context, ...args) {
+    var fn = this
     return function() {
-        var args = [].slice.call(arguments)
-        fn.apply(context, args)
+        return fn.apply(context, args)
     }
 }
-
-// or es6
-const bind = (fn, context, ...boundArgs) => (...args) => fn.apply(context, [...boundArgs, ...args]);
 ```
 
 ## curry
@@ -27,6 +56,7 @@ const bind = (fn, context, ...boundArgs) => (...args) => fn.apply(context, [...b
 实现柯里化函数。
 let curryFun = curry(addFun)
 curryFun(1)(2)(3) = 6
+
 思路：递归，当执行的参数个数等于原本函数的个数，执行函数
 */
 var curry = function(fn) {
@@ -57,7 +87,7 @@ var curry = function(fn, ...args) {
 ## pipe/compose
 
 ### pipe
-* 等价于pipe(fn1,fn2,fn3,fn4)(args)等价于fn4(fn3(fn2(fn1(args)))
+* pipe(fn1,fn2,fn3,fn4)(args)等价于fn4(fn3(fn2(fn1(args)))
 * 第一个函数的结果，作为第二个函数的参数，以此类推...
 
 ### compose
@@ -77,14 +107,13 @@ const example = pipe(
 console.log(example(3, 4)) // 13
 ```
 
-## flat
+## flatten
 
-将数组展平
-
+深度为1的展平:
 ``` js
-// 深度为1的展平
 // before：[1, 2, [3, 4, [5, 6]]]
 // after flat: [1, 2, 3, 4, [5, 6]]
+
 // 思路：使用reduce或map
 function flatSingle(arr) {
     return arr.reduce((pre, val) => pre.concat(val), [])
@@ -94,12 +123,12 @@ function flatSingle(arr) {
 let flatSingle = arr => [].concat(...arr)
 ```
 
+深度无限的展平:
 ``` js
-// 深度展平
 // before: [1,2,3,[1,2,3,4, [2,3,4]]]
 // after flatDeep: [1, 2, 3, 1, 2, 3, 4, 2, 3, 4]
-// 思路：深度优先递归，使用reduce连接起来
 
+// 思路：深度优先递归，使用reduce连接起来
 // 深度优先算法 - 递归
 function flatDeep(arr) {
     return arr.reduce((pre, val) => pre.concat(Array.isArray(val) ? flatDeep(val) : val), [])
@@ -117,18 +146,18 @@ function flatDeep(arr) {
     return res.reverse()
 }
 
-// 取巧方式
+// 取巧，利用Array.toString()
 function flatDeep(arr) {
     return arr.toString().split(',')
 }
 ```
 
+指定深度的展平(深度：每一项展平的次数)：
 ``` js
-// 数组平铺到指定的深度(深度：每一项展平的次数)
 // before: [1,2,3,[1, [2]], [1, [2, [3]]]]
 // after: [ 1, 2, 3, 1, 2, 1, 2, [ 3 ] ]
+
 function flatDeep(arr, depth = 1) {
-    // 设置
     if (depth === 1) return arr.reduce((pre, val) => pre.concat(val), [])
     return arr.reduce((pre, val) => pre.concat(Array.isArray(val) ? flatDeep(val, depth - 1) : val), [])
 }
@@ -140,6 +169,7 @@ function flatDeep(arr, depth = 1) {
 ``` js
 // before: [2, 1, 3, 2]
 // after: [2, 1, 3]
+
 function removeRepeat(arr) {
     return arr.filter((item, index) => arr.indexOf(item) === index)
 }
@@ -163,23 +193,25 @@ function clone(source) {
     return target
 }
 
-// es6
+// or es6
 const clone = source => Object.assign({}, source)
 const clone = source => { ...source }
 ```
 
 ``` js
 // 深拷贝
-// 递归赋值
+// 思路：递归赋值
 const deepClone = source => {
     if (!source || typeof source !== 'object') {
         throw new Error('error arguments', 'shallowClone')
     }
 
     // 区分array和object对象
-    let target = source.constructor === Array ? [] : {}
+    let target = source instanceof Array ? [] : {}
     for (let key in source) {
-        target[key] = typeof source[key] === 'object' ？ deepClone(source[key]) : source[key]
+        if (source.hasOwnProperty(key)) {
+            target[key] = typeof source[key] === 'object' ？ deepClone(source[key]) : source[key]
+        }
     }
     return target
 }

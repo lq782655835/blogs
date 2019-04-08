@@ -41,4 +41,4 @@ import Variable from '@/pages/variable'
 }
 ```
 
-> import语法需要Babel添加`syntax-dynamic-import`插件。最新当vue-cli 3.0中默认添加该特性，不需要额外引用。
+> import语法需要Babel添加`syntax-dynamic-import`插件。最新当vue-cli 3.0中默认添加该特性，不需要额外引用。另外，合理控制异步模块的数量。
