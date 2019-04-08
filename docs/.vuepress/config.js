@@ -118,6 +118,7 @@ module.exports = {
                     'js/es6-4.module.md',
                     'js/es6-latest-feature.md',
                     'js/http-cross-domain.md',
+                    'js/http-url.md',
                     'js/js-design-pattern.md',
                     'js/js-polyfill.md',
                     'js/js-prototype.md',
