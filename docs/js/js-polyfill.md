@@ -1,21 +1,28 @@
-# JS polyfill
+# JS 常用函数垫片
 
 常用的一些函数垫片，意在加深js基础概念，同时对js也是个很好的总结。以下案例为个人实践，考虑主流程完整，但有些边界问题未考虑，不推荐在工程项目中使用。正式项目推荐使用[lodash](https://github.com/lodash/lodash)。
 
 ## call/apply
 
+### 问题
 ``` js
-/*
 var foo = { value: 1 }
 function bar() { console.log(this.value) }
-bar.call(foo) // 1
+bar.call(foo) // 期待打印：1
+bar.apply(foo) // 期待打印：1
+```
 
-思路：call立即执行函数，同时函数中的this改为指向context。类似等价于以下
+### 思路
+
+call/apply立即执行函数，同时函数中的this改为指向context。类似等价于以下
+``` js
 var foo = {
     value: 1,
     fn: function bar() { console.log(this.value) }
 }
-*/
+```
+
+``` js
 Function.prototype.call = function(context, ...args) {
     context = context || window
     context.fn = this // 这里的this代表函数
@@ -30,17 +37,23 @@ Function.prototype.apply = function(context, ...args) {
     delete context.fn
 }
 ```
+
 ## bind
 
+### 问题
+
 ``` js
-/*
 var foo = { value: 1 }
 function bar() { console.log(this.value) }
 let barBind = bar.bind(foo)
-barBind() // 1
+barBind() // 期待打印：1
+```
 
-思路：通过apply改变this，并且返回一个函数
-*/
+### 思路
+
+通过apply改变this，并且返回一个函数
+
+``` js
 Function.prototype.bind = function (context, ...args) {
     var fn = this
     return function() {
@@ -51,14 +64,17 @@ Function.prototype.bind = function (context, ...args) {
 
 ## curry
 
-``` js
-/*
-实现柯里化函数。
-let curryFun = curry(addFun)
-curryFun(1)(2)(3) = 6
+### 问题
 
-思路：递归，当执行的参数个数等于原本函数的个数，执行函数
-*/
+``` js
+let addFun = function(a, b, c) { return a + b + c }
+let curryFun = curry(addFun)
+curryFun(1)(2)(3) === 6 // true
+```
+
+### 思路
+递归，当执行的参数个数等于原本函数的个数，执行函数
+``` js
 var curry = function(fn) {
     var limit = fn.length // fn函数参数个数
     return function judgeCurry (...args) {
@@ -109,7 +125,7 @@ console.log(example(3, 4)) // 13
 
 ## flatten
 
-深度为1的展平:
+### 深度为1的展平
 ``` js
 // before：[1, 2, [3, 4, [5, 6]]]
 // after flat: [1, 2, 3, 4, [5, 6]]
@@ -123,7 +139,7 @@ function flatSingle(arr) {
 let flatSingle = arr => [].concat(...arr)
 ```
 
-深度无限的展平:
+### 深度无限的展平
 ``` js
 // before: [1,2,3,[1,2,3,4, [2,3,4]]]
 // after flatDeep: [1, 2, 3, 1, 2, 3, 4, 2, 3, 4]
@@ -152,7 +168,8 @@ function flatDeep(arr) {
 }
 ```
 
-指定深度的展平(深度：每一项展平的次数)：
+### 指定深度的展平
+深度的含义是指每一项展平的次数
 ``` js
 // before: [1,2,3,[1, [2]], [1, [2, [3]]]]
 // after: [ 1, 2, 3, 1, 2, 1, 2, [ 3 ] ]
@@ -176,11 +193,10 @@ function removeRepeat(arr) {
 
 // or es6
 let removeRepeat = arr =>  Array.from(new Set(arr))
-// or
 let removeRepeat = arr =>  [...new Set(arr)]
 ```
 
-## 浅拷贝、深拷贝
+## 浅拷贝/深拷贝
 
 ``` js
 // 浅拷贝
@@ -223,8 +239,68 @@ const deepClone = source => {
 const deepClone = source => JSON.parse(JSON.stringify(source))
 ```
 
+## 防抖/节流
+
+* 防抖：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。适合多次事件一次响应。
+* 节流：规定一个单位时间，在这个单位时间内，只能有一次触发事件的回调函数执行，如果在同一个单位时间内某事件被触发多次，只有一次能生效。适合大量事件按时间做平均分配触发。
+
+``` js
+// 防抖案例：窗口resize停止才执行最终的函数
+function debounce(fn, wait, ...args) {
+    var that = this
+    fn.tId && clearTimeout(fn.tId)
+    fn.tId = setTimeout(function() {
+        fn.apply(that, args)
+    }, wait)
+}
+
+function handle(e) {
+    console.log('resize end event')
+    console.log(e) // Event{}
+}
+// 缺点：handle不能写成匿名函数，因为把tId存储在handle函数对象上。所以间接导致传递参数e较为复杂
+window.onresize = function(e) { debounce(handle, 1000, e) }
+
+// 改进版
+// 思路： 用闭包把tId存储起来
+function debounce(fn, wait) {
+    var tId
+    return function() {
+        var that = this
+        var args = arguments
+        tId && clearTimeout(tId)
+        tId = setTimeout(function() {
+            fn.apply(that, args)
+        }, wait)
+    }
+}
+function handle(e) {
+    console.log('resize end event')
+    console.log(e) // Event{}
+}
+window.onresize = debounce(handle, 1000)
+```
+
+``` js
+// 节流案例： 不停scroll时，滚动条每隔100ms固定频率执行函数
+function throttle(fn, wait) {
+    var cur = new Date()
+    fn.last = fn.last || 0
+    if (cur - fn.last > wait) {
+        fn.call()
+        fn.last = cur
+    }
+}
+
+function handle() {
+    console.log('scroll event')
+}
+window.onscroll = function() { throttle(handle, 100) }
+```
+
 ## 参考文章
 * [30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code)
 * MDN [Function.prototype.bind()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 * [一行写出javascript函数式编程中的curry](https://segmentfault.com/a/1190000008248646)
 * [ES6 JavaScript Compose Function](https://gist.github.com/JamieMason/172460a36a0eaef24233e6edb2706f83)
+* [JS函数防抖和函数节流](https://juejin.im/post/5a35ed25f265da431d3cc1b1)

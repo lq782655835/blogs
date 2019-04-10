@@ -90,4 +90,11 @@
 * Common
     * [quicklink](https://github.com/GoogleChromeLabs/quicklink) 兼容性好的页面资源预加载解决方案
     * [clean-code-typescript](https://github.com/labs42io/clean-code-typescript) ts最佳实践
-    
+
+## 优秀文章
+
+* [Node.js 中的依赖管理](https://mp.weixin.qq.com/s/XdOPPay8fpNBiH2ExW_EyQ)
+介绍npm依赖、版本号规则、npm vs yarn
+
+* [浏览器内核、JS 引擎、页面呈现原理及其优化](https://www.zybuluo.com/yangfch3/note/671516)
+介绍渲染引擎和JS引擎（V8/JavaScriptCore等），以及它们如何“画”一张网页
