@@ -48,8 +48,14 @@ module: {
 
 ## Webpack插件
 
-* HtmlWebpackPlugin
-* ExtractTextWebpackPlugin 拆分css样式的插件(webapck4已废弃)。由于webpack4以后对css模块支持的逐步完善和commonchunk插件的移除，在处理css文件提取的计算方式上也做了些调整，之前我们首选使用的extract-text-webpack-plugin也完成了其历史使命，将让位于[mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin)。
+* HtmlWebpackPlugin 自动在html中加载打包后的js文件
+* ExtractTextWebpackPlugin 拆分css样式的插件(webapck4已废弃)。
+    * 由于webpack4以后对css模块支持的逐步完善和commonchunk插件的移除，在处理css文件提取的计算方式上也做了些调整，之前我们首选使用的extract-text-webpack-plugin也完成了其历史使命，将让位于[mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin)。
+* CommonsChunkPlugin 拆分依赖包，生成单独文件，使得文件大小减小。
+    * 再webpack4被废弃，替代optimization.splitChunks
+* DLLPlugin/DllReferencePlugin 提高打包速度
+    * DLLPlugin：创建一个只有dll的bundle
+    * DllReferencePlugin： 打包生成的dll文件引用到需要的预编译依赖上来
 
 ## 升级
 * 安装webpack
@@ -80,3 +86,194 @@ import jsonData from './data.json'
 
 import { first } from './data.json'
 ```
+
+``` js
+const path = require('path');
+const webpack = require('webpack');
+// 插件都是一个类，所以我们命名的时候尽量用大写开头
+const HtmlWebpackPlugin = require('html-webpack-plugin'); //打包html
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 提取出来css
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 压缩打包后的js 
+const HappyPack = require('happypack'); // 多线程构建
+const happyThreadPool = HappyPack.ThreadPool({ size: 5 });  // 构造出共享进程池，进程池中包含5个子进程
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')// 最大化压缩css
+
+console.log('process.env.NODE_ENV------->',  process.env.NODE_ENV)
+// 解决css 分离后图片引入路径不正确问题
+if (process.env.type == 'build') { // 判断package.json里面是build还是dev命令
+    // 开发
+    var website ={
+        publicPath:"/"
+    }
+} else {
+    // 生产
+    var website ={
+        publicPath:"/"
+    }
+}
+
+
+module.exports = {
+    // devtool:'eval-source-map',
+    mode: 'development', // 模式配置
+    entry: {
+        main: './src/index.js',
+    },             
+    output: {
+        filename: 'bundle.[chunkhash:6].js',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: website.publicPath, // 解决css 分离后图片引入路径不正确问题
+    },             
+    module: {
+        rules: [
+            {
+                test: /\.css/,
+                exclude: /node_modules/,
+                use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader'],
+            },
+            {
+                test: /\.less$/,
+                exclude: /node_modules/,
+                use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000,
+                            name: '[name]_[hash:7].[ext]', 
+                            outputPath:'static/images/'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(htm|html)$/,
+                use: 'html-withimg-loader'
+            },
+            // babel 解析es7 es6 jsx
+            {
+                test:/\.(jsx|js)$/,
+                include: [ 
+                    path.resolve(__dirname, 'src'),
+                ],
+                use:['babel-loader'],
+                /*
+                    如果开启多线程进行构建
+                    use:['happypack/loader?id=js'], 
+                    loader这样写 匹配下面注释的插件
+                */
+                exclude:/node_modules/
+            },
+        ]
+    },              
+    plugins: [
+        // 打包html
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            hash: true,
+            minify: {
+                minifyCSS: true,
+                minifyJS: true, 
+                removeAttributeQuotes: true
+            },
+        }),
+        new MiniCssExtractPlugin({
+            filename: "static/css/[name].[chunkhash:8].css",
+            chunkFilename: "[id].css"
+        }),
+        new UglifyJsPlugin({
+            parallel: true, 
+        }),
+        new webpack.DefinePlugin({
+            NODE_ENV: JSON.stringify('DEV')
+        }),
+        // 多线程构建 匹配上面的loader
+        // new HappyPack({
+        //     id: 'js',
+        //     //threads: 4,
+        //     loaders: ['babel-loader'],
+        //     threadPool: happyThreadPool, // 使用共享进程池中的子进程去处理任务
+        // }),
+    ],   
+    // 提取公共代码
+    optimization: {
+        minimizer: [
+           // 自定义js优化配置，将会覆盖默认配置 最大化压缩成js
+            new UglifyJsPlugin({
+                exclude: /\.min\.js$/, // 过滤掉以".min.js"结尾的文件，我们认为这个后缀本身就是已经压缩好的代码，没必要进行二次压缩
+                cache: true,
+                parallel: true, // 开启并行压缩，充分利用cpu
+                sourceMap: false,
+                extractComments: false, // 移除注释
+                uglifyOptions: {
+                  compress: {
+                    unused: true,
+                    warnings: false,
+                    drop_debugger: true
+                  },
+                  output: {
+                    comments: false
+                  }
+                }
+            }),
+            // 用于优化css文件 最大化压缩成css 并且去掉注释掉的css
+            new OptimizeCssAssetsPlugin({
+                assetNameRegExp: /\.css$/g,
+                cssProcessorOptions: {
+                  safe: true,
+                  autoprefixer: { disable: true },
+                  mergeLonghand: false,
+                  discardComments: {
+                    removeAll: true // 移除注释
+                  }
+                },
+                canPrint: true
+            })
+        ],
+        splitChunks: {
+            cacheGroups: {
+                vendor: {   // 抽离第三方插件
+                    test: /node_modules/,   // 指定是node_modules下的第三方包
+                    chunks: 'initial',
+                    name: 'vendor',  // 打包后的文件名，任意命名    
+                    // 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
+                    priority: 10    
+                },
+                // utils: { // 抽离自己写的公共代码，utils这个名字可以随意起 (css/js公用的都会单独抽离出来生成一个单独的文件)
+                //     chunks: 'initial',
+                //     name: 'utils',  // 任意命名
+                //     minSize: 0    // 只要超出0字节就生成一个新包
+                // }
+            }
+        }
+    },        
+    devServer: {
+        historyApiFallback: true,
+        inline: true
+    },   
+    // externals: {
+    //     jquery: "jQuery",
+    // },
+    resolve: {
+        // alias 别名配置，它能够将导入语句里的关键字替换成你需要的路径
+        alias: {
+            // 比如我们就可以直接写 import Nav from '@/Nav'
+            '@': './app/component'
+        },
+        // 省略后缀
+        extensions: ['.js', '.jsx', '.less', '.json', '.css'],
+    },     
+    performance: {
+        hints: false // 选项可以控制 webpack 如何通知「资源(asset)和入口起点超过指定文件限制」
+    }
+}
+```
+
+## 参考文章
+
+* [webpack编译速度提升之DllPlugin](https://juejin.im/post/5b3e22e3f265da0f4b7a72df)
+
+* [webpack4.0打包优化策略系列](https://juejin.im/post/5abbc2ca5188257ddb0fae9b)

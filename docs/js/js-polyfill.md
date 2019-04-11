@@ -298,9 +298,46 @@ function handle() {
 window.onscroll = function() { throttle(handle, 100) }
 ```
 
+## Injector
+
+### 问题
+
+模拟RequireJS的模块。
+``` js
+injector.register('service', function(name) { return name })
+injector.register('constant', 2)
+var func = injector.resolve(['service', 'constant'], function(service,constant, other) {
+    console.log(service(constant), other)
+});
+func(3) // 期待打印：2, 3
+```
+
+### 思路
+
+通过闭包把register存储的值当作参数注入到func中。
+
+笔者注：这种方式可以自己注册模块并且选择是否在流程中使用它，典型的`依赖注入`（也叫控制反转（IOC），因为本来func是用户依赖创建的，主动权在func上，但现在里面的逻辑是靠传入的service/serviceN参数确定的，相当于把主动权让渡给参数了，所以叫控制反转）。
+
+``` js
+// 依赖注入（控制反转）
+var injector = {
+    dependencies: {},
+    register: function(key, value) {
+        this.dependencies[key] = value;
+    },
+    resolve: function(deps, func, scope) {
+        var registerArgs = deps.map(name => this.dependencies[name])
+        return function(...args) {
+            func.apply(scope || {}, [...registerArgs, ...args])
+        }
+    }
+}
+```
+
 ## 参考文章
 * [30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code)
 * MDN [Function.prototype.bind()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 * [一行写出javascript函数式编程中的curry](https://segmentfault.com/a/1190000008248646)
 * [ES6 JavaScript Compose Function](https://gist.github.com/JamieMason/172460a36a0eaef24233e6edb2706f83)
 * [JS函数防抖和函数节流](https://juejin.im/post/5a35ed25f265da431d3cc1b1)
+* [Dependency injection in JavaScript](http://krasimirtsonev.com/blog/article/Dependency-injection-in-JavaScript)

@@ -2,6 +2,11 @@
 
 在上篇[详解JavaScript原型](./js-prototype.md)文章中,我们理解了原型的来源以及与其相关的constructor、new、prototype概念。下面我们来看看js是如何通过原型来实现面向对象的另外一个特征：继承。推荐《JavaScript高级程序设计》，js面向对象写的太棒了，层层递进，深入浅出。
 
+## 组合继承
+利用 call 继承父类上的属性，用子类的原型等于父类实例去继承父类的方法。
+
+缺点：调用两次父类，造成性能浪费
+
 ``` js
 // 组合继承，也叫经典继承
 function Person(name, languages) {
@@ -27,6 +32,8 @@ var jsCoder = new Developer('tom', ['Chinese', 'English'], ['js', 'css'])
 jsCoder.sleep() // tom go to sleep
 ```
 
+## 寄生组合继承
+利用 call 继承父类上的属性，用一个干净的函数的原型去等于父类原型，再用子类的原型等于干净函数的实例
 ``` js
 // 寄生组合继承，也是最理想的继承方式
 function Person(name, languages) {

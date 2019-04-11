@@ -98,3 +98,6 @@
 
 * [浏览器内核、JS 引擎、页面呈现原理及其优化](https://www.zybuluo.com/yangfch3/note/671516)
 介绍渲染引擎和JS引擎（V8/JavaScriptCore等），以及它们如何“画”一张网页
+
+* [前端解读控制反转(IOC)](https://juejin.im/post/5bd07377e51d457a58075974)
+最容易理解的前端控制反转，案例清晰
