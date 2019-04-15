@@ -98,6 +98,7 @@ module.exports = {
                     'project/tool-stylelint.md',
                     'project/ts-in-vue-project.md',
                     'project/ts-tsconfig.md',
+                    'project/ts-vue-guide.md',
                     'project/ts-vue-shortcoming.md',
                     'project/vue-code-frame.md',
                     'project/webapck4-devServer.md',
