@@ -82,31 +82,6 @@ module.exports = {
                 ]
             },
             {
-                key: 'project',
-                title: '思考与总结',
-                collapsable: true,
-                children: [
-                    'project/axios-usage-theory.md',
-                    'project/grow-up-front.md',
-                    'project/grow-up-life-it.md',
-                    'project/markdown-it-code.md',
-                    'project/postcss.md',
-                    'project/project-electron-summary.md',
-                    'project/project-h5-video-summary.md',
-                    'project/refactor-your-js-code.md',
-                    'project/think-cli-official-website.md',
-                    'project/tool-stylelint.md',
-                    'project/ts-in-vue-project.md',
-                    'project/ts-tsconfig.md',
-                    'project/ts-vue-guide.md',
-                    'project/ts-vue-shortcoming.md',
-                    'project/vue-code-frame.md',
-                    'project/webapck4-devServer.md',
-                    'project/webpack-module.md',
-                    'project/webpack3.x-to-webpack4.md'
-                ]
-            },
-            {
                 key: 'js',
                 title: 'JS',
                 collapsable: true,
@@ -154,6 +129,31 @@ module.exports = {
                     'react/react-native-debug-skill.md',
                     'react/react-native-environment-mac.md',
                     'react/react.md'
+                ]
+            },
+            {
+                key: 'project',
+                title: '思考与总结',
+                collapsable: true,
+                children: [
+                    'project/axios-usage-theory.md',
+                    'project/grow-up-front.md',
+                    'project/grow-up-life-it.md',
+                    'project/markdown-it-code.md',
+                    'project/postcss.md',
+                    'project/project-electron-summary.md',
+                    'project/project-h5-video-summary.md',
+                    'project/refactor-your-js-code.md',
+                    'project/think-cli-official-website.md',
+                    'project/tool-stylelint.md',
+                    'project/ts-in-vue-project.md',
+                    'project/ts-tsconfig.md',
+                    'project/ts-vue-guide.md',
+                    'project/ts-vue-shortcoming.md',
+                    'project/vue-code-frame.md',
+                    'project/webapck4-devServer.md',
+                    'project/webpack-module.md',
+                    'project/webpack3.x-to-webpack4.md'
                 ]
             },
             {

@@ -13,10 +13,10 @@
     },
     "folderTitleMap": {
         "team-standard": "团队规范",
-        "project": "思考与总结",
         "js": "JS",
         "node": "NodeJS",
         "react": "React",
+        "project": "思考与总结",
         "tools": "效率工具",
         "read-books": "读书笔记"
     },
