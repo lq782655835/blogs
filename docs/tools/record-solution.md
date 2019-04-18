@@ -90,6 +90,10 @@
 * Common
     * [quicklink](https://github.com/GoogleChromeLabs/quicklink) 兼容性好的页面资源预加载解决方案
     * [clean-code-typescript](https://github.com/labs42io/clean-code-typescript) ts最佳实践
+    * [《深入理解TypeScript》](https://github.com/jkchao/typescript-book-chinese)
+    * [free-programming-books](https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md) 学习加油站
+    * [33-js-concepts](https://github.com/stephentian/33-js-concepts) js必须知道的33个概念
+    * [docker_practice](https://github.com/yeasy/docker_practice) /  [docker-tutorial](https://github.com/twtrubiks/docker-tutorial) docker学习
 
 ## 优秀文章
 
@@ -101,3 +105,4 @@
 
 * [前端解读控制反转(IOC)](https://juejin.im/post/5bd07377e51d457a58075974)
 最容易理解的前端控制反转，案例清晰
+
