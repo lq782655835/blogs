@@ -23,6 +23,7 @@ module.exports = {
                 text: '工具',
                 items: [
                     { text: 'yiai-cli脚手架工具', link: 'https://github.com/lq782655835/yiai-cli' },
+                    { text: 'yi-ui组件库', link: 'https://github.com/lq782655835/yi-ui' },
                     {
                         text: 'node-vuepress-auto-read 自动生成blog目录工具',
                         link: 'https://github.com/lq782655835/node-vuepress-auto-read'
@@ -32,7 +33,7 @@ module.exports = {
                         link: 'https://github.com/lq782655835/json2ts'
                     },
                     {
-                        text: 'svg-icon-webpack-plugin svg转vue组件工具',
+                        text: 'svg-icon-webpack-plugin svg转icon webpack插件',
                         link: 'https://github.com/lq782655835/svg-icon-webpack-plugin'
                     },
                     {
