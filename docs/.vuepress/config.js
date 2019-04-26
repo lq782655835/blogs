@@ -96,9 +96,10 @@ module.exports = {
                     'js/es6-latest-feature.md',
                     'js/http-cross-domain.md',
                     'js/http-url.md',
+                    'js/js-base-0-prototype.md',
+                    'js/js-base-extend.md',
                     'js/js-design-pattern.md',
                     'js/js-polyfill.md',
-                    'js/js-prototype.md',
                     'js/regex.md',
                     'js/think-different-MVC-MVP-MVVM.md'
                 ]

@@ -51,6 +51,8 @@
 
 * electron的render进程也可以直接使用nodejs api
 
+* [debug vue源码](https://segmentfault.com/a/1190000018038749)
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)

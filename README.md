@@ -21,9 +21,10 @@
 * [ES6-ECMAScript特性汇总](https://lq782655835.github.io/blogs/js/es6-latest-feature.html)
 * [HTTP跨域解决方案](https://lq782655835.github.io/blogs/js/http-cross-domain.html)
 * [输入URL背后的技术步骤](https://lq782655835.github.io/blogs/js/http-url.html)
+* [JavaScript原型](https://lq782655835.github.io/blogs/js/js-base-0-prototype.html)
+* [JavaScript继承](https://lq782655835.github.io/blogs/js/js-base-extend.html)
 * [JS设计模式](https://lq782655835.github.io/blogs/js/js-design-pattern.html)
 * [JS 常用函数垫片](https://lq782655835.github.io/blogs/js/js-polyfill.html)
-* [详解JavaScript原型](https://lq782655835.github.io/blogs/js/js-prototype.html)
 * [正则表达式](https://lq782655835.github.io/blogs/js/regex.html)
 * [MVC、MVP、MVVM区别](https://lq782655835.github.io/blogs/js/think-different-MVC-MVP-MVVM.html)
 # NodeJS

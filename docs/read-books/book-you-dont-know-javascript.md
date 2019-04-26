@@ -36,3 +36,43 @@ if (globalScope) {
 }
 console.log(innerScope) // innerScope is not defined
 ```
+
+## this
+
+* `this在运行时绑定`，并不是在编写时绑定。
+* 当一个函数（函数也是对象）被调用时，会创建一个`执行上下文`，this是执行上下文的一个属性。执行上下文包含：
+    * 哪里被调用（调用栈）
+    * 函数的调用方法
+    * 传入的参数等
+
+### this绑定规则
+
+* `默认绑定` 严格模式绑定到undefined，否则绑定到全局对象
+* `隐式绑定` 绑定到上下文对象
+* `显示绑定` call/apply/bind绑定到指定对象
+* `new绑定` 绑定到新创建的对象
+
+ES6的箭头函数并不会使用以上四种绑定规则，而是根据当前的词法作用域来决定this（等同于ES5 self = this机制）
+
+``` js
+// 隐式绑定
+function foo() {
+    console.log(this.a)
+}
+var obj = {
+    a: 2,
+    foo: foo
+}
+obj.foo() // 2
+
+// 隐式丢失
+var bar = obj.foo // bar 引用的是foo函数本身，而不是对象obj
+bar() // undefined
+// 最常见的隐式丢失
+/** function setTimout(fn, delay) { // 等同于 fn = obj.foo
+    // 等待delay
+    fn()
+}**/
+setTimeout(obj.foo, 100) // undefined
+
+```
