@@ -28,3 +28,33 @@
 下图整理了vue初始化流程以及代码流转，建议配合[Vue.js技术揭秘](https://ustbhuangyi.github.io/vue-analysis/prepare/entrance.html#vue-%E7%9A%84%E5%85%A5%E5%8F%A3)文章去了解。
 
 ![image](https://user-images.githubusercontent.com/6310131/45197312-1231f280-b293-11e8-83e0-93c4844924c9.png)
+
+## Debug Vue源码
+
+单纯看代码，特别是一些复杂逻辑时，容易绕进去，使得源码阅读效率降低。而debug源码能很好的知道关键地方的输入和输出，加快理解源码的速度。这里笔者也建议clone Vue源码后，设置以下debug设置，从而更好的调试源码。
+
+### Chrome调试
+
+1. 在配置文件scripts/config.js中，增加`sourceMap: true`。这样最终生成的dist/vue.js打包文件会带上源码的路径。
+
+2. 修改源码examples文件夹中案例，把引用的Vue包路径`改为“dist/vue.js”`
+
+### VSCode调试
+
+在VSCode编辑器内，调试源码更方便。VSCode基本设置以及参数说明在笔者另外一篇博文[Debug fro VSCode](../node/node-vscode-debug.md)有详细说明。如下给出最终vscode调试设置：
+
+``` js
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "chrome",
+        "request": "launch",
+        "name": "Launch Chrome",
+        "url": "file:///project-path/vue/examples/commits/index.html", // 这里的project-path是你电脑上的根路径
+        "webRoot": "${workspaceFolder}/examples/commits/index.html"
+      }
+    ]
+}
+
+```
