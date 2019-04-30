@@ -61,6 +61,7 @@
 * [TypeScript在Vue2.x中的坑](https://lq782655835.github.io/blogs/project/ts-vue-shortcoming.html)
 * [Vue2.x源码分析 - 框架结构](https://lq782655835.github.io/blogs/project/vue-code-frame.html)
 * [Vue2.x源码分析 - 模版编译以及挂载](https://lq782655835.github.io/blogs/project/vue-code-how-to-mount-vue.html)
+* [虚拟dom算法库 - snabbdom](https://lq782655835.github.io/blogs/project/vue-code-snabbdom.html)
 * [Webpack4 devServer配置详解](https://lq782655835.github.io/blogs/project/webapck4-devServer.html)
 * [Webpack 模块打包原理](https://lq782655835.github.io/blogs/project/webpack-module.html)
 * [Webpack3.x升级Webpack4指南](https://lq782655835.github.io/blogs/project/webpack3.x-to-webpack4.html)

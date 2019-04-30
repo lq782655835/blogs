@@ -96,6 +96,7 @@
     * [free-programming-books](https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md) 学习加油站
     * [33-js-concepts](https://github.com/stephentian/33-js-concepts) js必须知道的33个概念
     * [docker_practice](https://github.com/yeasy/docker_practice) /  [docker-tutorial](https://github.com/twtrubiks/docker-tutorial) docker学习
+    * [minipack](https://github.com/creeperyang/blog/blob/master/codes/minipack/README.md) 极简版webpack打包，对webpack模块原理非常有帮助
 
 ## 优秀文章
 
