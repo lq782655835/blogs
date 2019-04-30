@@ -157,6 +157,4 @@ new Vue({ el, template, data})
                 }
                 ```
 
-### 一图胜千言
-
 ![](https://ustbhuangyi.github.io/vue-analysis/assets/new-vue.png)

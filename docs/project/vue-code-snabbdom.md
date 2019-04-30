@@ -48,8 +48,8 @@ export interface VNode {
 
 // VNodeData数据格式
 export interface VNodeData {
-  props?: Props;
-  attrs?: Attrs;
+  props?: Props; // 设置el对象上属性，不会反馈到html标签上
+  attrs?: Attrs; // 设置el上的atrrs，会反馈到html标签上
   class?: Classes; // css class
   style?: VNodeStyle; // css style
   dataset?: Dataset; // html dataset

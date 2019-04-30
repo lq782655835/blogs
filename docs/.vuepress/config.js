@@ -155,6 +155,7 @@ module.exports = {
                     'project/vue-code-frame.md',
                     'project/vue-code-how-to-mount-vue.md',
                     'project/vue-code-snabbdom.md',
+                    'project/vue-code-vdom.md',
                     'project/webapck4-devServer.md',
                     'project/webpack-module.md',
                     'project/webpack3.x-to-webpack4.md'
