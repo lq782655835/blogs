@@ -27,19 +27,20 @@ V8 是谷歌开发的高性能 JavaScript 引擎，该引擎使用 C++ 开发。
 
 * V8 的大致流程为：源代码-→抽象语法树-→JIT-→本地代码（在此优化）。
 
-![](https://pic1.zhimg.com/80/v2-993bbf0a46f6feaef5f7b5005aa1aa34_hd.png)
+![image](https://user-images.githubusercontent.com/6310131/57189210-320ed880-6f3e-11e9-8328-941607c36e76.png)
 
 #### 性能比较
 
 JS是边解释边编译，Java是提前编译。Java在编译阶段把AST转换为字节码，同时做着优化，最后生成可直接执行的本地代码。所以从语言层面讲，JS的性能与Java、C++不再同一个层次上。但边解释边编译意味着js语言更加灵活，易用，同时V8引擎也在不断优化性能，赋能js更多领域。
 
-![](https://pic1.zhimg.com/80/v2-0f5471e21a25e237dcfae2d34a306788_hd.png)
+![image](https://user-images.githubusercontent.com/6310131/57189215-4652d580-6f3e-11e9-83c8-9b64b07bb9fb.png)
 
 ## JS引擎和渲染引擎关系
 
 在[输入URL背后的技术步骤](./http-base-1.url.md)中，详细说了浏览器是如何解析html、css以及js，并呈现最终的网页出来。重点是渲染引擎遇到js代码会通知让JS引擎解析，然后JS引擎解释执行后，通过DOM改变并渲染网页（这部分工作属于渲染引擎）。
 
 JavaScript引擎和渲染引擎的关系如下图所示：
-![](https://pic4.zhimg.com/80/v2-43b71b75cd4f28db05ab967e3aad5a97_hd.png)
+
+![image](https://user-images.githubusercontent.com/6310131/57189224-5bc7ff80-6f3e-11e9-9dd0-2c7bfb5ec14c.png)
 
 > JavaScript是一种动态类型语言，函数也是类型的一种，所以可以把函数当作参数值进行传递（这就是FP中常说的函数天生是“一等公民”）
