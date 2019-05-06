@@ -17,8 +17,15 @@ new Vue({ el, template, data})
 
 ## 源码层
 
-以下看下笔者简化的源码流程，注意高亮的关键代码：
-带编译器入口： platforms/entry-runtime-with-compiler.js
+先了解下源码入口区别：
+* platforms/web/entry-runtime.js
+    * Vue运行时，简单说就是对外只导出Vue这个类，因为所有Vue的配置以及设置，都是挂载到Vue的原型上。
+* platforms/web/entry-compiler.js
+    * Vue内置编译器，主要是暴露一些函数出来。主要有compile函数，把template字符串转换为render函数。
+* platforms/entry-runtime-with-compiler.js
+    * 带编译器的运行时，最常使用的Vue依赖包。可通过new Vue({}).$mount(el)直接挂载DOM。
+
+我们源码分析的是带编译器的运行时，以下看下笔者简化的源码流程，注意高亮的关键代码：
 
 ### 1. 解析template模板，得到render函数并绑定到Vue选项上
 * `const { render } = compileToFunctions(options.template, ...)`
