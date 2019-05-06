@@ -121,6 +121,19 @@ module.exports = {
                 ]
             },
             {
+                key: 'vue',
+                title: 'Vue',
+                collapsable: true,
+                children: [
+                    'vue/vue-code-0.frame.md',
+                    'vue/vue-code-1.how-to-mount-vue.md',
+                    'vue/vue-code-2.snabbdom.md',
+                    'vue/vue-code-3.vdom.md',
+                    'vue/vue-code-4.event.md',
+                    'vue/vue-code-vue-loader.md'
+                ]
+            },
+            {
                 key: 'react',
                 title: 'React',
                 collapsable: true,
@@ -153,12 +166,6 @@ module.exports = {
                     'project/ts-tsconfig.md',
                     'project/ts-vue-guide.md',
                     'project/ts-vue-shortcoming.md',
-                    'project/vue-code-0.frame.md',
-                    'project/vue-code-1.how-to-mount-vue.md',
-                    'project/vue-code-2.snabbdom.md',
-                    'project/vue-code-3.vdom.md',
-                    'project/vue-code-4.event.md',
-                    'project/vue-code-vue-loader.md',
                     'project/webapck4-devServer.md',
                     'project/webpack-module.md',
                     'project/webpack3.x-to-webpack4.md'
