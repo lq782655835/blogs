@@ -137,6 +137,8 @@ export function initAssetRegisters (Vue: GlobalAPI) {
 
 ![](https://ustbhuangyi.github.io/vue-analysis/assets/lifecycle.png)
 
+
+
 ## 全局组件/指令
 * 全局组件 platforms/web/runtime/components
     * transition-group

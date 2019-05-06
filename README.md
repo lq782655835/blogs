@@ -65,6 +65,7 @@
 * [虚拟dom算法库 - snabbdom](https://lq782655835.github.io/blogs/project/vue-code-2.snabbdom.html)
 * [Vue2.x源码分析 - Virtual DOM实现](https://lq782655835.github.io/blogs/project/vue-code-3.vdom.html)
 * [Vue2.x源码分析 - 事件系统](https://lq782655835.github.io/blogs/project/vue-code-4.event.html)
+* [Vue Loader v15 源码解析](https://lq782655835.github.io/blogs/project/vue-code-vue-loader.html)
 * [Webpack4 devServer配置详解](https://lq782655835.github.io/blogs/project/webapck4-devServer.html)
 * [Webpack 模块打包原理](https://lq782655835.github.io/blogs/project/webpack-module.html)
 * [Webpack3.x升级Webpack4指南](https://lq782655835.github.io/blogs/project/webpack3.x-to-webpack4.html)

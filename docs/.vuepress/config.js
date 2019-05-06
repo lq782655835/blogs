@@ -158,6 +158,7 @@ module.exports = {
                     'project/vue-code-2.snabbdom.md',
                     'project/vue-code-3.vdom.md',
                     'project/vue-code-4.event.md',
+                    'project/vue-code-vue-loader.md',
                     'project/webapck4-devServer.md',
                     'project/webpack-module.md',
                     'project/webpack3.x-to-webpack4.md'
