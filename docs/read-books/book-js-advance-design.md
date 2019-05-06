@@ -13,14 +13,20 @@ javascript书籍中的经典，里面非常多细节解释的十分详细，而�
     * 操作符
     * 对象
 * DOM（文档对象模型） 提供访问和操作网页内容的方法与接口
-    * DOM视图
+    * DOM视图 DOM节点（Node类型）
+        * DOM查找
+        * DOM操作
     * DOM事件
         * 事件捕获 document -> div
         * 事件冒泡 div -> document
     * DOM样式 CSS
 * BOM（浏览器对象模型） 与浏览器交互的方法与接口
     * window
-    * location
+        * history
+        * document 唯一一个既属于BOM又属于DOM的对象
+        * navigator
+        * screen
+        * location
     * cookie
     * XMLHttpRequest
 > js 是ECMAScript的具体实现。其定义了包含语法、关键字等，但不包括与浏览器相关的API。
@@ -94,16 +100,18 @@ addThird(3)(1, 2) // 16
 
 #### 节点层次
 * Node 所有节点都继承自Node类型
-    * nodeType/nodeName/nodeValue
-    * appendChild/replaceChild/removeChild
-    * insertBefore
-    * firstChild/lastChild/childNodes/parentNode
+    * 节点属性：nodeType/nodeName/nodeValue
+    * DOM操作：appendChild()/replaceChild()/removeChild()/insertBefore()
+    * 属性操作：getAttribute()/setAttribute()/removeAttribute()
+    * 遍历节点树：firstChild/lastChild/childNodes/parentNode/nextSibling/previousSibling
 * Document
-    * getElementById
-    * getElementByName
-    * getElementByTagName
-    * createElement
-    * createTextNode
+    * 查找Node
+        * getElementById()
+        * getElementByName()
+        * getElementByTagName()
+    * 创建Node
+        * createElement()
+        * createTextNode()
 * Element
 * Text
 
@@ -126,6 +134,7 @@ addThird(3)(1, 2) // 16
     * hashchange/popstate
 * DOM2/DOM3
     * style属性
+    * 手动绑定/解除事件
 
 ``` js
 var myDiv = document.getElementByClassName('myDiv')

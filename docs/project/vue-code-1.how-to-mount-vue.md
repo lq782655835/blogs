@@ -137,15 +137,17 @@ new Vue({ el, template, data})
     * `mountComponent` 'core/instance/lifecycle.js'
         * new Watch(vm, `updateComponent`)
             1. `vm._render()` 'src/core/instance/render.js'
-                * 执行render函数，拿到VNode
+                * 执行render函数，拿到VNode(注意render
+                函数的参数h为vm.$createElement)
                 ``` js
                 const { render } = vm.$options
                 return vnode = render.call(vm._renderProxy, vm.$createElement)
                 ```
             2. `vm._update(VNode)` 'src/core/instance/lifecycle.js'
                 * 更新DOM, `vm.__patch__(preVNode, VNode)` 'src/platforms/web/runtime/patch.js'
-                    * `createPatchFunction` 'src/core/vdom/patch.js'
-                        * diff等，真正的操作 更新DOM
+                    * `createPatchFunction` 'src/core/vdom/patch.js'，详见[Virtual DOM实现](./vue-code.3.vdom.md)
+                        * diff等，真正的操作更新DOM
+                        * 绑定class、style、event等
                 ``` js
                 const prevVnode = vm._vnode
                 if (!prevVnode) {
