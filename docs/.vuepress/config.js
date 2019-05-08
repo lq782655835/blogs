@@ -130,6 +130,7 @@ module.exports = {
                     'vue/vue-code-2.snabbdom.md',
                     'vue/vue-code-3.vdom.md',
                     'vue/vue-code-4.event.md',
+                    'vue/vue-code-5.component.md',
                     'vue/vue-code-vue-loader.md'
                 ]
             },

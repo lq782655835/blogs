@@ -53,6 +53,9 @@
 
 * [debug vue源码](https://segmentfault.com/a/1190000018038749)
 
+* 一行代码获取URL的查询参数：
+q={};location.search.replace(/([^?&=]+)=([^&]+)/g,(_,k,v)=>q[k]=v);q;
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)

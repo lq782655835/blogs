@@ -92,7 +92,7 @@ module.exports = function (source) {
 }
 ```
 
-1. 先通过[html-parse](https://github.com/vuejs/vue/blob/dev/src/compiler/parser/html-parser.js)解析整个.vue文件。使用正则逐步拿到信息，最终拿到`descriptor`信息。类似如下内容：
+1. 先通过[html-parse](https://github.com/vuejs/vue/blob/dev/src/compiler/parser/html-parser.js)解析整个.vue文件。使用正则逐步拿到信息，最终拿到`descriptor`信息（JavaScript对象）。类似如下内容：
 
 ![image](https://user-images.githubusercontent.com/6310131/57218041-ea17b080-7026-11e9-8437-23b283f70928.png)
 

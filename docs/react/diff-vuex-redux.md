@@ -9,12 +9,16 @@
     * 流程一致：定义全局state，触发，修改state
     * 原理相似，通过全局注入store。
 * ### 不同点
-    * `vuex`定义了`state、getter、mutation、action`四个对象；`redux`定义了`state、reducer、action`。
-      * `vuex`中`state`统一存放，方便理解；`redux`state依赖所有reducer的初始值
-      * `vuex`有`getter`,目的是快捷得到state；`redux`没有这层，react-redux mapStateToProps参数做了这个工作。
-      * `vuex`中`mutation`只是单纯赋值(很浅的一层)；`redux`中`reducer`只是单纯设置新state(很浅的一层)。他俩作用类似，但书写方式不同
-      * `vuex`中`action`有较为复杂的异步ajax请求；`redux`中action中可简单可复杂,简单就直接发送数据对象（{type:xxx, your-data}）,复杂需要调用异步ajax（依赖redux-thunk插件）。
-    * `vuex触发方式`有两种commit同步和dispatch异步；`redux`同步和异步都使用dispatch
+    * 从实现原理上来说：
+        * Redux 使用的是不可变数据，而Vuex的数据是可变的。Redux每次都是用新的state替换旧的state，而Vuex是直接修改
+        * Redux 在检测数据变化的时候，是通过 diff 的方式比较差异的，而Vuex其实和Vue的原理一样，是通过 getter/setter来比较的
+    * 从表现层来说：
+        * `vuex`定义了`state、getter、mutation、action`四个对象；`redux`定义了`state、reducer、action`。
+            * `vuex`中`state`统一存放，方便理解；`redux`state依赖所有reducer的初始值
+            * `vuex`有`getter`,目的是快捷得到state；`redux`没有这层，react-redux mapStateToProps参数做了这个工作。
+            * `vuex`中`mutation`只是单纯赋值(很浅的一层)；`redux`中`reducer`只是单纯设置新state(很浅的一层)。他俩作用类似，但书写方式不同
+            * `vuex`中`action`有较为复杂的异步ajax请求；`redux`中action中可简单可复杂,简单就直接发送数据对象（{type:xxx, your-data}）,复杂需要调用异步ajax（依赖redux-thunk插件）。
+        * `vuex触发方式`有两种commit同步和dispatch异步；`redux`同步和异步都使用dispatch
 
 ## 详细解释
 * ### Vuex

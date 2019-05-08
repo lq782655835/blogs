@@ -74,5 +74,42 @@ bar() // undefined
     fn()
 }**/
 setTimeout(obj.foo, 100) // undefined
+```
 
+js语言类型
+* string
+* number
+* boolean
+* null
+* undefined
+* object
+    * 特殊对象子类行
+        * 函数是对象的子类型
+        * 数组也是对象的一种类型
+    * 内置对象/函数（可以使用构造函数创建实例）
+        * String
+        * Number
+        * Boolean
+        * Object
+        * Function
+        * Array
+        * Date
+        * RegExp
+        * Error
+* symbol（ES6）
+
+string、number、boolean、object、Array都是即有文字形式，又有构造形式。
+
+null、undefined只有文字形式
+
+Date只有构造形式
+
+
+``` js
+// 必要时语言会自动把字符串字面量转换成String对象
+// 所以该字符串字面量可以有属性和方法
+var str = 'hello' // 文字形式
+str.length // 5
+str.charAt(0) // l
+var strObj = new String('hello') // 构造形式
 ```
