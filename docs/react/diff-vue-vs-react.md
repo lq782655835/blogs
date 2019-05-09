@@ -4,6 +4,7 @@ React核心思想，是把UI作为Basic Type，比如String、Array类型，然�
 React和Vue的设计思路不一样，不代表着React/Vue框架只能做对应部分应用。笔者两个框架都曾应用在不同项目中，React和Vue都能承接技术选型，关键看团队技术栈成熟度以及业务实际情况。
 
 ## 相同
+
 * 都是视图层，都是挂载在指定id后渲染html
 * 都是使用VNode（虚拟dom），所以都可以使用jsx语法，因为底层解析后都是createElement(...options)
     * jsx/tsx只是把template换成render函数，以前的v-for，v-if语法都换成jsx的语法

@@ -125,12 +125,14 @@ module.exports = {
                 title: 'Vue',
                 collapsable: true,
                 children: [
+                    'vue/vue-api-usage.md',
                     'vue/vue-code-0.frame.md',
                     'vue/vue-code-1.how-to-mount-vue.md',
                     'vue/vue-code-2.snabbdom.md',
                     'vue/vue-code-3.vdom.md',
                     'vue/vue-code-4.event.md',
                     'vue/vue-code-5.component.md',
+                    'vue/vue-code-6.nextTick.md',
                     'vue/vue-code-vue-loader.md'
                 ]
             },

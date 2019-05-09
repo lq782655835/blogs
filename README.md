@@ -38,12 +38,14 @@
 * [Node-Debug for VSCode](https://lq782655835.github.io/blogs/node/node-vscode-debug.html)
 * [Redis简介](https://lq782655835.github.io/blogs/node/redis.html)
 # Vue
+* [Vue高级用法](https://lq782655835.github.io/blogs/vue/vue-api-usage.html)
 * [Vue2.x源码分析 - 框架结构](https://lq782655835.github.io/blogs/vue/vue-code-0.frame.html)
 * [Vue2.x源码分析 - 模版编译以及挂载](https://lq782655835.github.io/blogs/vue/vue-code-1.how-to-mount-vue.html)
 * [虚拟dom算法库 - snabbdom](https://lq782655835.github.io/blogs/vue/vue-code-2.snabbdom.html)
 * [Vue2.x源码分析 - Virtual DOM实现](https://lq782655835.github.io/blogs/vue/vue-code-3.vdom.html)
 * [Vue2.x源码分析 - 事件系统](https://lq782655835.github.io/blogs/vue/vue-code-4.event.html)
 * [Vue2.x源码分析 - 组件系统](https://lq782655835.github.io/blogs/vue/vue-code-5.component.html)
+* [Vue2.x源码分析 - Vue.nextTick](https://lq782655835.github.io/blogs/vue/vue-code-6.nextTick.html)
 * [Vue Loader v15 源码解析](https://lq782655835.github.io/blogs/vue/vue-code-vue-loader.html)
 # React
 * [Vue与React比较](https://lq782655835.github.io/blogs/react/diff-vue-vs-react.html)
