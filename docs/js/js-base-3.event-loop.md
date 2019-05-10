@@ -56,6 +56,8 @@ The microtask queue is not a task queue.
 3. 执行完所有函数体代码，马上执行**所有microtask队列的代码**。
 4. 此时stack为空，取下一个异步代码函数块，放入主线程中。然后重复2和3步骤,构成循环。
 
+总结下，**一个事件循环(EventLoop)中会有一个正在执行的任务(Task)，而这个任务就是从 macrotask 队列中来的。当这个 macrotask 执行结束后所有可用的 microtask 将会在同一个事件循环中执行，当这些 microtask 执行结束后还能继续添加 microtask，一直到真个 microtask 队列执行结束。**
+
 ![](https://cdn-images-1.medium.com/max/1200/1*64BQlpR00yfDKsXVv9lnIg.png)
 
 ## 任务队列
@@ -145,3 +147,5 @@ script任务执行完毕，执行microtask checkpoint，取出microtask队列的
 * [JS 运行机制](https://ustbhuangyi.github.io/vue-analysis/reactive/next-tick.html)
 
 * [任务队列、web API、JS主线程的相互协同](https://www.cnblogs.com/hity-tt/p/6733062.html)
+
+* [从event loop规范探究javaScript异步及浏览器更新渲染时机](https://github.com/aooy/blog/issues/5)

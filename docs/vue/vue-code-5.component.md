@@ -71,6 +71,34 @@ var app = new Vue({
 
 ### 组件patch阶段
 
+1. patch阶段会把VNode 转换成真正的 DOM 节点。patch 的过程会调用 `createElm` 创建元素节点。'src/core/vdom/patch.js'
+    * `createComponent()`
+        * `vnode.data.hook.init()` 'src/core/vdom/create-component.js'
+            1. child = `createComponentInstanceForVnode()`。实例化组件new subVue(),因为组件也是一个Vue对象。
+                * new Vue()会去执行`this._init()` 'src/core/instance/init.js'
+            2. `child.$mount()`
+                * 调用`mountComponent`--> `vm._render()` --> `vm._update()`
+``` js
+function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
+  let i = vnode.data
+  if (isDef(i)) {
+    if (isDef(i = i.hook) && isDef(i = i.init)) {
+        // 执行vnode.data.hook.init
+        // 组件最终执行了new Vue().$mount()，使得赋值好vnode.elm
+        // 如果组件里还有子组件（options.components），最终都会走createEle创建节点，然后子组件又new Vue().$mount(),会深度递归下去。
+      i(vnode, false /* hydrating */)
+    }
+
+    if (isDef(vnode.componentInstance)) {
+      initComponent(vnode, insertedVnodeQueue)
+      // 真正插入DOM,因为已经有组件的vnode.elm了
+      insert(parentElm, vnode.elm, refElm)
+      return true
+    }
+  }
+}
+```
+
 ## 生命周期
 
 * beforeCreate
