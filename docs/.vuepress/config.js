@@ -99,6 +99,7 @@ module.exports = {
                     'js/http-cross-domain.md',
                     'js/js-base-1.prototype.md',
                     'js/js-base-2.extend.md',
+                    'js/js-base-3.event-loop.md',
                     'js/js-design-pattern.md',
                     'js/js-polyfill.md',
                     'js/regex.md',
