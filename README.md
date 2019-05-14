@@ -47,6 +47,7 @@
 * [Vue2.x源码分析 - 事件系统](https://lq782655835.github.io/blogs/vue/vue-code-4.event.html)
 * [Vue2.x源码分析 - 组件系统](https://lq782655835.github.io/blogs/vue/vue-code-5.component.html)
 * [Vue2.x源码分析 - Vue.nextTick](https://lq782655835.github.io/blogs/vue/vue-code-6.nextTick.html)
+* [Vue2.x源码分析 - inject/provide](https://lq782655835.github.io/blogs/vue/vue-code-7.inject-provide.html)
 * [Vue Loader v15 源码解析](https://lq782655835.github.io/blogs/vue/vue-code-vue-loader.html)
 # React
 * [Vue与React比较](https://lq782655835.github.io/blogs/react/diff-vue-vs-react.html)

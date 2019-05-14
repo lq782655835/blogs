@@ -37,9 +37,9 @@ open() {
 }
 ```
 
-## [provide/inject](https://cn.vuejs.org/v2/api/#provide-inject)
+## [provide/inject](https://cn.vuejs.org/v2/guide/components-edge-cases.html#%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5)
 
-provide 和 inject 主要为高阶插件/组件库提供用例。与 React 的上下文特性很相似。
+provide 和 inject 主要为高阶插件/组件库提供用例。与 React 的上下文特性很相似。实现原理：[Vue2.x源码分析 - inject/provide](./vue-code-7.inject-provide.md)
 
 ``` js
 export default {
@@ -84,7 +84,7 @@ export default {
 
 ## [vm.$nextTick()](https://cn.vuejs.org/v2/guide/reactivity.html#%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E9%98%9F%E5%88%97)
 
-将回调延迟到下次 DOM 更新循环之后执行。深入源码分析可以笔者另外一篇文章：[Vue2.x源码分析 - Vue.nextTick](./vue-code-6.nextTick.md)
+将回调延迟到下次 DOM 更新循环之后执行。实现原理：[Vue2.x源码分析 - Vue.nextTick](./vue-code-6.nextTick.md)
 
 尽管MVVM框架并不推荐访问DOM，但有时候确实会有这样的需求，尤其是和第三方插件进行配合的时候，免不了要进行DOM操作。而nextTick就提供了一个桥梁，确保我们操作的是更新后的DOM。
 
