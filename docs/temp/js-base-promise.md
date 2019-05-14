@@ -1,0 +1,27 @@
+# Promise
+
+#### 为什么要有Promise
+回调函数表达异步和并发有两个主要缺陷：`缺乏顺序性和可信任性`。
+Promise封装了依赖时间的状态--等待底层值的完成或拒绝，所以Promise本身与时间无关。因此Promise可以按照可预测的方式组成（组合），而不用关心时序或底层的结果。
+另外，一旦Promise决议，它就永远保持在这个状态。
+
+* 对象
+    * Promise.resolve()
+    * Promise.reject()
+    * Promise.all([promises]) 并发
+    * Promise.race([promises]) 竞争
+* 实例
+    * promise.then()
+    * promise.catch()
+    * promise.finally()
+
+#### Promise局限性
+* 单一值。Promise只能有一个完成值或拒绝值。
+* 单决议。
+* 无法取消的Promise。
+* Promise性能。
+* 顺序错误处理。
+
+## 总结
+Promise解决了因只用回调的代码而备受困扰的`控制反转`问题。
+但Promise也没有摈弃回调，只是把回调的安排转交给一位可信任的中介机制。

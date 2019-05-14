@@ -15,7 +15,7 @@ var app = new Vue({
   el: '#app',
   // 这里的 h 是 createElement方法
   // App是对应的组件
-  render: h => h(App)法
+  render: h => h(App)
 })
 ```
 
@@ -51,6 +51,10 @@ var app = new Vue({
         }
         ```
         2. 安装组件钩子函数
+        * data.hook.init
+        * data.hook.prepatch
+        * data.hook.insert
+        * data.hook.destroy
         ``` js
         // 往 data.hook中注入钩子函数，在vnode patch阶段会调用
         installComponentHooks(data)
@@ -67,7 +71,7 @@ var app = new Vue({
         return vnode
         ```
 
-以上可以知道，在编译阶段遇到是组件时，最终也是编译成VNode节点，只不过它会额外做一些处理，比如拿到组件子类Ctor、传递propsData、设置listeners等，并把这些内容作为参数，传入进 `VNode.componentOptions`,等待patch阶段生成真正的DOM组件。
+以上可以知道，在编译阶段遇到是组件时，最终也是编译成VNode节点，只不过它会额外做一些处理，比如拿到组件子类Ctor、传递propsData、设置listeners、设置data.hook等，并把这些内容作为参数，传入进 `VNode.componentOptions`,等待patch阶段生成真正的DOM组件。
 
 ### 组件patch阶段
 
@@ -110,7 +114,7 @@ export function callHook (vm: Component, hook: string) {
         handlers[i].call(vm)
     }
   }
-  // 案例：https://cn.vuejs.org/v2/guide/components-edge-cases.html#%E7%A8%8B%E5%BA%8F%E5%8C%96%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BE%A6%E5%90%AC%E5%99%A8
+  // 程序化的事件侦听器：https://cn.vuejs.org/v2/guide/components-edge-cases.html#%E7%A8%8B%E5%BA%8F%E5%8C%96%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BE%A6%E5%90%AC%E5%99%A8
   if (vm._hasHookEvent) { // Vue.prototype.$on：vm._hasHookEvent = /^hook:/.test(event)
     vm.$emit('hook:' + hook)
   }
@@ -123,11 +127,56 @@ export function callHook (vm: Component, hook: string) {
 * created
     * 能获得props、data值，但不能操作dom
 ``` js
+// new Vue({options})时执行this._init()
+Vue.prototype._init = function (options?: Object) {
+  // ...
+  initLifecycle(vm)
+  initEvents(vm)
+  initRender(vm)
+  callHook(vm, 'beforeCreate')
+  initInjections(vm) // resolve injections before data/props
+  initState(vm)
+  initProvide(vm) // resolve provide after data/props
+  callHook(vm, 'created')
+  // ...
+}
 ```
 * beforeMount
     * DOM 挂载之前，它的调用时机是在 mountComponent 函数中，定义在 src/core/instance/lifecycle.js 中
 * mounted
     * 把 VNode patch 到真实 DOM 后
+``` js
+export function mountComponent (
+  vm: Component,
+  el: ?Element,
+  hydrating?: boolean
+): Component {
+  vm.$el = el
+  // ...
+  callHook(vm, 'beforeMount')
+
+  let updateComponent = () => {
+    // vm._render得到VNode
+    // vm._update真正去更新DOM
+    vm._update(vm._render(), hydrating)
+  }
+  new Watcher(vm, updateComponent, noop, {
+    before () {
+      if (vm._isMounted) {
+        callHook(vm, 'beforeUpdate')
+      }
+    }
+  }, true /* isRenderWatcher */)
+  hydrating = false
+
+  // vm.$vnode 如果为 null，则表明这不是一次组件的初始化过程，而是通过外部 new Vue 初始化过程。
+  if (vm.$vnode == null) {
+    vm._isMounted = true
+    callHook(vm, 'mounted')
+  }
+  return vm
+}
+```
 * beforeUpdate
     * beforeUpdate 的执行时机是在渲染 Watcher 的 before 函数中
 * update
