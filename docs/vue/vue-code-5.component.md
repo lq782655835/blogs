@@ -101,11 +101,29 @@ function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
 
 ## 生命周期
 
+``` js
+// 调用钩子，即找到vm.$options[hook]执行
+export function callHook (vm: Component, hook: string) {
+  const handlers = vm.$options[hook]
+  if (handlers) {
+    for (let i = 0, j = handlers.length; i < j; i++) {
+        handlers[i].call(vm)
+    }
+  }
+  // 案例：https://cn.vuejs.org/v2/guide/components-edge-cases.html#%E7%A8%8B%E5%BA%8F%E5%8C%96%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BE%A6%E5%90%AC%E5%99%A8
+  if (vm._hasHookEvent) { // Vue.prototype.$on：vm._hasHookEvent = /^hook:/.test(event)
+    vm.$emit('hook:' + hook)
+  }
+}
+```
+
 * beforeCreate
     * beforeCreate 的钩子函数中不能获取到 props、data 中定义的值，也不能调用 methods 中定义的函数。
     * beforeCreate 和 created 函数都是在实例化 Vue 的阶段，在 _init 方法中执行的，它的定义在 src/core/instance/init.js 中
 * created
     * 能获得props、data值，但不能操作dom
+``` js
+```
 * beforeMount
     * DOM 挂载之前，它的调用时机是在 mountComponent 函数中，定义在 src/core/instance/lifecycle.js 中
 * mounted

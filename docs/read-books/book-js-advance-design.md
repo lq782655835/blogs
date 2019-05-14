@@ -30,6 +30,7 @@ javascript书籍中的经典，里面非常多细节解释的十分详细，而�
     * cookie
     * XMLHttpRequest
 > js 是ECMAScript的具体实现。其定义了包含语法、关键字等，但不包括与浏览器相关的API。
+> js引擎不是独立运行的，它运行在宿主环境中。web宿主环境就是浏览器。
 
 ### 标签的位置
 * 遇到`<script>`会暂停解析html + 浏览器遇到`<body>`标签才开始呈现内容 = script应该放在body的最后

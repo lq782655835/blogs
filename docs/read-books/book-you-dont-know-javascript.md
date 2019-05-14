@@ -76,17 +76,20 @@ bar() // undefined
 setTimeout(obj.foo, 100) // undefined
 ```
 
-js语言类型
+## js基本数据类型
+
 * string
 * number
 * boolean
 * null
 * undefined
 * object
-    * 特殊对象子类行
-        * 函数是对象的子类型
+    * 特殊对象子类行。
+        * 函数是对象的子类型,函数是‘可调用对象’。`函数 ～= 对象`
+            * 函数内部属性[[Call]]，该属性使其可以被调用
+            * 函数不仅是对象，还可以拥有属性。如：function(a, b){}.length === 2
         * 数组也是对象的一种类型
-    * 内置对象/函数（可以使用构造函数创建实例）
+    * 内置函数（或对象），也叫`原生函数`（它也可以使用构造函数创建实例）
         * String
         * Number
         * Boolean
@@ -98,15 +101,34 @@ js语言类型
         * Error
 * symbol（ES6）
 
-string、number、boolean、object、Array都是即有文字形式，又有构造形式。
+#### 如何判断
+* typeof： 查看值的类型
+``` js
+typeof 42 === 'number' // true
+// 特殊
+typeof null === 'object'
+typeof function a() {} === 'function'
+typeof [] === 'object'
+```
 
-null、undefined只有文字形式
+#### 值和类型
+js变量没有类型，只有值才有
+``` js
+// 只有值才有类型。变量只作为一种标记
+var a = 42 // typeof a === 'number'
+a = true // typeof a === 'boolean'
+```
 
-Date只有构造形式
+> Array.prototype.slice.call(args)与Array.from(args) 都是把类似数组对象，转换为真正的数组对象。
 
+### 原生函数
+JS为基本数据类型值提供了封装对象，称为原生对象。
+* string、number、boolean、object、Array都是即有文字形式，又有构造形式。
+* null、undefined只有文字形式
+* Date只有构造形式
 
 ``` js
-// 必要时语言会自动把字符串字面量转换成String对象
+// 必要时js引擎会自动把字符串字面量转换成String对象
 // 所以该字符串字面量可以有属性和方法
 var str = 'hello' // 文字形式
 str.length // 5

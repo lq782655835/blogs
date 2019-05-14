@@ -1,83 +1,82 @@
 # JavaScript Event Loop
 
+
 ## 概念
 
-### 单线程、同步、异步
+#### 单线程、同步、异步
 
 JS是单线程，单线程即任务是串行的，后一个任务需要等待前一个任务的执行，这就可能出现长时间的等待。但由于类似ajax网络请求、setTimeout时间延迟、DOM事件的用户交互等，这些任务并不消耗 CPU，是一种空等，资源浪费，因此出现了异步。通过将任务交给相应的异步模块去处理，主线程的效率大大提升，可以并行的去处理其他的操作。当异步处理完成，主线程空闲时，主线程读取相应的callback，进行后续的操作，最大程度的利用CPU。
 
-此时出现了同步执行和异步执行的概念，同步执行是主线程按照顺序，CPU串行执行任务（通过执行栈，先进后出）；异步执行就是跳过等待，先处理后续的同步任务（不是说异步不执行了，而是交给网络模块、timer等并行进行任务）。由此`产生了事件循环与任务队列，来协调主线程与异步模块之间的工作。`
+此时出现了同步执行和异步执行的概念，同步执行是主线程按照顺序，CPU串行执行任务（通过执行栈，先进后出）；异步执行就是跳过等待，先处理后续的同步任务（不是说异步不执行了，而是交给网络模块、timer等并行进行任务）。由此`产生了事件循环与任务队列（ES6新增），来协调主线程与异步模块之间的工作。`
 
-### 引擎和runtime概念
+#### 引擎和runtime
 
-JS引擎是单线程的，它负责维护任务队列，并通过 Event Loop 的机制，按顺序把任务放入栈中执行。异步处理模块，是 runtime 提供的，拥有和JS引擎互不干扰的线程。
-
+在具体执行层，是依赖`js引擎`和`宿主环境runtime`来实现event loop机制。
 * `引擎`：解释并编译代码，让它变成能交给机器运行的代码。
-* `runtime`：就是运行环境，它提供一些对外接口供JS调用，以跟外界打交道，比如，浏览器环境、Node.js环境。不同的runtime，会提供不同的接口，比如，在 Node.js 环境中，我们可以通过 require 来引入模块；而在浏览器中，我们有 window、 DOM。
-    * 浏览器异步模块
-        * 类似onclick等，由[浏览器内核](./http-base-2.browser.md)的DOM binding模块处理，事件触发时，回调函数添加到任务队列中；
-        * setTimeout等，由浏览器内核的Timer模块处理，时间到达时，回调函数添加到任务队列中；
-        * Ajax，由浏览器内核的Network模块处理，网络请求返回后，添加到任务队列中。
-> 浏览器的 Event Loop 遵循的是HTML Standand，而 NodeJs 的 Event Loop 遵循的是 libuv。
+* `runtime`: 宿主环境，提供异步处理模块（如[浏览器内核](./http-base-2.browser.md)（也叫渲染引擎）的Timer模块、Ajax的Network模块、事件的DOM binding模块等）。
 
-## 事件循环机制
+注意，`通常是宿主环境提供事件循环机制`来处理程序中多个块的执行，执行时调用JavaScript引擎。换句话说，JS引擎本身没有时间的概念，只是一个按需执行js任意代码片段的环境。“事件”（JavaScript代码执行）调度总是由包含它的环境进行。
 
-### Event Loop定义
+举个例子，如果JavaScript程序发出一个Ajax请求（从服务器获取一些数据），通常会在一个函数中（通常称为回调函数）设置好响应代码，然后JavaScript引擎会通知宿主环境：“嘿，现在我要暂停执行，你一旦完成网络请求拿到数据，请调用这个函数。”然后浏览器（宿主环境）拿到数据后，就会把回调函数插入到事件循环中。
 
-网络上许多文章关于event loop定义不是很清晰，这里我们看下官方标准规范。有趣的是event loop不是定义在js语言中的，而是在[HTML Standand](https://html.spec.whatwg.org/multipage/webappapis.html#event-loops)中。
+## 事件循环
 
-```
-Event loops Definitions
+#### Event Loop定义
 
-To coordinate events, user interaction, scripts, rendering, networking, and so forth, user agents must use event loops as described in this section. Each agent has an associated event loop.
+网络上许多文章关于event loop定义不是很清晰，我们直接看官方规范标准。再次强调事件循环机制是由宿主决定，Web宿主规范标准定义在[HTML Standand](https://html.spec.whatwg.org/multipage/webappapis.html#event-loops)中，NodeJS宿主规范标准定义在[libuv](http://docs.libuv.org/en/v1.x/design.html#the-i-o-loop)。
 
-// 为了协调事件，用户交互，脚本，渲染，网络等，用户代理必须使用本节所述的event loop。
-```
-事件，用户交互，**脚本**，渲染，网络这些都是我们所熟悉的东西，他们都是由event loop协调的。触发一个click事件，进行一次ajax请求，背后都有event loop在运作。
-
-```
-An event loop has one or more task queues. A task queue is a set of tasks.
-
-The microtask queue is not a task queue.
-// 一个event loop有一个或者多个task队列。
-// microtask队列不是一个任务队列（在ES6规范中叫job）
+简化理解，使用伪代码来说明概念：
+``` js
+// eventLoop队列数组，先进先出
+var eventLoop = [], event;
+// “永远”执行，事件循环嘛
+while(true) {
+    // 一次tick
+    if (eventLoop.length > 0) {
+        event = eventLoop.shift() // 拿到队列中下一个事件
+        event() // 执行。这代码里面可能产生新的event放在eventLoop中
+    }
+}
 ```
 
-`task也被称为macrotask，而microtask更像是job概念(task == macrotask != microtask)`。
+while循环实现持续运行的循环，循环的每一轮称为tick。对每个tick而言，如果在队列中有等待事件，那么就会在队列中摘下一个事件并执行。这些事件就是你的回调函数。
 
-经典event loop图：
+注意，setTimeout不是把你的回调函数挂在事件循环队列中，而是设置一个定时器，当定时器到时后，环境会把你的回调函数放在事件循环中。这样，在未来某个时刻的tick会摘下并执行这个回调（真正的放在执行栈中执行）
 
-![](https://cdn-images-1.medium.com/max/800/1*7GXoHZiIUhlKuKGT22gHmA.png)
-
-执行模型（以下为个人通俗版本，更细节可看官方[Processing model](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)）：
-
-1. 初始时，stack为空。整个全局script代码作为一个macrotask（macrotask == task），放入主线程中。
-2. 代码在主线程stack中执行。同步代码直接拿到结果，异步代码在对应线程中完后（比如ajax数据拿到了），放在`异步队列`。**注意异步队列中放的是注册的回掉函数（函数里又是script代码）**。如果是micro代码(比如Promise.then)，马上放在`microtask队列`中。
-3. 执行完所有函数体代码，马上执行**所有microtask队列的代码**。
-4. 此时stack为空，取下一个异步代码函数块，放入主线程中。然后重复2和3步骤,构成循环。
-
-总结下，**一个事件循环(EventLoop)中会有一个正在执行的任务(Task)，而这个任务就是从 macrotask 队列中来的。当这个 macrotask 执行结束后所有可用的 microtask 将会在同一个事件循环中执行，当这些 microtask 执行结束后还能继续添加 microtask，一直到真个 microtask 队列执行结束。**
+> 以上说过是宿主环境提供事件循环，但ES6本质上改变了在哪里管理事件循环。由于ES6 Promise的引入，这技术要求对事件循环队列的调度运行能够直接进行精确控制，所以事件循环后续会纳入JavaScirpt引擎的势力范围，而不是只由宿主环境来管理。
 
 ![](https://cdn-images-1.medium.com/max/1200/1*64BQlpR00yfDKsXVv9lnIg.png)
 
 ## 任务队列
 
-有两类任务队列：宏任务队列macrotasks和微任务队列microtasks，在最新标准中，它们被分别称为task与jobs。宏任务队列可以有多个，微任务队列只有一个，而且每一次event loop，都会清空微任务队列。
+这是在ES6中引入的概念，它加在事件循环队列之上。这个概念带来最大的影响可能是Promise的异步特性。
 
-* 宏任务：`script（全局任务，这个很重要）`, setTimeout, setInterval, setImmediate, I/O, UI rendering.
-* 微任务：process.nextTick, Promise, Object.observer, MutationObserver.
+对于`任务队列`最好的理解方式就是，它是挂在`事件循环队列`的每个tick之后的一个队列。在事件循环的每个tick中，可能出现的异步动作不会导致一个完整的新事件添加到事件循环队列中，而会在当前tick的任务队列末尾添加一个任务。
 
-示意执行代码：
+#### macrotask和microtask区别
+
+网络上有非常多介绍这两个的文章，但读完之后依然很晕。其实**事件循环队列===macrotask，任务队列 === microtask**。这样理解规范就简单了：
+
+```
+An event loop has one or more task queues. A task queue is a set of tasks.
+
+The microtask queue is not a task queue.
+// 一个event loop有一个或者多个task队列（ps：task队列 === 事件循环队列）。
+// microtask队列不是一个task队列。（ps：微任务队列只有一个，而且每一次tick，都会清空微任务队列）
+```
+
+* 宏任务（事件循环队列）：`script（全局任务，这个很重要）`, setTimeout, setInterval, setImmediate, I/O, UI rendering.
+* 微任务（任务队列）：process.nextTick, Promise, Object.observer, MutationObserver.
+
+#### macrotask和microtask调用顺序
+
+简化代码示意：
 ``` js
-// 初始时的全局代码script，作为第一个macroTaskQueue
+// 事件循环取macroTaskQueue
+// 微任务队列只有一个，而且每一次tick，都会清空微任务队列
 for (macroTask of macroTaskQueue) {
-    // 这里可能又会产生新的macroTask和microTask。
-    // 新产生的macroTask只能在下一个event loop中才能执行
-    // 新产生的microTask（job）会在当前event loop末尾执行
     handleMacroTask();
 
-    // 这里也可能又会产生新的macroTask和microTask。
-    // microTaskQueue只有一个，新增的microTask附加到队列末尾，也会在当前event loop执行，而不是在下一个event loop循环
     for (microTask of microTaskQueue) {
         handleMicroTask(microTask);
     }
@@ -108,8 +107,6 @@ setTimeout(function setTimeout2 (){
 
 运行过程：
 
-`script里的代码被列为一个task，放入task队列。`注意这里我们把全局script的代码也作为一个macrotask，网络上有些文章（如：[任务队列、web API、JS主线程的相互协同](https://www.cnblogs.com/hity-tt/p/6733062.html)）把全局的script当成同步执行代码，不是作为macrotask。但代表的意思是一样的，都会把microtask加载进主进程执行代码，同时在每一个event loop结尾，都有个microtasks需要全部执行完。
-
 `初始情况，执行栈为空，循环1：`
 
 【task队列：script ；microtask队列：】
@@ -138,6 +135,8 @@ script任务执行完毕，执行microtask checkpoint，取出microtask队列的
 
 【task队列：；microtask队列：】
 
+> 也可以在这个[网站](http://latentflip.com/loupe/?code=ZnVuY3Rpb24gZ2V0WSAoeCkgewogICAgCiAgICByZXR1cm4gbmV3IFByb21pc2UoZnVuY3Rpb24gcHJvbWlzZShyZXNvbHZlLCByZWplY3QpIHsKICAgICAgICBzZXRUaW1lb3V0KGZ1bmN0aW9uIHByb21pc2VUaW1lb3V0KCkgewogICAgICAgICAgICByZXNvbHZlKCgzICogeCkgLSAxKTsKICAgICAgICB9LCAwKTsKICAgIH0pOwp9CgpmdW5jdGlvbiBmb28gKGJhciwgYmF6KSB7CgogICAgdmFyIHggPSBiYXIgKiBiYXo7CgogICAgcmV0dXJuIGdldFkoeCkKICAgICAgICAudGhlbihmdW5jdGlvbiByZXR1cm5BcnJheSh5KSB7CiAgICAgICAgICAgIHJldHVybiBbIHgsIHkgXTsKICAgICAgICB9KTsKfQpzZXRUaW1lb3V0KGZ1bmN0aW9uIHRpbWVvdXQoKSB7CiAgICBjb25zb2xlLmxvZygndGltZW91dCcpCn0sIDApCgpmb28oMTAsIDIwKS50aGVuKGZ1bmN0aW9uIGxvZ01zZyhtc2dzKSB7CiAgICBjb25zb2xlLmxvZyhtc2cpOwp9KTs%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)中查看浏览器执行代码时的实时事件循环和任务队列情况。
+
 ## 参考文章
 
 * [The JavaScript Event Loop](https://flaviocopes.com/javascript-event-loop/)
@@ -149,3 +148,5 @@ script任务执行完毕，执行microtask checkpoint，取出microtask队列的
 * [任务队列、web API、JS主线程的相互协同](https://www.cnblogs.com/hity-tt/p/6733062.html)
 
 * [从event loop规范探究javaScript异步及浏览器更新渲染时机](https://github.com/aooy/blog/issues/5)
+
+* 你不知道的JavaScript（中卷）- 异步
