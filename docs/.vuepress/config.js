@@ -135,6 +135,7 @@ module.exports = {
                     'vue/vue-code-5.component.md',
                     'vue/vue-code-6.nextTick.md',
                     'vue/vue-code-7.inject-provide.md',
+                    'vue/vue-code-8.parseHTML.md',
                     'vue/vue-code-vue-loader.md'
                 ]
             },

@@ -14,4 +14,5 @@ Vue 初始化主要就干了几件事情，合并配置，初始化生命周期�
 
 
 
+
 ![](https://user-gold-cdn.xitu.io/2018/8/30/16586a0d1261a7b3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)

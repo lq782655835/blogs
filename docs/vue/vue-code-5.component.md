@@ -51,7 +51,7 @@ var app = new Vue({
         }
         ```
         2. 安装组件钩子函数
-        * data.hook.init
+        * data.hook.init。 创建组件Vue实例
         * data.hook.prepatch
         * data.hook.insert
         * data.hook.destroy
