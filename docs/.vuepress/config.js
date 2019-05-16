@@ -129,6 +129,7 @@ module.exports = {
                     'vue/vue-api-usage.md',
                     'vue/vue-code-0.frame.md',
                     'vue/vue-code-1.how-to-mount-vue.md',
+                    'vue/vue-code-10.v-model.md',
                     'vue/vue-code-2.snabbdom.md',
                     'vue/vue-code-3.vdom.md',
                     'vue/vue-code-4.event.md',
