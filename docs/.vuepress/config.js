@@ -87,7 +87,6 @@ module.exports = {
                 title: 'JS',
                 collapsable: true,
                 children: [
-                    'js/array-v8-method.md',
                     'js/different-for-in-for-of.md',
                     'js/es6-1.new-feature.md',
                     'js/es6-2.destruction.md',
@@ -102,8 +101,10 @@ module.exports = {
                     'js/js-base-3.event-loop.md',
                     'js/js-design-pattern.md',
                     'js/js-polyfill.md',
+                    'js/js-sort.md',
                     'js/regex.md',
-                    'js/think-different-MVC-MVP-MVVM.md'
+                    'js/think-different-MVC-MVP-MVVM.md',
+                    'js/v8-array-method.md'
                 ]
             },
             {

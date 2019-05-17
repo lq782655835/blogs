@@ -12,7 +12,6 @@
 * [推荐-Vue项目目录结构](https://lq782655835.github.io/blogs/team-standard/recommend-vue-project-structure.html)
 * [推荐-Vue-Router写法](https://lq782655835.github.io/blogs/team-standard/recommend-vuerouter.html)
 # JS
-* [Array API与V8源码解析](https://lq782655835.github.io/blogs/js/array-v8-method.html)
 * [for in和for of区别](https://lq782655835.github.io/blogs/js/different-for-in-for-of.html)
 * [ES6-新增特性一览](https://lq782655835.github.io/blogs/js/es6-1.new-feature.html)
 * [ES6-解构赋值及原理](https://lq782655835.github.io/blogs/js/es6-2.destruction.html)
@@ -27,8 +26,10 @@
 * [JavaScript Event Loop](https://lq782655835.github.io/blogs/js/js-base-3.event-loop.html)
 * [JS设计模式](https://lq782655835.github.io/blogs/js/js-design-pattern.html)
 * [JS 常用函数垫片](https://lq782655835.github.io/blogs/js/js-polyfill.html)
+* [排序算法](https://lq782655835.github.io/blogs/js/js-sort.html)
 * [正则表达式](https://lq782655835.github.io/blogs/js/regex.html)
 * [MVC、MVP、MVVM区别](https://lq782655835.github.io/blogs/js/think-different-MVC-MVP-MVVM.html)
+* [Array API与V8源码解析](https://lq782655835.github.io/blogs/js/v8-array-method.html)
 # NodeJS
 * [Nginx反向代理](https://lq782655835.github.io/blogs/node/nginx.html)
 * [Node-常用API](https://lq782655835.github.io/blogs/node/node-api-summary.html)
