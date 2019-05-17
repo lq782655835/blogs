@@ -13,10 +13,10 @@ React和Vue的设计思路不一样，不代表着React/Vue框架只能做对应
 
 ## 不同
 
-* `思想不同`。react思路是函数式，推崇纯组件，数据不可变，单向数据流；vue是数据可变的，双向绑定，声明式的写法。这是react和vue不同的核心，所以导致了两者的写法以及渲染有些不同，如以下：
+* `思想不同`。react思路是函数式，推崇纯组件，数据不可变，单向数据流；vue是数据可变的，双向绑定。这是react和vue不同的核心，所以导致了两者的写法以及渲染有些不同，如以下：
     1. `源码实现不同`。Vue源码实现是把options挂载到Vue核心类上，然后再new Vue({options})拿到实例（vue组件的script导出的是一个挂满options的纯对象而已）。
         * `组件引入`。React中通过import引入相应组件，然后在render中直接使用；Vue组件分为全局注册和局部注册，在局部注册中，除了引入相应组件，还需要再需要设置下options.components，因为需要把options.component挂载到vm.prototype.options.components上（有个中转）。
-        * `HOC 和 mixins`。React 的组件是一个纯粹的函数；Vue中组件是一个被包装的函数，并不简单的就是我们定义组件的时候传入的对象或者函数。
+        * `HOC 和 mixins`。React 的组件是一个纯粹的函数；Vue中组件是一个被包装的函数，并不简单的就是我们定义组件的时候传入的对象或者函数。 HOC 相对于 mixin，更接近函数式编程。
     2. `写法自由度`。React组件都在继承自ReactComponent类（extend ReactComponent），除了state、生命周期和render函数外，写法较为自由（特别JSX可以赋能js逻辑到render中）；Vue组件设置最终都是挂载在Vue这个核心类上，所以API上需要固定的写data、computed、methods、watch等这些options（JSX也免不了这些，JSX只是为了代替render函数中琐碎的createElement，使用render函数代替lecomponents/directives/filters选项）。所以`React官方推荐JSX、Vue官方推荐template模板。`
         * Vue模板多了**指令系统/过滤**，可以实现更丰富的功能，使用更友好；而React使用JSX语法代替v-for/v-if等，更灵活；
         * React推崇all in js，在js中写入className；Vue把html/js/css写在一个.vue文件中（有点webComponent雏形）。

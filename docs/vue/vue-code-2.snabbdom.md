@@ -307,3 +307,18 @@ function updateChildren(parentElm, oldCh, newCh, insertedVnodeQueue) {
   }
 }
 ```
+
+## 总结
+
+两个假设：
+1. 相同的节点类型，有相同DOM结构；不同的节点类型，不同DOM结构。
+2. 同一层次的节点组，有唯一的key标识。
+
+流程：
+* 新旧两个VNode对比，如果两个相同(vnode1.key === vnode2.key && vnode1.sel === vnode2.sel)，vue中（a.key === b.key && a.tag === b.tag）
+  * 如果是文字节点，更新文字即可
+  * 非文字节点，判断子节点
+    * 如果新老VNode都有子节点，需要使用双向链表处理两个Childrens
+    * 如果只有新的子节点，增加子节点DOM
+    * 如果只有旧的子节点，删除老的子节点
+* 如果不同，增加新DOM，去除老DOM。
