@@ -170,7 +170,6 @@ const wrapper = [
   const otherModule = require('./other') // 内部可以使用require、module等全局变量
   module.exports = function() {...} // 必须使用module.exports以导出本模块内容
 })(this.exports, this.require, this, filename, dirname)
-com
 ```
 
 了解以上源码后，如下官方文档解释很容易理解：
