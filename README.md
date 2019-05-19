@@ -23,7 +23,7 @@
 * [HTTP跨域解决方案](https://lq782655835.github.io/blogs/js/http-cross-domain.html)
 * [JavaScript原型](https://lq782655835.github.io/blogs/js/js-base-1.prototype.html)
 * [JavaScript继承](https://lq782655835.github.io/blogs/js/js-base-2.extend.html)
-* [JavaScript Event Loop](https://lq782655835.github.io/blogs/js/js-base-3.event-loop.html)
+* [JavaScript事件循环](https://lq782655835.github.io/blogs/js/js-base-3.event-loop.html)
 * [JS设计模式](https://lq782655835.github.io/blogs/js/js-design-pattern.html)
 * [JS 常用函数垫片](https://lq782655835.github.io/blogs/js/js-polyfill.html)
 * [排序算法](https://lq782655835.github.io/blogs/js/js-sort.html)
