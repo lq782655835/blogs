@@ -55,6 +55,7 @@ onBack({"status": true, "user": "admin"})
     * 请求：`Origin`<sup>通用</sup>
     * 响应：`Access-Control-Allow-Origin`<sup>通用</sup>。如果是需要发送附带身份凭证（如cookies）的请求(前端代码需要设置：xhr.withCredentials=true)
         * `Access-Control-Allow-Credentials`：服务器响应需要设置该字段为true，浏览器才会把内容给请求的发送者。
+> 为安全性考虑，当响应返回Access-Control-Allow-Credentials：true时，Access-Control-Allow-Origin必须指定具体的Origin，而不是通配符“*”
 
 ![](https://mdn.mozillademos.org/files/14293/simple_req.png)
 
@@ -97,5 +98,7 @@ onBack({"status": true, "user": "admin"})
     * iframe
 
 ## 参考文章
+
 * MDN [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+* [CORS官方规范](https://www.w3.org/TR/cors/)
 * [CORS通信](http://javascript.ruanyifeng.com/bom/cors.html)
