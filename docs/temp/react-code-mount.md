@@ -1,8 +1,27 @@
 # React源码分析 - 挂载和渲染
 
-和Vue类似，先通过React.createElement() 生成 VNode Tree，再通过ReactDOM.render()挂载到真实DOM节点上。
+> 源码基于15-stable分支
 
-## createElement
+和Vue类似，先通过`React.createElement()` 生成 VNode Tree，再通过`ReactDOM.render()`挂载到真实DOM节点上。
+
+``` js
+// 函数组件
+function functionComponent(props) {
+    return (<h1 {...props}>test</h1>) // 最终生成JSX，JSX由babel解析为React.createElemnet
+}
+ReactDOM.render(functionComponent({field: 1}), el)
+
+// 类组件
+class A extends React.Component {
+    // 类组件必须有render函数。有自身状态State和生命周期。
+    render() {
+        return <h1 {...props}>test</h1>
+    }
+}
+ReactDOM.render(<A />, el)
+```
+
+## React.createElement
 
 类似Vue的createElement方法，但React的config对象较为简单，都作为props传入，Vue的VDOM基于snabbdom库，传入的config对象限制较多（如：on、atrrs、props）。两者最终都是得到VDOM Tree的数据机构。
 
@@ -39,23 +58,6 @@ React.createElement(
         }
     )
 )
-```
-
-``` js
-// 函数组件
-function functionComponent(props) {
-    return (<h1 {...props}>test</h1>) // 最终生成JSX，JSX由babel解析为React.createElemnet
-}
-ReactDOM.render(functionComponent({field: 1}), el)
-
-// 类组件
-class A extends React.Component {
-    // 类组件必须有render函数。有自身状态State和生命周期。
-    render() {
-        return <h1 {...props}>test</h1>
-    }
-}
-ReactDOM.render(<A />, el)
 ```
 
 ### 源码
@@ -135,17 +137,72 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
 ## ReactDOM.render
 
 ``` js
-render(
-    element: React$Element<any>,
-    container: DOMContainer,
-    callback: ?Function,
-  ) {
-    return legacyRenderSubtreeIntoContainer(
+// src/renderers/dom/ReactDOM.js
+var ReactDOM = {
+  findDOMNode: findDOMNode,
+  render: ReactMount.render,
+  unmountComponentAtNode: ReactMount.unmountComponentAtNode,
+  version: ReactVersion,
+
+  /* eslint-disable camelcase */
+  unstable_batchedUpdates: ReactUpdates.batchedUpdates,
+  unstable_renderSubtreeIntoContainer: renderSubtreeIntoContainer,
+  /* eslint-enable camelcase */
+};
+
+render: function(nextElement, container, callback) {
+    return ReactMount._renderSubtreeIntoContainer(
       null,
-      element,
+      nextElement,
       container,
-      false,
       callback,
     );
+  }
+```
+
+``` js
+// 插入真实DOM
+_renderSubtreeIntoContainer: function(
+    parentComponent,
+    nextElement,
+    container,
+    callback,
+  ) {
+    // 顶层包装
+    var nextWrappedElement = React.createElement(TopLevelWrapper, {
+      child: nextElement,
+    });
+
+    var prevComponent = getTopLevelWrapperInContainer(container);
+
+    if (prevComponent) {
+      var prevWrappedElement = prevComponent._currentElement;
+      var prevElement = prevWrappedElement.props.child;
+      if (shouldUpdateReactComponent(prevElement, nextElement)) {
+        var publicInst = prevComponent._renderedComponent.getPublicInstance();
+        ReactMount._updateRootComponent(
+          prevComponent,
+          nextWrappedElement,
+          nextContext,
+          container,
+          updatedCallback,
+        );
+        return publicInst;
+      } else {
+        ReactMount.unmountComponentAtNode(container);
+      }
+    }
+
+    var reactRootElement = getReactRootElementInContainer(container);
+
+    var component = ReactMount._renderNewRootComponent(
+      nextWrappedElement,
+      container,
+      shouldReuseMarkup,
+      nextContext,
+    )._renderedComponent.getPublicInstance();
+
+    return component;
   },
+
 ```
