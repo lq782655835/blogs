@@ -123,10 +123,10 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
     $$typeof: REACT_ELEMENT_TYPE, // 常量Symbol.for('react.element')
 
     // ReactElement对象上的四个变量，特别关键
-    type: type,
-    key: key,
-    ref: ref,
-    props: props,
+    type: type, // 关键的识别类型，自定义组件一般为function，dom元素一般为string（tag）
+    key: key, // VDOM diff需要，提升性能
+    ref: ref, // 真实DOM的引用
+    props: props, // 子结构相关信息(有则增加children字段/没有为空)和组件属性(如style)
 
     _owner: owner
   };
@@ -140,14 +140,14 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
 1. 而后将其作为参数传入mountComponentIntoNode方法中，由此获得组件对应的HTML，记为变量markup。
 1. 将真实的DOM的属性innerHTML设置为markup，即完成了DOM插入。
 
-简化流程：
+简化源码流程：
 * `ReactDOM.render()` src/renderers/dom/ReactDOM.js
   * `ReactMount.render` --> `ReactMount._renderSubtreeIntoContainer` src/renderers/dom/client/ReactMount.js
-    1. 顶层包装。判断更新还是初始化，更新流程这节略
+    1. 顶层包装。判断更新还是初始化，更新流程略
     1. 初始化：`ReactMount._renderNewRootComponent`
-        1. `instantiateReactComponent`，不同的type，创建不同的组件实例（4种）。主要为了方便生成html时，直接调用组件实例的mountComponent。return new Component(type)
+        1. `instantiateReactComponent`<sup>重要</sup>，不同的type，创建不同的组件实例（4种）。主要为了方便生成html时，直接调用组件实例的mountComponent。return new Component(type)。下节具体分析。
         1. `batchedMountComponentIntoNode` --> `mountComponentIntoNode` 创建事务，插入真实的DOM节点
-            1. `wrapperInstance.mountComponent` 生成组件实例对应的html代码
+            1. `wrapperInstance.mountComponent`<sup>重要</sup> 生成组件实例对应的html代码。下节具体分析。
             1. `ReactMount._mountImageIntoNode` 设置contaner的innerHTML
 
 ``` js
@@ -169,14 +169,13 @@ render: function(nextElement, container, callback) {
 ```
 
 ``` js
-// 插入真实DOM
 _renderSubtreeIntoContainer: function(
     parentComponent,
     nextElement,
     container,
-    callback,
   ) {
     // 顶层包装
+    // VNode.type = TopLevelWrapper,TopLevelWrapper是个函数
     var nextWrappedElement = React.createElement(TopLevelWrapper, {
       child: nextElement,
     });
@@ -194,23 +193,18 @@ _renderSubtreeIntoContainer: function(
         ReactMount._updateRootComponent(
           prevComponent,
           nextWrappedElement,
-          nextContext,
-          container,
-          updatedCallback,
-        );
+          );
         return publicInst;
       } else {
-        // 卸载
-        ReactMount.unmountComponentAtNode(container);
+        // remove container节点下的所以元素
+        ReactMount.unmountComponentAtNode(container); // while (container.lastChild) {container.removeChild(container.lastChild);}}
       }
     }
 
-    // 根据AST type，1.创建对应component实类，2. 实类专为in 呢人HTML，3. innerHTML挂载到真实的DOM上
+    // 根据AST type，1.创建对应component实例，2. 实例递归生成对应的HTML，3. innerHTML挂载到真实的DOM上
     var component = ReactMount._renderNewRootComponent(
       nextWrappedElement,
       container,
-      shouldReuseMarkup,
-      nextContext,
     )._renderedComponent.getPublicInstance();
 
     return component;
@@ -221,73 +215,37 @@ _renderSubtreeIntoContainer: function(
 _renderNewRootComponent: function(
     nextElement,
     container,
-    shouldReuseMarkup,
-    context,
   ) {
     // 创建component实例。instantiateReactComponent.js
     var componentInstance = instantiateReactComponent(nextElement, false);
 
     ReactUpdates.batchedUpdates(
       batchedMountComponentIntoNode, //回调函数
-      componentInstance,
-      container,
-      shouldReuseMarkup,
-      context,
     );
     return componentInstance;
   },
 ```
 
 ``` js
-function batchedMountComponentIntoNode(
-  componentInstance,
-  container,
-  shouldReuseMarkup,
-  context,
-) {
-  var transaction = ReactUpdates.ReactReconcileTransaction.getPooled(
-    !shouldReuseMarkup && ReactDOMFeatureFlags.useCreateElement,
-  );
+function batchedMountComponentIntoNode() {
+  // 包装成事务方式
   transaction.perform(
-    mountComponentIntoNode, //
-    null,
-    componentInstance,
-    container,
-    transaction,
-    shouldReuseMarkup,
-    context,
+    mountComponentIntoNode, // 回调
   );
-  ReactUpdates.ReactReconcileTransaction.release(transaction);
 }
 ```
 
 ``` js
-function mountComponentIntoNode(
-  wrapperInstance,
-  container,
-  transaction,
-  shouldReuseMarkup,
-  context,
-) {
+function mountComponentIntoNode() {
   // 根据不同的组件类型（4种）类型，返回组件对应的HTML（下节详细讲述）
   // 等同于wrapperInstance.mountComponent
-  var markup = ReactReconciler.mountComponent(
-    wrapperInstance,
-    transaction,
-    null,
-    ReactDOMContainerInfo(wrapperInstance, container),
-    context,
-    0
-  );
+  var markup = ReactReconciler.mountComponent(wrapperInstance);
 
-  wrapperInstance._renderedComponent._topLevelWrapper = wrapperInstance;
   // 给dom插入innerHTML
   ReactMount._mountImageIntoNode(
     markup,
     container,
-    wrapperInstance,
-    shouldReuseMarkup,
-    transaction,
+    wrapperInstance
   );
 }
 ```
@@ -296,11 +254,10 @@ function mountComponentIntoNode(
 _mountImageIntoNode: function(
     markup,
     container,
-    instance,
-    shouldReuseMarkup,
-    transaction,
+    instance
   ) {
-      setInnerHTML(container, markup); // 关键：container.innerHTML = markup;
+      // 关键：container.innerHTML = markup;
+      setInnerHTML(container, markup);
       // 将处理好的组件对象存储在缓存中，提高结构更新的速度。
       ReactDOMComponentTree.precacheNode(instance, container.firstChild);
   }

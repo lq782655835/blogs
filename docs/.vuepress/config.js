@@ -151,6 +151,7 @@ module.exports = {
                     'react/diff-vuex-redux.md',
                     'react/function-program.md',
                     'react/react-code-1.mount.md',
+                    'react/react-code-2.component.md',
                     'react/react-component-best.md',
                     'react/react-eslint.md',
                     'react/react-native-debug-skill.md',
