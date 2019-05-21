@@ -150,6 +150,8 @@ module.exports = {
                     'react/diff-vue-vs-react.md',
                     'react/diff-vuex-redux.md',
                     'react/function-program.md',
+                    'react/react-code-1.mount.md',
+                    'react/react-component-best.md',
                     'react/react-eslint.md',
                     'react/react-native-debug-skill.md',
                     'react/react-native-environment-mac.md',

@@ -57,6 +57,8 @@
 * [Vue与React比较](https://lq782655835.github.io/blogs/react/diff-vue-vs-react.html)
 * [Vuex与Redux比较](https://lq782655835.github.io/blogs/react/diff-vuex-redux.html)
 * [浅谈函数式编程](https://lq782655835.github.io/blogs/react/function-program.html)
+* [React源码分析 - 挂载和渲染](https://lq782655835.github.io/blogs/react/react-code-1.mount.html)
+* [React 组件最佳实践](https://lq782655835.github.io/blogs/react/react-component-best.html)
 * [ESlint代码检查规范 - React/ReactNative](https://lq782655835.github.io/blogs/react/react-eslint.html)
 * [ReactNative Mac调试技巧](https://lq782655835.github.io/blogs/react/react-native-debug-skill.html)
 * [ReactNative Mac开发环境搭建](https://lq782655835.github.io/blogs/react/react-native-environment-mac.html)
