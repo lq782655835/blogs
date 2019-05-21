@@ -43,7 +43,6 @@
 * [Vue高级用法](https://lq782655835.github.io/blogs/vue/vue-api-usage.html)
 * [Vue2.x源码分析 - 框架结构](https://lq782655835.github.io/blogs/vue/vue-code-0.frame.html)
 * [Vue2.x源码分析 - 模版编译以及挂载](https://lq782655835.github.io/blogs/vue/vue-code-1.how-to-mount-vue.html)
-* [Vue2.x源码分析 - v-model](https://lq782655835.github.io/blogs/vue/vue-code-10.v-model.html)
 * [虚拟dom算法库 - snabbdom](https://lq782655835.github.io/blogs/vue/vue-code-2.snabbdom.html)
 * [Vue2.x源码分析 - Virtual DOM实现](https://lq782655835.github.io/blogs/vue/vue-code-3.vdom.html)
 * [Vue2.x源码分析 - 事件系统](https://lq782655835.github.io/blogs/vue/vue-code-4.event.html)
@@ -52,6 +51,7 @@
 * [Vue2.x源码分析 - inject/provide](https://lq782655835.github.io/blogs/vue/vue-code-7.inject-provide.html)
 * [Vue2.x源码分析 - 解析Template模板](https://lq782655835.github.io/blogs/vue/vue-code-8.parseHTML.html)
 * [Vue2.x源码分析 - 响应式原理](https://lq782655835.github.io/blogs/vue/vue-code-9.reactive.html)
+* [Vue2.x源码分析 - v-model](https://lq782655835.github.io/blogs/vue/vue-code-91.v-model.html)
 * [Vue Loader v15 源码解析](https://lq782655835.github.io/blogs/vue/vue-code-vue-loader.html)
 # React
 * [Vue与React比较](https://lq782655835.github.io/blogs/react/diff-vue-vs-react.html)

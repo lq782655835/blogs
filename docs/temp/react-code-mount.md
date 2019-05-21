@@ -1,6 +1,6 @@
 # React源码分析 - 挂载和渲染
 
-> 源码基于15-stable分支
+> 源码基于v15.6.2分支
 
 和Vue类似，先通过`React.createElement()` 生成 VNode Tree，再通过`ReactDOM.render()`挂载到真实DOM节点上。
 
@@ -136,20 +136,18 @@ var ReactElement = function (type, key, ref, self, source, owner, props) {
 
 ## ReactDOM.render
 
+1. 根据ReactDOM.render()传入不同的参数，React内部会创建四大类封装组件，记为componentInstance。
+1. 而后将其作为参数传入mountComponentIntoNode方法中，由此获得组件对应的HTML，记为变量markup。
+1. 将真实的DOM的属性innerHTML设置为markup，即完成了DOM插入。
+
+
 ``` js
 // src/renderers/dom/ReactDOM.js
 var ReactDOM = {
-  findDOMNode: findDOMNode,
   render: ReactMount.render,
-  unmountComponentAtNode: ReactMount.unmountComponentAtNode,
-  version: ReactVersion,
-
-  /* eslint-disable camelcase */
-  unstable_batchedUpdates: ReactUpdates.batchedUpdates,
-  unstable_renderSubtreeIntoContainer: renderSubtreeIntoContainer,
-  /* eslint-enable camelcase */
 };
 
+// nextElement即为AST对象（VNode Tree）
 render: function(nextElement, container, callback) {
     return ReactMount._renderSubtreeIntoContainer(
       null,
@@ -173,9 +171,12 @@ _renderSubtreeIntoContainer: function(
       child: nextElement,
     });
 
+    // 拿到之前的组件，更新时就进行对比
+    // 初始渲染prevComponent = false
     var prevComponent = getTopLevelWrapperInContainer(container);
 
     if (prevComponent) {
+      // 更新流程
       var prevWrappedElement = prevComponent._currentElement;
       var prevElement = prevWrappedElement.props.child;
       if (shouldUpdateReactComponent(prevElement, nextElement)) {
@@ -189,12 +190,12 @@ _renderSubtreeIntoContainer: function(
         );
         return publicInst;
       } else {
+        // 卸载
         ReactMount.unmountComponentAtNode(container);
       }
     }
 
-    var reactRootElement = getReactRootElementInContainer(container);
-
+    // 根据AST type，1.创建对应component实类，2. 实类专为in 呢人HTML，3. innerHTML挂载到真实的DOM上
     var component = ReactMount._renderNewRootComponent(
       nextWrappedElement,
       container,
@@ -203,6 +204,94 @@ _renderSubtreeIntoContainer: function(
     )._renderedComponent.getPublicInstance();
 
     return component;
-  },
+  }
+```
 
+``` js
+_renderNewRootComponent: function(
+    nextElement,
+    container,
+    shouldReuseMarkup,
+    context,
+  ) {
+    // 创建component实例。instantiateReactComponent.js
+    var componentInstance = instantiateReactComponent(nextElement, false);
+
+    ReactUpdates.batchedUpdates(
+      batchedMountComponentIntoNode, //回调函数
+      componentInstance,
+      container,
+      shouldReuseMarkup,
+      context,
+    );
+    return componentInstance;
+  },
+```
+
+``` js
+function batchedMountComponentIntoNode(
+  componentInstance,
+  container,
+  shouldReuseMarkup,
+  context,
+) {
+  var transaction = ReactUpdates.ReactReconcileTransaction.getPooled(
+    !shouldReuseMarkup && ReactDOMFeatureFlags.useCreateElement,
+  );
+  transaction.perform(
+    mountComponentIntoNode, //
+    null,
+    componentInstance,
+    container,
+    transaction,
+    shouldReuseMarkup,
+    context,
+  );
+  ReactUpdates.ReactReconcileTransaction.release(transaction);
+}
+```
+
+``` js
+function mountComponentIntoNode(
+  wrapperInstance,
+  container,
+  transaction,
+  shouldReuseMarkup,
+  context,
+) {
+  // 根据不同的组件类型（4种）类型，返回组件对应的HTML
+  // 等同于wrapperInstance.mountComponent
+  var markup = ReactReconciler.mountComponent(
+    wrapperInstance,
+    transaction,
+    null,
+    ReactDOMContainerInfo(wrapperInstance, container),
+    context,
+    0
+  );
+
+  wrapperInstance._renderedComponent._topLevelWrapper = wrapperInstance;
+  // 给dom插入innerHTML
+  ReactMount._mountImageIntoNode(
+    markup,
+    container,
+    wrapperInstance,
+    shouldReuseMarkup,
+    transaction,
+  );
+}
+```
+
+``` js
+_mountImageIntoNode: function(
+    markup,
+    container,
+    instance,
+    shouldReuseMarkup,
+    transaction,
+  ) {
+      setInnerHTML(container, markup); // 关键：container.innerHTML = markup;
+      // 将处理好的组件对象存储在缓存中，提高结构更新的速度。
+      ReactDOMComponentTree.precacheNode(instance, container.firstChild);
+  }
 ```

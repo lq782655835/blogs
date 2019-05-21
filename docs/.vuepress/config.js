@@ -130,7 +130,6 @@ module.exports = {
                     'vue/vue-api-usage.md',
                     'vue/vue-code-0.frame.md',
                     'vue/vue-code-1.how-to-mount-vue.md',
-                    'vue/vue-code-10.v-model.md',
                     'vue/vue-code-2.snabbdom.md',
                     'vue/vue-code-3.vdom.md',
                     'vue/vue-code-4.event.md',
@@ -139,6 +138,7 @@ module.exports = {
                     'vue/vue-code-7.inject-provide.md',
                     'vue/vue-code-8.parseHTML.md',
                     'vue/vue-code-9.reactive.md',
+                    'vue/vue-code-91.v-model.md',
                     'vue/vue-code-vue-loader.md'
                 ]
             },
