@@ -99,6 +99,7 @@ module.exports = {
                     'js/js-base-1.prototype.md',
                     'js/js-base-2.extend.md',
                     'js/js-base-3.event-loop.md',
+                    'js/js-base-4.promise.md',
                     'js/js-design-pattern.md',
                     'js/js-polyfill.md',
                     'js/js-sort.md',

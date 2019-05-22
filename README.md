@@ -24,6 +24,7 @@
 * [JavaScript原型](https://lq782655835.github.io/blogs/js/js-base-1.prototype.html)
 * [JavaScript继承](https://lq782655835.github.io/blogs/js/js-base-2.extend.html)
 * [JavaScript事件循环](https://lq782655835.github.io/blogs/js/js-base-3.event-loop.html)
+* [动手实现Promise](https://lq782655835.github.io/blogs/js/js-base-4.promise.html)
 * [JS设计模式](https://lq782655835.github.io/blogs/js/js-design-pattern.html)
 * [JS 常用函数垫片](https://lq782655835.github.io/blogs/js/js-polyfill.html)
 * [排序算法](https://lq782655835.github.io/blogs/js/js-sort.html)
