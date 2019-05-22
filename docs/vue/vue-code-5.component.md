@@ -50,8 +50,8 @@ var app = new Vue({
             Sub['super'] = Super
         }
         ```
-        2. 安装组件钩子函数
-        * data.hook.init。 创建组件Vue实例
+        2. 安装组件钩子函数。在组件创建、销毁等阶段会调用到。
+        * data.hook.init。 创建组件Vue实例。核心代码：new SubVue().$mount()
         * data.hook.prepatch
         * data.hook.insert
         * data.hook.destroy
@@ -59,9 +59,10 @@ var app = new Vue({
         // 往 data.hook中注入钩子函数，在vnode patch阶段会调用
         installComponentHooks(data)
         ```
-        3. 实例化VNode(最终都是生成VNode，VNode数据结构本质是颗树)
+        3. 实例化VNode(最终都是生成VNode，VNode数据结构本质是颗树)。注意组件的VNode是没有children，取而代之的是componentOption.Ctor
         ``` js
         const name = Ctor.options.name || tag
+        // 注意:组件的VNode没有children字段，有的是componentOptions.Ctor
         const vnode = new VNode(
         `vue-component-${Ctor.cid}${name ? `-${name}` : ''}`,
         data, undefined, undefined, undefined, context,
@@ -75,33 +76,83 @@ var app = new Vue({
 
 ### 组件patch阶段
 
-1. patch阶段会把VNode 转换成真正的 DOM 节点。patch 的过程会调用 `createElm` 创建元素节点。'src/core/vdom/patch.js'
-    * `createComponent()`
-        * `vnode.data.hook.init()` 'src/core/vdom/create-component.js'
-            1. child = `createComponentInstanceForVnode()`。实例化组件new subVue(),因为组件也是一个Vue对象。
-                * new Vue()会去执行`this._init()` 'src/core/instance/init.js'
-            2. `child.$mount()`
-                * 调用`mountComponent`--> `vm._render()` --> `vm._update()`
+在[Vue2.x源码分析 - 模版编译以及挂载](./vue-code-1.how-to-mount-vue.md)讲到，patch阶段会把VNode转换成真正的 DOM 节点。`patch(oldVNode, vnode)`的过程（如果只考虑组件初始化渲染的话），会调用 `createElm(vnode)`,根据vnode类型创建真实DOM元素。'src/core/vdom/patch.js'
+
 ``` js
-function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
-  let i = vnode.data
-  if (isDef(i)) {
-    if (isDef(i = i.hook) && isDef(i = i.init)) {
-        // 执行vnode.data.hook.init
-        // 组件最终执行了new Vue().$mount()，使得赋值好vnode.elm
-        // 如果组件里还有子组件（options.components），最终都会走createEle创建节点，然后子组件又new Vue().$mount(),会深度递归下去。
-      i(vnode, false /* hydrating */)
+function patch (oldVnode, vnode, hydrating, removeOnly) {
+    // 1. 新vnode为空，销毁老vnode
+    if (isUndef(vnode)) {
+      if (isDef(oldVnode)) invokeDestroyHook(oldVnode)
+      return
     }
 
-    if (isDef(vnode.componentInstance)) {
-      initComponent(vnode, insertedVnodeQueue)
-      // 真正插入DOM,因为已经有组件的vnode.elm了
+    if (isUndef(oldVnode)) {
+      // 2. 新vnode，没有老vnode，直接根据新的VNode创建真实DOM（初始化渲染都走这流程）
+      createElm(vnode, insertedVnodeQueue)
+    } else {
+      // 新老vnode都有
+      if (sameVnode(oldVnode, vnode)) {
+        // 3. 有相同的type和key，patch对比更新
+        patchVnode(oldVnode, vnode, insertedVnodeQueue, removeOnly)
+      } else {
+        // 4. vnode数据结构不同，直接创建新vnode，销毁老vnode
+        // 根据新vnode，创建真实dom
+        createElm(vnode)
+
+        // 根据老vnode，销毁dom
+        if (isDef(parentElm)) {
+          removeVnodes(parentElm, [oldVnode], 0, 0)
+        } else if (isDef(oldVnode.tag)) {
+          invokeDestroyHook(oldVnode)
+        }
+      }
+    }
+
+    return vnode.elm
+  }
+```
+
+``` js
+function createElm (
+    vnode,
+    insertedVnodeQueue,
+    parentElm,
+    refElm,
+    nested,
+    ownerArray,
+    index
+  ) {
+    // 1. 如果是组件vnode，初始化组件new SubVue(options)
+    if (createComponent(vnode, insertedVnodeQueue, parentElm, refElm)) {
+      return
+    }
+
+    // 以下都是非组件，包括：dom vnode/文本 vnode/注释 vnode
+    const data = vnode.data
+    const children = vnode.children
+    const tag = vnode.tag
+    // 2. 如果有tag标签，表明是dom vnode
+    if (isDef(tag)) {
+      vnode.elm = nodeOps.createElement(tag, vnode)
+
+      // 处理children，childVNode执行createElm，递归。
+      createChildren(vnode, children, insertedVnodeQueue)
       insert(parentElm, vnode.elm, refElm)
-      return true
+    } else if (isTrue(vnode.isComment)) {
+      // 3. 注释类型
+      vnode.elm = nodeOps.createComment(vnode.text)
+      insert(parentElm, vnode.elm, refElm)
+    } else {
+      // 4. 文本类型
+      vnode.elm = nodeOps.createTextNode(vnode.text)
+      insert(parentElm, vnode.elm, refElm)
     }
   }
-}
 ```
+
+后面还有createChildren/updateChildren等流程，核心还是依据前后两个VNode进行diff算法，再更新真实DOM。以下贴出笔者vue patch流程的思维导图：
+
+![image](https://user-images.githubusercontent.com/6310131/58183582-282cf980-7ce2-11e9-83f7-92bbd1895031.png)
 
 ## 生命周期
 
