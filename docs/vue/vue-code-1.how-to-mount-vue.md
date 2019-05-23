@@ -165,5 +165,6 @@ new Vue({ el, template, data})
                     vm.$el = vm.__patch__(prevVnode, vnode)
                 }
                 ```
+以下是vue挂载的整个流程，其实就是vnode生成真实dom的规则。其中还包括vue自定义组件的构建流程，详细说明可看[Vue2.x源码分析 - 组件系统](./vue-code-5.component.md)章节。
 
-![](https://ustbhuangyi.github.io/vue-analysis/assets/new-vue.png)
+![image](https://user-images.githubusercontent.com/6310131/58220465-8fc66180-7d41-11e9-83f7-2bdf14ebe327.png)

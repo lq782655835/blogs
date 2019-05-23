@@ -152,7 +152,7 @@ function createElm (
 
 后面还有createChildren/updateChildren等流程，核心还是依据前后两个VNode进行diff算法，再更新真实DOM。以下贴出笔者vue patch流程的思维导图：
 
-![image](https://user-images.githubusercontent.com/6310131/58183582-282cf980-7ce2-11e9-83f7-92bbd1895031.png)
+![image](https://user-images.githubusercontent.com/6310131/58220465-8fc66180-7d41-11e9-83f7-2bdf14ebe327.png)
 
 ## 生命周期
 
