@@ -31,6 +31,7 @@
 * [正则表达式](https://lq782655835.github.io/blogs/js/regex.html)
 * [MVC、MVP、MVVM区别](https://lq782655835.github.io/blogs/js/think-different-MVC-MVP-MVVM.html)
 * [Array API与V8源码解析](https://lq782655835.github.io/blogs/js/v8-array-method.html)
+* [从V8 sort源码看插入排序](https://lq782655835.github.io/blogs/js/v8-array-sort.html)
 # NodeJS
 * [Nginx反向代理](https://lq782655835.github.io/blogs/node/nginx.html)
 * [Node-常用API](https://lq782655835.github.io/blogs/node/node-api-summary.html)

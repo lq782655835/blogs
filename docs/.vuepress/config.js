@@ -105,7 +105,8 @@ module.exports = {
                     'js/js-sort.md',
                     'js/regex.md',
                     'js/think-different-MVC-MVP-MVVM.md',
-                    'js/v8-array-method.md'
+                    'js/v8-array-method.md',
+                    'js/v8-array-sort.md'
                 ]
             },
             {
