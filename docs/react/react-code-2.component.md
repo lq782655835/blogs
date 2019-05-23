@@ -220,3 +220,12 @@ ReactDOM.render(<ExampleApplication/>, document.getElementById('app'))
     1. `child = instantiateReactComponent(renderVNodeTree)`。renderVNodeTree.type === 'p',拿到的child是ReactDOMComponent实例，进入ReactDOMComponent.mountComponent(renderVNodeTree)。 由于换成renderVNodeTree（renderVNodeTree的父类节点是VNode），就已经进入到子类了，实现循环了。
 2. 循环2: DOM组件中（`ReactDOMComponent.mountComponent(renderVNodeTree)`）
     1. 已知在普通DOM组件中（意味着最外层标签是普通DOM元素），所以外层是直接根据tag构建DOM元素el。如果props.children是纯文本，直接更新el.nodeContext，子类是数组，递归调用instantiateReactComponent。
+
+## 完整流程
+
+下图是`React从VDOM到真实DOM渲染`完整流程图，基本跟[Vue完整流程图](../vue/vue-code-1.how-to-mount-vue.md)一样，根据VDOM数据结构，递归处理成真实DOM。两者不一样的地方：
+1. `递归实现细节不同`，React是把VDOM区分成4种，对应着React4大组件。Vue则主要依赖patch(oldVNode, vnode)入口。
+1. `自定义组件实现不同`。React组件是完全透明的，实例化只是返回ChildVNode（通过render函数），不会修改中间值。Vue组件只是声明了对象options，最终还是要挂载在Vue类上。
+1. `VDOM数据结构不同`。React十分简单，type（function/string）、props。Vue则有componentOptions（中转vue组件）、data.on（收集了事件）、data.props、data.attrs等。
+
+![image](https://user-images.githubusercontent.com/6310131/58241535-c02cf080-7d7f-11e9-8d7c-e368828843e6.png)
