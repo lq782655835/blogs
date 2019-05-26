@@ -63,4 +63,40 @@ React 中的函数式思想的具体体现
 组件你内部不改变数据状态；
 不处理交互逻辑。
 
+浅拷贝：
+``` js
+function shallowEqual(objA, objB) {
+  if (is(objA, objB)) {
+    return true;
+  }
+
+  if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {
+    return false;
+  }
+
+  var keysA = Object.keys(objA);
+  var keysB = Object.keys(objB);
+
+  if (keysA.length !== keysB.length) {
+    return false;
+  }
+
+  // Test for A's keys different from B.
+  for (var i = 0; i < keysA.length; i++) {
+    if (!hasOwnProperty.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+```
+
 * [React 中的函数式思想](https://justclear.github.io/functional-in-react/)
+
+setState --> flushBatchedUpdates --> runBatchedUpdates -->performUpdateIfNecessary --> receiveComponent --> ...
+
+为什么不要在jsx中使用bind(this)或箭头函数
+
+因为每调用一次事件，会执行bind(this),它会返回一个新的函数，这个函数会绑定到VNode.props.onClick上（？？），意味着前后的VNode的props浅对比是返回false，导致有和没有PureClass都是一样的。但其实这两个函数实现是一致的。

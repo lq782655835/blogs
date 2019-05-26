@@ -112,3 +112,4 @@ q={};location.search.replace(/([^?&=]+)=([^&]+)/g,(_,k,v)=>q[k]=v);q;
 * [前端解读控制反转(IOC)](https://juejin.im/post/5bd07377e51d457a58075974)
 最容易理解的前端控制反转，案例清晰
 
+* [React 源码剖析系列 － 不可思议的 react diff](https://zhuanlan.zhihu.com/p/20346379) 详细说了react diff细节以及注意点
