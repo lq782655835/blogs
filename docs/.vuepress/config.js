@@ -87,6 +87,7 @@ module.exports = {
                 title: 'JS',
                 collapsable: true,
                 children: [
+                    'js/canvas-base.md',
                     'js/different-for-in-for-of.md',
                     'js/es6-1.new-feature.md',
                     'js/es6-2.destruction.md',

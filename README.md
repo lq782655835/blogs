@@ -12,6 +12,7 @@
 * [推荐-Vue项目目录结构](https://lq782655835.github.io/blogs/team-standard/recommend-vue-project-structure.html)
 * [推荐-Vue-Router写法](https://lq782655835.github.io/blogs/team-standard/recommend-vuerouter.html)
 # JS
+* [Canvas基础](https://lq782655835.github.io/blogs/js/canvas-base.html)
 * [for in和for of区别](https://lq782655835.github.io/blogs/js/different-for-in-for-of.html)
 * [ES6-新增特性一览](https://lq782655835.github.io/blogs/js/es6-1.new-feature.html)
 * [ES6-解构赋值及原理](https://lq782655835.github.io/blogs/js/es6-2.destruction.html)
