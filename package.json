@@ -13,11 +13,11 @@
     },
     "folderTitleMap": {
         "team-standard": "团队规范",
+        "project": "Project",
         "js": "JS",
         "node": "NodeJS",
         "vue": "Vue",
         "react": "React",
-        "project": "思考与总结",
         "tools": "效率工具",
         "read-books": "读书笔记"
     },

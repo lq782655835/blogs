@@ -168,12 +168,13 @@ let getSpeed = type => speedMap[type] && speedMap[type]()
 实践以上列举的重构方法，能解决项目中大部分的坏代码，但还有许多重构方法，能让你的代码变得干净整洁易于阅读。
 * 清晰的项目目录结构
 * ES6+语法糖
+    * **destructuring**
+    * **rest**
+    * **Array Methods**
     * arrow function
-    * rest
     * 函数默认参数
     * async/await
     * let/const 代替var
-    * Array Methods
 * 常用全部使用const，并字母全部为大写
 * 使用合适的函数名或变量名代替注释
 * 善于利用js中的&& 与 ||
