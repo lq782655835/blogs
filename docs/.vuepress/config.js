@@ -101,9 +101,10 @@ module.exports = {
                     'project/ts-tsconfig.md',
                     'project/ts-vue-guide.md',
                     'project/ts-vue-shortcoming.md',
-                    'project/webapck4-devServer.md',
-                    'project/webpack-module.md',
-                    'project/webpack3.x-to-webpack4.md'
+                    'project/webpack4-1.module.md',
+                    'project/webpack4-2.config-setting.md',
+                    'project/webpack4-2.devServer.md',
+                    'project/webpack4-3.x-to-4.md'
                 ]
             },
             {

@@ -112,6 +112,23 @@ export default {
 </script>
 ```
 
+## [this.$once('hook:beforeDestroy',callback)](https://cn.vuejs.org/v2/guide/components-edge-cases.html#%E7%A8%8B%E5%BA%8F%E5%8C%96%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BE%A6%E5%90%AC%E5%99%A8)
+
+程序化的事件侦听器。实现原理：[Vue2.x源码分析 - 组件系统](https://lq782655835.github.io/blogs/vue/vue-code-5.component.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+
+``` js
+mounted: function () {
+  var picker = new Pikaday({
+    field: this.$refs.input,
+    format: 'YYYY-MM-DD'
+  })
+
+  this.$once('hook:beforeDestroy', function () {
+    picker.destroy()
+  })
+}
+```
+
 ## 其他
 
 ### 组件prop为boolean

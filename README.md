@@ -26,9 +26,10 @@
 * [Typescript tsconfig.json全解析](https://lq782655835.github.io/blogs/project/ts-tsconfig.html)
 * [Vue项目TypeScript指南](https://lq782655835.github.io/blogs/project/ts-vue-guide.html)
 * [TypeScript在Vue2.x中的坑](https://lq782655835.github.io/blogs/project/ts-vue-shortcoming.html)
-* [Webpack4 devServer配置详解](https://lq782655835.github.io/blogs/project/webapck4-devServer.html)
-* [Webpack 模块打包原理](https://lq782655835.github.io/blogs/project/webpack-module.html)
-* [Webpack3.x升级Webpack4指南](https://lq782655835.github.io/blogs/project/webpack3.x-to-webpack4.html)
+* [Webpack 模块打包原理](https://lq782655835.github.io/blogs/project/webpack4-1.module.html)
+* [Webpack4 配置详解](https://lq782655835.github.io/blogs/project/webpack4-2.config-setting.html)
+* [Webpack4 devServer配置详解](https://lq782655835.github.io/blogs/project/webpack4-2.devServer.html)
+* [Webpack3.x升级Webpack4指南](https://lq782655835.github.io/blogs/project/webpack4-3.x-to-4.html)
 # JS
 * [Canvas基础](https://lq782655835.github.io/blogs/js/canvas-base.html)
 * [for in和for of区别](https://lq782655835.github.io/blogs/js/different-for-in-for-of.html)

@@ -56,6 +56,8 @@
 * 一行代码获取URL的查询参数：
 q={};location.search.replace(/([^?&=]+)=([^&]+)/g,(_,k,v)=>q[k]=v);q;
 
+* [github fork后同步源更新](https://www.zhihu.com/question/28676261) 提pr必会
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
