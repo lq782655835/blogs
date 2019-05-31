@@ -1,5 +1,7 @@
 # Vue数据结构
 
+vnode创建真实dom过程：先生成根据vnode生成node tree，再插入到父节点（如果有父节点）中。insert(parentElm, vnode.elm, refElm)
+
 关系：
 ``` js
 // vm.__patch__(prevVnode, vnode)设置vnode.elm
@@ -11,6 +13,10 @@ vnode = vm._vnode // 从实例vm拿到vnode
 // Object.defineProperty代理
 vm.$data = vm._data = observe(vm.$options.data())(vm.xxx = vm._data.xxx)
 vm.$props = vm._props = observe(vm.$options.props)
+
+// 常用的手动创建组件
+const Ctor = Vue.extend(Compo); // Ctor是Vue的子类
+return new Ctor({ propsData }).$mount(mounted === false ? null : elm);
 ```
 
 ``` js
