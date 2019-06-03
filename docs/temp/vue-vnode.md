@@ -20,6 +20,11 @@ return new Ctor({ propsData }).$mount(mounted === false ? null : elm);
 ```
 
 ``` js
+const Constructor = Vue.extend({options});// new Constructor().$mount()
+const Vue = new Vue({options})
+```
+
+``` js
 // Vue/Component数据结构
 declare interface Component {
   // constructor information
