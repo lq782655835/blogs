@@ -1,4 +1,4 @@
-# Markdown-It 解析过程
+# Markdown-It 解析原理
 
 markdown-it是目前使用最广泛的`markdown解析器工具`。它将markdown语法的文件，解析为最终的html文件。绝大部分文档中心框架工具如Vuepress，处理markdown文件部分都是使用该工具以及扩展出的插件。了解它的解析过程，是进行自定义markdown插件的前提。
 
