@@ -1,4 +1,4 @@
-# Node-模块源码分析
+# Node模块源码分析
 
 模块系统是nodejs的基础，使用频率也很高。在使用nodejs过程中，以下几个关于模块系统的问题是否常常困扰着你：
 1. 为什么在模块中有全局的require、module.exports、exports、__dirname、__filename等关键字,它们是从哪来的？

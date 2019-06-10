@@ -141,11 +141,12 @@ module.exports = {
                 collapsable: true,
                 children: [
                     'node/nginx.md',
-                    'node/node-api-summary.md',
-                    'node/node-express-api.md',
+                    'node/node-code-connect.md',
+                    'node/node-code-express.md',
                     'node/node-module.md',
                     'node/node-mongodb.md',
-                    'node/node-tool-package.md',
+                    'node/node-usage-api-summary.md',
+                    'node/node-usage-tool-package.md',
                     'node/node-vscode-debug.md',
                     'node/redis.md'
                 ]

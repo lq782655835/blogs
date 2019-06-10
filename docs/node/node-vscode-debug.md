@@ -1,4 +1,4 @@
-# Node-Debug for VSCode
+# Node Debug for VSCode
 
 调试对于任何一门语言都是及其重要的。好的调试工具能让人更有效率的开发以及查错。Node没有chrome developer tool这样的Web可视化集成调试工具，但VSCode默认集成了TS、Git、Debug等实用工具，而且使用非常方便。VSCode的插件生态，也让VSCode变成前端开发必备的利器。以下介绍VSCode下的Node调试。
 
