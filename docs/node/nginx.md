@@ -32,6 +32,7 @@ nginx -v // 显示版本号则安装成功
 nginx目录
 
 ``` shell
+nginx -t // 显示nginx配置信息
 cd /usr/local/etc/nginx
 ```
 
@@ -39,21 +40,33 @@ cd /usr/local/etc/nginx
 
 ``` shell
 nginx // 默认8080端口启动成功，可访问http://localhost:8080/
+servive nginx start // ubantu下
 ```
 
 关闭nginx
 
 ``` shell
 nginx -s stop
+servive nginx stop // ubantu下
 ```
 
 重启nginx
 
 ``` shell
 nginx -s reload // 每次修改完nginx.conf文件就需要重启nginx
+servive nginx restart // ubantu下
 ```
 
 ### config配置
+
+#### location配置
+
+语法规则： location [=|~|~*|^~] /uri/ { … }
+* = 开头表示精确匹配
+* ~ 开头表示区分大小写的正则匹配
+* ~*  开头表示不区分大小写的正则匹配
+* ^~ 开头表示uri以某个常规字符串开头
+
 以下是典型的负载均衡nginx配置：
 1. 用户输入http://test-openai.com 时，访问80端口
 2. nginx监听到80端口被访问，匹配到的/路径，被反向代理到http://dramatic-offical-website

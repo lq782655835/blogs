@@ -28,6 +28,7 @@
 | env      | env | 显示当前所有设置过的环境变量 |
 | date      | date | 显示系统的当前日期和时间 |
 | cal      | cal | 显示日历 |
+| curl   |  curl [url] | http命令行工具
 
 ## Shell编程
 
