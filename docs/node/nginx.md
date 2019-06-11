@@ -59,6 +59,30 @@ servive nginx restart // ubantu下
 
 ### config配置
 
+``` nginx
+http {
+    access_log /var/logs/nginx-access.log; # 记录日志地址
+    # 日志格式
+    log_format combined '$remote_addr - $remote_user [$time_local] '
+                    '"$request" $status $body_bytes_sent '
+                    '"$http_referer" "$http_user_agent"';
+
+    # 可以有多个server
+    server {
+        listen 8080; # 端口
+        root /data/up1; # server根目录。未设置时，MacOS默认是/usr/local/var/www
+
+        location / {
+            proxy_pass http://localhost:8080; # 代理
+        }
+
+        location /images/ {
+            root /data; # 设置该路径下的根目录（覆盖server根目录）
+        }
+    }
+}
+```
+
 #### location配置
 
 语法规则： location [=|~|~*|^~] /uri/ { … }
@@ -67,7 +91,30 @@ servive nginx restart // ubantu下
 * ~*  开头表示不区分大小写的正则匹配
 * ^~ 开头表示uri以某个常规字符串开头
 
-以下是典型的负载均衡nginx配置：
+``` nginx
+server {
+    listen 80; # 监听80端口
+
+    # http://localhost/some/example.html访问/data/www/some/example.html
+    location / {
+        root /data/www;
+    }
+
+    # http://localhost/images/index.html访问/data/images/index.html
+    # 注意：这里不是访问/data/index.html
+    location /images/ {
+        root /data;
+    }
+
+    # http://localhost/images/example.png访问/data/images/example.png
+    location ~ \.(gif|jpg|png)$ {
+        root /data/images;
+    }
+}
+```
+
+#### 负载均衡（反向代理）
+
 1. 用户输入http://test-openai.com 时，访问80端口
 2. nginx监听到80端口被访问，匹配到的/路径，被反向代理到http://dramatic-offical-website
 3. dramatic-offical-website集群管理着一堆机器地址，从而实现负载均衡。
@@ -86,7 +133,7 @@ server {
 
     # 静态文件，nginx自己处理
     location /images/ {
-        root /data; # 映射到/data目录下
+        root /data; # 映射到/data/images
     }
 }
 
