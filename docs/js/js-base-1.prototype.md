@@ -90,7 +90,6 @@ function objectFactory() {
     obj.__proto__ = Constructor.prototype;
     var ret = Constructor.apply(obj, arguments);
     return typeof ret === 'object' ? ret : obj;
-
 };
 
 var tom = objectFactory(Person, 'tom')
@@ -142,9 +141,9 @@ tom.sleep() // sleep方法是在原型链上找到的
 
 * 对原型的概念理解，语法层面不仅仅是prototype，还有constructor、new。
 * 可以把构造函数当作是特殊的函数，但记住它终归只是一个函数。
-* prototype属性是每个函数都有的，并且值是个不为空的对象，这在js语法层面就确定的
+* prototype属性是每个函数都有的，并且值是个不为空的对象，这在js语法层面就确定的。
 * __proto__属性是在实例对象上，prototype属性是在构造函数上，并且在new关键字作用下两者指向同一个地方。
-* js面向对象是利用原型来实现，js继承是利用原型链来实现的
+* js面向对象是利用原型来实现，js继承是利用原型链来实现的。
 
 ## 参考文章
 

@@ -11,6 +11,7 @@ git init # 初始化本地git 以下所有操作的前提条件
 
 git add -A # 添加当前所有变动文件到本地缓存区
 git commit -m '<commit-word>' # 提交缓存区内容到本地仓库
+git commit -am '<commit-word>' # 上面两步合并为一步的命令
 
 git checkout master
 git checkout -b <feat-name> # 新建feat-name分支并切换到该分支
@@ -27,6 +28,7 @@ git config --list # 显示当前的Git配置
 
 ``` shell
 git remote add origin <URL> # 关联远程仓库，以下操作的前提条件
+git remote -v # 显示远程仓库
 
 git pull # 拉取远程代码到本地
 git push -u origin master # 推送本地到远程master分支

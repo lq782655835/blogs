@@ -69,9 +69,12 @@ jsCoder.sleep() // tom go to sleep
 inheritPrototype(Developer, Person)
 
 function inheritPrototype(subClass, superClass) {
-    var obj = Object.create(superClass.prototype)
-    subClass.prototype = obj
+    subClass.prototype = Object.create(superClass.prototype)
     subClass.prototype.constructor = subClass
+    // 或者一条代码
+    // subClass.prototype = Object.create(superClass && superClass.prototype, {
+    //     constructor: { value: subClass, writable: true, configurable: true }
+    // });
 }
 ```
 
