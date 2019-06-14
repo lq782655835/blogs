@@ -37,6 +37,7 @@
 * [ES6-解构赋值及原理](https://lq782655835.github.io/blogs/js/es6-2.destruction.html)
 * [ES6-Object](https://lq782655835.github.io/blogs/js/es6-3.object.html)
 * [ES6-模块详解](https://lq782655835.github.io/blogs/js/es6-4.module.html)
+* [ES6-Class](https://lq782655835.github.io/blogs/js/es6-5.class.html)
 * [ES6-ECMAScript特性汇总](https://lq782655835.github.io/blogs/js/es6-latest-feature.html)
 * [输入URL背后的技术步骤](https://lq782655835.github.io/blogs/js/http-base-1.url.html)
 * [浏览器内核原理](https://lq782655835.github.io/blogs/js/http-base-2.browser.html)

@@ -118,6 +118,7 @@ module.exports = {
                     'js/es6-2.destruction.md',
                     'js/es6-3.object.md',
                     'js/es6-4.module.md',
+                    'js/es6-5.class.md',
                     'js/es6-latest-feature.md',
                     'js/http-base-1.url.md',
                     'js/http-base-2.browser.md',
