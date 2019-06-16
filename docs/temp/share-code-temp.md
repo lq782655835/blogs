@@ -1,0 +1,98 @@
+``` html
+<template>
+    <div></div>
+</template>
+
+<script>
+export default {
+    /* 1. vue子组件 */
+    components: {},
+    /* 2. Vue数据 */
+    props: {},
+    data () {
+        return {}
+    },
+    computed: {},
+    watch:{},
+    /* 3. Vue资源 */
+    filters: {},
+    directives: {},
+    /* 4. Vue生命周期 */
+    mounted () {},
+    /* 5. Vue方法 */
+    methods: {}
+}
+</script>
+```
+
+``` js
+import React, { Component } from 'react'
+/* 1. React子组件 */
+import HomeList from './HomeList.js'
+
+export default class HelloWorld extends Component {
+    /* 2. React数据 */
+    static defaultProps = {} // props
+    state = { } // data
+    /* 3. React生命周期 */
+    comonentDidMount() {}
+    /* 4. React方法 */
+    handleClick = () => {} // method
+
+    render() {
+        return (
+            <div><div>
+        )
+    }
+}
+```
+
+``` js
+// Vue Component实质是特定的options
+warpperVue = new Vue(components)
+class SubVue extends Vue {
+    render(h) {
+        return JSX
+    }
+}
+warpperVue = {
+    $options: {}
+    render: function(h) {}
+}
+```
+
+Vue模板
+
+``` js
+class VNode {
+  constructor({ el, data, children, text, key }) {
+    // 选择器，或者对应的真实 DOM 节点
+    this.el = el
+    // VNode data
+    this.data = data
+    // 子节点
+    this.children = children
+    // 文本节点
+    this.text = text
+    // key
+    this.key = key
+    // ...
+  }
+}
+
+<div>
+  <span>some text</span>
+</div>
+
+new VNode({
+  el: 'div',
+  children: [
+    new VNode({
+      el: 'span',
+      text: 'some text'
+    })
+  ]
+})
+```
+
+![](https://macsalvation.net/2018/08/06/dive-deep-into-vue-part-1-vdom-and-diff/VDOM.png)
