@@ -144,3 +144,51 @@ _updateRenderedComponent: function(transaction, context) {
 // diff 算法：ReactMultiChild.js
 
 ```
+
+``` js
+var ReactDefaultBatchingStrategy = {
+  isBatchingUpdates: false,
+
+  batchedUpdates: function(callback, a, b, c, d, e) {
+    var alreadyBatchingUpdates = ReactDefaultBatchingStrategy.isBatchingUpdates;
+
+    ReactDefaultBatchingStrategy.isBatchingUpdates = true;
+
+    // The code is written this way to avoid extra allocations
+    if (alreadyBatchingUpdates) {
+      return callback(a, b, c, d, e);
+    } else {
+      return transaction.perform(callback, null, a, b, c, d, e);
+    }
+  },
+};
+```
+
+``` js
+var NESTED_UPDATES = {
+  initialize: function() {
+    this.dirtyComponentsLength = dirtyComponents.length;
+  },
+  close: function() {
+    if (this.dirtyComponentsLength !== dirtyComponents.length) {
+      // Additional updates were enqueued by componentDidUpdate handlers or
+      // similar; before our own UPDATE_QUEUEING wrapper closes, we want to run
+      // these new updates so that if A's componentDidUpdate calls setState on
+      // B, B will update before the callback A's updater provided when calling
+      // setState.
+      dirtyComponents.splice(0, this.dirtyComponentsLength);
+      flushBatchedUpdates();
+    } else {
+      dirtyComponents.length = 0;
+    }
+  },
+};
+```
+
+* 事务流程
+  * 执行流很像设计模式中的装饰者模式
+  * callback为目标函数，before装饰initialize，after装饰close
+
+## 参考资料
+
+https://zhuanlan.zhihu.com/p/35226897

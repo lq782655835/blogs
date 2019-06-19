@@ -182,6 +182,7 @@ module.exports = {
                     'react/function-program.md',
                     'react/react-code-1.mount.md',
                     'react/react-code-2.component.md',
+                    'react/react-code-3.setState.md',
                     'react/react-code-90.summary-diff.md',
                     'react/react-component-best.md',
                     'react/react-eslint.md',

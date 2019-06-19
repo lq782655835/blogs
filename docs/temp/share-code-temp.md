@@ -96,3 +96,140 @@ new VNode({
 ```
 
 ![](https://macsalvation.net/2018/08/06/dive-deep-into-vue-part-1-vdom-and-diff/VDOM.png)
+
+
+``` js
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+class HelloWorld extends React {
+  render() {
+    return (
+      <div>
+        <Hello />
+        <Inner text="hi">
+          <div>yoyoyo</div>
+        </Inner>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<HelloWorld />, document.getElementById('app'))
+
+export default {
+  mixins: [SomeMixin],
+  handleClick() {
+    console.log(this); // Vue Component instance
+  },
+  render() {
+  	return (
+      <div onClick={this.handleClick}></div>
+    )
+  }
+}
+```
+## 认识JSX
+
+``` js
+var JSXExample = React.createElement("div", null, 
+  React.createElement(Hello, null),
+  React.createElement(Inner, { text: "hi" }, 
+    React.createElement("div", null, "yoyoyo")
+  )
+);
+```
+``` js
+ReactDOM.render(VNode)
+let VNode = {
+  type: HelloWorld, // 包含render函数的类
+  props: {
+    children: [
+      {
+        type: 'div',
+        props: {
+          children: [
+            {
+              type: Hello,
+              props: {}
+            },
+            {
+              type: Inner,
+              props: {
+                text: 'hi',
+                children: [
+                  {
+                    type: 'div',
+                    props: {
+                      children: 'yoyoyo'
+                    },
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+
+```
+
+## 响应式原理不同
+``` js
+export default class HelloWorld extends Component {
+    state = {
+      count: 0,
+      obj: {
+        a: 0,
+        others: {}
+      }
+    }
+    handleClick = () => {
+      // 相同：异步更新
+      // 不同：1. react新值覆盖旧值 2. react动态加属性
+      this.setState({ count: 1 })
+      this.setState({
+        obj: {...this.state.obj, a: 1, b: 1},
+      })
+    }
+
+    render() {
+        return (
+            <div onClick={this.handleClick}>
+          		{this.state.count}
+                {this.state.obj.a}
+				<Hello />
+			<div>
+        )
+    }
+}
+
+export default {
+  data() {
+  	return {
+      count: 0,
+      obj: {
+        a: 0,
+        others: {}
+      }
+    }
+  },
+  methods: {
+    handleClick() {
+      // 1. vue直接修改数据 2. 使用特定API动态加属性
+      this.count = 1
+      this.obj.a = 1
+      Vue.set(this.obj, 'b', 1)
+    }
+  },
+  template: `<div @click="handleClick">
+    {{this.state.count}}
+    {{this.state.obj.a}}
+    {{this.state.obj.b}}
+	<hello />
+			<div>`
+
+}
+```
