@@ -19,6 +19,7 @@
 * [PostCSS](https://lq782655835.github.io/blogs/project/postcss.html)
 * [Electron工程踩坑记录](https://lq782655835.github.io/blogs/project/project-electron-summary.html)
 * [H5 Video踩坑记录](https://lq782655835.github.io/blogs/project/project-h5-video-summary.html)
+* [Puppeteer翻页爬虫](https://lq782655835.github.io/blogs/project/puppeteer.html)
 * [重构你的javascript代码](https://lq782655835.github.io/blogs/project/refactor-your-js-code.html)
 * [官网脚手架思考与实践](https://lq782655835.github.io/blogs/project/think-cli-official-website.html)
 * [Stylelint样式规范工具](https://lq782655835.github.io/blogs/project/tool-stylelint.html)

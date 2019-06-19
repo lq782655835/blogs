@@ -94,6 +94,7 @@ module.exports = {
                     'project/postcss.md',
                     'project/project-electron-summary.md',
                     'project/project-h5-video-summary.md',
+                    'project/puppeteer.md',
                     'project/refactor-your-js-code.md',
                     'project/think-cli-official-website.md',
                     'project/tool-stylelint.md',
