@@ -84,7 +84,6 @@ q={};location.search.replace(/([^?&=]+)=([^&]+)/g,(_,k,v)=>q[k]=v);q;
     * [badgen-service](https://github.com/amio/badgen-service) 在线图标生成服务
     * [sb](https://github.com/jaywcjlove/sb) 在线多种svg图标
 
-
 ## Github优秀源码
 * Vue
     * [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 完整的项目案例，界面精良，较多的第三方组件方案（icon、permission...）
@@ -114,4 +113,9 @@ q={};location.search.replace(/([^?&=]+)=([^&]+)/g,(_,k,v)=>q[k]=v);q;
 * [前端解读控制反转(IOC)](https://juejin.im/post/5bd07377e51d457a58075974)
 最容易理解的前端控制反转，案例清晰
 
-* [React 源码剖析系列 － 不可思议的 react diff](https://zhuanlan.zhihu.com/p/20346379) 详细说了react diff细节以及注意点
+* React
+    * [setState为什么不会同步更新组件状态](https://zhuanlan.zhihu.com/p/25990883) 为什么setState不同步
+    * [React 源码剖析系列 － 不可思议的 react diff](https://zhuanlan.zhihu.com/p/20346379) 详细说了react diff细节以及注意点
+    * [Immutable 详解及 React 中实践](https://zhuanlan.zhihu.com/p/20295971) imuutable在react中实践
+    * [React Fiber对现有代码的影响](https://zhuanlan.zhihu.com/p/26027085) 浅显易懂的讲述了fiber来由以及影响
+    * [React v16.3之后的组件生命周期函数](https://zhuanlan.zhihu.com/p/38030418) 说明了fiber架构给生命周期带来的影响

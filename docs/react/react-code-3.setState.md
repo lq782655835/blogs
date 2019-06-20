@@ -48,7 +48,7 @@ var Counter = React.createClass({
       );
 // 初始化时
 {count: 0} "render"
-// 单机按钮后
+// 单击按钮后
 embedded:16 {count: 0} "first"
 embedded:25 {count: 2} "render"
 embedded:13 {count: 2} "next update"

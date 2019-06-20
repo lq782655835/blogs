@@ -99,10 +99,10 @@ new VNode({
 
 
 ``` js
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
-class HelloWorld extends React {
+class HelloWorld extends Component {
   render() {
     return (
       <div>
