@@ -1,5 +1,38 @@
 # Connect源码解析
 
+connect和express出自同一作者TJ Holowaychuk。从依赖性看，express基于connect；但从2个项目的git提交历史来看，实际上先有express项目（2009-6-27），2010-5-27 前后connect从express项目分化出来（express 0.12.0）。所以两者有相同的中间件机制，不同的是express拥有子路由、view模板等web应用框架内容。
+
+## Connect Usage
+
+``` js
+var connect = require('connect');
+var app = connect();
+
+// gzip/deflate outgoing responses
+var compression = require('compression');
+app.use(compression());
+
+// store session state in browser cookie
+var cookieSession = require('cookie-session');
+app.use(cookieSession({
+    keys: ['secret1', 'secret2']
+}));
+
+// parse urlencoded request bodies into req.body
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended: false}));
+
+// respond to all requests
+app.use(function(req, res){
+  res.end('Hello from Connect!\n');
+});
+
+//create node.js http server and listen on port
+app.listen(3000);
+```
+
+## 源码解析
+
 源码非常简单，尾递归调用。next 方法不断的取出stack中的“中间件”函数进行调用，同时把next 本身传递给“中间件”作为第三个参数，每个中间件约定的固定形式为 (req, res, next) => {}, 这样每个“中间件“函数中只要调用 next 方法即可传递调用下一个中间件。
 
 之所以说是”尾递归“是因为递归函数的最后一条语句是调用函数本身，所以每一个中间件的最后一条语句需要是next()才能形成”尾递归“，否则就是普通递归，”尾递归“相对于普通”递归“的好处在于节省内存空间，不会形成深度嵌套的函数调用栈。[尾调用优化](http://www.ruanyifeng.com/blog/2015/04/tail-call.html)
