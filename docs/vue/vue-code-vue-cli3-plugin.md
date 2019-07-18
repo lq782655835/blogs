@@ -286,11 +286,11 @@ class PluginAPI {
 
 ## 总结
 
-以上就是是整个Service插件的精华，所有配置在Service实例类中集合，同时允许各个Service Plugin动态的去修改单例模式的service对象，使得很好的解耦了整个插件系统。
+以上就是整个Service插件系统的核心内容，所有配置在Service实例类中集合，同时允许各个Service Plugin动态的去修改单例模式的service对象，使得很好的解耦了整个插件系统。
 
 现在再来解释文章开头的问题：
 1. vue-cli-service是什么？vue-cli-service提供了本地开发构建服务。
-2. 执行serve命令时发生了什么？收集各个插件中设置的webpack参数，并生成最终的webpack配置，再根据配置创建compiler，再启动WebpackDevServer
-3. 为什么可以零配置的情况下跑起webpack？vue-cli3内置了一些命令和配置，并且这些命令和配置都是以插件形式提供
+2. 执行serve命令时发生了什么？收集各个插件中设置的webpack参数，并生成最终的webpack配置，再根据配置创建compiler，再启动WebpackDevServer。
+3. 为什么可以零配置的情况下跑起webpack？vue-cli3内置了一些命令和配置，并且这些命令和配置都是以插件形式提供。
 4. 为什么会给项目设置TypeScirpt环境？service插件的api参数，提供了动态修改webpack的能力(基于[webpack-chain](https://github.com/neutrinojs/webpack-chain)链式调用修改)。
 5. 为什么执行`vue-cli-service lint`命令会变成用tslint检查？插件可以动态的注册命令以及对应的逻辑，扩展本地项目能力。
