@@ -57,16 +57,18 @@ git push origin --tags # 推送tag
 
 # 4. 常用
 ``` bash
-// 部署gh-pages主页
+// 部署gh-pages主页(一直在master分支上执行)
 
-# 1. 切换到gh-pages分支
-git checkout -b gh-pages
-# 2. 执行build生成打包后文件
-npm run build
-# 3. 只把打包后的文件夹（如dist）推送到gh-pages分支
-git add -f dist
-git commit -m 'Initial the page of project'
+# 1. 把dist分支上传到master分支
+npm run build && git commit -am 'deploy'
+# 2. 意思是把远程master（注意不是本地master）分支的dist文件夹，
+# 推送到远程的gh-pages分支。
 git subtree push --prefix dist origin gh-pages
+```
+
+可以设置deploy命令：
+``` shell
+"deploy": "npm run build && git commit -am 'deploy' && git subtree push --prefix dist origin gh-pages",
 ```
 
 ## 参考文章

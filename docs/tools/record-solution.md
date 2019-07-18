@@ -53,10 +53,13 @@
 
 * [debug vue源码](https://segmentfault.com/a/1190000018038749)
 
-* 一行代码获取URL的查询参数：
-q={};location.search.replace(/([^?&=]+)=([^&]+)/g,(_,k,v)=>q[k]=v);q;
-
 * [github fork后同步源更新](https://www.zhihu.com/question/28676261) 提pr必会
+
+* [github 把子目录发布到远程gh-pages](https://gist.github.com/cobyism/4730490) 发布个人项目必会
+
+* 解决git pull/push每次都需要输入密码问题，一行命令：git config --global credential.helper store
+
+* [jest 报错 SyntaxError: Unexpected string](https://segmentfault.com/a/1190000019522911)
 
 ## 技术选型
 

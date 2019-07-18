@@ -170,6 +170,7 @@ module.exports = {
                     'vue/vue-code-8.parseHTML.md',
                     'vue/vue-code-9.reactive.md',
                     'vue/vue-code-91.v-model.md',
+                    'vue/vue-code-vue-cli3-plugin.md',
                     'vue/vue-code-vue-loader.md'
                 ]
             },

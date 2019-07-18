@@ -77,6 +77,7 @@
 * [Vue2.x源码分析 - 解析Template模板](https://lq782655835.github.io/blogs/vue/vue-code-8.parseHTML.html)
 * [Vue2.x源码分析 - 响应式原理](https://lq782655835.github.io/blogs/vue/vue-code-9.reactive.html)
 * [Vue2.x源码分析 - v-model](https://lq782655835.github.io/blogs/vue/vue-code-91.v-model.html)
+* [Vue CLI3 插件系统原理](https://lq782655835.github.io/blogs/vue/vue-code-vue-cli3-plugin.html)
 * [Vue Loader v15 源码解析](https://lq782655835.github.io/blogs/vue/vue-code-vue-loader.html)
 # React
 * [Vue与React比较](https://lq782655835.github.io/blogs/react/diff-vue-vs-react.html)
