@@ -94,28 +94,19 @@
         * `koa-router` 相当于app.Router;
         * `koa-static` 相当于express.static
     * 测试
-        * `mocha`<sup>`推荐`</sup> 测试框架，支持node和web端。好处是灵活，可扩展性高，自己选择对应工具；坏处是你必须搭配一些断言库 + 代码覆盖率库
+        * 单测
+            * `Jest`<sup>`推荐`</sup> 测试框架，基于Jasmine。Facebook出品，很容测试React 应用。如果你有一个大项目, 或者想快速开始不需要太多配置，那么 Jest 将会是一个很好的选择。
+            * `mocha`<sup>`推荐`</sup> 测试框架，支持node和web端。好处是灵活，可扩展性高，自己选择对应工具；坏处是你必须搭配一些断言库 + 代码覆盖率库
             * –-recursive 使全部子目录下的测试用例都能被执行
             * --watch/-w 用来监视指定的测试脚本。当脚本发生变化，就会自动运行mocha。
             * –-bail/-b 只要有一个测试用例没有通过，就会停止执行后面的测试用例。
-        * `chai`<sup>`推荐`</sup> 断言库。BDD（行为驱动开发）/TDD（测试驱动开发）风格，同时支持should，assert，expect。支持node端和web端，通常chai可以替代should包。
-        * `should` 断言库。BDD风格。
+            * `chai`<sup>`推荐`</sup> 断言库。BDD（行为驱动开发）/TDD（测试驱动开发）风格，同时支持should，assert，expect。支持node端和web端，通常chai可以替代should包。
+            * `should` 断言库。BDD风格。
+            * `Jasmine` 大而全框架，自带断言等feature
+        * 压测
+            * [ab](http://httpd.apache.org/docs/2.2/programs/ab.html) apache自带的压力测试工具
+            * [loadtest](https://github.com/alexfernandez/loadtest) 基于npm的ab测试工具
         * `istanbul` 代码覆盖率
-        * `Jasmine` 大而全框架，自带断言等feature
-        * `Jest`<sup>`推荐`</sup> 测试框架，基于Jasmine。Facebook出品，很容测试React 应用。如果你有一个大项目, 或者想快速开始不需要太多配置，那么 Jest 将会是一个很好的选择。
-            * API更简单，样板代码更少。
-            * 灵活且容易配置。
-            * 测试文件彼此隔离执行。
-            * 高级监控模式。
-            * 快照支持，测试更容易上手。
-            * 代码覆盖率。
-        > mocha 和Jasmine是测试代码的测试框架： 他们可以使用不同的断言库。
-
-        > should.js 是一个断言库- 它从IE9和其他浏览器工作- 所以你需要一个测试框架来使用它
-
-        > chai是一个断言库"生态系统"： 你可以添加插件或者只使用它自己的版本的should.js 或者 expect.js - 也需要一个测试框架来使用它。
-
-        > Karma 是一个利用 mocha 和Jasmine的力量来测试 跨浏览器，做直接测试，以及更多的测试的测试环境
     * 客户端请求
         * `http.request()/http.get()` node原生
         * [request](https://github.com/request/request) 老牌客户端请求代理模块，包装原生Node的http.request,使得调用更加简单。
@@ -127,6 +118,15 @@
         * `mongoose`<sup>`推荐`</sup> - 全能的 MongoDB ORM 库。底层使用mongodb Client
 
 持续更新中...
+
+
+> mocha 和Jasmine是测试代码的测试框架： 他们可以使用不同的断言库。
+
+> should.js 是一个断言库- 它从IE9和其他浏览器工作- 所以你需要一个测试框架来使用它
+
+> chai是一个断言库"生态系统"： 你可以添加插件或者只使用它自己的版本的should.js 或者 expect.js - 也需要一个测试框架来使用它。
+
+> Karma 是一个利用 mocha 和Jasmine的力量来测试 跨浏览器，做直接测试，以及更多的测试的测试环境
 
 ## 参考文章
 
