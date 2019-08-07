@@ -218,6 +218,7 @@ module.exports = {
                     'read-books/book-agile-software.md',
                     'read-books/book-design-for-all.md',
                     'read-books/book-head-first-design-patterns.md',
+                    'read-books/book-http-diagram.md',
                     'read-books/book-js-advance-design.md',
                     'read-books/book-soft-skills.md',
                     'read-books/book-you-dont-know-javascript.md'

@@ -107,6 +107,7 @@
 * [《敏捷开发》读后总结](https://lq782655835.github.io/blogs/read-books/book-agile-software.html)
 * [《给大家看的设计书》笔记](https://lq782655835.github.io/blogs/read-books/book-design-for-all.html)
 * [《Head First Design Patterns》](https://lq782655835.github.io/blogs/read-books/book-head-first-design-patterns.html)
+* [《HTTP图解》](https://lq782655835.github.io/blogs/read-books/book-http-diagram.html)
 * [《JavaScript高级程序设计》](https://lq782655835.github.io/blogs/read-books/book-js-advance-design.html)
 * [程序员软技能指南](https://lq782655835.github.io/blogs/read-books/book-soft-skills.html)
 * [《你不知道的JavaScript》](https://lq782655835.github.io/blogs/read-books/book-you-dont-know-javascript.html)
