@@ -156,7 +156,7 @@ function flatDeep(arr) {
     const res = []
     while (stack.length) {
         const val = stack.pop() // 从尾部开始
-        Array.isArray(val) ? stack.push(val) : res.push(val)
+        Array.isArray(val) ? stack.push(...val) : res.push(val)
     }
 
     return res.reverse()

@@ -67,9 +67,9 @@ let regexTest = /#(.*)$/.test('http://localhost:8081/#/demo') // true
 ```
 
 ### string.match(regex)
-在非全局匹配模式下，类似regex.exec(string)。
+`在非全局匹配模式下`，类似regex.exec(string)。
 
-在全局匹配模式下，直接获得匹配值。
+在`全局匹配模式下(使用g标志)`，则将返回与完整正则表达式匹配的所有结果（Array），但不会返回捕获组，或者未匹配 null。
 ``` js
 // 非全局匹配模式
 let stringMatch = 'http://localhost:8081/#/demo'.match(/#(.*)$/)
