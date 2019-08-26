@@ -96,6 +96,7 @@
 * [前端必备效率工具](https://lq782655835.github.io/blogs/tools/0.tool-summary.html)
 * [前端抓包神器Charles](https://lq782655835.github.io/blogs/tools/charles-tool.html)
 * [Git实用命令](https://lq782655835.github.io/blogs/tools/git-command.html)
+* [买房攻略 - 杭州](https://lq782655835.github.io/blogs/tools/house-shopping-recommend.html)
 * [npm script技巧](https://lq782655835.github.io/blogs/tools/npm%20script.html)
 * [Python语法](https://lq782655835.github.io/blogs/tools/python-grammar.html)
 * [前端常用解决方案](https://lq782655835.github.io/blogs/tools/record-solution.html)

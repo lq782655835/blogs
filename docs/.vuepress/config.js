@@ -201,6 +201,7 @@ module.exports = {
                     'tools/0.tool-summary.md',
                     'tools/charles-tool.md',
                     'tools/git-command.md',
+                    'tools/house-shopping-recommend.md',
                     'tools/npm script.md',
                     'tools/python-grammar.md',
                     'tools/record-solution.md',
