@@ -27,7 +27,7 @@
 但两者源码实现上有区别：
 #### 1. `实现细节不同`
 
-两者都大量使用了递归，但React主要使用了[四大组件类](./react/react-code-2.component.md)包装VNode，不同类型的VNode使用相应的组件类处理，职责划分更好（同时也意味者找代码更复杂）。Vue统一使用patchVNode()函数作为入口，内部if/else较多。
+两者都大量使用了递归，但React主要使用了[四大组件类](./react-code-2.component.md)包装VNode，不同类型的VNode使用相应的组件类处理，职责划分更好（同时也意味者找代码更复杂）。Vue统一使用patchVNode()函数作为入口，内部if/else较多。
 
 #### 2. `组件实例实现不同`。
 

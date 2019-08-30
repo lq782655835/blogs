@@ -61,6 +61,8 @@
 
 * [jest 报错 SyntaxError: Unexpected string](https://segmentfault.com/a/1190000019522911)
 
+* [CSS样式使HTML标签占满父容器的方法](https://blog.csdn.net/u014175572/article/details/50773536)
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
