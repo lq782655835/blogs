@@ -101,6 +101,7 @@
 * [Python语法](https://lq782655835.github.io/blogs/tools/python-grammar.html)
 * [前端常用解决方案](https://lq782655835.github.io/blogs/tools/record-solution.html)
 * [Shell && Vim](https://lq782655835.github.io/blogs/tools/shell-vim.html)
+* [VSCode插件开发实践](https://lq782655835.github.io/blogs/tools/vscode-plugin-develop.html)
 * [VSCode快捷键及常用插件](https://lq782655835.github.io/blogs/tools/vscode.html)
 * [你必须知道的yarn](https://lq782655835.github.io/blogs/tools/yarn-vs-npm.html)
 # 读书笔记

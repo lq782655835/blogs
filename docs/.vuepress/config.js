@@ -206,6 +206,7 @@ module.exports = {
                     'tools/python-grammar.md',
                     'tools/record-solution.md',
                     'tools/shell-vim.md',
+                    'tools/vscode-plugin-develop.md',
                     'tools/vscode.md',
                     'tools/yarn-vs-npm.md'
                 ]
