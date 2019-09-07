@@ -49,16 +49,32 @@ let barBind = bar.bind(foo)
 barBind() // 期待打印：1
 ```
 
-### 思路
+## new
 
-通过apply改变this，并且返回一个函数
+### 问题
 
 ``` js
-Function.prototype.bind = function (context, ...args) {
-    var fn = this
-    return function() {
-        return fn.apply(context, args)
-    }
+new Foo('name') = _new(Foo, 'name') // 模拟new
+```
+
+### 思路
+
+``` js
+_new() {
+    var object = new Object() // 1. 类都是object类型
+    var Constructor = [].shift.call(arguments)
+    var args = arguments // 剩下的参数
+    object.__proto__ = Constructor.prototype // 2. 设置原型链
+    var ret = Constructor.apply(obj, args) // 3. 构造函数执行
+    return typeof ret === 'object' ? ret : obj
+}
+_new(Foo, 'name')
+
+// es6
+_new(Constructor, ...args) {
+   let object = Object.create(Constructor.prototype)
+   let ret = Constructor.apply(object, args)
+   return typeof ret === 'object' ? ret : obj
 }
 ```
 
@@ -296,6 +312,21 @@ function handle() {
     console.log('scroll event')
 }
 window.onscroll = function() { throttle(handle, 100) }
+
+// 或者
+function throttle(fn, wait) {
+    var canRun = true // 标记是否可继续执行
+    return function() {
+        var that = this
+        var args = arguments
+        if (!canRun) return
+        canRun = false
+        setTimeout(function() {
+            fn.apply(that, args)
+            canRun = true
+        }, wait)
+    }
+}
 ```
 
 ## Injector
