@@ -63,6 +63,8 @@
 
 * [CSS样式使HTML标签占满父容器的方法](https://blog.csdn.net/u014175572/article/details/50773536)
 
+* [简易Redux写法](https://github.com/qit-team/taro-yanxuan/blob/master/src/utils/redux.js)
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
