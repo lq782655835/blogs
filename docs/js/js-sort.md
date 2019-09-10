@@ -5,14 +5,34 @@
 ``` js
 // 从小到大冒泡排序
 function sort(arr) {
-    var temp
-    for (var i = 0; i < arr.length; i++) {
+    for (var i = 0; i < arr.length - 1 ; i++) { // 两两比较，所以是arr.length - 1
         for(var j = 0; j < arr.length - i - 1 ; j++) {
             if (arr[j] > arr[j+1]) {
-                temp = arr[j]
+                let temp = arr[j]
                 arr[j] = arr[j + 1]
                 arr[j + 1] = temp
             }
+        }
+    }
+    return arr
+}
+
+// 优化
+function sort(arr) {
+    var max = arr.length - 1;
+    for(var i = 0; i < max; i++) {
+        var done = true // 声明一个变量，作为标志位
+        for (var j = 0; j < max - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                var temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+                done = false
+            }
+        }
+        // 如果标记在某一排序中没有变动，即都正序了，可跳出循环
+        if (done) {
+            break
         }
     }
     return arr

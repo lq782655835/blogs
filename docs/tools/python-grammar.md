@@ -1,4 +1,4 @@
-# Python语法
+# Python基础
 
 Python 与其他语言最大的区别就是，Python 的代码块不使用大括号 {} 来控制类，函数以及其他逻辑判断。python 最具特色的就是用缩进来写模块。
 
@@ -11,6 +11,9 @@ Python 中的变量赋值不需要类型声明。Python有五个标准的数据�
 * Dictionary（字典）。类似于javascript的Map类型
 
 ``` python
+#!/usr/bin/python # 指定用什么解释器运行脚本以及解释器所在的位置。一般入口文件设置，使得可以自执行文件
+# -*- coding: UTF-8 -*- # 用来指定文件编码为utf-8的。有中文时需要加这个
+
 print 'Hello, Python!'
 
 str = 'Hello World!'
@@ -25,6 +28,8 @@ print tuple[1:3]          # 输出第二个至第三个的元素
 tinydict = {'name': 'john','code':6734, 'dept': 'sales'}
 print tinydict['name']              # 输出键为 2 的值
 ```
+> Python3.X 源码文件默认使用utf-8编码，所以可以正常解析中文，无需指定 UTF-8 编码。
+
 ## 条件语句
 
 ```
@@ -84,8 +89,16 @@ for fruit in fruits:        # 第二个实例
    print '当前水果 :', fruit
 ```
 
-## 内置函数
+## 函数
 
+### 函数定义
+``` python
+def printme( str ):
+   print str
+   return str
+```
+
+### 内置函数
 * range(number, number)
 * len(list)
 
@@ -93,6 +106,87 @@ for fruit in fruits:        # 第二个实例
 for i in range(5): print i # 0 1 2 3 4
 list = range(5)
 print len(list) # 5
+```
+
+## module模块
+
+1. import [module]
+``` python
+# 导入整个random模块，可以是内置/当前路径
+import random
+# 使用 `random` 模块下的 `randint` 方法
+print(random.randint(0, 5))
+```
+
+2. from [module] import [name1, name2, ...]
+``` python
+# 从 `random` 模块里导入其中一个方法 `randint`
+from random import randint
+# 不一样的是，使用 `randint` 的就不需要先写 `random` 了
+print(randint(0, 5))
+```
+
+3. import [module] as [new_name]
+``` python
+# 但这个名字可能跟其他地方有冲突，因此改名成 `rd`
+import random as rd
+# 使用 `rd` 这个名称取代原本的 `random`
+print(rd.randint(0, 5))
+```
+
+4. from [module] import *
+
+不推荐，容易造成名稱衝突，降低可讀性和可維護性。
+``` python
+# Import 所有 `random` module 底下的东西
+from random import *
+# 使用 `randint` 的时候也不需要先写 `random`
+print(randint(0, 5))
+```
+
+### 搜索路径
+当你导入一个模块，Python 解析器对模块位置的搜索顺序是：
+
+1. 当前目录
+1. 如果不在当前目录，Python 则搜索在 shell 变量 PYTHONPATH 下的每个目录。
+1. 如果都找不到，Python会察看默认路径。UNIX下，默认路径一般为/usr/local/lib/python/。
+
+## package包
+把两个module放在一个新的目录 `sample_package`,再新增`__init__.py`(可以是空，但不能没有)，宣称自己是一个package。
+```
+package_runoob
+|-- __init__.py
+|-- runoob1.py
+|-- runoob2.py
+```
+
+``` python
+# package_runoob 同级目录下创建 test.py 来调用 package_runoob 包
+# 导入包
+from package_runoob.runoob1 import runoob1
+from package_runoob.runoob2 import runoob2
+
+runoob1()
+runoob2()
+```
+
+### pip
+pip 是 Python 包管理工具，该工具提供了对Python 包的查找、下载、安装、卸载的功能。
+
+安装pip工具
+```
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py   # 下载安装脚本
+sudo python get-pip.py    # 运行安装脚本
+pip --version # 查看版本
+pip list # 列出已安装的包
+pip show -f SomePackage # 查看指定包的详细信息
+```
+
+安装包
+```
+pip install SomePackage              # 最新版本
+pip install SomePackage==1.0.4       # 指定版本
+pip install 'SomePackage>=1.0.4'     # 最小版本
 ```
 
 ## 内置库
@@ -106,3 +200,8 @@ print len(list) # 5
 * threading、zipfile
 * logging
 * [其他](https://docs.python.org/2.7/library/index.html#library-index)
+
+## 参考资料
+
+* [Python2 Module Document](https://docs.python.org/2/tutorial/modules.html)
+* [Python 的 Import 陷阱](https://medium.com/pyladies-taiwan/python-%E7%9A%84-import-%E9%99%B7%E9%98%B1-3538e74f57e3)
