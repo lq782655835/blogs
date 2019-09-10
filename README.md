@@ -98,7 +98,7 @@
 * [Git实用命令](https://lq782655835.github.io/blogs/tools/git-command.html)
 * [买房攻略 - 杭州](https://lq782655835.github.io/blogs/tools/house-shopping-recommend.html)
 * [npm script技巧](https://lq782655835.github.io/blogs/tools/npm%20script.html)
-* [Python语法](https://lq782655835.github.io/blogs/tools/python-grammar.html)
+* [Python基础](https://lq782655835.github.io/blogs/tools/python-grammar.html)
 * [前端常用解决方案](https://lq782655835.github.io/blogs/tools/record-solution.html)
 * [Shell && Vim](https://lq782655835.github.io/blogs/tools/shell-vim.html)
 * [VSCode插件开发实践](https://lq782655835.github.io/blogs/tools/vscode-plugin-develop.html)

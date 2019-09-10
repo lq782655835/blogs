@@ -49,6 +49,17 @@ let barBind = bar.bind(foo)
 barBind() // 期待打印：1
 ```
 
+### 思路
+通过apply改变this，并且返回一个函数
+``` js
+Function.prototype.bind = function (context, ...args) {
+    var fn = this
+    return function() {
+        return fn.apply(context, args)
+    }
+}
+```
+
 ## new
 
 ### 问题
@@ -114,6 +125,15 @@ var curry = function(fn, ...args) {
         return curry(fn, ...args, ...args2)
     }
 }
+
+// 升级思考：
+// add(1); 	// 1
+// add(1)(2);  	// 3
+// add(1)(2)(3)；  // 6
+// add(1)(2, 3);   // 6
+// add(1, 2)(3);   // 6
+// add(1, 2, 3);   // 6
+?
 ```
 
 ## pipe/compose
@@ -234,19 +254,56 @@ const clone = source => { ...source }
 // 深拷贝
 // 思路：递归赋值
 const deepClone = source => {
-    if (!source || typeof source !== 'object') {
-        throw new Error('error arguments', 'shallowClone')
+    if (typeof source !== 'object') {
+        return source
     }
 
     // 区分array和object对象
     let target = source instanceof Array ? [] : {}
     for (let key in source) {
-        if (source.hasOwnProperty(key)) {
-            target[key] = typeof source[key] === 'object' ？ deepClone(source[key]) : source[key]
-        }
+        target[key] = deepClone(source[key])
     }
     return target
 }
+
+// 优化：以上未考虑到对象循环引用以及Symbol拷贝
+const isObject = obj => obj !== null && (typeof obj === 'object' || typeof obj === 'function');
+  const isFunction = obj => typeof obj === 'function'
+  function deepClone (obj, hash = new WeakMap()) {
+    if (hash.get(obj)) {
+      // 环处理
+      return hash.get(obj);
+    }
+    if (!isObject(obj)) {
+      // 基本数据处理
+      return obj;
+    }
+    if (isFunction(obj)) {
+      // function返回原引用
+      return obj;
+    }
+
+    let cloneObj;
+    const Constructor = obj.constructor;
+    switch (Constructor) {
+      // 包装函数处理，可能是new Boolean(false)
+      case Boolean:
+      case Date:
+        return new Date(+obj);
+      case Number:
+      case String:
+      case RegExp:
+        return new Constructor(obj);
+      default:
+        cloneObj = new Constructor(); // 重要：初始化cloneObj类型
+        hash.set(obj, cloneObj);
+    }
+
+    [...Object.getOwnPropertyNames(obj), ...Object.getOwnPropertySymbols(obj)].forEach(k => {
+      cloneObj[k] = deepClone(obj[k], hash);
+    })
+    return cloneObj;
+  }
 
 // or 取巧方法
 // 注意这种取巧方法是有限制的
