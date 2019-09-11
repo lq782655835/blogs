@@ -29,6 +29,56 @@
 * 机器翻译
 * 图像生成
 
+## tensorflow
+
+1. 在系统上安装 Python 开发环境
+```
+// 检查
+python --version
+pip --version
+virtualenv --version
+
+// 安装
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+brew update
+brew install python@2  # Python 2
+sudo pip install -U virtualenv  # system-wide install
+```
+
+2. 开辟虚拟空间
+```
+// 创建一个新的虚拟环境，方法是选择 Python 解析器并创建一个 ./venv 目录来存放它
+virtualenv --system-site-packages -p python2.7 ./venv
+
+// 使用特定于 shell 的命令激活该虚拟环境：(此时上下文已经有了tensorflow环境)
+source ./venv/bin/activate  # sh, bash, ksh, or zsh
+```
+
+3. 校验
+```
+python
+import tensorflow as tf
+print tf.__verison__
+```
+
+开启tensorflow编程，如下：
+``` python
+#!/usr/bin/env
+# -*- coding: UTF-8 -*-
+# from __future__ import absolute_import, division, print_function, unicode_literals
+
+import tensorflow as tf
+import tensorflow.contrib.keras as keras
+import cPickle # python2自带
+import os # python自带
+import numpy as np # 单独安装：https://www.runoob.com/numpy/numpy-tutorial.html
+
+print(tf.__version__)
+print os.listdir('./package_runoob')
+print np.eye(4)
+```
+
 ## 参考文章
 
 * [mooc Tensorflow课程](https://www.youtube.com/watch?v=kGktiYF5upk&list=PLqVl9yVjQ_EK67vL3ZE2391TZOdQEbrpg)
