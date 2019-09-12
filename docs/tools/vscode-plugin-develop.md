@@ -24,7 +24,7 @@ yo code // 生成模版
     "publisher": "beanleecode", // 插件发布者
     "icon": "logo.png", // 插件的icon，不支持svg，最小图片大小128*128
     ...
-    "activationEvents": [ // 活动事件列表
+    "activationEvents": [ // 活动事件列表（哪些命令是激活的）
         "onCommand:extension.sayHello"
     ],
     "main": "./extension", // 代码书写主入口

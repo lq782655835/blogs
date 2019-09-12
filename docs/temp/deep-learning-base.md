@@ -30,6 +30,7 @@
 * 图像生成
 
 ## tensorflow
+TensorFlow 是一个端到端开源机器学习平台。个人理解，通过提供tensorflow python包以及它提供的API，可以进行模型的制作。
 
 1. 在系统上安装 Python 开发环境
 ```
@@ -72,7 +73,9 @@ import tensorflow as tf
 import tensorflow.contrib.keras as keras
 import cPickle # python2自带
 import os # python自带
-import numpy as np # 单独安装：https://www.runoob.com/numpy/numpy-tutorial.html
+# NumPy(Numerical Python) 是 Python 语言的一个扩展程序库，支持大量的维度数组与矩阵运算.
+# 单独安装：https://www.runoob.com/numpy/numpy-tutorial.html
+import numpy as np
 
 print(tf.__version__)
 print os.listdir('./package_runoob')
