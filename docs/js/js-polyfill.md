@@ -386,6 +386,62 @@ function throttle(fn, wait) {
 }
 ```
 
+## 手动实现模版引擎
+
+### 问题
+
+手动实现模版引擎，类似underscore
+``` js
+// 实现underscore模板引擎
+<script type="text/html" id="user_tmpl">
+    <%for ( var i = 0; i < users.length; i++ ) { %>
+        <li>
+            <a href="<%=users[i].url%>">
+                <%=users[i].name%>
+            </a>
+        </li>
+    <% } %>
+</script>
+
+var precompile = _.template(document.getElementById("user_tmpl").innerHTML);
+var html = precompile(data);
+```
+
+### 思路
+
+1. 利用正则替换字符。
+    1. 将 %> 替换成 p.push('
+    1. 将 <% 替换成 ');
+    1. 将 <%=xxx%> 替换成 ');p.push(xxx);p.push('
+1. 利用eval/Function执行字符代码。
+
+``` js
+// 按以上规则形成如下：
+');for ( var i = 0; i < users.length; i++ ) { p.push('
+    <li>
+        <a href="');p.push(users[i].url);p.push('">
+            ');p.push(users[i].name);p.push('
+        </a>
+    </li>
+'); } p.push('
+```
+
+``` js
+function tmpl(str, data) {
+    var string = "var p = []; p.push('" +
+    str
+    .replace(/[\r\t\n]/g, "")
+    .replace(/<%=(.*?)%>/g, "');p.push($1);p.push('")
+    .replace(/<%/g, "');")
+    .replace(/%>/g,"p.push('")
+    + "');"
+
+    eval(string)
+
+    return p.join('');
+};
+```
+
 ## Injector
 
 ### 问题

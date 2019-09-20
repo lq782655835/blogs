@@ -127,3 +127,5 @@
     * [React Fiber对现有代码的影响](https://zhuanlan.zhihu.com/p/26027085) 浅显易懂的讲述了fiber来由以及影响
     * [React v16.3之后的组件生命周期函数](https://zhuanlan.zhihu.com/p/38030418) 说明了fiber架构给生命周期带来的影响
 * [VueI18n源码解析](https://hellogithub2014.github.io/2018/07/17/vue-i18n-source-code/) 原理跟vuex异曲同工，都是创建监听对象data，并watch变动，更新view。建议阅读
+
+* [Effective前端3：用CSS画一个三角形](https://www.yinchengli.com/2016/10/22/css-triangle/)
