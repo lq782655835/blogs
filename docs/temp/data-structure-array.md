@@ -376,10 +376,12 @@ function LinkedList() {
         }
 
         let currentNode = this.head
+        // 循环列表，直到找到最后一项
         // 线性查找，直到找到最后的node。算法复杂度：O(n)
         while(currentNode.next) {
             currentNode = currentNode.next
         }
+        // 最后一项，将其next赋值为node
         currentNode.next = node // 最后的节点.next 赋值为新增的node节点
         this.length++
     }
