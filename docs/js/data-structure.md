@@ -45,12 +45,12 @@ let Node = function(element) {
 
 > 千万不要把堆和队列搞混了，它们是三种不同的数据结构，栈和队列相似，堆完全不同。
 
-#### 堆和栈的应用
+#### 1.3.1 堆和栈的应用
 
 * 栈：最常见的应用就是`执行栈`，当有大函数嵌套小函数时，先逐一把所有函数压入栈中。依据后进先出，先执行最后的小函数，直到执行完所有函数。
 * 堆：在js等高级语言中，基本类型有Undefined、Null、Boolean、Number 和String。这些类型在内存中分别占有固定大小的空间，所以使用栈空间来保存。而`引用类型`，你根本不知道这个类型要用多大的内存空间，所以使用堆存储最好不过。
 
-#### 为什么会有`栈内存`和`堆内存`之分？
+#### 1.3.2 为什么会有`栈内存`和`堆内存`之分
 
 通常与垃圾回收机制有关。为了使程序运行时占用的内存最小。
 
@@ -70,56 +70,6 @@ let Node = function(element) {
 * 队列（线性结构常见应用，由链表或数组增删和改进功能实现），特点是先进先出；
 
 数组和链表是最基础的数据结构，`相同的功能实现可以用数组结构，也可以用链表结构`，如栈与队列的实现，可以底层存储是用数组，也可以是小块内存链接起来的链表。再比如数组的reverse翻转，使用数组或链表数据结构，相关算法是完全不一样的。
-``` c
-// c++数组reverse
-// 数组reverse思路：left、right分别是两头，值互相换，然后left递增1，right递减1
-
-//定义了一个数据类型，该数据类型的名字叫做struct Arr, 该数据类型含有三个成员，分别是pBase, len, cnt
-struct Arr
-{
-    int * pBase; //存储的是数组第一个元素的地址
-    int len; //数组所能容纳的最大元素的个数
-    int cnt; //当前数组有效元素的个数
-};
-void reverse(struct Arr * pArr) {
-    int i = 0;
-    int j = pArr->cnt-1; // 末尾index
-    int t;
-    // 当i<j时，置换i和j位置的元素 
-    while(i < j) {
-        t = pArr->pBase[i];
-        pArr->pBase[i] = pArr->pBase[j];
-        pArr->pBase[j] = t;
-        ++i;
-        --j;
-    }
-    return;
-}
-```
-
-``` c++
-// c++链表reverse
-// 不同数据结构间，都可以实现reverse，但使用的方式有很大差别
-// 链表reverse思路：递归，通过不断重组第二项，即先从后往前，不断完成next构建
-struct node {
-    int payload;
-    node* next;
-}
-
-// 递归的核心思想是找到规律，这里规律是只关注第二个和第一个的反向链接，优先把最后执行
-node* reverse(node* head) { // 链表是一个head为入口的链路
-    if (head == nullptr || head->next == nullptr) {
-        return head;
-    }
-    node* seconde = head->next;
-    node* new_head = reverse(second); // 重点：不断优先整理完最后的node
-    // 重构第二个与第一个的反向关系
-    second->next = head;
-    head->next = nullptr;
-
-    return new_head;
-}
-```
 
 ## 2. 树
 
@@ -138,19 +88,33 @@ node* reverse(node* head) { // 链表是一个head为入口的链路
 待更新。。。
 
 ## 4. 算法
+
 通过算法来学习数据结构很有效。
 
 常见算法：
 * 深度优先搜索
 * 广度优先搜索
-* 二分法
-* 贪心算法
+* 二分法:针对有序数组
+* 贪心算法: 算法简单，运算非常快。可能不能获得最优解，但非常接近
 * 分治法
 * 回溯法
 
+常见大O运行时间：
+* O(log n),也叫对数时间，如：二分查找
+* O(n), 线性时间，如：简单查找
+* O(nlog n) 如：快速排序
+* O(n<sup>2</sup>) 如：冒泡算法、选择排序算法,属于较慢的一种算饭
+* O(n!) 非常慢的算法
+
+> 对数概念：log<sub>10</sub>100等同于“将多少个10相乘的结果为100”，所以log<sub>10</sub>100=2（2个10相乘等于100）。对数运算是幂运算的逆运算，使用大O表示法时，log指的是log<sub>2</sub>，所以一般二分法是logn。
+
+> O(log n)比O(n)快，当搜索的元素越多时，前者比后者快的越多。
+
 ### 二分法
 
-给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
+针对`有序数组`,每次排除一半的选项，算法复杂度：O(logn)。
+
+给定一个 n 个元素`有序的`（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
 
 ``` js
 // https://leetcode-cn.com/problems/binary-search
@@ -172,29 +136,23 @@ var search = function(nums, target) {
 };
 ```
 
+### 快速排序
+
+常用来`数组排序`，以某个数为基准，大于放置在数右边，小于则放置在左边。O(nlogn)
+
 ``` js
-// 二分法套路
-function dic() {
-    // 左边界
-    var left ...
-    // 右边界
-    var right ...
-    // 记录答案
-    var ans
-    while(left < right) {
-        // 中间值
-        var middle = Math.floor((left + right) / 2)
-        // 猜测是否满足条件
-        if (guess(middle, ...)) {
-            // 如果满足条件，记录答案
-            ans = middle
-            // 缩小搜索范围，在更小的值中搜索
-            right = middle - 1
-        } else  {
-            // 在更大的值中搜索
-            left = middle + 1
-        }
-    }
-    return ans
+// js语言快速排序
+// js语言特性中，数组取用/连接较为方便，原生提供，所以直接取中间值比较
+function quickSort(arr) {
+    if (arr.length <= 1) return arr
+
+    let left = []
+    let right = []
+    let middleIndex = Math.floor(arr.length / 2)
+    let middle = arr.splice(middleIndex, 1)
+    arr.forEach(item => middle > item ? left.push(item) : right.push(item))
+
+    return quickSort(left).concat(middle).concat(quickSort(right))
 }
+quickSort([12,2,3, 23,8])
 ```
