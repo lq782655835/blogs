@@ -1,7 +1,9 @@
 # Axios用法与原理
+
 axios是一个非常小巧而好用的http请求库，支持promise以及同时支持浏览器和node端。axios使用简单，配置灵活，也是vue官方推荐的请求库。另外[axios源码](https://github.com/axios/axios)层次清晰明了，非常适合阅读。
 
 ## 特性
+
 * 从浏览器中创建 XMLHttpRequest
 * 从 node.js 发出 http 请求
 * 支持 Promise API
@@ -12,6 +14,7 @@ axios是一个非常小巧而好用的http请求库，支持promise以及同时�
 * 客户端支持防止 CSRF/XSRF
 
 ## API
+
 * 全局
     * `axios.request(config)` 最终http请求都是执行这个方法
     * `axios(config)` 和axios.request()等价
@@ -45,10 +48,15 @@ instance({
 }) // instance(config)
 instance.get('2mTM3nY', {field: 123}) // instance.[METHODS](url, config)
 ```
+
 >配置优先级：lib / defaults.js中的库默认值 -->实例的config属性--> 请求的config参数
 
 ## 为何axios有如此多使用方式
-重点是`createInstance`方法，该方法拿到一个Function，该Function指向请求入口Axios.prototype.request，并且该Function还继承了Axios.prototype的每个方法，并且上下文指向同一个对象context。axios包默认导出是该Function，而自定义实例axios.create是一个工厂模式，最终都调用createInstance方法。源码在lib/default.js中：
+
+重点是`createInstance`方法，该方法拿到一个Function，该Function指向请求入口Axios.prototype.request，并且该Function还继承了Axios.prototype的每个方法，并且上下文指向同一个对象context。axios包默认导出是该Function，而自定义实例axios.create是一个工厂模式，最终都调用createInstance方法。
+
+源码在lib/default.js中：
+
 ``` js
 function createInstance(defaultConfig) {
   var context = new Axios(defaultConfig);
@@ -80,10 +88,17 @@ module.exports = axios;
 module.exports.default = axios; // 允许在ts中导入
 ```
 
+## 整体流程
+
+**请求流程实质上无非就是输入和输出，输入request config配置（如url、method、data等），输出最终的response data数据**。中间涉及到较多的数据预处理，如根据data数据类型（如JSON），设置Content-Type: json头信息；再如根据响应的数据类型，默认转换为json格式。这些预处理需要axios库自动完成，同时也要暴露出相关配置给开发者，以此实现开发者自定义预处理。
+
+Axios通过拦截者（Interceptors）来实现上面说的数据预处理，具体通过使用chain链式来逐一插入处理逻辑。默认情况下，先拿到此次请求的config配置，把config作为参数，传递到`dispatchRequest`方法中，该方法会根据当前环境（Browser/Node）来调用不同的adapter发送请求，以此获得最终的response data。同时Axios还允许使用request/response Interceptors进行请求前和响应后的自定义处理，其实质是将预处理函数，插入chain数组中，再统一按照顺序逐步执行预处理方法（Promise保证顺序）。
+
 Axios类是核心内容，该类request方法是所有请求的开始入口。源码在lib/core/Axios.js：
+
 ``` js
 Axios.prototype.request = function request(config) {
-  // 允许 axios('url'[, config]) = axios(config)
+  // 1. 允许 axios('url'[, config]) = axios(config)
   if (typeof config === 'string') {
     config = arguments[1] || {};
     config.url = arguments[0];
@@ -95,7 +110,7 @@ Axios.prototype.request = function request(config) {
   config = mergeConfig(this.defaults, config);
   config.method = config.method ? config.method.toLowerCase() : 'get';
 
-  // 拦截器中间件钩子
+  // 2. 定义拦截器中间件钩子
   // dispatchRequest是真正开始下发请求，执行config中设置的adapter方法
   var chain = [dispatchRequest, undefined];
   var promise = Promise.resolve(config);
@@ -108,6 +123,7 @@ Axios.prototype.request = function request(config) {
     chain.push(interceptor.fulfilled, interceptor.rejected);
   });
 
+  // 3. chain链关键代码，promise链路传递下去
   while (chain.length) {
     promise = promise.then(chain.shift(), chain.shift());
   }
@@ -115,7 +131,8 @@ Axios.prototype.request = function request(config) {
   return promise;
 };
 
-// 提供对request方法的METHOD快捷方式。axios.get(url, config) = axios(config)
+// 提供对request方法的METHOD快捷方式，实质都是调用Axios.prototype.request方法
+// axios.get(url, config) = axios(config)
 utils.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoData(method) {
   Axios.prototype[method] = function(url, config) {
     return this.request(utils.merge(config || {}, {
@@ -144,6 +161,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 * 支持自定义转换请求和响应数据
 
 源码在lib/default.js中
+
 ``` js
 var defaults = {
   // 根据环境选择默认的请求方式。支持node和浏览器，也可以自定义adapter
@@ -194,3 +212,7 @@ var defaults = {
   }
 };
 ```
+
+## 总结
+
+请求从用户调用看，只是设置好config配置，剩下的具体底层调用应该交给专业库去做。axios库就是其中佼佼者，它较好的封装了http请求流程，支持多种形式config merge，通过抽象adapter层（通过是否有XMLHttpRequest对象来判断），来兼容浏览器以及Node环境。通过chain链式方式，不仅预处理请求/响应数据，同时支持用户自定义拦截处理（Interceptors），以此实现用户简约调用。
