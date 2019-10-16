@@ -1,6 +1,7 @@
 # Shell && Vim
 
 ## 目录操作
+
 | 命令名      | 使用举例   | 功能描述     |
 | ---        |   ----    | ---        |
 | **mkdir**      | mkdir dirname | 创建一个目录 |
@@ -12,6 +13,11 @@
 | **ls**      | ls -la | 显示当前目录的内容 |
 | **pwd**      | pwd | 显示当前目录的路径名 |
 | du      | du -ha dirname | 查看目录/文件占用空间大小 |
+
+``` shell
+# examples
+cp -r ../package1 ./packages/ # 拷贝package1文件夹到packages文件夹下
+```
 
 ## 文件操作
 | 命令名      | 使用举例   | 功能描述     |
