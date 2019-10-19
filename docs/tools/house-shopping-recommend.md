@@ -353,3 +353,8 @@ b.项目总平面图
 来源：https://hangzhou.anjuke.com/sale/?kw=%E4%B8%AD%E6%B8%AF%E7%BD%97%E5%85%B0%E5%B0%8F%E9%95%87&from=xlts_mc&k_comm_id=654114&kw_type=3
 
 > 红盘杨柳郡（新房3.6w，二手房4.2w）、梧桐郡一二手房价差都大。
+
+## 选房分析
+
+* 2019闭眼摇：https://mp.weixin.qq.com/s?__biz=MjM5NTM5NjY1OA==&mid=2649936732&idx=1&sn=5ce171dbcd80f8e53ba81cf388477e2f&chksm=beff5e018988d71708ee86f8549dcfcfa664c7b4331ab66c2d65fdaf5d00417b1f6ef8acb24e&token=2098233877&lang=zh_CN&scene=21#wechat_redirect
+* 久尚云筑分析：https://zhuanlan.zhihu.com/p/49757517

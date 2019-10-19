@@ -1,4 +1,4 @@
-# 深度学习
+# 深度学习概念
 
 ## 基础概念
 
@@ -28,6 +28,26 @@
 * 图像分类
 * 机器翻译
 * 图像生成
+
+## 深度学习流程
+
+1. 模型训练
+    1. 数据收集和清洗
+        1. 上传到集群 hadoop hdf共享存储地址
+        1. [数据预处理](https://dl.netease.com/docs/tutorials/bert_named_entity_recognition/bert_named_entity_recognition.html#%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86)，集群分布式处理能力
+    2. 模型训练
+        1. 写好代码，提交任务
+            * 单机/单机集群，都是生成单个进程任务。
+            * 多机任务（分布式）则数据并行，训练时读取不同的数据，然后计算梯度，各进程计算完梯度后进行同步（合并），使用合并后的梯度更新所有进程的参数，进行下一轮迭代。
+        ![](https://dl.netease.com/docs/assets/img/data_parallel.818a0fae.png)
+        1. 训练（日志存储产出 + dashboard查看）
+        1. [模型存储](https://dl.netease.com/docs/tutorials/short_video_classification/short_video_classification.html#%E6%A8%A1%E5%9E%8B%E5%AD%98%E5%82%A8)
+        > 所以在编写分布式训练程序时，需要在单卡训练程序的基础上，重写数据和梯度合并部分（意味着需要改源代码）。
+    3. 模型测试
+        1. 加载已训练好的模型，基于数据集进行结果测试。
+    4. 评测和优化
+1. 模型部署上线 + 对外提供服务
+    * 使用tf serving部署模型并对外提供服务
 
 ## tensorflow
 TensorFlow 是一个端到端开源机器学习平台。个人理解，通过提供tensorflow python包以及它提供的API，可以进行模型的制作。
@@ -81,6 +101,22 @@ print(tf.__version__)
 print os.listdir('./package_runoob')
 print np.eye(4)
 ```
+
+## slurm
+
+slurm是一种可用于大型计算节点集群的高度可伸缩和容错的`集群管理器和作业调度系统`。SLURM 维护着一个待处理工作的队列并管理此工作的整体资源利用。SLURM 会为任务队列合理地分配资源，并监视作业至其完成。
+
+> slurm分配集群计算机资源，开启job，跑模型训练。
+
+## Service Mesh
+
+如果用一句话来解释什么是服务网格，可以将它比作是应用程序或者说微服务间的 TCP/IP，负责服务之间的网络调用、限流、熔断和监控。对于编写应用程序来说一般无须关心 TCP/IP 这一层（比如通过 HTTP 协议的 RESTful 应用），同样使用服务网格也就无须关心服务之间的那些原来是通过应用程序或者其他框架实现的事情，比如 Spring Cloud、OSS，现在只要交给服务网格就可以了。
+
+## tf-operator
+
+tf-operator 为 tensorflow 提供了 TFJob 资源，以满足 tensorflow 分布式训练的资源和拓扑需求，最终达到一键拉起分布式机器学习集群的效果。
+
+> 简单理解，tf-operator 就是让用户在 K8S 集群上部署训练任务更加方便和简单。
 
 ## 参考文章
 
