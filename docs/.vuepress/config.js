@@ -114,6 +114,7 @@ module.exports = {
                 collapsable: true,
                 children: [
                     'js/canvas-base.md',
+                    'js/data-structure.md',
                     'js/different-for-in-for-of.md',
                     'js/es6-1.new-feature.md',
                     'js/es6-2.destruction.md',
@@ -199,7 +200,9 @@ module.exports = {
                 collapsable: true,
                 children: [
                     'tools/0.tool-summary.md',
+                    'tools/c++.md',
                     'tools/charles-tool.md',
+                    'tools/docker.md',
                     'tools/git-command.md',
                     'tools/house-shopping-recommend.md',
                     'tools/npm script.md',
