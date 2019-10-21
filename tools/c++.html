@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>初识C++ | springleo&#39;s blog</title>
+    <meta name="description" content="">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <link rel="icon" href="/blogs/favicon.ico">
+    
+    <link rel="preload" href="/blogs/assets/css/0.styles.53036b5d.css" as="style"><link rel="preload" href="/blogs/assets/js/app.97c1ebe1.js" as="script"><link rel="preload" href="/blogs/assets/js/2.440b331a.js" as="script"><link rel="preload" href="/blogs/assets/js/147.c3443af6.js" as="script"><link rel="prefetch" href="/blogs/assets/js/10.9bf44825.js"><link rel="prefetch" href="/blogs/assets/js/100.122be8b4.js"><link rel="prefetch" href="/blogs/assets/js/101.b5ce8564.js"><link rel="prefetch" href="/blogs/assets/js/102.64665b8a.js"><link rel="prefetch" href="/blogs/assets/js/103.0643cd57.js"><link rel="prefetch" href="/blogs/assets/js/104.41ac9ff3.js"><link rel="prefetch" href="/blogs/assets/js/105.70672ed1.js"><link rel="prefetch" href="/blogs/assets/js/106.475f26bc.js"><link rel="prefetch" href="/blogs/assets/js/107.bd537715.js"><link rel="prefetch" href="/blogs/assets/js/108.6cb8a8d2.js"><link rel="prefetch" href="/blogs/assets/js/109.3ea785d7.js"><link rel="prefetch" href="/blogs/assets/js/11.2b144a23.js"><link rel="prefetch" href="/blogs/assets/js/110.eb492c90.js"><link rel="prefetch" href="/blogs/assets/js/111.7ad9aa29.js"><link rel="prefetch" href="/blogs/assets/js/112.69f0348a.js"><link rel="prefetch" href="/blogs/assets/js/113.892db83a.js"><link rel="prefetch" href="/blogs/assets/js/114.37c6fed2.js"><link rel="prefetch" href="/blogs/assets/js/115.794550f0.js"><link rel="prefetch" href="/blogs/assets/js/116.7a349b9f.js"><link rel="prefetch" href="/blogs/assets/js/117.211d29a7.js"><link rel="prefetch" href="/blogs/assets/js/118.2dbd16da.js"><link rel="prefetch" href="/blogs/assets/js/119.6aaf8270.js"><link rel="prefetch" href="/blogs/assets/js/12.cd5fe0e1.js"><link rel="prefetch" href="/blogs/assets/js/120.57a0f18b.js"><link rel="prefetch" href="/blogs/assets/js/121.f0427466.js"><link rel="prefetch" href="/blogs/assets/js/122.19440cce.js"><link rel="prefetch" href="/blogs/assets/js/123.8670fe51.js"><link rel="prefetch" href="/blogs/assets/js/124.85168b8e.js"><link rel="prefetch" href="/blogs/assets/js/125.5d856186.js"><link rel="prefetch" href="/blogs/assets/js/126.9488b6fa.js"><link rel="prefetch" href="/blogs/assets/js/127.fbf88656.js"><link rel="prefetch" href="/blogs/assets/js/128.9609c15e.js"><link rel="prefetch" href="/blogs/assets/js/129.b0c4943f.js"><link rel="prefetch" href="/blogs/assets/js/13.32d5582a.js"><link rel="prefetch" href="/blogs/assets/js/130.cb366277.js"><link rel="prefetch" href="/blogs/assets/js/131.9938dfa8.js"><link rel="prefetch" href="/blogs/assets/js/132.94c03da6.js"><link rel="prefetch" href="/blogs/assets/js/133.022a7c10.js"><link rel="prefetch" href="/blogs/assets/js/134.d106c049.js"><link rel="prefetch" href="/blogs/assets/js/135.f67df334.js"><link rel="prefetch" href="/blogs/assets/js/136.66ac4c2d.js"><link rel="prefetch" href="/blogs/assets/js/137.d5a08fc5.js"><link rel="prefetch" href="/blogs/assets/js/138.f101957d.js"><link rel="prefetch" href="/blogs/assets/js/139.516e04eb.js"><link rel="prefetch" href="/blogs/assets/js/14.c0b98b3a.js"><link rel="prefetch" href="/blogs/assets/js/140.16772904.js"><link rel="prefetch" href="/blogs/assets/js/141.570d5760.js"><link rel="prefetch" href="/blogs/assets/js/142.4baa0fa1.js"><link rel="prefetch" href="/blogs/assets/js/143.55dba0d8.js"><link rel="prefetch" href="/blogs/assets/js/144.45225b33.js"><link rel="prefetch" href="/blogs/assets/js/145.99101572.js"><link rel="prefetch" href="/blogs/assets/js/146.2b3705bc.js"><link rel="prefetch" href="/blogs/assets/js/148.f7a1687d.js"><link rel="prefetch" href="/blogs/assets/js/149.19f67cd0.js"><link rel="prefetch" href="/blogs/assets/js/15.85e59559.js"><link rel="prefetch" href="/blogs/assets/js/150.09b8680c.js"><link rel="prefetch" href="/blogs/assets/js/151.170e913d.js"><link rel="prefetch" href="/blogs/assets/js/152.189964bc.js"><link rel="prefetch" href="/blogs/assets/js/153.dfe23baa.js"><link rel="prefetch" href="/blogs/assets/js/154.c1cdca8d.js"><link rel="prefetch" href="/blogs/assets/js/155.e45a2d7c.js"><link rel="prefetch" href="/blogs/assets/js/156.90ea7f5e.js"><link rel="prefetch" href="/blogs/assets/js/157.6812ca66.js"><link rel="prefetch" href="/blogs/assets/js/158.d90c8476.js"><link rel="prefetch" href="/blogs/assets/js/159.962aa4f6.js"><link rel="prefetch" href="/blogs/assets/js/16.773614cb.js"><link rel="prefetch" href="/blogs/assets/js/160.a8d18b0f.js"><link rel="prefetch" href="/blogs/assets/js/161.ce274da8.js"><link rel="prefetch" href="/blogs/assets/js/162.cd437979.js"><link rel="prefetch" href="/blogs/assets/js/163.a9a22df2.js"><link rel="prefetch" href="/blogs/assets/js/164.18374ac2.js"><link rel="prefetch" href="/blogs/assets/js/165.ba00a91f.js"><link rel="prefetch" href="/blogs/assets/js/166.f3a00d28.js"><link rel="prefetch" href="/blogs/assets/js/167.a1d95457.js"><link rel="prefetch" href="/blogs/assets/js/168.ecdd5eeb.js"><link rel="prefetch" href="/blogs/assets/js/169.f4de6a01.js"><link rel="prefetch" href="/blogs/assets/js/17.50e38d0d.js"><link rel="prefetch" href="/blogs/assets/js/170.ae9d42f3.js"><link rel="prefetch" href="/blogs/assets/js/171.c3c2d270.js"><link rel="prefetch" href="/blogs/assets/js/172.d816015b.js"><link rel="prefetch" href="/blogs/assets/js/173.1d338248.js"><link rel="prefetch" href="/blogs/assets/js/18.d8cacc2b.js"><link rel="prefetch" href="/blogs/assets/js/19.3339707d.js"><link rel="prefetch" href="/blogs/assets/js/20.12323fef.js"><link rel="prefetch" href="/blogs/assets/js/21.0c35f1cd.js"><link rel="prefetch" href="/blogs/assets/js/22.a02be355.js"><link rel="prefetch" href="/blogs/assets/js/23.f1a76e54.js"><link rel="prefetch" href="/blogs/assets/js/24.6b284b6b.js"><link rel="prefetch" href="/blogs/assets/js/25.28677a8b.js"><link rel="prefetch" href="/blogs/assets/js/26.3b2a6334.js"><link rel="prefetch" href="/blogs/assets/js/27.fa7e26e3.js"><link rel="prefetch" href="/blogs/assets/js/28.f66c2562.js"><link rel="prefetch" href="/blogs/assets/js/29.4709aeaa.js"><link rel="prefetch" href="/blogs/assets/js/3.ed573c2c.js"><link rel="prefetch" href="/blogs/assets/js/30.ae677812.js"><link rel="prefetch" href="/blogs/assets/js/31.10cb0fdb.js"><link rel="prefetch" href="/blogs/assets/js/32.d355074e.js"><link rel="prefetch" href="/blogs/assets/js/33.69898540.js"><link rel="prefetch" href="/blogs/assets/js/34.0ffb38e7.js"><link rel="prefetch" href="/blogs/assets/js/35.52def8b2.js"><link rel="prefetch" href="/blogs/assets/js/36.81af76b6.js"><link rel="prefetch" href="/blogs/assets/js/37.57de99b1.js"><link rel="prefetch" href="/blogs/assets/js/38.bfbdc54e.js"><link rel="prefetch" href="/blogs/assets/js/39.58ba0708.js"><link rel="prefetch" href="/blogs/assets/js/4.04e97a48.js"><link rel="prefetch" href="/blogs/assets/js/40.8e83ee8a.js"><link rel="prefetch" href="/blogs/assets/js/41.02d0da3e.js"><link rel="prefetch" href="/blogs/assets/js/42.3b9e6767.js"><link rel="prefetch" href="/blogs/assets/js/43.5b28622b.js"><link rel="prefetch" href="/blogs/assets/js/44.66dd1ba0.js"><link rel="prefetch" href="/blogs/assets/js/45.bab5c9f0.js"><link rel="prefetch" href="/blogs/assets/js/46.e7db5635.js"><link rel="prefetch" href="/blogs/assets/js/47.8e9bd656.js"><link rel="prefetch" href="/blogs/assets/js/48.6db09a4d.js"><link rel="prefetch" href="/blogs/assets/js/49.9b23c762.js"><link rel="prefetch" href="/blogs/assets/js/5.6c4da70a.js"><link rel="prefetch" href="/blogs/assets/js/50.34e6cb41.js"><link rel="prefetch" href="/blogs/assets/js/51.30bb63cb.js"><link rel="prefetch" href="/blogs/assets/js/52.59e94ac3.js"><link rel="prefetch" href="/blogs/assets/js/53.58b47261.js"><link rel="prefetch" href="/blogs/assets/js/54.2a30bc5b.js"><link rel="prefetch" href="/blogs/assets/js/55.854611ae.js"><link rel="prefetch" href="/blogs/assets/js/56.076b29c4.js"><link rel="prefetch" href="/blogs/assets/js/57.c66148db.js"><link rel="prefetch" href="/blogs/assets/js/58.517e2c33.js"><link rel="prefetch" href="/blogs/assets/js/59.e4d3f2f1.js"><link rel="prefetch" href="/blogs/assets/js/6.a8b47569.js"><link rel="prefetch" href="/blogs/assets/js/60.1bc9ad90.js"><link rel="prefetch" href="/blogs/assets/js/61.eb8a17df.js"><link rel="prefetch" href="/blogs/assets/js/62.3a73ea0d.js"><link rel="prefetch" href="/blogs/assets/js/63.be13b46f.js"><link rel="prefetch" href="/blogs/assets/js/64.24b08a57.js"><link rel="prefetch" href="/blogs/assets/js/65.b0fe8de8.js"><link rel="prefetch" href="/blogs/assets/js/66.c4942fdc.js"><link rel="prefetch" href="/blogs/assets/js/67.ff414be5.js"><link rel="prefetch" href="/blogs/assets/js/68.477f7364.js"><link rel="prefetch" href="/blogs/assets/js/69.0c5c3952.js"><link rel="prefetch" href="/blogs/assets/js/7.df3c5b03.js"><link rel="prefetch" href="/blogs/assets/js/70.41d6867a.js"><link rel="prefetch" href="/blogs/assets/js/71.fb2f4622.js"><link rel="prefetch" href="/blogs/assets/js/72.521b5ab5.js"><link rel="prefetch" href="/blogs/assets/js/73.61729038.js"><link rel="prefetch" href="/blogs/assets/js/74.1ee20515.js"><link rel="prefetch" href="/blogs/assets/js/75.04020465.js"><link rel="prefetch" href="/blogs/assets/js/76.983d6a2b.js"><link rel="prefetch" href="/blogs/assets/js/77.9f72ca5f.js"><link rel="prefetch" href="/blogs/assets/js/78.0e6f557c.js"><link rel="prefetch" href="/blogs/assets/js/79.aab83a90.js"><link rel="prefetch" href="/blogs/assets/js/8.4aa14cf9.js"><link rel="prefetch" href="/blogs/assets/js/80.4bdb239c.js"><link rel="prefetch" href="/blogs/assets/js/81.00d749a2.js"><link rel="prefetch" href="/blogs/assets/js/82.ad6dcdd7.js"><link rel="prefetch" href="/blogs/assets/js/83.6e2981dd.js"><link rel="prefetch" href="/blogs/assets/js/84.c396b358.js"><link rel="prefetch" href="/blogs/assets/js/85.771ee348.js"><link rel="prefetch" href="/blogs/assets/js/86.e3d7c3f9.js"><link rel="prefetch" href="/blogs/assets/js/87.5f1d69ff.js"><link rel="prefetch" href="/blogs/assets/js/88.c56d5dfa.js"><link rel="prefetch" href="/blogs/assets/js/89.fd5fd87c.js"><link rel="prefetch" href="/blogs/assets/js/9.6c9147bb.js"><link rel="prefetch" href="/blogs/assets/js/90.593aaba0.js"><link rel="prefetch" href="/blogs/assets/js/91.e599e911.js"><link rel="prefetch" href="/blogs/assets/js/92.8b199348.js"><link rel="prefetch" href="/blogs/assets/js/93.6d555cd3.js"><link rel="prefetch" href="/blogs/assets/js/94.b710468b.js"><link rel="prefetch" href="/blogs/assets/js/95.5a420b8b.js"><link rel="prefetch" href="/blogs/assets/js/96.5e4bf998.js"><link rel="prefetch" href="/blogs/assets/js/97.867c689f.js"><link rel="prefetch" href="/blogs/assets/js/98.1785d46f.js"><link rel="prefetch" href="/blogs/assets/js/99.177c4d66.js">
+    <link rel="stylesheet" href="/blogs/assets/css/0.styles.53036b5d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blogs/" class="home-link router-link-active"><!----> <span class="site-name">springleo's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blogs/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">工具</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/yiai-cli" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  yiai-cli脚手架工具
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/yi-ui" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  yi-ui组件库
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/node-vuepress-auto-read" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  node-vuepress-auto-read 自动生成blog目录工具
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/json2ts" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  json2ts url转TypeScript工具
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/svg-icon-webpack-plugin" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  svg-icon-webpack-plugin svg转icon webpack插件
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/cache-manage-js" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  cache-manage-js缓存管理工具
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">工程模板</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/standard-vue-project" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/standard-vue-typescript-project" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  typescript
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/official-website-template" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  official-website
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/electron-vue-template" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  electron
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/mpvue-project" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  mpvue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div> <a href="https://github.com/lq782655835/blogs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blogs/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">工具</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/yiai-cli" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  yiai-cli脚手架工具
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/yi-ui" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  yi-ui组件库
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/node-vuepress-auto-read" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  node-vuepress-auto-read 自动生成blog目录工具
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/json2ts" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  json2ts url转TypeScript工具
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/svg-icon-webpack-plugin" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  svg-icon-webpack-plugin svg转icon webpack插件
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/cache-manage-js" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  cache-manage-js缓存管理工具
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">工程模板</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/standard-vue-project" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/standard-vue-typescript-project" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  typescript
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/official-website-template" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  official-website
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/electron-vue-template" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  electron
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/lq782655835/mpvue-project" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  mpvue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div> <a href="https://github.com/lq782655835/blogs" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>团队规范</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Project</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>NodeJS</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>React</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>效率工具</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blogs/tools/0.tool-summary.html" class="sidebar-link">前端必备效率工具</a></li><li><a href="/blogs/tools/c++.html" class="active sidebar-link">初识C++</a></li><li><a href="/blogs/tools/charles-tool.html" class="sidebar-link">前端抓包神器Charles</a></li><li><a href="/blogs/tools/docker.html" class="sidebar-link">Docker &amp;&amp; Kubernetes</a></li><li><a href="/blogs/tools/git-command.html" class="sidebar-link">Git实用命令</a></li><li><a href="/blogs/tools/house-shopping-recommend.html" class="sidebar-link">买房攻略 - 杭州</a></li><li><a href="/blogs/tools/npm script.html" class="sidebar-link">npm script技巧</a></li><li><a href="/blogs/tools/python-grammar.html" class="sidebar-link">Python基础</a></li><li><a href="/blogs/tools/record-solution.html" class="sidebar-link">前端常用解决方案</a></li><li><a href="/blogs/tools/shell-vim.html" class="sidebar-link">Shell &amp;&amp; Vim</a></li><li><a href="/blogs/tools/vscode-plugin-develop.html" class="sidebar-link">VSCode插件开发实践</a></li><li><a href="/blogs/tools/vscode.html" class="sidebar-link">VSCode快捷键及常用插件</a></li><li><a href="/blogs/tools/yarn-vs-npm.html" class="sidebar-link">你必须知道的yarn</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>读书笔记</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="content default"><h1 id="初识c"><a href="#初识c" aria-hidden="true" class="header-anchor">#</a> 初识C++</h1> <p>C++ 程序的源文件通常使用扩展名 .cpp、.cp 或 .c。C++ 进一步扩充和完善了 C 语言，任何合法的 C 程序都是合法的 C++ 程序。</p> <div class="language-shell extra-class"><pre class="language-shell"><code>// 是否安装了 GCC,使用的是 Linux 或 UNIX
+g++ -v // MacOS安装了xcode后，默认带
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>// #include &lt;stdio.h&gt; 是预处理器指令，告诉 C/C++ 编译器在实际编译之前要包含 iostream 文件。
+// iosstream该文件定义了 cin、cout、cerr 和 clog 对象，分别对应于标准输入流、标准输出流、非缓冲标准错误流和缓冲标准错误流。
+#include &lt;iostream&gt;
+
+// g++ main.cpp -o helloworld编译c++源码,生成可执行文件
+// ./helloworld 运行文件
+int main()
+{
+    // :: 是作用域符，是运算符中等级最高的
+    // 在这里我想用cout对象是命名空间std中的cout
+    std::cout &lt;&lt; &quot;Hello World!\n&quot;;
+    return 0;
+}
+</code></pre></div><blockquote><p>C++ 是大小写敏感.C++ 完全支持面向对象的程序设计，包括面向对象开发的四大特性：封装、抽象、继承、多态。</p></blockquote> <h2 id="数据类型"><a href="#数据类型" aria-hidden="true" class="header-anchor">#</a> 数据类型</h2> <ul><li>bool</li> <li>char 字符型</li> <li>int/float/double</li> <li>void</li> <li>wchar_t 宽字符型</li></ul> <div class="language-c++ extra-class"><pre class="language-text"><code>#include&lt;iostream&gt;  
+#include&lt;string&gt;  
+#include &lt;limits&gt;  
+using namespace std;  // 声明命名空间
+  
+int main()  
+{
+    char x = 'x' // 变量声明
+    const int  LENGTH = 10; // 常量声明
+
+    // &lt;&lt; 运算符用于向屏幕传多个值
+    // 使用了 endl，这将在每一行后插入一个换行符
+    cout &lt;&lt; &quot;type: \t\t&quot; &lt;&lt; &quot;************size**************&quot;&lt;&lt; endl;  
+    cout &lt;&lt; &quot;bool: \t\t&quot; &lt;&lt; &quot;所占字节数：&quot; &lt;&lt; sizeof(bool);  
+    cout &lt;&lt; &quot;\t最大值：&quot; &lt;&lt; (numeric_limits&lt;bool&gt;::max)();  
+    cout &lt;&lt; &quot;\t\t最小值：&quot; &lt;&lt; (numeric_limits&lt;bool&gt;::min)() &lt;&lt; endl;  
+    cout &lt;&lt; &quot;char: \t\t&quot; &lt;&lt; &quot;所占字节数：&quot; &lt;&lt; sizeof(char);  
+    cout &lt;&lt; &quot;\t最大值：&quot; &lt;&lt; (numeric_limits&lt;char&gt;::max)();  
+    cout &lt;&lt; &quot;\t\t最小值：&quot; &lt;&lt; (numeric_limits&lt;char&gt;::min)() &lt;&lt; endl;
+    return 0;  
+}
+</code></pre></div><blockquote><p>基本数据类型是以上七种。</p></blockquote> <ul><li><p>枚举类型：enum color { red, green=5, blue };</p></li> <li><p>函数: 跟大多数语言一致。return_type function_name( parameter list ){...}</p></li></ul> <div class="language-c++ extra-class"><pre class="language-text"><code>int max(int num1, int num2) 
+{
+   // 局部变量声明
+   int result;
+ 
+   // if else
+   if (num1 &gt; num2)
+      result = num1;
+   else
+      result = num2;
+ 
+   return result; 
+}
+
+// Lambda 函数(也叫 Lambda 表达式):[capture](parameters)-&gt;return-type{body}
+[](int x, int y) -&gt; int { int z = x + y; return z + x; }
+</code></pre></div><ul><li>数组：type arrayName [ arraySize ];</li></ul> <div class="language-c++ extra-class"><pre class="language-text"><code>double balance[5] = {1000.0, 2.0, 3.4, 7.0, 50.0}; // 定义数组
+double salary = balance[0]; // 访问数组
+</code></pre></div><blockquote><p>c++数组，内置无lenght或size()获取数组长度</p></blockquote> <ul><li>字符串</li></ul> <div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;cstring&gt;
+
+char greeting[] = &quot;Hello&quot;;
+cout &lt;&lt; &quot;Greeting message: &quot;;
+cout &lt;&lt; greeting &lt;&lt; endl;
+cout &lt;&lt; strlen(greeting) &lt;&lt; endl;
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>// C++ 标准库提供了 string 类类型
+#include &lt;string&gt;
+string str1 = &quot;Hello&quot;;
+str3.size(); // 5
+</code></pre></div><ul><li>指针</li></ul> <p>指针是一个其值为地址的变量，（就是一个存储地址的变量）。</p> <div class="language-c++ extra-class"><pre class="language-text"><code>int a = 5;
+int *p = &amp;a; // 指针变量里存储的是地址，&amp;a也是地址.p是指针变量，&amp;a是一个具体的地址
+</code></pre></div><p>int * 类型变量 p 里存放的是 int * 类型的地址，我们可以用这个地址找到内存中的一个存储空间。</p> <p>c++要这个类型的变量（指针）有什么用呢？比如我们要去上课，下午一共三节课，有数据结构课，有算法课，还有c++课，三节课在不同的教室，如果我们不知道c++课在哪个教室，就得挨个去看喽，如果我们知道c++课在101教室，算法课在102教室，数据结构的课在103教室，直接去101教室就好啦，起中间媒介的连接作用的101，102，103编号或许有助于对指针的理解。指针变量里的内容就是编号，指针起这样的媒介的、连接的、引导的作用~~~ 在计算机内存中，指针变量中存储的就是编址后的内存的各个编号，这个编号一般叫地址。</p> <div class="language-c++ extra-class"><pre class="language-text"><code>// c++中指针的定义,四种写法编译都没有错误
+//  * 号我们现在可以理解为这仅仅代表定义了一个指针变量p, p的类型是 int * 或者 int* 
+int *p; //*号前有空格，可以是任意个空格
+int* p; //*号后有空格，可以是任意个空格
+int*p; //*号前后都没有空格
+int * p; //*号前后都有空格，可以是任意个空格
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>int p; //这是一个普通的整型变量
+int *p; //首先从P 处开始,先与*结合,所以说明P 是一个指针,然后再与int 结合,说明指针所指向的内容的类型为int 型.所以P是一个返回整型数据的指针
+int p[3]; //首先从P 处开始,先与[]结合,说明P 是一个数组,然后与int 结合,说明数组里的元素是整型的,所以P 是一个由整型数据组成的数组
+int *p[3]; //首先从P 处开始,先与[]结合,因为其优先级比*高,所以P 是一个数组,然后再与*结合,说明数组里的元素是指针类型,然后再与int 结合,说明指针所指向的内容的类型是整型的,所以P 是一个由返回整型数据的指针所组成的数组
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>#include &lt;iostream&gt;
+using namespace std;
+int main()
+{
+   int a=5;
+   double b=10.4;
+   cout&lt;&lt;&quot;Address of a:&quot;&lt;&lt;&amp;a&lt;&lt;endl; // Address of a:0x7ffeede2899c
+   cout&lt;&lt;&quot;Address of b:&quot;&lt;&lt;&amp;b&lt;&lt;endl; // Address of b:0x7ffeede28990
+   int c = a; // 虽然赋值，但基本类型，a和c不同地址
+   int* d = &amp;c; // d和c指向同一个地方
+//    c = 6; // 当c改变时，d的指针也同时变
+    *d = 10; // 当d改变时，c的值也同时改变c=10
+    cout&lt;&lt;&quot;Address of c:&quot;&lt;&lt;&amp;c&lt;&lt;&quot;;&quot;&lt;&lt;c&lt;&lt;endl; // Address of c:0x7ffee798098c;5
+    cout&lt;&lt;&quot;Address of d:&quot;&lt;&lt;d&lt;&lt;&quot;;&quot;&lt;&lt;*d&lt;&lt;endl; // Address of d:0x7ffee798098c;5
+}
+</code></pre></div><blockquote><p>箭头（-&gt;）：左边必须为指针；点号（.）：左边必须为实体。</p></blockquote> <ul><li>类</li></ul> <div class="language-c++ extra-class"><pre class="language-text"><code>class Shape // 定义类
+{
+   public: // 限定符
+      void setWidth(int w) // 方法函数
+      {
+         width = w;
+      }
+      void setHeight(int h)
+      {
+         height = h;
+      }
+   protected:
+      int width;
+      int height;
+};
+</code></pre></div><div class="language-c++ extra-class"><pre class="language-text"><code>// 类实例化
+// 一：不使用new，当作普通参数
+#include&lt;iostream&gt;
+using namespace std;
+
+class A {
+    public:
+        int a;
+    A() { a = 5; } // 可理解为构造函数
+};
+
+int main() {
+    A a = A();
+    A a1 = a; // a复制给a1，但它们之间不是引用
+    a1.a = 6; // a1改变，不影响a的内容。
+    cout&lt;&lt;&amp;a&lt;&lt;&amp;a1&lt;&lt;endl; // a1和a完全不同的两个地址
+    cout&lt;&lt;a.a&lt;&lt;a1.a&lt;&lt;endl; // 5，6
+};
+
+// 二：使用new
+// new创建类对象需要指针接收
+#include&lt;iostream&gt;
+using namespace std;
+
+class A {
+    public:
+        int a;
+    A() { a = 5; } // 可理解为构造函数
+};
+
+int main() {
+    A* a = new A();
+    A* a1 = a; // a复制给a1，引用互通。有点类似高级语言的引用类型
+    a1-&gt;a = 6; // a1改变，a同时改变。
+    cout&lt;&lt;a&lt;&lt;a1&lt;&lt;endl; // a1和a完全相同的两个地址
+    cout&lt;&lt;a-&gt;a&lt;&lt;a1-&gt;a&lt;&lt;endl; // 6，6
+};
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/lq782655835/blogs/edit/master/docs/tools/c++.md" target="_blank" rel="noopener noreferrer">帮助我改进页面内容！</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">最后更新时间: </span> <span class="time">9/19/2019, 7:13:07 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blogs/tools/0.tool-summary.html" class="prev">
+          前端必备效率工具
+        </a></span> <span class="next"><a href="/blogs/tools/charles-tool.html">
+          前端抓包神器Charles
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/blogs/assets/js/2.440b331a.js" defer></script><script src="/blogs/assets/js/147.c3443af6.js" defer></script><script src="/blogs/assets/js/app.97c1ebe1.js" defer></script>
+  </body>
+</html>
