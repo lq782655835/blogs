@@ -61,6 +61,8 @@ MVVM使得前后端分离更加彻底。前端不再仅仅是UI层展示，可�
 ![](https://blog.nodejitsu.com/content/images/2014/Feb/mvvm.png)
 ## 参考文章：
 
+[Scaling Isomorphic Javascript Code](https://blog.nodejitsu.com/scaling-isomorphic-javascript-code/)
+
 [阮一峰 MVC，MVC，MVP 和 MVVM 的图示](http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html)
 
-[Scaling Isomorphic Javascript Code](https://blog.nodejitsu.com/scaling-isomorphic-javascript-code/)
+[开发中的MVVM模式及与MVP和MVC的区别](https://www.jianshu.com/p/ffcb84dc4ebc)

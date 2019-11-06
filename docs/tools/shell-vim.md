@@ -114,6 +114,8 @@ VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | s
         * ctrl + u，删除整行
         * ctrl + a, 定位行首（仅terminal）
         * ctr + e，定位行尾（仅terminal）
+        * ctrl + U：删除到行头（仅terminal）
+        * ctrl + K：删除到行尾（仅terminal）
 1. 默认模式
     1. `进入默认模式`: 在非指令模式下按 ESC/ctrl + c/ctrl + [
     1. `默认模式下`
