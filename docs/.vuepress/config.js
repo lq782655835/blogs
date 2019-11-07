@@ -115,6 +115,7 @@ module.exports = {
                 children: [
                     'js/canvas-base.md',
                     'js/data-structure.md',
+                    'js/dfs-bfs.md',
                     'js/different-for-in-for-of.md',
                     'js/es6-1.new-feature.md',
                     'js/es6-2.destruction.md',
@@ -172,7 +173,8 @@ module.exports = {
                     'vue/vue-code-9.reactive.md',
                     'vue/vue-code-91.v-model.md',
                     'vue/vue-code-vue-cli3-plugin.md',
-                    'vue/vue-code-vue-loader.md'
+                    'vue/vue-code-vue-loader.md',
+                    'vue/vue3-reactive.md'
                 ]
             },
             {

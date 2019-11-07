@@ -95,9 +95,13 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-> 简单理解，declarations定义了哪些内容需要编译，import相当于引入对应资源，providers定义哪些服务可以被注入
+> 简单理解，declarations定义了哪些内容需要编译(`template中自定义组件会从declarations中查找，找不到则从import的子module中declarations找到`)。
+
+> export是表示对外公用。
+
+> module可以重复引用。
 
 ## 参考资料
-
-https://ithelp.ithome.com.tw/articles/10188095
-https://ithelp.ithome.com.tw/articles/10188188
+* https://medium.com/@cyrilletuzi/understanding-angular-modules-ngmodule-and-their-scopes-81e4ed6f7407
+* https://ithelp.ithome.com.tw/articles/10188095
+* https://ithelp.ithome.com.tw/articles/10188188
