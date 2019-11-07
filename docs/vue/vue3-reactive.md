@@ -1,13 +1,12 @@
-
 # Vue3响应式原理 - Ref/Reactive/Effect源码分析
 
 > 目前vue3还没完全稳定下来，许多rfcs都有变化的可能。本文基于目前最新（2019-11-07）fork的 [vue源码](https://github.com/lq782655835/vue-next)进行原理分析。官方提供了在Vue2.x尝试最新Vue3功能的插件库：[Vue Composition API](https://github.com/vuejs/composition-api) （以前该库叫vue-function-api，现在叫composition-api）。
 
-众所周知，Vue3使用`ES6 Proxy`替代ES5 Object.defineProperty实现数据响应式，这也是Vue最为核心的功能之一。Vue3相比Vue2.x，API变化很大，提出了Vue Composition API。但在响应式原理实现方面，源码依然还是`依赖收集 + 执行回调`，只不过api变化后，形式也有点变化。想了解vue 2.x实现方式，可以看下笔者以前写的 [Vue2.x源码分析 - 响应式原理](https://lq782655835.github.io/blogs/vue/vue-code-9.reactive.html)。
+众所周知，Vue3使用**ES6 Proxy**替代ES5 Object.defineProperty实现数据响应式，这也是Vue最为核心的功能之一。Vue3相比Vue2.x，API变化很大，提出了Vue Composition API。但在响应式原理实现方面，源码依然还是**依赖收集 + 执行回调**，只不过api变化后，形式也有点变化。想了解vue 2.x实现方式，可以看下笔者以前写的 [Vue2.x源码分析 - 响应式原理](https://lq782655835.github.io/blogs/vue/vue-code-9.reactive.html)。
 
 ## 你必须知道的Vue3 RFCS ChangeLog
 
-如果较少关注vue3征求意见稿[vue rfcs](https://github.com/vuejs/rfcs)，可能大部分人对vue3还停留在Vue Function API。作者尤雨溪专门为这重大改变的API做过详细的叙述，并特意翻译了中文[Vue Function-based API RFC](https://zhuanlan.zhihu.com/p/68477600)。目前Vue 官方发布了最新的3.0 API 修改草案，并在充分采纳社区的意见后，`将Vue Function API 更正为 Vue Composition API.`
+如果较少关注vue3征求意见稿[vue rfcs](https://github.com/vuejs/rfcs)，可能大部分人对vue3还停留在Vue Function API。作者尤雨溪专门为这重大改变的API做过详细的叙述，并特意翻译了中文[Vue Function-based API RFC](https://zhuanlan.zhihu.com/p/68477600)。目前Vue 官方发布了最新的3.0 API 修改草案，并在充分采纳社区的意见后，**将Vue Function API 更正为 Vue Composition API.**
 
 ### 1. 重大变化点
 
@@ -41,15 +40,15 @@ export default {
 
 ### 3. 建议阅读资料
 
-* Vue Composition API pull request：https://github.com/vuejs/rfcs/pull/78
-* Function-based Component API pull request：https://github.com/vuejs/rfcs/pull/42
-* 官方api变化解释：https://juejin.im/post/5d836458f265da03d871f6e9
+* [Vue Composition API pull request](https://github.com/vuejs/rfcs/pull/78)
+* [Function-based Component API pull request](https://github.com/vuejs/rfcs/pull/42)
+* [Composition API RFC](https://vue-composition-api-rfc.netlify.com/)
 
 ## 源码解析
 
 ### 1. ref
 
-先从入口ref看起,`ref常用于基本类型，reactive用于引用类型`。如果ref传入对象，其实内部会自动变为reactive：
+先从入口ref看起,**ref常用于基本类型，reactive用于引用类型**。如果ref传入对象，其实内部会自动变为reactive：
 
 ``` ts
 export function ref(raw: unknown) {
@@ -77,7 +76,7 @@ const convert = <T extends unknown>(val: T): T =>
   isObject(val) ? reactive(val) : val
 ```
 
-同时ref支持把reactive转为refs对象 - `toRefs`：
+同时ref支持把reactive转为refs对象 - **toRefs**：
 
 ``` ts
 export function toRefs<T extends object>(
@@ -145,7 +144,7 @@ export function reactive(target: object) {
 ```
 
 如下面注释解释，大部分代码都是为了做边界和重复处理。最重要的还是创建proxy对象：
-`observed = new Proxy(target, mutableHandlers)`。
+**observed = new Proxy(target, mutableHandlers)**。
 ``` ts
 function createReactiveObject(
   target: unknown, // 原始对象
@@ -208,7 +207,7 @@ export const mutableHandlers: ProxyHandler<object> = {
 
 get、has、deleteProperty、ownKeys代理方法中，都调用了track函数，用来收集依赖，这个下文讲；而set调用了trigger函数，当响应式数据变化时，收集的依赖被执行回调。从原理看，这跟vue2.x是一致的。
 
-看下最常用的get、set。get中除常规边界处理外，最重要是根据代理值的类型，`对object类型进行递归调用reactive`。
+看下最常用的get、set。get中除常规边界处理外，最重要是根据代理值的类型，**对object类型进行递归调用reactive**。
 
 ``` ts
 function createGetter(isReadonly: boolean) {
@@ -237,7 +236,7 @@ function createGetter(isReadonly: boolean) {
 }
 ```
 
-set函数里除了代理set方法外，最重要的莫过于当值改变时，`触发trigger方法`，下文详细讲述该函数。
+set函数里除了代理set方法外，最重要的莫过于当值改变时，**触发trigger方法**，下文详细讲述该函数。
 
 ``` ts
 function set(
@@ -270,14 +269,14 @@ function set(
 ### 3. track/trigger
 
 这里是vue3响应式源码的难点。但原理跟vue2.x基本一致，只不过实现方式上有些不同。
-`track用于收集依赖deps（依赖一般收集effect/computed/watch的回调函数），trigger 用于通知deps，通知依赖这一状态的对象更新。`
+**track用于收集依赖deps（依赖一般收集effect/computed/watch的回调函数），trigger 用于通知deps，通知依赖这一状态的对象更新。**
 
 #### 3.1 举个例子解释
 
 如下代码，使用effect或computed api时，里面使用了count.num，意味着这个effect依赖于count.num。当count.num set改变值时，需要通知该effect去执行。那什么时候count.num收集到effect这个依赖呢？
 答案是创建effect时的回调函数。如果回调函数中用到响应式数据（意味着会去执行get函数），则同步这个effect到响应式数据（这里是count.num）的依赖集中。
 
-`其流程是（全文重点）：1. effect/computed函数执行 -> 2. 代码有书写响应式数据，调用到get,依赖收集  -> 3. 当有set时，依赖集更新。`
+**其流程是（全文重点）：1. effect/computed函数执行 -> 2. 代码有书写响应式数据，调用到get,依赖收集  -> 3. 当有set时，依赖集更新。**
 
 ``` ts
 const count = reactive({ num: 0 })
@@ -339,7 +338,7 @@ function createReactiveEffect<T = any>(
 
 依赖收集哪些东西呢？就是收集当前的effect回调函数。这个回调函数（被effect包装）不就是刚被存储在effectStack么，所以在后续trick函数中可以看到使用effectStack栈。当执行完回调函数，再进行出栈。
 
-`通过使用栈数据结构，以及对代码执行的时机，非常巧妙的就把当前effect传递过去，最终被响应式数据收集到依赖集中。`
+**通过使用栈数据结构，以及对代码执行的时机，非常巧妙的就把当前effect传递过去，最终被响应式数据收集到依赖集中。**
 
 ``` ts
 function run(effect: ReactiveEffect, fn: Function, args: unknown[]): unknown {
@@ -378,7 +377,7 @@ export type KeyToDepMap = Map<any, Dep>
 export const targetMap = new WeakMap<any, KeyToDepMap>()
 ```
 
-`track函数进行数据依赖采集`, 以便于后面数据更改能够触发对应的函数。
+**track函数进行数据依赖采集**, 以便于后面数据更改能够触发对应的函数。
 
 ``` ts
 // 收集target key的依赖
@@ -415,7 +414,7 @@ export function track(target: object, type: OperationTypes, key?: unknown) {
 }
 ```
 
-trigger，将track收集到的effect函数集合，添加到runners中（二选一放进effects或computedRunners中），并通过`scheduleRun`执行effect：
+trigger，将track收集到的effect函数集合，添加到runners中（二选一放进effects或computedRunners中），并通过**scheduleRun**执行effect：
 
 ``` ts
 // set: trigger(target, OperationTypes.SET, key)
