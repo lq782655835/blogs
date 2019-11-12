@@ -3,12 +3,15 @@
 Python 与其他语言最大的区别就是，Python 的代码块不使用大括号 {} 来控制类，函数以及其他逻辑判断。python 最具特色的就是用缩进来写模块。
 
 ## 数据类型
+
 Python 中的变量赋值不需要类型声明。Python有五个标准的数据类型：
 * Numbers（数字）
 * String（字符串）
-* List（列表）
-* Tuple（元组）。类似于List，但不能二次赋值，相当于只读列表
-* Dictionary（字典）。类似于javascript的Map类型
+* Tuple（元组）。类似于List，但不能二次赋值，相当于只读列表。eg：('test1', 'test2')
+* List（列表）类似javascript Array类型。eg: [1, 2, ,3]
+* Dictionary（字典）。类似于javascript的Map类型。eg: {a: 1, b: 2}
+
+> Set: {"apple", "banana", "cherry"}
 
 ``` python
 #!/usr/bin/python # 指定用什么解释器运行脚本以及解释器所在的位置。一般入口文件设置，使得可以自执行文件
@@ -89,9 +92,12 @@ for fruit in fruits:        # 第二个实例
    print '当前水果 :', fruit
 ```
 
+> for ... in 适用于list/dict/set数据类型
+
 ## 函数
 
 ### 函数定义
+
 ``` python
 def printme( str ):
    print str
@@ -99,6 +105,7 @@ def printme( str ):
 ```
 
 ### 内置函数
+
 * range(number, number)
 * len(list)
 
@@ -108,9 +115,28 @@ list = range(5)
 print len(list) # 5
 ```
 
+## 类
+
+``` python
+class Dog:
+    shares = [] # share variable for each dog
+    def __init__(self, name):
+        self.name = name
+        self.tricks = []    # creates a new empty list for each dog
+
+    def add_trick(self, trick):
+        self.tricks.append(trick)
+
+d = Dog('Fido') # 实例化
+d.add_trick('roll over')
+```
+
 ## module模块
 
+一个py文件就是一个模块
+
 1. import [module]
+
 ``` python
 # 导入整个random模块，可以是内置/当前路径
 import random
@@ -136,7 +162,7 @@ print(rd.randint(0, 5))
 
 4. from [module] import *
 
-不推荐，容易造成名稱衝突，降低可讀性和可維護性。
+`不推荐`，容易造成名稱衝突，降低可讀性和可維護性。
 ``` python
 # Import 所有 `random` module 底下的东西
 from random import *
@@ -144,7 +170,8 @@ from random import *
 print(randint(0, 5))
 ```
 
-### 搜索路径
+### module搜索路径
+
 当你导入一个模块，Python 解析器对模块位置的搜索顺序是：
 
 1. 当前目录
@@ -152,6 +179,7 @@ print(randint(0, 5))
 1. 如果都找不到，Python会察看默认路径。UNIX下，默认路径一般为/usr/local/lib/python/。
 
 ## package包
+
 把两个module放在一个新的目录 `sample_package`,再新增`__init__.py`(可以是空，但不能没有)，宣称自己是一个package。
 ```
 package_runoob
