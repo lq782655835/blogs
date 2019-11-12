@@ -104,7 +104,9 @@
 
 ## 3. Netease AI深度学习平台 V1.0架构
 
-基于`slurm + conda`。使用slurm分配计算机资源和维护Job，conda则提供python环境。
+Netease AI深度学习平台，旨在简化算法工程师的工作，把机器学习过程中繁琐的存储、环境配置、分布式训练、部署等过程都进行内部包装。通过基础建设（存储、网络等）以及平台搭建，`提供模型在线编写、模型训练、可视化调优、模型保存以及一键部署等整体流程`。中间涉及到很多概念，包括`如何打通内部网络存储、如何分布式训练模型、如何对机器资源管理`等。
+
+V1.0 基于`slurm + conda`。使用slurm分配计算机资源和维护Job，conda则提供python环境。
 
 ### 3.1 slurm
 
@@ -118,13 +120,39 @@ slurm是一种可用于大型计算节点集群的高度可伸缩和容错的`�
 
 > 可以理解为nvm一样的作用，管理node版本以及环境。而conda管理着python版本和环境。
 
+### 3.3 分布式训练系统
+
+#### 3.3.1 分布式训练策略
+
+`模型并行`:指的是将模型部署到很多设备上（设备可能分布在不同机器上，下同）运行。实际上层与层之间的运行是存在约束的：前向运算时，后面的层需要等待前面层的输出作为输入，而在反向传播时，前面的层又要受限于后面层的计算结果。所以除非模型本身很大，**一般不会采用模型并行**，因为模型层与层之间存在串行逻辑。
+
+`数据并行`(常采用的策略)：数据并行就是在很多设备上放置相同的模型，并且各个设备采用不同的训练样本对模型训练。训练深度学习模型常采用的是batch SGD方法，采用数据并行，可以每个设备都训练不同的batch，然后收集这些梯度用于模型参数更新。
+
+数据并行又分同步和异步，Netease AI目前主要使用数据并行同步。`所谓同步指的是所有的设备都是采用相同的模型参数来训练，等待所有设备的mini-batch训练完成后，收集它们的梯度然后取均值，然后执行模型的一次参数更新。`
+
+#### 3.3.2 分布式训练架构 - PS
+
+这里讲下分布式训练具体实现，即架构方案。目前使用`经典的PS（Parameter server architecture）架构`。
+
+在Parameter server架构（PS架构）中，集群中的节点被分为两类：parameter server和worker。其中parameter server存放模型的参数，而worker负责计算参数的梯度。在每个迭代过程，worker从parameter sever中获得参数，然后将计算的梯度返回给parameter server，parameter server聚合从worker传回的梯度，然后更新参数，并将新的参数广播给worker。采用同步SGD方式的PS架构如下图所示：
+
+![](https://pic2.zhimg.com/80/v2-eaa0cc1152eea0c99471595499b1d3b9_hd.jpg)
+
+> 多台机器组合成集群cluster，ps-worker架构就是一部分机器作为ps节点，一部分机器作为worker。
+
+#### 3.3.3 基于PS的分布式TensorFlow
+
+在分布式TensorFlow中，参与分布式系统的所有节点或者设备统称为一个Cluster，一个Cluster中包含很多Server，每个Server去执行一项Task，Server和Task是一一对应的。所以，Cluster可以看成是Server的集合，也可以看成是Task的集合，TensorFlow为各个Task又增加了一个抽象层，`将一系列相似的Task集合称为一个Job`。
+
+对于PS架构，Parameter Server的Task集合为ps(即`job类型为ps`)，而执行梯度计算的Task集合为worker(即`job类型为worker`)。
+
 ## 4. Netease AI深度学习平台 V2.0架构
 
-底层基于`Docker + Kubernes`，顶层应用使用开源Kubeflow。
+底层基于`Docker + Kubernetes`，内部服务治理(众多的服务管理、限流等)使用`Istio`，顶层应用使用开源`Kubeflow`。
 
-### 4.1 Kubernes
+### 4.1 Kubernetes
 
-kubernes 容器化编排工具（docker是容器化基础）。管理容器非常方便，其特性有：
+kubernetes 容器化编排工具（docker是容器化基础）。`k8s可以很方便的对机器资源进行管理和扩容`，其特性有：
 * 方便的容器升级（修改yaml配置，自动更新替换）
 * 提供容器的自动化复制和部署（随时扩展容器规模），同时支持负载均衡
 
@@ -133,7 +161,7 @@ Pod：
 * Deployment定义了pod部署的信息
 * 若干pod副本（副本是一个pod的多个实例）组成service，对外提供服务
 
-Deployment
+Deployment:
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Deployment # 类型
@@ -185,6 +213,7 @@ spec:
 ```
 
 命令一览：
+
 ``` docker
 # deployments -n代表指定命名空间
 kubectl create -f xxx.yaml -n kubeflow # 创建deploy
@@ -202,26 +231,69 @@ kubectl exec xxx bash -n kubeflow # 进入pod中的container
 ```
 
 推荐视频，了解k8s：https://www.imooc.com/video/19149
+
 * k8s快速部署：https://g.hz.netease.com/cloud_ml/documents/blob/master/design_docs/deployment/kubernetes/developer_guide.md
 
-#### Service Mesh
+### 4.2 Istio
 
-如果用一句话来解释什么是服务网格，可以将它比作是应用程序或者说微服务间的 TCP/IP，负责服务之间的网络调用、限流、熔断和监控。对于编写应用程序来说一般无须关心 TCP/IP 这一层（比如通过 HTTP 协议的 RESTful 应用），同样使用服务网格也就无须关心服务之间的那些原来是通过应用程序或者其他框架实现的事情，比如 Spring Cloud、OSS，现在只要交给服务网格就可以了。
+`Istio 被称为 Service Mesh 架构`,是一个完全开源的服务网格。
 
-### 4.2 kubeflow
+Istio 提供一种简单的方式来为已部署的服务建立网络，该网络具有负载均衡、服务间认证、监控等功能，只需要对服务的代码进行一点或不需要做任何改动。想要让服务支持 Istio，只需要在您的环境中部署一个特殊的 sidecar 代理，使用 Istio 控制平面功能配置和管理代理，拦截微服务之间的所有网络通信。
 
-* jupyter（nodebook server） 书写代码在线工具，以及提交job任务
-* tf-operator 查看job任务信息
+`直白点就是做业务之外的管控（服务治理核心）`，核心功能：
+1. `流量管理`。通过简单的规则配置和流量路由，您可以控制服务之间的流量和 API 调用。
+    * 负载均衡
+    * 动态路由
+    * 灰度发布
+    * 故障注入
+1. `安全`。专注于应用程序级别的安全性，与 Kubernetes结合优势更大。
+    * 认证
+    * 鉴权
+1. `可观察`。强大的追踪、监控和日志记录可让您深入了解服务网格部署。
+    * 调用链
+    * 访问日志
+    * 监控
+1. 平台支持。独立于平台的，可运行在各种环境中。
+1. 集成和定制。组件可以扩展和定制
 
-#### tf-operator
+Istio 以一个项目（Pod）的形式部署到 Kubernetes 集群中。我们可以看到，部署好的 pods 中，除了有 istio-citadel、istio-egressgateway、istio-ingressgateway、istio-pilot 等 Istio 本身的功能组件，还集成了微服务相关的监控工具，如：grafana、jaeger-agent、kiali、prometheus。正是这些功能丰富且强大的监控工具，帮助 Istio 实现了微服务的可视化管理。
+
+#### 4.2.1 Service Mesh概念
+
+Service Mesh 通常是通过一组轻量级网络代理（Sidecar proxy），与应用程序代码部署在一起来实现，且对应用程序透明。
+
+个人理解，传统软件除应用开发外，还需要耦合一些限流、熔断等处理。此时就有了Sidecar模式的兴起：Sidecar(有时会叫做agent) 在原有的客户端和服务端之间加多了一个代理, 为应用程序提供的额外的功能, 如服务发现, 路由代理, 认证授权, 链路跟踪 等等。随着微服务的发展，需要把Sidecar升级为Service Mesh。Service Mesh不再将Sidecar(代理)视为单独的组件，而是强调由这些代理连接而形成的网络。
+
+更多可查看：https://tencentcloudcontainerteam.github.io/2019/01/31/servicemesh-istio/
+
+> 关系：Service Mesh是概念，Istio是Service Mesh实践架构，为的是服务治理。而微服务是服务治理不可或缺的。
+
+#### 4.2.2 Grafana
+
+Istio 的工具集：Grafana。Grafana 是一个非常著名的开源项目。它是一个 Web 应用，可以提供丰富的监控仪表盘。它的后端支持 graphite、 InfluxDB 或 opentsdb。
+
+### 4.3 kubeflow
+
+kubeflow是针对机器学习领域，在k8s基础上搭建的深度学习平台（可理解为社区版深度学习平台）。kubernetes只是底层资源（如硬件的机器CPU/内存、软件的service服务）管理，而上层算法工程师需要简单化的使用平台，来进行深度学习模型的编写、训练、调试、部署等。
+
+V2.0架构中，平台基础组件以及UI复用了部分kubeflow组件，这样在跟进社区进度的同时，也能自定义开发符合内部需求的组件。目前主要采用社区以下组件：
+
+1. tf-operator：管理tensorflow job任务信息
+1. jupyter（nodebook server）： 书写代码在线工具，以及提交job任务
+
+#### 4.3.1 tf-operator
 
 tf-operator 为 tensorflow 提供了 TFJob 资源，以满足 tensorflow 分布式训练的资源和拓扑需求，最终达到一键拉起分布式机器学习集群的效果。
 
-> 简单理解，tf-operator 就是让用户在 K8S 集群上部署训练任务更加方便和简单。
+简单理解，tf-operator 就是让用户在 K8S 集群上部署训练tensorflow任务更加方便和简单。
+
+#### 4.3.2 jupyter
+
+jupyter是一个工具，安装后可快速启动一个本地的服务器，帮助运行python代码。
 
 ## 5. AI框架
 
-### 5.1 tensorflow
+### 5.1 Tensorflow
 
 TensorFlow 是一个端到端开源机器学习平台。个人理解，通过提供tensorflow python包以及它提供的API，可以进行模型的制作。
 
