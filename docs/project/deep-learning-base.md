@@ -27,7 +27,10 @@
         1. [jupyter](#432-jupyter)
 5. [AI框架](#5-ai框架)
     1. [Tensorflow](#51-tensorflow)
+        1. [Tensorflow环境安装](#511-tensorflow环境安装)
+        1. [TensorBoard](#512-tensorboard)
     1. PyTouch
+    1. [Keras](#53-keras)
 
 ## 1. 基础概念
 
