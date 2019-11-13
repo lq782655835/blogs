@@ -299,6 +299,8 @@ Service Mesh 通常是通过一组轻量级网络代理（Sidecar proxy），与
 
 Istio 的工具集：Grafana。Grafana 是一个非常著名的开源项目。它是一个 Web 应用，可以提供丰富的监控仪表盘。它的后端支持 graphite、 InfluxDB 或 opentsdb。
 
+> 监控框架Prometheus也常用到Grafana工具，来进行优美的数据展示。
+
 ### 4.3 kubeflow
 
 kubeflow是针对机器学习领域，在k8s基础上搭建的深度学习平台（可理解为社区版深度学习平台）。kubernetes只是底层资源（如硬件的机器CPU/内存、软件的service服务）管理，而上层算法工程师需要简单化的使用平台，来进行深度学习模型的编写、训练、调试、部署等。
@@ -320,12 +322,16 @@ jupyter是一个工具，安装后可快速启动一个本地的服务器，帮�
 
 ## 5. AI框架
 
+![](https://img-blog.csdnimg.cn/20181108111104813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpNTI4NDA1MTc2,size_16,color_FFFFFF,t_70)
+
 ### 5.1 Tensorflow
 
-TensorFlow 是一个端到端开源机器学习平台。个人理解，通过提供tensorflow python包以及它提供的API，可以进行模型的制作。
+TensorFlow 是一个端到端开源机器学习平台。个人理解，通过提供tensorflow python包以及它提供的API，可以进行模型的制作。tensorflow快速开始深度学习：http://www.tensorfly.cn/tfdoc/api_docs/SOURCE/tutorials/mnist_pros.html
 
 * 社区繁华
 * 可扩展性好，支持分布式，可以扩展至多机多卡
+
+#### 5.1.1 Tensorflow环境安装
 
 1. 在系统上安装 Python 开发环境
 
@@ -380,9 +386,32 @@ print os.listdir('./package_runoob')
 print np.eye(4)
 ```
 
+#### 5.1.2 TensorBoard
+
+TensorBoard 是由 Tensorflow 提供的一个可视化工具。
+
+如果要在 TensorBoard 中觀察各種資料，首先要在 TensorFlow 的程式中以 tf.summary 將要觀察的模型或資料以事件檔案（events files）的方式輸出，讓 TensorBoard 從這些事件檔案取得資料，並且繪製各種圖形。
+
+开启tensorboard服务器：
+``` bash
+tensorboard --logdir=/tmp/tensorflow/mnist # --logdir 所指定的目錄就是我們在 TensorFlow 程式中使用 tf.summary.FileWriter 寫入資料的目錄。
+```
+
 ### 5.2 PyTouch
 
 待更新。。。
+
+### 5.3 Keras
+
+深度学习库，是由纯python编写而成的高层神经网络API，也仅支持python开发。
+它是为了支持快速实践而对tensorflow或者Theano的再次封装，让我们可以不用关注过多的底层细节，能够把想法快速转换为结果。Keras默认的后端为tensorflow。
+
+比如说盖木头房子。想盖什么房子要先选木料，然后加工成需要的形状，最后组合钉装成想要的房子形状。tensorflow 好比是木头，Keras 好比是拿 tensorflow 做好的木板。如果你盖的房子简单，形状大众，Keras 调用起来会很方便。但如果想设计特殊的房子，那就要从木料开始。
+
+Keras有后端依赖，即在安装 Keras 之前，请安装以下后端引擎之一：TensorFlow，Theano，或者 CNTK。
+
+> Keras API较为简单，底层调用Tensorflow API，适合初学者；Tensorflow API就较为复杂。
+
 
 ## 参考文章
 
