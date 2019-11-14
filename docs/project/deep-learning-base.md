@@ -212,7 +212,7 @@ spec:
         name: job-dashboard-frontend
     spec:
       containers:
-      - image: hub.cn-east-p1.netease.com/deeplearning/job-frontend:0.1 # pod内容器镜像地址
+      - image: /deeplearning/job-frontend:0.1 # pod内容器镜像地址
         name: job-dashboard-frontend
         ports:
         - containerPort: 80

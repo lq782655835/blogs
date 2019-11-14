@@ -1,4 +1,4 @@
-# Python基础
+# Python基础语法
 
 Python 与其他语言最大的区别就是，Python 的代码块不使用大括号 {} 来控制类，函数以及其他逻辑判断。python 最具特色的就是用缩进来写模块。
 
@@ -133,7 +133,7 @@ d.add_trick('roll over')
 
 ## module模块
 
-一个py文件就是一个模块
+**一个py文件就是一个模块**。
 
 1. import [module]
 
@@ -181,6 +181,7 @@ print(randint(0, 5))
 ## package包
 
 把两个module放在一个新的目录 `sample_package`,再新增`__init__.py`(可以是空，但不能没有)，宣称自己是一个package。
+
 ```
 package_runoob
 |-- __init__.py
@@ -198,11 +199,15 @@ runoob1()
 runoob2()
 ```
 
+> 单个py文件就是一个module；而当多个`py文件+__init__文件`时，就等于package。
+
 ### pip
+
 pip 是 Python 包管理工具，该工具提供了对Python 包的查找、下载、安装、卸载的功能。
 
 安装pip工具
-```
+
+``` bash
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py   # 下载安装脚本
 sudo python get-pip.py    # 运行安装脚本
 pip --version # 查看版本
@@ -211,7 +216,8 @@ pip show -f SomePackage # 查看指定包的详细信息
 ```
 
 安装包
-```
+
+``` bash
 pip install SomePackage              # 最新版本
 pip install SomePackage==1.0.4       # 指定版本
 pip install 'SomePackage>=1.0.4'     # 最小版本
