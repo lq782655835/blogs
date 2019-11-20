@@ -22,7 +22,7 @@ cp -r ../package1 ./packages/ # 拷贝package1文件夹到packages文件夹下
 ## 文件操作
 | 命令名      | 使用举例   | 功能描述     |
 | ---        |   ----    | ---        |
-| cat      | cat filename | 显示或连接文件 |
+| cat      | cat filename | 显示文件 |
 | echo      | echo 'hello world' > ./testfile.txt | 打印或新建文件 |
 | touch      | touch filename | 新建文件 |
 | mv      | cat filename | 显示或连接文件 |
@@ -34,8 +34,12 @@ cp -r ../package1 ./packages/ # 拷贝package1文件夹到packages文件夹下
 | env      | env | 显示当前所有设置过的环境变量 |
 | date      | date | 显示系统的当前日期和时间 |
 | cal      | cal | 显示日历 |
-| curl   |  curl [url] | http命令行工具
-| grep   |  grep [text] | 过滤文本
+| curl   |  curl [option] url | http命令行工具
+| grep   |  grep 'keyword' file | 过滤文本
+| wc   |  wc [option] file | wordcount以及行数
+| head/tail   |  head/tail file | 查看前/后几行文本
+
+![image](https://user-images.githubusercontent.com/6310131/69216024-18657380-0ba6-11ea-9b66-37972069568d.png)
 
 > 管道：Linux系统中的命令可以将标准输入读取数据，还能将这些数据送到标准输出中去，这种功能被系统进一步的利用，从而产生出一种新的特性，称之为管道符“|”，这个符号可以将一个命令的标准输出管道为另外一个命令的标准输入。比如：echo "hello world" | grep -i "HELLO"
 
