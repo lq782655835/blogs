@@ -60,6 +60,8 @@ x = a if b else 0 // 等价于 x = (a if b else 0)，等价于js：x = b ? a : 0
 ## 返回多参数（元祖）
 
 ``` python
+# When writing tuples, the parenthesis can be omitted most of the times.
+# point = 2, 3
 def foo (a):
     x=a
     y=a*2

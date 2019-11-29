@@ -1,7 +1,9 @@
 # MongoDB指南
 
 MongoDB是目前最流行的NoSQL数据库之一。MongoDB和Node.js特别般配，因为MongoDB是基于文档的非关系型数据库，文档是按BSON（JSON的轻量化二进制格式）存储的，增删改查等管理数据库的命令和JavaScript语法很像。
+
 ## 概念解析
+
 在mongodb中基本的概念是数据库、集合、文档。下表将帮助更容易理解Mongodb中的一些概念：
 
 | SQL概念 | MongoDB概念 | 解释 |
@@ -12,6 +14,7 @@ MongoDB是目前最流行的NoSQL数据库之一。MongoDB和Node.js特别般配
 | column | field | 数据库表一列 |
 | primary key | primary key | 主键。mongodb默认有主键_id |
 | table joins |  | 表连接。mongodb不支持 |
+
 ## Command
 
 * 全局
@@ -51,6 +54,7 @@ Mongoose是在node下对MongoDB进行管理的数据对象模型(ODM)库。它�
 ![](https://cdn-images-1.medium.com/max/800/0*b5piDNW1dqlkJWKe.)
 
 ### Schema
+
 定义document的结构、默认值、校验等。是一种以文件形式存储的数据库模型骨架，`不具备数据库的操作能力`。支持schema.pre('save', ...)钩子函数（当model.save()执行时触发）；支持schema.plugin()以使用自定义插件。
 
 Schema Type支持如下类型：
@@ -140,6 +144,29 @@ EmailModel.findOneAndUpdate({ email: 'leo' },{ email: 'leoupdate' }.then(doc => 
 // 删除
 EmailModel.findOneAndRemove({ email: 'leoupdate'}).then(doc => console.log(doc))
 ```
+
+## 附上Mysql数据库安装
+
+1. 安装mysql：https://dev.mysql.com/doc/refman/8.0/en/osx-installation-pkg.html
+
+2. 命令行操作msql：
+
+``` shell
+/usr/local/mysql/bin/mysql -u root -p # 输入root密码后即可进入mysql
+# 接下来可操作或设置mysql
+mysql> SHOW DATABASES;
+mysql> CREATE DATABASE pets;
+```
+
+mysql命令入口，MacOS默认地址为：/usr/local/mysql/bin/mysql。所以我们可以更改下终端的Path快捷设置（笔者使用oh my zsh），这样就不用输入路径了：
+
+``` shell
+vim ~/.zshrc
+export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/local/mysql/bin # :代表间隔
+
+mysql -u root -p
+```
+
 
 ## 参考文章
 

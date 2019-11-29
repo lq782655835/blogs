@@ -1,6 +1,6 @@
 # 正则表达式
 
-正则表达式对于每个开发者都非常重要，用的好能在一些关键时刻让自己变得轻松。推荐个正则可视化工具：[regulex](https://jex.im/regulex/#!flags=&re=%5E(a%7Cb)*%3F%24)，帮助学习者直观验证。
+正则表达式对于每个开发者都非常重要，用的好能在一些关键时刻让自己变得轻松。推荐个正则可视化工具：[regulex](https://jex.im/regulex/#!flags=&re=%5E(a%7Cb)*%3F%24)，帮助学习者直观验证。再推荐[Regex Tester](https://www.regextester.com/)进行在线调试。
 
 原理：
 1. 解析

@@ -2,16 +2,16 @@
 
 Python 与其他语言最大的区别就是，Python 的代码块不使用大括号 {} 来控制类，函数以及其他逻辑判断。python 最具特色的就是用缩进来写模块。
 
-## 数据类型
+## 1. 数据类型
 
 Python 中的变量赋值不需要类型声明。Python有五个标准的数据类型：
-* Numbers（数字）
-* String（字符串）
-* Tuple（元组）。类似于List，但不能二次赋值，相当于只读列表。eg：('test1', 'test2')
-* List（列表）类似javascript Array类型。eg: [1, 2, ,3]
-* Dictionary（字典）。类似于javascript的Map类型。eg: {a: 1, b: 2}
+1. Numbers（数字）
+1. String（字符串）
+1. `Tuple（元组）`。类似于List，但不能二次赋值，相当于只读列表。eg：`('test1', 'test2')`
+1. `List（列表）`类似javascript Array类型。eg:` [1, 2, ,3]`
+1. `Dictionary（字典）`。类似于javascript的Map类型。eg:`{a: 1, b: 2}`
 
-> Set: {"apple", "banana", "cherry"}
+> `Set(集合)`:属于数据结构，也常用。`{"apple", "banana", "cherry"}` or `set([1, 2, 1, 3])`
 
 ``` python
 #!/usr/bin/python # 指定用什么解释器运行脚本以及解释器所在的位置。一般入口文件设置，使得可以自执行文件
@@ -33,7 +33,7 @@ print tinydict['name']              # 输出键为 2 的值
 ```
 > Python3.X 源码文件默认使用utf-8编码，所以可以正常解析中文，无需指定 UTF-8 编码。
 
-## 条件语句
+## 2. 条件语句
 
 ```
 # 当判断条件为1个值时
@@ -74,7 +74,7 @@ else:
     print 'roadman'     # 条件均不成立时输出
 ```
 
-## 循环
+## 3. 循环
 
 ```
 while 判断条件：
@@ -94,9 +94,9 @@ for fruit in fruits:        # 第二个实例
 
 > for ... in 适用于list/dict/set数据类型
 
-## 函数
+## 4. 函数
 
-### 函数定义
+### 4.1 函数定义
 
 ``` python
 def printme( str ):
@@ -104,10 +104,13 @@ def printme( str ):
    return str
 ```
 
-### 内置函数
+### 4.2 内置函数
 
 * range(number, number)
-* len(list)
+* len(string/list/dict/set)
+* list(string/dict)
+* enumerate(string/list/tuple/set)
+* set(list)
 
 ``` python
 for i in range(5): print i # 0 1 2 3 4
@@ -115,7 +118,7 @@ list = range(5)
 print len(list) # 5
 ```
 
-## 类
+## 5. 类
 
 ``` python
 class Dog:
@@ -131,7 +134,7 @@ d = Dog('Fido') # 实例化
 d.add_trick('roll over')
 ```
 
-## module模块
+## 6. module模块
 
 **一个py文件就是一个模块**。
 
@@ -178,7 +181,7 @@ print(randint(0, 5))
 1. 如果不在当前目录，Python 则搜索在 shell 变量 PYTHONPATH 下的每个目录。
 1. 如果都找不到，Python会察看默认路径。UNIX下，默认路径一般为/usr/local/lib/python/。
 
-## package包
+## 7. package包
 
 把两个module放在一个新的目录 `sample_package`,再新增`__init__.py`(可以是空，但不能没有)，宣称自己是一个package。
 
@@ -223,7 +226,7 @@ pip install SomePackage==1.0.4       # 指定版本
 pip install 'SomePackage>=1.0.4'     # 最小版本
 ```
 
-## 内置库
+## 8. 内置库
 * os
 * glob
 * re 字符串匹配
@@ -235,7 +238,7 @@ pip install 'SomePackage>=1.0.4'     # 最小版本
 * logging
 * [其他](https://docs.python.org/2.7/library/index.html#library-index)
 
-## 参考资料
+## 9. 参考资料
 
 * [Python2 Module Document](https://docs.python.org/2/tutorial/modules.html)
 * [Python 的 Import 陷阱](https://medium.com/pyladies-taiwan/python-%E7%9A%84-import-%E9%99%B7%E9%98%B1-3538e74f57e3)

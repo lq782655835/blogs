@@ -38,7 +38,7 @@ cp -r ../package1 ./packages/ # 拷贝package1文件夹到packages文件夹下
 | grep   |  grep 'keyword' file | 过滤文本
 | wc   |  wc [option] file | wordcount以及行数
 | head/tail   |  head/tail file | 查看前/后几行文本
-
+| ps   |  ps -A | 查看所有命令，可配合grep
 ![image](https://user-images.githubusercontent.com/6310131/69216024-18657380-0ba6-11ea-9b66-37972069568d.png)
 
 > 管道：Linux系统中的命令可以将标准输入读取数据，还能将这些数据送到标准输出中去，这种功能被系统进一步的利用，从而产生出一种新的特性，称之为管道符“|”，这个符号可以将一个命令的标准输出管道为另外一个命令的标准输入。比如：echo "hello world" | grep -i "HELLO"
