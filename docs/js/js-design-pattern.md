@@ -2,9 +2,14 @@
 
 js将函数作为一等公民，函数也是对象。所以很多经典的设计模式案例在js语言中，都是以变种的形式而存在。
 
-## 单例模式
+## 1. 单例模式
 
-单例模式定义了一个对象的创建过程，此对象只有一个单独的实例，并提供一个访问它的全局访问点。
+单例模式定义了一个对象的创建过程，此对象只有一个单独的实例，并提供一个访问它的全局访问点。常见的上层调用方式有两种：
+
+1. single.getInstance() 强相关
+2. new Single() 透明式
+
+### 1.1 single.getInstance()
 
 ES5闭包实现：
 
@@ -31,25 +36,8 @@ let singleXXX2 = single.getInstance()
 console.log(singleXXX1 === singleXXX2) // true
 ```
 
-ES5缓存实现：
-``` js
-function SingleXXX() {
-    if (typeof SingleXXX.instance === 'object') {
-        return SingleXXX.instance
-    }
-
-    // ...生成单例的构造函数的代码
-
-    // 缓存实例
-    SingleXXX.instance = this
-}
-
-let singleXXX1 = new SingleXXX()
-let singleXXX2 = new SingleXXX()
-console.log(singleXXX1 === singleXXX2) // true
-```
-
 ES6 Object实现：
+
 ``` js
 function singleXXX(){}
 let single = {
@@ -74,6 +62,7 @@ console.log(singleXXX1 === singleXXX2) // true
 ```
 
 ES6 Class实现,跟Java、C#等面向对象语言写法一致：
+
 ``` js
 class SingleXXX {
     constructor() {
@@ -89,6 +78,64 @@ class SingleXXX {
 let singleXXX1 = SingleXXX.getInstance()
 let singleXXX2 = SingleXXX.getInstance()
 console.log(singleXXX1 === singleXXX2) // true
+```
+
+### 1.2 new Single()
+
+ES5缓存实现：
+
+``` js
+function SingleXXX() {
+    if (typeof SingleXXX.instance === 'object') {
+        return SingleXXX.instance
+    }
+
+    // ...生成单例的构造函数的代码
+
+    // 缓存实例
+    SingleXXX.instance = this
+}
+
+let singleXXX1 = new SingleXXX()
+let singleXXX2 = new SingleXXX()
+console.log(singleXXX1 === singleXXX2) // true
+```
+
+``` js
+function singleXXX(){
+    // ... 生成单例的构造函数的代码
+}
+
+var Single = (function(){
+    var unique;
+
+    return function(xx) {
+        if (unique === undefined) {
+            unique = new singleXXX(xx)
+        }
+        return unique
+    }
+})();
+
+let singleXXX1 = new Single()
+let singleXXX2 = new Single()
+console.log(singleXXX1 === singleXXX2) // true
+```
+
+通用的惰性单例
+
+``` js
+var getSingle = function(fn) {
+    var instance
+    return function() {
+        return instance || instance = fn.apply(this, arguments)
+    }
+}
+
+singleXXX1 = getSingle(function(){
+    // todo something
+    return new XXX()
+})
 ```
 
 ## 职责链模式
