@@ -1,12 +1,13 @@
 # JS设计模式
 
 js将函数作为一等公民，函数也是对象。所以很多经典的设计模式案例在js语言中，都是以变种的形式而存在。
+设计模式在项目中的经典实践案例可以看笔者github [JS设计模式开发实践](https://github.com/lq782655835/design-patterns-project-case)。
 
 ## 1. 单例模式
 
 单例模式定义了一个对象的创建过程，此对象只有一个单独的实例，并提供一个访问它的全局访问点。常见的上层调用方式有两种：
 
-1. single.getInstance() 强相关
+1. single.getInstance() 方法调用
 2. new Single() 透明式
 
 ### 1.1 single.getInstance()
@@ -14,12 +15,11 @@ js将函数作为一等公民，函数也是对象。所以很多经典的设计
 ES5闭包实现：
 
 ``` js
+function singleXXX(){
+    // ... 生成单例的构造函数的代码
+}
 var single = (function(){
     var unique;
-
-    function singleXXX(){
-        // ... 生成单例的构造函数的代码
-    }
 
     return {
         getInstance : function() {
@@ -101,6 +101,7 @@ let singleXXX2 = new SingleXXX()
 console.log(singleXXX1 === singleXXX2) // true
 ```
 
+ES5闭包：
 ``` js
 function singleXXX(){
     // ... 生成单例的构造函数的代码
@@ -122,7 +123,7 @@ let singleXXX2 = new Single()
 console.log(singleXXX1 === singleXXX2) // true
 ```
 
-通用的惰性单例
+### 1.3 通用的惰性单例
 
 ``` js
 var getSingle = function(fn) {
@@ -132,13 +133,17 @@ var getSingle = function(fn) {
     }
 }
 
-singleXXX1 = getSingle(function(){
+Single = getSingle(function(){
     // todo something
     return new XXX()
 })
+
+let singleXXX1 = Single()
+let singleXXX2 = Single()
+console.log(singleXXX1 === singleXXX2) // true
 ```
 
-## 职责链模式
+## 2. 职责链模式
 
 使多个对象都有机会处理请求，从而`避免请求的发送者和接受者之间的耦合关系`，将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。
 
@@ -222,7 +227,7 @@ var order = order500.after(order200).after(orderNormal);
 order(1, true, 10);
 ```
 
-## 策略模式
+## 3. 策略模式
 
 定义一系列的算法，把它们一个个封装起来，将不变的部分和变化的部分隔开。策略模式至少2部分组成：策略类和环境类
 
@@ -235,7 +240,7 @@ order(1, true, 10);
 function Price(personType, price) {
     if (personType == 'vip') {
         return price * 0.5; //vip 5 折
-    } 
+    }
     else if (personType == 'old'){
         return price * 0.3; //老客户 3 折
     }
@@ -305,13 +310,26 @@ var obj = {
             return price;
         }
 };
-var calculatePrice =function(level,price) {
+var calculatePrice = function(level,price) {
     return obj[level](price);
 };
 console.log(calculatePrice('vip',200));
 ```
 
-## 观察者模式
+考虑到js语言中，函数是一等公民，可以进行参数传值，以下也是js策略模式的变种：
+
+``` js
+calculatePrice = function(fn, price) {
+    return fn(price)
+}
+
+let vipFun = function(price) { return price * 0.5 }
+let oldFun = function(price) { return price * 0.3 }
+calculatePrice(vipFun, 200)
+```
+
+## 4. 观察者模式
+
 js中最常用的设计模式。在观察者模式中，观察者需要直接订阅目标事件；在目标发出内容改变的事件后，直接接收事件并作出响应。很多库都有该模式的实现，比如vue、redux等。
 
 ![image](https://user-images.githubusercontent.com/6310131/49351340-0026eb00-f6ee-11e8-8b78-dd823d4a96fc.png)
@@ -340,7 +358,7 @@ dep.addSub(new Watcher(function () { // 观察者直接订阅观察者
 dep.notify();
 ```
 
-## 发布订阅模式
+## 5. 发布订阅模式
 
 发布订阅模式属于广义上的观察者模式，也是最常用的观察者模式实现。在发布订阅模式中，发布者和订阅者之间多了一个发布通道；一方面从发布者接收事件，另一方面向订阅者发布事件；订阅者需要从事件通道订阅事件，以此避免发布者和订阅者之间产生依赖关系。发布者和订阅者不知道对方的存在，所以解耦更彻底。NodeJS的EventEmitter对象即为该模式的实现。
 
@@ -371,6 +389,46 @@ class EmitEvent {
 let emitEvent = new EmitEvent()
 emitEvent.on('a', (data) => console.log('123', data))
 emitEvent.emit('a', { field: 1 })
+```
+
+## 6. 代理模式
+
+通过代理，可以把职责区分的更开。同时也可以把一些消耗网络（如图片懒加载），或某些耗资源的操作，在使用时才去真正实例化（如防火墙）。
+
+代理模式设计缓存案例：
+
+``` js
+// 单纯的乘基函数
+let mult = (...args) => args.reduce((total, current) => total * current , 1)
+
+// 通过代理把缓存的逻辑，隔离开来
+let proxyMult = (function() {
+    let cache = {}
+    return function(...args) {
+        let argsStr = args.join(',')
+        return cache[argsStr] || (cache[argsStr] = mult.apply(this, args))
+    }
+})()
+
+proxyMult(1, 2, 3, 4) // 24
+```
+
+以上案例在js中更多的使用**高阶函数**，使得能力进一步泛化:
+
+``` js
+let mult = (...args) => args.reduce((total, current) => total * current , 1)
+
+// 高阶函数
+let proxyFactory = function(fn) {
+    let cache = {}
+    return function(...args) {
+        let argsStr = args.join(',')
+        return cache[argsStr] || (cache[argsStr] = fn.apply(this, args))
+    }
+}
+let proxyMult = proxyFactory(mult)
+
+proxyMult(1, 2, 3, 4) // 24
 ```
 
 ## 参考文档
