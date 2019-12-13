@@ -88,6 +88,9 @@ module.exports = {
                 collapsable: true,
                 children: [
                     'project/axios-usage-theory.md',
+                    'project/css-layout-skill.md',
+                    'project/deep-learn-term.md',
+                    'project/deep-learning-base.md',
                     'project/grow-up-front.md',
                     'project/grow-up-life-it.md',
                     'project/markdown-it-code.md',
@@ -126,6 +129,7 @@ module.exports = {
                     'js/http-base-1.url.md',
                     'js/http-base-2.browser.md',
                     'js/http-cross-domain.md',
+                    'js/http2.md',
                     'js/js-base-1.prototype.md',
                     'js/js-base-2.extend.md',
                     'js/js-base-3.event-loop.md',
@@ -209,6 +213,7 @@ module.exports = {
                     'tools/house-shopping-recommend.md',
                     'tools/npm script.md',
                     'tools/python-grammar.md',
+                    'tools/python-special-grammar.md',
                     'tools/record-solution.md',
                     'tools/shell-vim.md',
                     'tools/vscode-plugin-develop.md',
@@ -227,6 +232,7 @@ module.exports = {
                     'read-books/book-head-first-design-patterns.md',
                     'read-books/book-http-diagram.md',
                     'read-books/book-js-advance-design.md',
+                    'read-books/book-read-books-overview.md',
                     'read-books/book-soft-skills.md',
                     'read-books/book-you-dont-know-javascript.md'
                 ]

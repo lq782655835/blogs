@@ -431,6 +431,94 @@ let proxyMult = proxyFactory(mult)
 proxyMult(1, 2, 3, 4) // 24
 ```
 
+## 7. 命令模式
+
+从js语言看，命令模式形式上有点类似代理模式，本质上还是分离出耦合的逻辑，使得各独立对象有单一原则。
+
+``` js
+// 强耦合方式
+var MenuBar = {
+    refresh: () => console.log('refresh')
+}
+var RightContextBar = {
+    add: (val) => console.log(val, 'add'),
+    del: () => console.log('del')
+}
+
+button1.onclick= function() { MenuBar.refresh() }
+button2.onclick= function() { RightContextBar.add(val) }
+```
+
+以上弊端很明显，button1和MenuBar强耦合了,而且无法扩展，比如command之后可以undo，此时就需要一个中间类来做这部分解耦。
+以下是传统class方式解决方案：
+
+``` js
+var setCommand = (button, command) => button.onclick = function() {
+    command.execute() // 直接执行统一方法：execute，不用管执行方是谁
+}
+
+// 定义的Command类，隔绝了调用方和被调用方，充当了中介者（解耦合，分担了部分职责）。
+class RefreshMenuBarCommand {
+    constructor(receiver) {
+        this.receiver = receiver
+    }
+    execute() {
+        this.receiver.refresh()
+    }
+}
+class AddMenuBarCommand {
+    constructor(receiver, val) {
+        this.receiver = receiver
+        this.val = val
+    }
+    execute() {
+        this.receiver.add(this.val)
+    }
+}
+setCommand(button1, new RefreshMenuBarCommand(MenuBar))
+setCommand(button2, new AddMenuBarCommand(RightContextBar, '1'))
+```
+
+对于函数是一等公民的Javascript，不需要用到多余的class类，因为函数也是一个对象类。
+
+``` js
+var setCommand = (button, command) => button.onclick = function() {
+    command()
+}
+var RefreshMenuBarCommand = function (receiver) {
+    return function() {
+        receiver.refresh()
+    }
+}
+var AddMenuBarCommand = function (receiver, val) {
+    return function() {
+        receiver.add(val)
+    }
+}
+setCommand(button1, RefreshMenuBarCommand(MenuBar))
+setCommand(button2, AddMenuBarCommand(RightContextBar))
+```
+
+在实际生产中，我们更可能把command命令统一execute，同时利用必包，可以在中间AddMenuBarCommand对象中存储一些东西（比如做undo行为）
+
+``` js
+var setCommand = (button, command) => button.onclick = function() {
+    command.execute()
+}
+
+var AddMenuBarCommand = function (receiver, val) {
+    // you can store variables for do something in here
+    // ...
+    return {
+        execute: function() {
+            receiver.add(val)
+        }
+    }
+}
+
+setCommand(button2, AddMenuBarCommand(RightContextBar, val))
+```
+
 ## 参考文档
 
 * [design-patterns](https://github.com/shichuan/javascript-patterns/blob/master/design-patterns/builder.html)
