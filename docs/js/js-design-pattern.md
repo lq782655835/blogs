@@ -453,11 +453,14 @@ button2.onclick= function() { RightContextBar.add(val) }
 以下是传统class方式解决方案：
 
 ``` js
+// class 命令模式
 var setCommand = (button, command) => button.onclick = function() {
-    command.execute() // 直接执行统一方法：execute，不用管执行方是谁
+    // 执行统一方法：execute，不用管执行方是谁
+    command.execute()
 }
 
-// 定义的Command类，隔绝了调用方和被调用方，充当了中介者（解耦合，分担了部分职责）。
+// 定义的Command类，隔绝了调用方和被调用方，充当了中介者
+//（解耦合，分担了部分职责）。
 class RefreshMenuBarCommand {
     constructor(receiver) {
         this.receiver = receiver
@@ -482,6 +485,7 @@ setCommand(button2, new AddMenuBarCommand(RightContextBar, '1'))
 对于函数是一等公民的Javascript，不需要用到多余的class类，因为函数也是一个对象类。
 
 ``` js
+// js 命令模式
 var setCommand = (button, command) => button.onclick = function() {
     command()
 }
@@ -517,6 +521,92 @@ var AddMenuBarCommand = function (receiver, val) {
 }
 
 setCommand(button2, AddMenuBarCommand(RightContextBar, val))
+```
+
+## 8. 组合模式
+
+组合模式主要用到聚合（可认为使用到js数组），拥有上下级关系。这模式要求有两点：1. 组合对象和叶对象操作必须具有一致性，因为执行时是深度遍历，不区分操作。 2. 对象之间不能有多重关系。比如A节点既属于B，也属于C，此时就不能使用组合模式。
+
+``` js
+class Folder {
+    constructor(name) {
+        this.name = name
+        this.files = []
+    }
+
+    add(file) {
+        this.files.push(file)
+    }
+
+    scan() {
+        console.log(name, 'scan')
+        for (let file of this.files) {
+            file.scan()
+        }
+    }
+}
+
+class File {
+    constructor(name) {
+        this.name = name
+    }
+
+    add(file) {
+        throw new Error('not add file')
+    }
+
+    scan() {
+        console.log(name, 'scan')
+    }
+}
+
+let languageFolder = new Folder('language')
+
+let jsFolder = new Folder('js')
+jsFolder.add(new File('vue'))
+jsFolder.add(new File('React'))
+
+// 对象通过add形成上下级关系
+languageFolder.add(jsFolder)
+languageFolder.add(javaFolder)
+...
+// 拥有相同的接口
+// scan执行的是深度遍历
+languageFolder.scan()
+```
+
+## 9. 模板方法模式
+
+这模式就较为简单，主要是对通用流程进行总结，然后进行占位。比如组件的生命周期。
+
+
+``` js
+class Component {
+    constructor() {
+        this.name = name
+        this.init() // 关键的流程
+    }
+
+    init() {
+        this.beforeMounted()
+        this.mounted()
+        ...
+    }
+
+    beforeMounted() {}
+    mounted() {}
+}
+
+class InstanceComponent extends Component {
+    beforeMounted() {
+        console.log('InstanceComponent beforeMounted')
+    }
+    mounted() {
+        console.log('InstanceComponent mounted')
+    }
+}
+
+new InstanceComponent('instance') // 自动初始化
 ```
 
 ## 参考文档
