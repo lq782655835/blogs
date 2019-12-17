@@ -579,7 +579,6 @@ languageFolder.scan()
 
 这模式就较为简单，主要是对通用流程进行总结，然后进行占位。比如组件的生命周期。
 
-
 ``` js
 class Component {
     constructor() {
@@ -609,6 +608,130 @@ class InstanceComponent extends Component {
 new InstanceComponent('instance') // 自动初始化
 ```
 
+## 10. 中介者模式
+
+用来隔离对象之间互相依赖，但同时使得中介者任务较重。
+
+比如玩对战游戏，队友和对手都是强相关：
+
+``` js
+class Player {
+    constructor(name, teamColor) {
+        this.partners = [] // 强依赖的队友列表
+        this.enemies = [] // 强依赖的对手列表
+        // 自身状态
+        this.state = 'live'
+        this.name = name
+        this.teamColor = tem
+    }
+
+    win() {
+        console.log('win')
+    }
+
+    lose() {
+        console.log('lose')
+    }
+
+    // 当有变化时，需要更新所有强依赖的对象，非常复杂
+    // 队友掉线或者换队等状态变化，都得硬更新，几乎不可维护
+    die() {
+        let isAllDead = true
+        this.state = 'dead'
+        for (let partner of this.partners) {
+            if(partner.state !== 'dead') {
+                isAllDead = false
+                break
+            }
+        }
+
+        // 通知
+        if (isAllDead) {
+            this.lose() // 自己失败
+            for (let partner of this.partners) partner.lose();
+            for (let enemy of this.enemies) enemy.win();
+        }
+    }
+}
+
+// 创建palyer
+let playerFactory = (function(){
+    let players = []
+    return function(name, teamColor) {
+        let newPlayer = new Player(name, teamColor)
+        // 强依赖时，创建对象也非常麻烦
+        for(let player of players) {
+            let isPartner = newPlayer.teamColor === player.teamColor
+            newPlayer.partners.push(isPartner ? newPlayer : player)
+            newPlayer.enemies.push(isPartner ? player : newPlayer)
+        }
+        players.push(newPlayer)
+        return newPlayer
+    }
+})()
+
+var player1 = playerFactory('player1', 'red')
+var player2 = playerFactory('player2', 'red')
+var player3 = playerFactory('player3', 'black')
+var player4 = playerFactory('player4', 'black')
+player1.die()
+player2.die()
+```
+
+对象与对象之间的关系，都是强依赖。当有变化时，需要更新所有强依赖的对象，非常复杂，假如增加队友掉线或者换队等状态变化，都得硬更新，几乎不可维护。所以此时需要分离出一个中介者，隔离对象之间的强依赖。对象状态改变时，让中介者去通知，对象之间不知对方的存在。
+
+``` js
+// 中介者模式
+class Player {
+    ...
+    die() {
+        this.state = 'dead'
+        // 变化都发送给中间者
+        playerDirector.dead(this)
+    }
+}
+
+class PlayerDirector{
+    constructor() {
+        this.players = {} // 关系解耦
+    }
+    add(player) {
+        let { teamColor } = player
+        (players[teamColor] || players[teamColor] = []).push(player)
+    }
+    dead(player) {
+        // 获取队友和对手
+        let teamPlayers = this.players[player.teamColor]
+        let enemyPlayers = Object.keys(this.players)
+            .reduce((arr, key) => [...arr, ...this.players[key]], [])
+            .filter(p => p.teamColor !== player.teamColor)
+
+        let isAllDead = true
+        for (let partner of teamPlayers) {
+            if(partner.state !== 'dead') {
+                isAllDead = false
+                break
+            }
+        }
+        if (isAllDead) {
+            player.lose()
+            for (let partner of teamPlayers) partner.lose();
+            for (let enemy of enemyPlayers) enemy.win();
+        }
+    }
+
+}
+
+let playerDirector = new PlayerDirector()
+playerDirector.add(new Player('player1', 'red'))
+playerDirector.add(new Player('player2', 'red'))
+```
+
+## 其他
+
+* 状态模式。大部分模式是封装行为，该模式是封装状态（因为状态过多）
+* 适配器模式。常用于兼容API
+
 ## 参考文档
 
 * [design-patterns](https://github.com/shichuan/javascript-patterns/blob/master/design-patterns/builder.html)
@@ -618,3 +741,5 @@ new InstanceComponent('instance') // 自动初始化
 * [观察者模式 vs 发布-订阅模式](https://juejin.im/post/5a14e9edf265da4312808d86)
 
 * [设计模式推演——组合与继承](https://blog.csdn.net/crylearner/article/details/8888372)
+
+* 《Javascript设计模式与开发实践》
