@@ -769,6 +769,10 @@
   dependencies:
     markdown-it-container "^2.0.0"
 
+"@vuepress/plugin-google-analytics@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.npm.taobao.org/@vuepress/plugin-google-analytics/download/@vuepress/plugin-google-analytics-1.2.0.tgz#54555fd14f01a032c5acff04ecbbe0911577d7d0"
+
 "@vuepress/plugin-last-updated@^1.0.0-alpha.42":
   version "1.0.0-alpha.42"
   resolved "http://registry.npm.taobao.org/@vuepress/plugin-last-updated/download/@vuepress/plugin-last-updated-1.0.0-alpha.42.tgz#51b888da72ad6bb8d7912275f9604232c756743b"

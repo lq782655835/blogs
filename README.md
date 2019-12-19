@@ -9,6 +9,7 @@
 * [推荐-200错误统一处理](https://lq782655835.github.io/blogs/team-standard/recommend-code200.html)
 * [推荐-优雅引用字体](https://lq782655835.github.io/blogs/team-standard/recommend-css-font.html)
 * [推荐-Vue实例选项顺序](https://lq782655835.github.io/blogs/team-standard/recommend-vue-api-order.html)
+* [组件设计风格](https://lq782655835.github.io/blogs/team-standard/recommend-vue-component.html)
 * [推荐-Vue项目目录结构](https://lq782655835.github.io/blogs/team-standard/recommend-vue-project-structure.html)
 * [推荐-Vue-Router写法](https://lq782655835.github.io/blogs/team-standard/recommend-vuerouter.html)
 # Project

@@ -8,7 +8,11 @@ module.exports = {
     ],
     base: '/blogs/',
     dest: 'site',
-    plugins: ['@vuepress/medium-zoom', '@vuepress/back-to-top'],
+    plugins: [
+        '@vuepress/medium-zoom',
+        '@vuepress/back-to-top',
+        ['@vuepress/google-analytics', { ga: 'UA-154622307-1' }]
+    ],
     themeConfig: {
         sidebarDepth: 0,
         repo: 'https://github.com/lq782655835/blogs',
@@ -78,6 +82,7 @@ module.exports = {
                     'team-standard/recommend-code200.md',
                     'team-standard/recommend-css-font.md',
                     'team-standard/recommend-vue-api-order.md',
+                    'team-standard/recommend-vue-component.md',
                     'team-standard/recommend-vue-project-structure.md',
                     'team-standard/recommend-vuerouter.md'
                 ]
