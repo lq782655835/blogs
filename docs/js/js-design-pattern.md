@@ -727,6 +727,42 @@ playerDirector.add(new Player('player1', 'red'))
 playerDirector.add(new Player('player2', 'red'))
 ```
 
+## 11. 迭代器模式
+
+提供一种方法，顺序访问一个聚合对象的各个元素，而又不需要暴露该对象的内部表示。
+
+简单说就是使用统一的处理方法处理聚合对象，这模式相对简单，因为大部分语言都内置了迭代器。
+
+``` js
+// 迭代器模式模式获取合适上传组件对象
+const iteratorUploadObj = (...args) => {
+    for (let fn of args) {
+        let uploadObj = fn()
+        if (uploadObj) {
+            return uploadObj
+        }
+    }
+    return null
+}
+
+const getActiveUploadObj = () => {
+    try {
+        return new ActiveXObject('TXFTNActive.FINUpload') // IE 上传控件
+    } catch {
+        return false
+    }
+}
+const getFlashUploadObj = () => {
+    if (supportFlash()) {
+        let str = '<object type="application/xshockwave-flash"></object>'
+        return $(str).appendTo($('body'))
+    }
+    return false
+}
+
+const uploadObj = iteratorUploadObj(getActiveUploadObj, getFlashUploadObj, getFormUploadObj, ...)
+```
+
 ## 其他
 
 * 状态模式。大部分模式是封装行为，该模式是封装状态（因为状态过多）
