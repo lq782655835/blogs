@@ -1,4 +1,4 @@
-# Vue3响应式原理 - Ref/Reactive/Effect源码分析
+# Vue3 响应式原理 - Ref/Reactive/Effect源码分析
 
 > 目前vue3还没完全稳定下来，许多rfcs都有变化的可能。本文基于目前最新（2019-11-07）fork的 [vue源码](https://github.com/lq782655835/vue-next)进行原理分析。官方提供了在Vue2.x尝试最新Vue3功能的插件库：[Vue Composition API](https://github.com/vuejs/composition-api) （以前该库叫vue-function-api，现在叫composition-api）。
 
