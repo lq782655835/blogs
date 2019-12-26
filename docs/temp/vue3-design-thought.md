@@ -26,6 +26,8 @@ ES6 Proxy数据监听优点：
 
 ### 1.2 更快 - Virtual Dom 重构
 
+`VDOM作用, 状态（或者叫数据）驱动UI，开发者只考虑状态改变，而UI会自动变化，这就是VDOM的最大价值。`所以在VDOM基础上，UI不仅可以是DOM元素（web端），也可以是Native（移动端）。
+
 #### 传统Virtual DOM的性能瓶颈
 
 数据变更之后，新的Virtual DOM和旧的Virtual DOM进行 patch 算法比较，并算出二者之间的差异，将差异进行修改。但是传统Virtual DOM，进行算法比对时颗粒度是组件，每个组件作为一个颗粒。
@@ -41,7 +43,9 @@ ES6 Proxy数据监听优点：
 
 #### Vue3.0 Virtual DOM
 
-为什么还需要VDOM？因为render function/JSX有更强的表达能力。Vue3所要做的：保留VDOM，兼容手写render function，同时最大化利用模版静态信息。
+如果要追求极致的性能，最快速的就是利用模板进行数据监听，当数据变化时，直接更新对应的DOM元素（此时可以不用VDOM，[Svelte](https://svelte.dev/blog/virtual-dom-is-pure-overhead)框架就是无VDOM）。这种方式适合开发纯template模板，因为一旦模板确定，就可以根据模板进行预编译，简单高效。
+
+但这种开发方式有个弊端，无法利用js的灵活性。当开发者使用render function/JSX时，根本无法预知代码意图，所以Svelte书写上无法支持render function/JSX。Vue3所要做的：保留VDOM，兼容手写render function，同时最大化利用模版静态信息。
 
 #### 解决方案
 
