@@ -36,11 +36,11 @@ ES6 Proxy数据监听优点：
 
 数据变更之后，新的Virtual DOM和旧的Virtual DOM进行 patch 算法比较，并算出二者之间的差异，将差异进行修改。但是传统Virtual DOM，进行算法比对时颗粒度是组件，每个组件作为一个颗粒。
 
-![](https://user-gold-cdn.xitu.io/2019/11/17/16e785150855744e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![image](https://user-images.githubusercontent.com/6310131/71469020-deba0500-2802-11ea-9651-a1708157f4b1.png)
 
 虽然Vue能够保证触发更新的组件最小化，但是单个组件内部依然需要遍历该组件的整个Virtual DOM树。
 
-![](https://user-gold-cdn.xitu.io/2019/11/17/16e7851b71120fc4?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![image](https://user-images.githubusercontent.com/6310131/71469032-e7aad680-2802-11ea-9d03-1582054c4d02.png)
 
 传统Virtual DOM的性能跟模板大小正相关，跟动态节点的数量无关。模板或者组件有多大，那么在进行数据更新时损耗的性能就有多大，但实际上，这种方式利用率很低。如上图所示，在上述template中，发生改变的地方只有message插值的部分，整体结构不变，但是数据更新的时候，比对整个template结构，这样就存在性能损耗。
 所以在一些组件整个模板内只有少量动态节点的情况下，传统方法遍历存在性能的浪费。
