@@ -183,6 +183,7 @@ module.exports = {
                     'vue/vue-code-91.v-model.md',
                     'vue/vue-code-vue-cli3-plugin.md',
                     'vue/vue-code-vue-loader.md',
+                    'vue/vue3-design-thought.md',
                     'vue/vue3-reactive.md'
                 ]
             },
