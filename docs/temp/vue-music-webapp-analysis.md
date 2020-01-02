@@ -198,3 +198,52 @@ _scrollTo (index) {
     opacity: .6;
 }
 ```
+
+# [vue-sell](https://github.com/ustbhuangyi/vue-sell)
+
+## 1. [vue-create-api]()插件
+
+## 2. postcss-px2rem
+
+postcss 的插件 postcss-px2rem 作为将 px 转换为 rem 的库
+
+## 3. @touchmove.stop.prevent
+
+## 4. css
+
+### 毛玻璃
+
+移动端毛玻璃效果，从chrome76开始自带支持：https://developer.mozilla.org/zh-CN/docs/Web/CSS/backdrop-filter
+
+``` css
+<div class="filter" />
+.filter {
+    backdrop-filter: blur(10px); /* 关键 */
+    background: rgba(7,17,27,.8);
+    color: #fff;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    opacity: 1;
+    overflow: auto;
+    z-index: 100;
+}
+```
+
+### flex
+
+* container
+    * `display`: flex;
+    * `flex-direction`: row/column;决定主轴的方向
+    * `justify-content`: center;主轴上的对齐方式
+    * `align-items`: center;交叉轴上如何对齐
+* 子项：
+    * `flex-basis`: 130px;项目占据的主轴空间.默认auto。当与width设置相同值时，占据固定空间。
+    * `flex`: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+        * auto (1 1 auto)
+        * none (0 0 auto)
+        * flex: 0 0 130px;
