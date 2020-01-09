@@ -65,6 +65,8 @@
 
 * [简易Redux写法](https://github.com/qit-team/taro-yanxuan/blob/master/src/utils/redux.js)
 
+* 遇到vue和vue render不匹配时，升级到相同即可。注意升级vue的同时需要升级vue-template-compile
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
