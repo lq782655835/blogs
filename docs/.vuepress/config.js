@@ -11,6 +11,8 @@ module.exports = {
     plugins: [
         '@vuepress/medium-zoom',
         '@vuepress/back-to-top',
+        ['code-copy', true],
+        'reading-progress',
         ['@vuepress/google-analytics', { ga: 'UA-154622307-1' }]
     ],
     themeConfig: {

@@ -26,7 +26,7 @@
   * object 除number，string，boolean，symbol，null或undefined之外的类型。
 * 数组
     * T[]
-    * Array<T> 泛型写法
+    * Array\<T> 泛型写法
 * 补充
   * 联合类型 属性为多种类型之一
   ``` ts

@@ -24,12 +24,14 @@
     "license": "MIT",
     "devDependencies": {
         "@vuepress/plugin-back-to-top": "^1.0.0-alpha.0",
-        "@vuepress/plugin-medium-zoom": "^1.0.0-alpha.0",
         "@vuepress/plugin-google-analytics": "^1.2.0",
+        "@vuepress/plugin-medium-zoom": "^1.0.0-alpha.0",
         "node-vuepress-auto-read": "^0.1.0"
     },
     "dependencies": {
         "prettier": "^1.15.3",
-        "vuepress": "^1.0.0-alpha.42"
+        "vuepress": "1.2.0",
+        "vuepress-plugin-code-copy": "^1.0.4",
+        "vuepress-plugin-reading-progress": "^1.0.8"
     }
 }
