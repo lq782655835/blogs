@@ -118,6 +118,7 @@ Vue.component('my-functional-button', {
 * Vue组件获得VNode
     * this.$slots.default // 子节点数组
 * VNode
+    * context Vue实例
     * componentOptions
         * tag
 
