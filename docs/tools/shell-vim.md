@@ -12,7 +12,7 @@
 | **cd**      | cd dirname | 改变当前目录 |
 | **ls**      | ls -la | 显示当前目录的内容 |
 | **pwd**      | pwd | 显示当前目录的路径名 |
-| du      | du -ha dirname | 查看目录/文件占用空间大小 |
+| du      | du -sh dirname | 查看目录/文件占用空间大小 |
 
 ``` shell
 # examples

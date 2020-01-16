@@ -62,7 +62,7 @@ docker container start xxx # xxx 为上一条命令运行得到的结果
 docker containers ls # 查看当前运行的容器
 ```
 
-## 常用Docker命令
+## Docker-CLI命令
 
 docker image/container命令可以简写，比如docker pull/build命令简写image，docker run简写container
 
@@ -89,7 +89,6 @@ docker push YOUR_NAMESPACE/LOCAL_IMAGE:VERSION
 
 ## Dockerfile命令
 
-给个实例解释吧：
 ``` docker
 # 第一阶段：build
 FROM node:8.9.1 as build-stage # FROM：基础镜像
@@ -110,6 +109,14 @@ EXPOSE 8088
 
 # CMD ["node", "./app-server"] # CMD：指定默认的容器主进程的启动命令
 ```
+
+### Docker CMD VS ENTRYPOINT
+
+因为CMD命令很容易被docker run命令的方式覆盖, 所以, 如果你希望你的docker镜像的功能足够灵活, 建议在Dockerfile里调用CMD命令. 比如, 你可能有一个通用的Ruby镜像, 这个镜像启动时默认执行irb (CMD irb).
+
+相反, ENTRYPOINT的作用不同, 如果你希望你的docker镜像只执行一个具体程序, 不希望用户在执行docker run的时候随意覆盖默认程序. 建议用ENTRYPOINT.
+
+> 清除docker无用的对象：docker system prune。清除所有docker image：docker image prune -a
 
 ## Kubernetes
 
@@ -139,3 +146,4 @@ kubectl get services
 * https://zhuanlan.zhihu.com/p/83309276?utm_medium=social&utm_source=wechat_session
 * https://www.youtube.com/watch?v=wnKyJKqKiVE k8s入门视频，推荐
 * https://kubernetes.io/docs/setup/learning-environment/minikube/
+* https://linuxize.com/post/how-to-remove-docker-images-containers-volumes-and-networks/
