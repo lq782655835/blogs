@@ -51,3 +51,13 @@ lerna bootstrap
 lerna publish
 
 * lerna exec --scope xxx -- ls
+
+
+### flowchart
+
+@flowstart
+st=>start: Start
+e=>end: End
+
+st->e
+@flowend

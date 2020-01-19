@@ -26,7 +26,8 @@
         "@vuepress/plugin-back-to-top": "^1.0.0-alpha.0",
         "@vuepress/plugin-google-analytics": "^1.2.0",
         "@vuepress/plugin-medium-zoom": "^1.0.0-alpha.0",
-        "node-vuepress-auto-read": "^0.1.0"
+        "node-vuepress-auto-read": "^0.1.0",
+        "vuepress-plugin-flowchart": "^1.4.3"
     },
     "dependencies": {
         "prettier": "^1.15.3",

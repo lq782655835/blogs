@@ -13,6 +13,7 @@ module.exports = {
         '@vuepress/back-to-top',
         ['code-copy', true],
         'reading-progress',
+        'flowchart',
         ['@vuepress/google-analytics', { ga: 'UA-154622307-1' }]
     ],
     themeConfig: {
