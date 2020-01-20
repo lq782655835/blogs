@@ -4,10 +4,14 @@ module.exports = {
         ['meta', { 'http-equiv': 'cache-control', content: 'no-cache, no-store, must-revalidate' }],
         ['meta', { 'http-equiv': 'pragma', content: 'no-cache' }],
         ['meta', { 'http-equiv': 'expires', content: '0' }],
-        ['link', { rel: 'icon', href: '/favicon.ico' }]
+        ['link', { rel: 'icon', href: '/favicon.ico' }],
+        [
+            'script',
+            {},
+            "(function(h,o,t,j,a,r){\n                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};\n                h._hjSettings={hjid:1650620,hjsv:6};\n                a=o.getElementsByTagName('head')[0];\n                r=o.createElement('script');r.async=1;\n                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;\n                a.appendChild(r);\n            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');"
+        ]
     ],
     base: '/blogs/',
-    dest: 'site',
     plugins: [
         '@vuepress/medium-zoom',
         '@vuepress/back-to-top',
@@ -18,13 +22,10 @@ module.exports = {
     ],
     themeConfig: {
         sidebarDepth: 1,
-        logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3UJrWOYS_v_r7MoPsAOlHZkrU8yiynHJnLoIIGW_osHxNbLbw',
         repo: 'https://github.com/lq782655835/blogs',
         docsRepo: 'https://github.com/lq782655835/blogs',
         docsDir: 'docs',
         docsBranch: 'master',
-        editLinks: true,
-        editLinkText: '帮助我改进页面内容！',
         nav: [
             { text: '首页', link: '/' },
             { text: '博客', link: '/team-standard/0.standard-ai-summary' },
@@ -45,10 +46,7 @@ module.exports = {
                         text: 'svg转icon webpack插件',
                         link: 'https://github.com/lq782655835/svg-icon-webpack-plugin'
                     },
-                    {
-                        text: '缓存管理工具',
-                        link: 'https://github.com/lq782655835/cache-manage-js'
-                    }
+                    { text: '缓存管理工具', link: 'https://github.com/lq782655835/cache-manage-js' }
                 ]
             },
             {

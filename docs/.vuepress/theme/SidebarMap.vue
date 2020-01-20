@@ -101,7 +101,7 @@ function resolveOpenGroupIndex(route, items) {
   right 0px
   background-color #fdfdfd
 
-  z-index 1000
+  z-index 1
   bottom 0px
   top $navbarHeight
   // width 10rem

@@ -2,22 +2,21 @@
     <header :class="{ shadow: true }" class="navbar">
         <SidebarButton @toggle-sidebar="$emit('toggle-sidebar')" />
         <div class="con-btns-header">
-            <router-link :to="$localePath" class="home-link">
-                <div class="con-logo">
-                    <img
-                        class="logo"
-                        v-if="$site.themeConfig.logo"
-                        :src="$withBase($site.themeConfig.logo)"
-                    />
-                </div>
+            <RouterLink :to="$localePath" class="home-link">
+                <img
+                    v-if="$site.themeConfig.logo"
+                    class="logo"
+                    :src="$withBase($site.themeConfig.logo)"
+                    :alt="$siteTitle"
+                />
                 <span
-                    class="site-name"
                     v-if="$siteTitle"
+                    ref="siteName"
+                    class="site-name"
                     :class="{ 'can-hide': $site.themeConfig.logo }"
+                    >{{ $siteTitle }}</span
                 >
-                    <!-- {{ $siteTitle }} -->
-                </span>
-            </router-link>
+            </RouterLink>
             <div :class="{ linksColor: !$page.frontmatter.home }" class="links">
                 <!-- <AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia"/> -->
                 <!-- <SearchBox v-else-if="$site.themeConfig.search !== false"/> -->
@@ -27,14 +26,15 @@
 
         <div class="con-redes-download">
             <a
-        title="Github"
-        v-if="repoLink"
-        :href="repoLink"
-        class="repo-link flaticon-github"
-        target="_blank"
-        rel="noopener noreferrer">
-        </a>
-        <!-- <a target="_blank" title="@vuesax" href="https://twitter.com/vuesax">
+                title="Github"
+                v-if="repoLink"
+                :href="repoLink"
+                class="repo-link flaticon-github"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+            </a>
+            <!-- <a target="_blank" title="@vuesax" href="https://twitter.com/vuesax">
           <vs-icon class="flaticon-twitter twitterx" icon=""></vs-icon>
         </a>
         <a target="_blank" title="Discord" class="icon-discord" href="https://discord.gg/9dsKtvB">
@@ -241,7 +241,6 @@ export default {
     // margin-left 2.5rem
   .site-name
     font-size 1.3rem
-    display none
     font-weight 600
     color $textColor
     position relative
