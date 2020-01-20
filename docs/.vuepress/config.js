@@ -17,7 +17,8 @@ module.exports = {
         ['@vuepress/google-analytics', { ga: 'UA-154622307-1' }]
     ],
     themeConfig: {
-        sidebarDepth: 0,
+        sidebarDepth: 1,
+        logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3UJrWOYS_v_r7MoPsAOlHZkrU8yiynHJnLoIIGW_osHxNbLbw',
         repo: 'https://github.com/lq782655835/blogs',
         docsRepo: 'https://github.com/lq782655835/blogs',
         docsDir: 'docs',
@@ -26,25 +27,26 @@ module.exports = {
         editLinkText: '帮助我改进页面内容！',
         nav: [
             { text: '首页', link: '/' },
+            { text: '博客', link: '/team-standard/0.standard-ai-summary' },
             {
                 text: '工具',
                 items: [
-                    { text: 'yiai-cli脚手架工具', link: 'https://github.com/lq782655835/yiai-cli' },
+                    { text: 'yiai-cli脚手架', link: 'https://github.com/lq782655835/yiai-cli' },
                     { text: 'yi-ui组件库', link: 'https://github.com/lq782655835/yi-ui' },
                     {
-                        text: 'node-vuepress-auto-read 自动生成blog目录工具',
+                        text: '自动生成blog目录工具',
                         link: 'https://github.com/lq782655835/node-vuepress-auto-read'
                     },
                     {
-                        text: 'json2ts url转TypeScript工具',
+                        text: 'url自动生成TypeScript代码',
                         link: 'https://github.com/lq782655835/json2ts'
                     },
                     {
-                        text: 'svg-icon-webpack-plugin svg转icon webpack插件',
+                        text: 'svg转icon webpack插件',
                         link: 'https://github.com/lq782655835/svg-icon-webpack-plugin'
                     },
                     {
-                        text: 'cache-manage-js缓存管理工具',
+                        text: '缓存管理工具',
                         link: 'https://github.com/lq782655835/cache-manage-js'
                     }
                 ]

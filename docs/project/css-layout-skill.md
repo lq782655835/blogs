@@ -98,7 +98,7 @@ div.child{
 * 父容器padding-top:xx px,顶部部分margin-top:- xx px;余下height: 100%;
 
 三栏布局：
-![](https://mmbiz.qpic.cn/mmbiz_png/YBFV3Da0NwvsJPMyeJ1BCl9EhM3RsEm6VTyjbY36jBjiaDnQNJy4JF40f4qHfnVpJW1uxsVYpa0YGicFMHLpW04Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
 
 ``` css
 <div class="container">
@@ -191,7 +191,7 @@ margin/padding顺序是：上右下左；
 }
 ```
 
-![](https://mmbiz.qpic.cn/mmbiz_png/YBFV3Da0NwvsJPMyeJ1BCl9EhM3RsEm6DSc7LB4QPYublkjfEeia3gIY94PMyLs6sr5ceYmia9PFKBfYctugLibmg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
 
 更多：https://mp.weixin.qq.com/s/e_gXXJTFocNxDaG0U_iB_g
 
