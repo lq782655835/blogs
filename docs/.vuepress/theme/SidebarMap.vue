@@ -53,7 +53,6 @@ export default {
                     (item.children && item.children.some(child => this.isActive(child)))
                 )
             })
-            console.log(filters)
             return filters
         }
     },

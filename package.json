@@ -4,7 +4,7 @@
     "repository": "https://github.com/lq782655835/blogs.git",
     "author": "782655835@qq.com",
     "scripts": {
-        "github": "gh-pages -d site",
+        "ghpages": "gh-pages -d docs/.vuepress/dist",
         "dev": "npm run config && vuepress dev docs",
         "build": "npm run config && vuepress build docs",
         "config": "npm run auto && npm run format",
