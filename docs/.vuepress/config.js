@@ -65,7 +65,8 @@ module.exports = {
                         text: 'electron',
                         link: 'https://github.com/lq782655835/electron-vue-template'
                     },
-                    { text: 'mpvue', link: 'https://github.com/lq782655835/mpvue-project' }
+                    { text: 'mpvue', link: 'https://github.com/lq782655835/mpvue-project' },
+                    { text: 'tool', link: 'https://github.com/lq782655835/json2ts' }
                 ]
             }
         ],

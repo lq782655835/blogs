@@ -79,10 +79,15 @@ docker container ls # 列出正在跑的container,等价docker ps
 docker container ls -a # 列出所有实例化的container， -a表示列出所有all
 docker container rm CONTAINER_ID # 删除实例化容器（正在运行的容器需要先停止才能删除成功）
 
+# 批量处理
+docker stop $(docker ps -aq) # 停止所有的container（容器），这样才能够删除其中的images
+docker rm $(docker ps -aq) # 删除所有container
+docker rmi -f $(docker images -q) # 强制删除全部image
+docker system prune # 清除docker无用的对象
 
-docker login
 # 上传到远程仓库，类似github上传。
 # 远程仓库带上你的namespace，如果不带就表示官方仓库，你没有这权限push
+docker login
 docker tag LOCAL_IMAGE:VERSION YOUR_NAMESPACE/LOCAL_IMAGE:VERSION
 docker push YOUR_NAMESPACE/LOCAL_IMAGE:VERSION
 ```
