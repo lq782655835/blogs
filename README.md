@@ -107,7 +107,6 @@
 * [前端抓包神器Charles](https://lq782655835.github.io/blogs/tools/charles-tool.html)
 * [Docker && Kubernetes](https://lq782655835.github.io/blogs/tools/docker.html)
 * [Git实用命令](https://lq782655835.github.io/blogs/tools/git-command.html)
-* [买房攻略 - 杭州](https://lq782655835.github.io/blogs/tools/house-shopping-recommend.html)
 * [npm script技巧](https://lq782655835.github.io/blogs/tools/npm%20script.html)
 * [Python基础语法](https://lq782655835.github.io/blogs/tools/python-grammar.html)
 * [Python语法精髓](https://lq782655835.github.io/blogs/tools/python-special-grammar.html)

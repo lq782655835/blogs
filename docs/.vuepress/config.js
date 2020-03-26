@@ -220,7 +220,6 @@ module.exports = {
                     'tools/charles-tool.md',
                     'tools/docker.md',
                     'tools/git-command.md',
-                    'tools/house-shopping-recommend.md',
                     'tools/npm script.md',
                     'tools/python-grammar.md',
                     'tools/python-special-grammar.md',
