@@ -19,9 +19,17 @@
 
 ## 核心内容
 
-通过分析，按照工作常用API权重配比，优先研究`vue core`，接下来插件`plugin`，最后再其他细枝末节`detail`。
+主要是Vue的几个核心：数据驱动、响应式原理、组件化、vdom diff算法等
 
 ![image](https://user-images.githubusercontent.com/6310131/45197180-85873480-b292-11e8-909d-37cc2dbdc5b2.png)
+
+![image](https://user-images.githubusercontent.com/6310131/77979977-b3324380-7338-11ea-8145-bda4e4e25612.png)
+
+![image](https://user-images.githubusercontent.com/6310131/77980169-36539980-7339-11ea-9219-857173dfe334.png)
+
+![image](https://user-images.githubusercontent.com/6310131/77980253-6dc24600-7339-11ea-9ae8-c4c505936f3b.png)
+
+![image](https://user-images.githubusercontent.com/6310131/77980772-b62e3380-733a-11ea-824c-ce45ce0df9c1.png)
 
 ## 整体流程
 
