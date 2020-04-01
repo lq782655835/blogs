@@ -57,6 +57,17 @@ React 15 及之前版本，`协调算法（Stack Reconciler）会一次同步处
 
 # Vue
 
+## 为什么组件只能挂一个root标签？
+
+取决于diff算法的编写方式。
+
+diff算法（负责将当前的VDOM与旧的VDOM进行比较，并将差异修补到真实DOM中）依赖于以下事实：子组件的每个VNode在真实dom中都具有单个匹配的html元素。
+
+比如：render: h('div', attr, children)会生成VNode（树状数据结构），然后才比较好diff。
+如果组件作为最外层的warpper，最终会解析成更细力度的子组件，知道没有组件包装。
+
+参考：https://github.com/vuejs/vue/issues/7088#issuecomment-357899727
+
 ### SSR
 * 服务端渲染
 服务端在返回 html 之前，在特定的区域，符号里用数据填充，再给客户端，客户端只负责解析 HTML 。
