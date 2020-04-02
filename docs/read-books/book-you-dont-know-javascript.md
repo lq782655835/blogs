@@ -70,6 +70,7 @@ if (globalScope) {
 console.log(innerScope) // 123
 ```
 
+`块作用域本质上是将块变成一个可以被关闭的作用域。`
 ``` js
 // let关键字隐式的将变量innerScope绑定到花括号{..}作用域中
 let globalScope = true
@@ -87,9 +88,24 @@ console.log(innerScope) // innerScope is not defined
     * 函数的调用方法
     * 传入的参数等
 
+``` js
+var name = 222
+var obj = {
+    name: '111',
+    func: function() { return this.name }
+}
+
+obj.func() // 111 等价于 obj.func.call(obj)
+// 运行时绑定this
+obj.func.call(window) // 222
+
+let { func } = obj
+func() // 222  顶层作用域默认是window
+```
+
 ### this绑定规则
 
-* `默认绑定` 严格模式绑定到undefined，否则绑定到全局对象
+* `默认绑定` 严格模式绑定到undefined，否则绑定到window
 * `隐式绑定` 绑定到上下文对象
 * `显示绑定` call/apply/bind绑定到指定对象
 * `new绑定` 绑定到新创建的对象
@@ -110,11 +126,9 @@ obj.foo() // 2
 // 隐式丢失
 var bar = obj.foo // bar 引用的是foo函数本身，而不是对象obj
 bar() // undefined
+
 // 最常见的隐式丢失
-/** function setTimout(fn, delay) { // 等同于 fn = obj.foo
-    // 等待delay
-    fn()
-}**/
+// 等同于 fn = obj.foo
 setTimeout(obj.foo, 100) // undefined
 ```
 
