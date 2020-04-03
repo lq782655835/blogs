@@ -119,6 +119,20 @@ type K = keyof todo // "id" | "name" | "address"
 ### 泛型
 
 ``` ts
+export interface PagingResponseMsg<T> {
+  code: number;
+  message: string;
+  data: T;
+  totalCount?: number; // 数据总条数
+  pageNo?: number; // 当前页码
+  pageSize?: number; // 页大小
+  pageCount?: number; // 总页数
+}
+```
+
+### keyof
+
+``` ts
 const todo = {
     id: 1,
     name: 'james',

@@ -1,15 +1,20 @@
+# HTTP
 
-## 1. http
+* [输入URL背后的技术步骤](https://lq782655835.github.io/blogs/js/http-base-1.url.html#%E4%BC%98%E5%8C%96)(http请求链路、渲染引擎渲染等)
 
-### 三次握手，四次挥手
+## 1. http三次握手，四次挥手
 
-TCP三次握手：三次握手的必要性：为了保证服务器能接收到客户端的信息并做出正确的应答而进行前两次（第一次和第二次）握手，为了保证客户端能够接收到服务端的信息并能做出正确的应答而进行后两次（第二次和第三次）握手。
+
+TCP三次握手
+
+三次握手的必要性：为了保证服务器能接收到客户端的信息并做出正确的应答而进行前两次（第一次和第二次）握手，为了保证客户端能够接收到服务端的信息并能做出正确的应答而进行后两次（第二次和第三次）握手。
 * `第一次握手`：建立连接时，客户端`发送syn包`（syn=j）到服务器，并`进入SYN_SENT状态`，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。
 * `第二次握手`：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即`SYN+ACK包`，此时服务器进入`SYN_RECV状态`；
 * `第三次握手`：客户端收到服务器的`SYN+ACK包`，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入`ESTABLISHED（TCP连接成功）状态`，完成三次握手。
 完成三次握手，客户端与服务器开始传送数据。这样就保证了，每次传送数据都会准确到达目标设备了。
 
 TCP四次挥手
+
 1. 客户端A发送一个`FIN`，用来关闭客户A到服务器B的数据传送。
 2. 服务器B收到这个FIN，它`发回一个ACK`，确认序号为收到的序号加1。和SYN一样，一个FIN将占用一个序号。
 3. 服务器B关闭与客户端A的连接，发送一个`FIN给客户端A`。
@@ -24,9 +29,16 @@ TCP四次挥手
 
 ## 3. 状态码/缓存
 
-202: 服务器已接受请求，但尚未处理。 204: 服务器成功处理了请求，没有返回任何内容。
+### 状态码
 
-Cache-Control、Expires、Etag 和 Last-Modified 来设置 HTTP 缓存
+* 202: 服务器已接受请求，但尚未处理。
+* 204: 服务器成功处理了请求，没有返回任何内容。
+* 302: 普通重定向
+* 304: 对比缓存。Last-Modified/If-Modified-Since
+
+### 缓存
+
+**Cache-Control、Expires、Etag 和 Last-Modified 来设置 HTTP 缓存。**
 
 `强缓存：让客户端决定是否向服务器发送请求`（在chrome下表现为200 from cache）
 * http1.0
@@ -67,14 +79,14 @@ Cache-Control、Expires、Etag 和 Last-Modified 来设置 HTTP 缓存
 3. 网络劫持攻击。防范：https加密
 4. [cookie](./cookie-google-rule.md)(附google最新策略)
 
-### 1. session实现原理
+## 5. session实现原理
 1、创建Session的时候，服务器将生成一个唯一的sessionid然后用它生成一个关闭浏览器就会失效的cookie。
 
 2、然后再将一个与这个sessionid关联的数据项加入散列表。
 
 3、当浏览器端提交到服务器时，会通过sessionid=123去散列表中寻找属于该用户的Session信息。
 
-### js跨域
+## 5. js跨域
 1. JSONP
 2. CORS
 

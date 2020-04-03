@@ -19,6 +19,29 @@
 1. 在属性更新后，重新执行 render 函数，不过这个时候就不需要绑定属性和收集依赖了，最终生成新的 vNode
 1. 把新的 vNode 和 旧的 vNode 去做对比，找出真正需要更新的 DOM，渲染在浏览器。
 
+## 3. Vue双向数据绑定原理
+
+[Vue核心XMind](https://lq782655835.github.io/blogs/vue/vue-code-0.frame.html#%E6%A0%B8%E5%BF%83%E5%86%85%E5%AE%B9)
+
+1. 首先是vm=new Vue(options)初始化，Vue 初始化主要就干了几件事情：
+    * 编译template为render函数
+    * 合并配置
+    * data深度监听（get/set），每个字段都有一个Dep对象进行Watcher管理（比如通常有1个渲染Watcher，多个Computed Watcher
+    ）
+    * 挂载一些方法到Vue.prototype上
+2. vm.$mount(el) 触发收集 && vdom diff渲染真实DOM
+    1. 触发收集
+        * new Watcher()，新建一个渲染Watcher（watcher可以看作回调函数，当data属性改变时，对应的唯一Dep中的Watcher批量更新），将该渲染Watcher绑定到依赖的字段中（template模板中可以知道）
+        * 如何知道渲染Watcher依赖的字段？答案：vm.render()。render()方法中会去访问字段（get拦截方法触发，对Dep收集Watcher）。
+    2. vdom diff
+        1. vnode = vm.render() 拿到vnode
+        2. vm.update(vnode) diff算法比对，更新dom
+
+以下是双向数据绑定示意图：
+
+![](https://user-gold-cdn.xitu.io/2018/8/30/16586a0d1261a7b3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+
 ## 4. 为什么组件只能挂一个root标签？
 
 `取决于diff算法的编写方式`。

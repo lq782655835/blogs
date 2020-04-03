@@ -1,3 +1,5 @@
+# Google Cookie策略对Web开发的影响
+
 Chrome将从2月的Chrome 80开始执行新的Cookie策略，对未设置“SameSite”的Cookie默认其值为Lax，即三方网站如果使用了该资源，在请求中是不会带上相关的Cookie的；对SameSite设置为None的Cookie，要求必须同时设置Secure，否则拒绝此Cookie。
 
 
