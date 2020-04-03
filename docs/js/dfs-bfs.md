@@ -8,7 +8,7 @@
 * 中序遍历：左子树---> 根结点 ---> 右子树
 * 后序遍历：左子树 ---> 右子树 ---> 根结点
 
-![](https://img-blog.csdn.net/20150204101904649?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTXlfSm9icw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![image](https://user-images.githubusercontent.com/6310131/78330699-2fd25580-75b7-11ea-8498-bf889fd4f58d.png)
 
 * 前序遍历：1  2  4  5  7  8  3  6
 * 中序遍历：4  2  7  5  8  1  3  6

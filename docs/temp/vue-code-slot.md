@@ -33,9 +33,9 @@ let vm = new Vue({
 })
 ```
 
-父组件编译最终生成的代码如下：
+app父组件编译最终生成的代码如下：
 ``` js
-// 当前是父组件，父组件中放的是要渲染的真实占位slot
+// app是父组件，父组件中放的是要渲染的真实内容
 with(this){
   return _c('div',
     [_c('app-layout', // app-layout是子组件，子组件放虚拟占位slot
@@ -50,7 +50,7 @@ with(this){
    1)}
 ```
 
-子组件编译生成代码：
+app-layout子组件编译生成代码：
 ``` js
 with(this) {
   return _c('div',{

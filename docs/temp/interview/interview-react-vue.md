@@ -1,3 +1,71 @@
+# Vue
+
+## 1. VDom的优势？
+
+核心还是利用利用虚拟dom，最小化dom更新，因为频繁dom更新的代价是巨大的。
+
+因为`dom是在渲染引擎中，而js是在js V8引擎中，两者通信代价比较高`。
+`js引擎只负责 JavaScript 代码的解释与执行`，只是把js代码转换为字节码，然后执行（js引擎有几个好助手：编译器和作用域。[编译原理](https://lq782655835.github.io/blogs/read-books/book-you-dont-know-javascript.html#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86)）。
+换句话说，JS引擎本身没有时间的概念，只是一个按需执行js任意代码片段的环境。
+
+## 2. Vue 的模板如何被渲染成 HTML? 以及渲染过程?
+
+`模板 -> render函数（编译） -> 返回vnode(虚拟dom关键) -> vnode patch方法进行diff -> Dom更新`
+
+### Vue 的整个实现流程
+
+1. 先把模板解析成 render 函数，把模板中的属性去变成 js 中的变量，vif,vshow,vfor 等指令变成 js 中的逻辑
+1. 执行 render 函数，在初次渲染执行 render 函数的过程中 绑定属性监听，收集依赖，最终得到 vNode，利用 vNode 的 Patch 方法，把 vNode 渲染成真实的 DOM
+1. 在属性更新后，重新执行 render 函数，不过这个时候就不需要绑定属性和收集依赖了，最终生成新的 vNode
+1. 把新的 vNode 和 旧的 vNode 去做对比，找出真正需要更新的 DOM，渲染在浏览器。
+
+## 4. 为什么组件只能挂一个root标签？
+
+`取决于diff算法的编写方式`。
+
+diff算法（负责将当前的VDOM与旧的VDOM进行比较，并将差异修补到真实DOM中）依赖于以下事实：子组件的每个VNode在真实dom中都具有单个匹配的html元素。
+
+比如：render: h('div', attr, children)会生成VNode（树状数据结构），然后才比较好diff。
+如果组件作为最外层的warpper，最终会解析成更细力度的子组件，知道没有组件包装。
+
+参考：https://github.com/vuejs/vue/issues/7088#issuecomment-357899727
+
+## 5. Vue Slot原理
+
+[Vue slot源码解析](../vue-code-slot.md)
+
+`slot本质是把app父组件生成的vnode/function，延迟到layout子组件渲染。`
+
+## 6. Vuex原理
+
+只关注核心Store，不考虑namespace以及mapGetter等辅助方法。
+
+其实核心原理代码非常简单，就是`利用全局的new Vue({ data: { state }})来实现。即把组件的共享状态抽取出来，放在一个全局单例模式下管理。`
+
+[动手实现一个Vuex](https://github.com/lq782655835/build-your-own-vuex)
+
+## 7. Vue-Router原理
+
+* hash：onhashchanged
+* history：history.pushState
+
+## 8. SSR
+
+* 服务端渲染
+服务端在返回 html 之前，在特定的区域，符号里用数据填充，再给客户端，客户端只负责解析 HTML 。
+* 客户端渲染html 仅仅作为静态文件，客户端端在请求时，服务端不做任何处理，直接以原文件的形式返回给客户端客户端，然后根据 html 上的 JavaScript，生成 DOM 插入 html。
+
+![](https://user-gold-cdn.xitu.io/2018/3/4/161ef7bf329e8812?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+其基本实现原理：
+
+* app.js 作为客户端与服务端的公用入口，导出 Vue 根实例，供客户端 entry 与服务端 entry 使用。客户端 entry 主要作用挂载到 DOM 上，服务端 entry 除了创建和返回实例，还进行路由匹配与数据预获取。
+* webpack 为客服端打包一个 Client Bundle ，为服务端打包一个 Server Bundle 。
+* 服务器接收请求时，会根据 url，加载相应组件，获取和解析异步数据，创建一个读取 Server Bundle 的 BundleRenderer，然后生成 html 发送给客户端。
+
+Vue SSR 的实现，主要就是把 Vue 的组件输出成一个完整 HTML。纯客户端输出过程有一个 complier 过程（「下题」中有一个简单描述），主要作用是将 template 转化成 render 字符串 。
+Vue SSR 需要做的事多点（输出完整 HTML），除了 complier -> vnode，还需如数据获取填充至 HTML、客户端混合（hydration）、缓存等等。
+
 
 # React
 
@@ -55,36 +123,3 @@ Immutable.js本质上是一个JavaScript的持久化数据结构的库
 React 15 及之前版本，`协调算法（Stack Reconciler）会一次同步处理整个组件树。它会递归遍历每个组件（虚拟DOM树），去比较新旧两颗树，得到需要更新的部分`。这个过程基于递归调用，一旦开始，很难去打断。也就是说，一旦工作量大，就会堵塞整个主线程（The main thread is the same as the UI thread.）。
 而事实上，我们的更新工作可能并不需要一次性全部完成，比如 offscreen 的 UI 更新并不紧急，比如 动画 需要优先完成——我们可以根据优先级调整工作，把diff过程按时间分片！
 
-# Vue
-
-## 为什么组件只能挂一个root标签？
-
-取决于diff算法的编写方式。
-
-diff算法（负责将当前的VDOM与旧的VDOM进行比较，并将差异修补到真实DOM中）依赖于以下事实：子组件的每个VNode在真实dom中都具有单个匹配的html元素。
-
-比如：render: h('div', attr, children)会生成VNode（树状数据结构），然后才比较好diff。
-如果组件作为最外层的warpper，最终会解析成更细力度的子组件，知道没有组件包装。
-
-参考：https://github.com/vuejs/vue/issues/7088#issuecomment-357899727
-
-### SSR
-* 服务端渲染
-服务端在返回 html 之前，在特定的区域，符号里用数据填充，再给客户端，客户端只负责解析 HTML 。
-* 客户端渲染html 仅仅作为静态文件，客户端端在请求时，服务端不做任何处理，直接以原文件的形式返回给客户端客户端，然后根据 html 上的 JavaScript，生成 DOM 插入 html。
-
-![](https://user-gold-cdn.xitu.io/2018/3/4/161ef7bf329e8812?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
-
-其基本实现原理：
-
-* app.js 作为客户端与服务端的公用入口，导出 Vue 根实例，供客户端 entry 与服务端 entry 使用。客户端 entry 主要作用挂载到 DOM 上，服务端 entry 除了创建和返回实例，还进行路由匹配与数据预获取。
-* webpack 为客服端打包一个 Client Bundle ，为服务端打包一个 Server Bundle 。
-* 服务器接收请求时，会根据 url，加载相应组件，获取和解析异步数据，创建一个读取 Server Bundle 的 BundleRenderer，然后生成 html 发送给客户端。
-
-Vue SSR 的实现，主要就是把 Vue 的组件输出成一个完整 HTML。纯客户端输出过程有一个 complier 过程（「下题」中有一个简单描述），主要作用是将 template 转化成 render 字符串 。
-Vue SSR 需要做的事多点（输出完整 HTML），除了 complier -> vnode，还需如数据获取填充至 HTML、客户端混合（hydration）、缓存等等。
-
-### Vue-Router
-* history
-* hash
-* abstract
