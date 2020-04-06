@@ -4,6 +4,7 @@
 
 ## 1. http三次握手，四次挥手
 
+[Http/2与Http/1.x比较](https://lq782655835.github.io/blogs/js/http2.html)
 
 TCP三次握手
 
@@ -86,9 +87,11 @@ TCP四次挥手
 
 3、当浏览器端提交到服务器时，会通过sessionid=123去散列表中寻找属于该用户的Session信息。
 
-## 5. js跨域
+## 6. js跨域
+
+[HTTP跨域解决方案](https://lq782655835.github.io/blogs/js/http-cross-domain.html#jsonp)
+
 1. JSONP
 2. CORS
-
 
 ![](https://upload-images.jianshu.io/upload_images/948614-1752f5c8993cc1a0.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/600/format/webp)

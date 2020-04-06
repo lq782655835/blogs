@@ -89,16 +89,15 @@ diff算法（负责将当前的VDOM与旧的VDOM进行比较，并将差异修�
 Vue SSR 的实现，主要就是把 Vue 的组件输出成一个完整 HTML。纯客户端输出过程有一个 complier 过程（「下题」中有一个简单描述），主要作用是将 template 转化成 render 字符串 。
 Vue SSR 需要做的事多点（输出完整 HTML），除了 complier -> vnode，还需如数据获取填充至 HTML、客户端混合（hydration）、缓存等等。
 
-
 # React
 
-### setState
+[React setState是异步吗](https://lq782655835.github.io/blogs/react/react-code-3.setState.html#setstate%E5%BC%82%E6%AD%A5%E5%AE%9E%E7%8E%B0)
 
-### Redux
+### 1. React与Vue异同
 
-### Mobx
+![image](https://user-images.githubusercontent.com/6310131/78337738-0bc94100-75c4-11ea-9c1c-f484a44b48b1.png)
 
-### 生命周期
+### 2. 生命周期
 
 ![image](https://user-images.githubusercontent.com/6310131/57915545-9ed18d80-78c3-11e9-8aa5-6d1fb2cd6f63.png)
 
@@ -120,12 +119,13 @@ Vue SSR 需要做的事多点（输出完整 HTML），除了 complier -> vnode�
     * static getDerivedStateFromProps。当我们接收到新的属性想去修改我们state，可以使用getDerivedStateFromProps
     * getSnapshotBeforeUpdate
 
-### immutable.js
+### 3. immutable.js
+
 Immutable Data 就是一旦创建，就不能再被更改的数据。对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象。Immutable 实现的原理是 `Persistent Data Structure（持久化数据结构）`，也就是使用旧数据创建新数据时，要保证旧数据同时可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗，Immutable 使用了 `Structural Sharing（结构共享）`，即如果对象树中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享。
 
 Immutable.js本质上是一个JavaScript的持久化数据结构的库
 
-### Hooks
+### 4. Hooks
 
 * hooks是什么
     * React Hooks是React特殊的一类函数。要解决的问题是状态共享，是继 render-props 和 higher-order components 之后的第三种状态共享方案，不会产生 JSX 嵌套地狱问题。这个状态指的是状态逻辑，所以称为状态逻辑复用会更恰当，因为只共享数据处理逻辑，不会共享数据本身。
@@ -139,7 +139,7 @@ Immutable.js本质上是一个JavaScript的持久化数据结构的库
     * 生命周期钩子函数里的逻辑太乱。
     * class this指向问题
 
-### 为什么要fiber（V16引入）
+### 4. 为什么要fiber（V16引入）
 
 性能。react在进行组件渲染时，从setState开始到渲染完成整个过程是同步的（“一气呵成”）。如果需要渲染的组件比较庞大，js执行会占据主线程时间较长，会导致页面响应度变差，使得react在动画、手势等应用中效果比较差。
 
