@@ -4,13 +4,12 @@
     "repository": "https://github.com/lq782655835/blogs.git",
     "author": "782655835@qq.com",
     "scripts": {
-        "github": "sh deploy.sh",
-        "ghpages": "gh-pages -d docs/.vuepress/dist",
         "dev": "npm run config && vuepress dev docs",
-        "build": "npm run config && vuepress build docs",
+        "build": "npm run config && vuepress build docs && npm run ghpages",
         "config": "npm run auto && npm run format",
         "auto": "vuepress-auto-read --blogUrl=https://lq782655835.github.io/blogs",
-        "format": "prettier --write './**/*.{js,ts,vue,json}'"
+        "format": "prettier --write './**/*.{js,ts,vue,json}'",
+        "ghpages": "gh-pages -d docs/.vuepress/dist"
     },
     "folderTitleMap": {
         "team-standard": "团队规范",
