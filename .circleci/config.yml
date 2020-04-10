@@ -1,21 +1,26 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+    node: circleci/node@1.1.6
 jobs:
-  build-and-test:
-    executor:
-      name: node/default
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            - run: npm run build
-            - run: npm run ghpages
+    build-and-test:
+        executor:
+            name: node/default
+        steps:
+            - add_ssh_keys:
+                fingerprints:
+                    - 'b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be'
+            - checkout
+            - node/with-cache:
+                steps:
+                    - run: npm install
+                    - run: npm run build
+                    - run: # git push
+                        name: push-github
+                        command: |
+                            git config --global user.email "782655835@qq.com"
+                            git config --global user.name "lq782655835"
+                            npm run ghpages
 workflows:
     build-and-test:
-      jobs:
-        - build-and-test
+        jobs:
+            - build-and-test
