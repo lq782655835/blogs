@@ -81,7 +81,7 @@ module.exports = {
                     'team-standard/1.standard-ai-git.md',
                     'team-standard/1.standard-ai-js.md',
                     'team-standard/1.standard-ai-vue.md',
-                    'team-standard/1.standard-ai-vutool.md',
+                    'team-standard/1.standard-ai-vuetool.md',
                     'team-standard/clean-code-javascript.md',
                     'team-standard/recommend-code200.md',
                     'team-standard/recommend-css-font.md',

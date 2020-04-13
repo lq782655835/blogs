@@ -4,7 +4,7 @@
 * [AI前端Git规范](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-git.html)
 * [AI前端JS规范](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-js.html)
 * [AI前端Vue规范](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vue.html)
-* [AI前端工程工具链](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vutool.html)
+* [AI前端工程工具链](https://lq782655835.github.io/blogs/team-standard/1.standard-ai-vuetool.html)
 * [AI JavaScript 风格指南](https://lq782655835.github.io/blogs/team-standard/clean-code-javascript.html)
 * [推荐-200错误统一处理](https://lq782655835.github.io/blogs/team-standard/recommend-code200.html)
 * [推荐-优雅引用字体](https://lq782655835.github.io/blogs/team-standard/recommend-css-font.html)
