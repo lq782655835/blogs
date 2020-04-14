@@ -23,15 +23,16 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "prettier": "^1.15.3",
         "@vuepress/plugin-back-to-top": "^1.0.0-alpha.0",
         "@vuepress/plugin-google-analytics": "^1.2.0",
         "@vuepress/plugin-medium-zoom": "^1.0.0-alpha.0",
         "gh-pages": "^2.2.0",
         "node-vuepress-auto-read": "^0.1.0",
+        "prettier": "^1.15.3",
         "vuepress": "1.2.0",
         "vuepress-plugin-code-copy": "^1.0.4",
+        "vuepress-plugin-flowchart": "^1.4.3",
         "vuepress-plugin-reading-progress": "^1.0.8",
-        "vuepress-plugin-flowchart": "^1.4.3"
+        "vuepress-theme-vuesax": "^1.0.0"
     }
 }

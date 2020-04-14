@@ -20,6 +20,7 @@ module.exports = {
         'flowchart',
         ['@vuepress/google-analytics', { ga: 'UA-154622307-1' }]
     ],
+    theme: 'vuesax',
     themeConfig: {
         sidebarDepth: 1,
         repo: 'https://github.com/lq782655835/blogs',
