@@ -1,6 +1,6 @@
 # VuePress代码解析
 
-* .vuepress/components文件夹下存放自注册的全局组件，可以在任意md文件使用（<Demo/>）
+* .vuepress/components文件夹下存放自注册的全局组件，可以在任意md文件使用
 * 自定义plugin。plugin对象支持{}或者function，function参数注入了插件options以及context
     * extendPageData 额外扩展$page对象
     * globalComponentUI 插入到全局容器内的组件
