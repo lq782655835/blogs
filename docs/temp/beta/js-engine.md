@@ -93,6 +93,10 @@ JavaScript 引擎并不是独立运行的，它运行在宿主环境中，对多
     * 在XMLHttpRequest在连接后是通过浏览器新开一个线程请求
     * 将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。
 
+
+## 参考
+* https://blog.csdn.net/It_rod/article/details/79880745
+
 # 小程序
 
 
@@ -121,3 +125,6 @@ JavaScript 引擎并不是独立运行的，它运行在宿主环境中，对多
 为什么配置时要区分Page和Componnet？
 
 在使用自定义组件的小程序页面中，Exparser将接管所有的自定义组件注册与实例化。从外部接口上看，小程序基础库提供有Page和Component两个构造器。以Component为例，在小程序启动时，构造器会将开发者设置的properties、data、methods等定义段，写入Exparser的组件注册表中。这个组件在被其它组件引用时，就可以根据这些注册信息来创建自定义组件的实例。Page构造器的大体运行流程与之相仿，只是参数形式不一样。这样每个页面就有一个与之对应的组件，称为“页面根组件”。
+
+## 参考
+https://developers.weixin.qq.com/ebook?action=get_post_info&docid=0006a2289c8bb0bb0086ee8c056c0a
