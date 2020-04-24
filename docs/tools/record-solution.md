@@ -67,6 +67,8 @@
 
 * 遇到vue和vue render不匹配时，升级到相同即可。注意升级vue的同时需要升级vue-template-compile
 
+* [强制把本地develop分支推送到远程master分支](https://blog.csdn.net/CrazyZhang1990/article/details/77978722)
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
