@@ -53,6 +53,16 @@ Mongoose是在node下对MongoDB进行管理的数据对象模型(ODM)库。它�
 
 ![](https://cdn-images-1.medium.com/max/800/0*b5piDNW1dqlkJWKe.)
 
+``` js
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true, useUnifiedTopology: true});
+
+const Cat = mongoose.model('Cat', { name: String });
+
+const kitty = new Cat({ name: 'Zildjian' });
+kitty.save().then(() => console.log('meow'));
+```
+
 ### Schema
 
 定义document的结构、默认值、校验等。是一种以文件形式存储的数据库模型骨架，`不具备数据库的操作能力`。支持schema.pre('save', ...)钩子函数（当model.save()执行时触发）；支持schema.plugin()以使用自定义插件。

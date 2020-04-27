@@ -1,5 +1,7 @@
 # koa + mysql
 
+更多：https://github.com/lq782655835/koa-mysql-best-experiment/blob/master/koa-sql/README.md
+
 * https://github.com/LFB/nodejs-koa-blog
     * api -> service -> dao -> model
     * jwt：（登录成功：jwt.sign，生成token）（每次带入token校验：obj = jwt.verify(token, secretKey)）
@@ -31,6 +33,7 @@ ORM框架，适配多个数据库。
 
 数据类型：https://sequelize.org/v5/manual/data-types.html
 
+## mysql 客户端语法
 
 1.创建数据库语法：
 create databases 数据库名称
@@ -65,3 +68,57 @@ show create table emp；
 
 
 > mysql:需要在命令行中 ，需要带上‘；’作为结尾。
+
+# mongoosejs
+
+官网：https://mongoosejs.com/
+
+express + mongoose案例：https://github.com/lq782655835/node-elm
+
+``` js
+// 连接db
+import mongoose from 'mongoose';
+import config from 'config-lite';
+mongoose.connect(config.url, {useMongoClient:true});
+
+const db = mongoose.connection;
+export default db
+
+// 创建Model
+import mongoose from 'mongoose'
+
+const Schema = mongoose.Schema;
+
+const adminSchema = new Schema({
+	user_name: String,
+	password: String,
+	id: Number,
+	create_time: String,
+	admin: {type: String, default: '管理员'},
+	status: Number,  //1:普通管理、 2:超级管理员
+	avatar: {type: String, default: 'default.jpg'},
+	city: String,
+})
+
+adminSchema.index({id: 1});
+
+const Admin = mongoose.model('Admin', adminSchema);
+
+
+export default Admin
+
+// 使用model
+import AdminModel from '../../models/admin/admin'
+
+const admin = await AdminModel.findOne({user_name})
+
+await AdminModel.create({
+    user_name, 
+    password: newpassword, 
+    id: admin_id,
+    create_time: dtime().format('YYYY-MM-DD HH:mm'),
+    admin: adminTip,
+    status,
+    city: cityInfo.city
+})
+```
