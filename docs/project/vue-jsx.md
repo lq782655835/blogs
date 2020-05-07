@@ -4,7 +4,7 @@
 
 第一块是了解jsx运行环境，因为jsx只是语法糖，最终都是需要babel来转译语法，所以需要配置相关babel插件。vue-cli3脚手架工具生成的应用工程默认支持jsx/tsx，省去了自己配置的繁琐，但了解相关babel插件对理解和书写jsx非常有帮助。
 
-第二块是实践jsx在vue中的语法以及相关案例。了解jsx是如何生成最终的VNode。
+第二块是实践jsx在vue中的语法以及相关案例。了解jsx是如何生成最终的VNode。tsx应用Demo代码放在[github vue-tsx-demo](https://github.com/lq782655835/vue-tsx-demo)
 
 ## 1. 环境基础babel
 

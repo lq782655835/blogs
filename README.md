@@ -31,6 +31,7 @@
 * [Typescript tsconfig.json全解析](https://lq782655835.github.io/blogs/project/ts-tsconfig.html)
 * [Vue项目TypeScript指南](https://lq782655835.github.io/blogs/project/ts-vue-guide.html)
 * [TypeScript在Vue2.x中的坑](https://lq782655835.github.io/blogs/project/ts-vue-shortcoming.html)
+* [Vue JSX插件依赖及语法实践](https://lq782655835.github.io/blogs/project/vue-jsx.html)
 * [Webpack 模块打包原理](https://lq782655835.github.io/blogs/project/webpack4-1.module.html)
 * [Webpack4 配置详解](https://lq782655835.github.io/blogs/project/webpack4-2.config-setting.html)
 * [Webpack4 devServer配置详解](https://lq782655835.github.io/blogs/project/webpack4-2.devServer.html)

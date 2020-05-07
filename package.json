@@ -34,5 +34,8 @@
         "vuepress-plugin-flowchart": "^1.4.3",
         "vuepress-plugin-reading-progress": "^1.0.8",
         "vuepress-theme-vuesax": "^1.0.0"
+    },
+    "dependencies": {
+        "vuepress-theme-antdocs": "^1.0.1"
     }
 }
