@@ -41,3 +41,10 @@ function(req, res, next) {
     next()
 }
 ```
+
+## 获取工具当前路径
+
+``` js
+const appDirectory = fs.realpathSync(process.cwd())
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
+```

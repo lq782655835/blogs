@@ -69,6 +69,8 @@
 
 * [强制把本地develop分支推送到远程master分支](https://blog.csdn.net/CrazyZhang1990/article/details/77978722)
 
+* [.npmrc指定scope域对应的源路径registry](https://docs.npmjs.com/using-npm/scope.html): @myscope:registry=https://mycustomregistry.example.org
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)

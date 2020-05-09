@@ -83,3 +83,38 @@ const modelAndVIN = ({model, engine: {vin}}) => {
 }
 modelAndVIN(car); // => model: bmw 2018  vin: 12345
 ```
+
+## Ice飞冰
+
+### 物料开发
+
+https://ice.work/docs/materials/guide/usage
+
+方案跟vusion一致，组件（基础/业务）通过npm发布，block作为代码片段可二次修改，模板通过脚手架生成。
+
+完成以上本地编码后，可以统一注册到ice中心（token）（返回url），然后可在iceworks（IDE）上进行查看。
+
+React官方物料：https://github.com/alibaba-fusion/materials
+
+### iceworks本地IDE
+
+https://ice.work/docs/iceworks/quick-start
+
+## 制作一个vue-cli工具
+
+https://github.com/RaleighY/femi-scripts
+``` js
+const config = require("../config/webpack.config")
+
+const compiler = Webpack(config)
+const devServer = new WebpackDevServer(compiler, {
+  historyApiFallback: true,
+  proxy: PackageJson.proxy,
+})
+
+devServer.listen(4000, "localhost", err => {
+  if (err) {
+    return console.log(err)
+  }
+})
+```
