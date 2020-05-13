@@ -225,6 +225,7 @@ module.exports = {
                 title: 'Vue',
                 collapsable: true,
                 children: [
+                    'vue/diff-vue-vs-react.md',
                     'vue/vue-api-usage.md',
                     'vue/vue-code-0.frame.md',
                     'vue/vue-code-1.how-to-mount-vue.md',
@@ -248,13 +249,11 @@ module.exports = {
                 title: 'React',
                 collapsable: true,
                 children: [
-                    'react/diff-vue-vs-react.md',
                     'react/diff-vuex-redux.md',
                     'react/function-program.md',
                     'react/react-code-1.mount.md',
                     'react/react-code-2.component.md',
                     'react/react-code-3.setState.md',
-                    'react/react-code-90.summary-diff.md',
                     'react/react-component-best.md',
                     'react/react-eslint.md',
                     'react/react-native-debug-skill.md',
