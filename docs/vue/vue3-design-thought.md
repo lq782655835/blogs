@@ -4,16 +4,17 @@
 
 ## 1. Vue3 设计目标
 
-* 更小
+* 更小 -> tree shaking
 * **更快**
-    1. Object.defineProperty -> Proxy
+    1. Object.defineProperty -> Proxy(使得初始化不用再递归data)
     1. Virtual Dom 重构 -> 利用模板代码，确定动态和静态代码，在VDom Diff时优化
+        1. 可跳过静态文本（无需递归进入子树循环），可跳过props对比
+        1. 事件监听函数cache
     1. 更多编译优化 -> 利用模板代码，尽可能预先优化编译的代码
         * slot默认编译为函数（不存在父子组件强耦合）
         * Momomorphic vnode factory
         * Compiler-generated flags for vnode/children types（VNode带上类型）
 * **加强TypeScript支持**
-    * Function API
 * 加强API设计一致性
 * 提高自身可维护性
 * 开放更多底层功能

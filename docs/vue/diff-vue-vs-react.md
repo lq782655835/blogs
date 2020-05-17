@@ -1,4 +1,4 @@
-# Vue和React异同个人见解
+# 个人理解Vue和React区别
 
 Vue和React相同点非常多：
 1. 都使用Virtural DOM
@@ -8,10 +8,10 @@ Vue和React相同点非常多：
 
 `Vue和React实现原理和流程基本一致，都是使用Virtual DOM + Diff算法`。不管是Vue的template模板 + options api写法，还是React的Class或者Function（js 的class写法也是function函数的一种）写法，底层最终都是为了生成render函数，render函数执行返回VNode（虚拟DOM的数据结构，本质上是棵树）。当每一次UI更新时，总会根据render重新生成最新的VNode，然后跟以前缓存起来老的VNode进行比对，再使用Diff算法（框架核心）去真正更新真实DOM（虚拟DOM是JS对象结构，同样在JS引擎中，而真实DOM在浏览器渲染引擎中，所以操作虚拟DOM比操作真实DOM开销要小的多）。
 
-两者通用流程：vue template/react jsx -> render函数 -> 生成VNode -> 当有变化时，新老VNode diff -> diff算法对比，并真正去更新真实DOM。
+Vue和React通用流程：vue template/react jsx -> render函数 -> 生成VNode -> 当有变化时，新老VNode diff -> diff算法对比，并真正去更新真实DOM。
 
-`为什么Vue和React都选择Virtual DOM`（React首创VDOM，Vue2.0开始引入VDOM）？，个人认为主要有以下几点：
-1. 减少直接操作DOM
+核心还是Virtual DOM，`为什么Vue和React都选择Virtual DOM`（React首创VDOM，Vue2.0开始引入VDOM）？，个人认为主要有以下几点：
+1. 减少直接操作DOM。框架给我们提供了屏蔽底层dom书写的方式，减少频繁的整更新dom，同时也使得数据驱动视图
 1. 为函数式UI编程提供可能（React核心思想）
 1. 可以跨平台，渲染到DOM（web）之外的平台。比如ReactNative，Weex
 
@@ -61,13 +61,15 @@ React内部实现比较简单，直接定义render函数以生成VNode，而`Rea
 
 ## 3. 响应式原理不同
 
+这个问题网上已经有许多优秀文章都详细讲解过，这里就不具体展开讲，对Vue3响应式原理有兴趣可以看笔者 [Vue3响应式原理](https://lq782655835.github.io/blogs/vue/vue3-reactive.html)(Vue2和Vue3响应式原理基本一致，都是基于依赖收集，不同的是Vue3使用Proxy)。
+
 Vue
-* `Vue依赖收集，自动优化`。
+* `Vue依赖收集，自动优化`，数据可变。
 * Vue递归监听data的所有属性,直接修改。
 * 当数据改变时，自动找到引用组件重新渲染。
 
 React
-* `React基于状态机，手动优化`。
+* `React基于状态机，手动优化`，数据不可变，需要setState驱动新的State替换老的State。
 * 当数据改变时，以组件为根目录，默认全部重新渲染
 
 ## 4. diff算法不同
