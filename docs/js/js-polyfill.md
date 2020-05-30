@@ -125,15 +125,6 @@ var curry = function(fn, ...args) {
         return curry(fn, ...args, ...args2)
     }
 }
-
-// 升级思考：
-// add(1); 	// 1
-// add(1)(2);  	// 3
-// add(1)(2)(3)；  // 6
-// add(1)(2, 3);   // 6
-// add(1, 2)(3);   // 6
-// add(1, 2, 3);   // 6
-?
 ```
 
 ## pipe/compose
@@ -253,20 +244,23 @@ const clone = source => { ...source }
 ``` js
 // 深拷贝
 // 思路：递归赋值
-const deepClone = source => {
-    if (typeof source !== 'object') {
-        return source
+const deepClone = obj => {
+    const isObj = obj => typeof obj === 'object' || typeof obj === 'function' && obj !== null
+    if (!isObj(obj)) {
+        throw new Error('不是对象')
     }
 
     // 区分array和object对象
-    let target = source instanceof Array ? [] : {}
-    for (let key in source) {
-        target[key] = deepClone(source[key])
-    }
+    let target = Array.isArray(obj) ? [] : {}
+    // https://stackoverflow.com/questions/34449045/what-is-the-difference-between-reflect-ownkeysobj-and-object-keysobj
+    Reflect.ownKeys(obj).forEach(key => {
+        target[key] = isObj(obj[key]) ? deepClone(obj[key]) : obj[key]
+    })
+
     return target
 }
 
-// 优化：以上未考虑到对象循环引用以及Symbol拷贝
+// 优化：以上未考虑到对象循环引用
 const isObject = obj => obj !== null && (typeof obj === 'object' || typeof obj === 'function');
   const isFunction = obj => typeof obj === 'function'
   function deepClone (obj, hash = new WeakMap()) {
@@ -476,6 +470,136 @@ var injector = {
         }
     }
 }
+```
+
+## 实现ajax.get()
+
+说明：考查Promise能力
+
+``` js
+ajax.get = function(url) {
+    return new Promise(function(resolve, reject) {
+        let xhr = new XMLHttpRequest()
+        xhr.open('get', url, true)
+        xhr.onreadystatechange = function() {
+            if (this.readyState === 4) {
+                if (this.status === 200) {
+                    resolve(this.response, this)
+                } else {
+                    reject({ response: this.response, code: this.status})
+                }
+            }
+        }
+        xhr.send()
+    })
+}
+
+get('http://api.wwnight.cn').then((value, that)=>{
+    console.log(value)
+})
+```
+
+## 图片懒加载
+
+``` js
+// 方法一
+function inSight(el) {
+  const bound = el.getBoundingClientRect()
+  const height = window.innerHeight
+
+  return bound.top < height
+}
+
+const imgs = document.querySelectorAll('.my-photo')
+
+function checkImg() {
+  console.log(1)
+  imgs.forEach(img => {
+    if (inSight(img)) {
+      loadImg(img)
+    }
+  })
+}
+
+function loadImg(el) {
+  if (!el.src) {
+    const source = el.dataset.src
+    el.src = source
+  }
+}
+
+function throttle(fn, wait = 100) {
+  let pre
+  return function () {
+    if (!pre) {
+      pre = +new Date
+    }
+    let now = +new Date
+    if (now - pre > wait) {
+      pre = now
+      fn()
+    }
+  }
+}
+
+window.onscroll = throttle(checkImg)
+
+// 方法二
+function checkImgs(){
+    Array.from(document.querySelectorAll('.my-photo')).forEach(item => io.observe(item))
+}
+
+function loadImg(el){
+    if(!el.src){
+        const source = el.dataset.src
+        el.src = source
+    }
+}
+
+const io = new IntersectionObserver(ioes => {
+    ioes.forEach((ioe)=>{
+        const el = ioe.target
+        const intersectionRatio = ioe.intersectionRatio
+        if(intersectionRatio > 0 && intersectionRatio <= 1){
+            loadImg(el)
+        }
+        el.onload = el.onerror = ()=>io.unobserve(el)
+    })
+})
+```
+
+## 手写发布订阅/依赖者模式
+
+```js
+// 发布订阅
+const event = {
+    obj: {},
+    on: function(name, fn) {
+        (this.obj[name] || this.obj[name] = []).push(fn)
+    },
+    emit: function(name, ...args) {
+        if (Array.isArray(this.obj[name])) {
+            this.obj[name].forEach(fn => fn.call(this, ...args))
+        }
+    }
+}
+
+// 依赖者模式
+function Dep() {
+    this.watchers = []
+}
+Dep.prototype.depend = watcher => this.watchers.push(watcher)
+Dep.prototype.notify = () => this.watchers.forEach(w => w.update())
+
+function Watcher(fn) {
+    this.fn = fn
+}
+Watcher.prototype.update = function() {
+    this.fn()
+}
+const dep = new Dep()
+dep.depend(new Watcher(function() {}))
+dep.notify()
 ```
 
 ## 参考文章
