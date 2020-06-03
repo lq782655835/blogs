@@ -86,7 +86,7 @@ diff算法（负责将当前的VDOM与旧的VDOM进行比较，并将差异修�
 * webpack 为客服端打包一个 Client Bundle ，为服务端打包一个 Server Bundle 。
 * 服务器接收请求时，会根据 url，加载相应组件，获取和解析异步数据，创建一个读取 Server Bundle 的 BundleRenderer，然后生成 html 发送给客户端。
 
-Vue SSR 的实现，主要就是把 Vue 的组件输出成一个完整 HTML。纯客户端输出过程有一个 complier 过程（「下题」中有一个简单描述），主要作用是将 template 转化成 render 字符串 。
+Vue SSR 的实现，主要就是把 Vue 的组件输出成一个完整 HTML。纯客户端输出过程有一个 complier 过程，主要作用是将 template 转化成 render 字符串 。
 Vue SSR 需要做的事多点（输出完整 HTML），除了 complier -> vnode，还需如数据获取填充至 HTML、客户端混合（hydration）、缓存等等。
 
 # React
