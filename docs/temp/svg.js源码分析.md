@@ -114,3 +114,38 @@ register(EventTarget, 'EventTarget')
 ## 继承关系
 
 SVG.Base（最底层）> SVG.EventTarget > SVG.Dom > SVG.Element > SVG.Shape > SVG.Ellipse
+
+## svg基本概念
+
+```
+矩形 <rect>
+圆形 <circle>
+椭圆 <ellipse>
+线 <line>
+折线 <polyline>
+多边形 <polygon>
+路径 <path>
+
+rect:
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <rect x="50" y="20" width="150" height="150"
+  style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;
+  stroke-opacity:0.9"/>
+</svg>
+
+line:
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <line x1="0" y1="0" x2="200" y2="200"
+  style="stroke:rgb(255,0,0);stroke-width:2"/>
+</svg>
+
+路径：
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M150 0 L75 200 L225 200 Z" />
+</svg>
+
+文字：
+<svg 
+  <text x="0" y="15" fill="red" transform="rotate(30 20,40)">I love SVG</text>
+</svg>
+```

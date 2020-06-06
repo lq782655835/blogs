@@ -73,7 +73,7 @@
 * [Node Debug for VSCode](https://lq782655835.github.io/blogs/node/node-vscode-debug.html)
 * [Redis简介](https://lq782655835.github.io/blogs/node/redis.html)
 # Vue
-* [Vue和React异同个人见解](https://lq782655835.github.io/blogs/vue/diff-vue-vs-react.html)
+* [个人理解Vue和React区别](https://lq782655835.github.io/blogs/vue/diff-vue-vs-react.html)
 * [Vue高级用法](https://lq782655835.github.io/blogs/vue/vue-api-usage.html)
 * [Vue2.x源码分析 - 框架结构](https://lq782655835.github.io/blogs/vue/vue-code-0.frame.html)
 * [Vue2.x源码分析 - 模版编译以及挂载](https://lq782655835.github.io/blogs/vue/vue-code-1.how-to-mount-vue.html)
