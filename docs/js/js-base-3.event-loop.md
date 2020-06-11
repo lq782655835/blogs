@@ -173,7 +173,7 @@ script任务执行完毕，执行microtask checkpoint，取出microtask队列的
 
 视图渲染发生在本轮事件循环的microtask队列被执行完之后，但不是每轮事件循环都会执行视图更新，浏览器有自己的优化策略。所以`一次视图更新（16.7ms）可能有1次事件循环`（这就要求该tick的js处理尽量不超过16.7ms，不然有可能掉帧），`也可能有多次事件循环`（可能每个tick不耗时），但`每次执行重绘前，都会通知requestAnimationFrame执行回调函数`。
 
-#### 4.3 requestIdleCallback
+### 4.3 requestIdleCallback
 
 上面六个步骤完成后没超过 16.7 ms，说明时间有富余，此时就会执行 requestIdleCallback 里注册的任务。
 

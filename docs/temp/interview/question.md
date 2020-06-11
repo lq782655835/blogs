@@ -47,7 +47,7 @@ nlp方向（人工智能子领域）分为：机器语音翻译、文本识别�
 
 k8s分为master节点和node节点，etcd记录
 
-南北流量：从网址到pod。 LB + 映射关系，映射那个app + 实例。四层LB叫LoadBlance，7层LB叫Ingress
+南北流量：从网址到pod。 LB + 映射关系，映射哪个app + 实例。四层LB叫LoadBlance，7层LB叫Ingress
 东西流浪：pod间通信。都得申请Services
 
 -----
