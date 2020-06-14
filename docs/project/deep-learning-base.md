@@ -264,9 +264,13 @@ kubectl exec xxx bash -n kubeflow # 进入pod中的container
 
 * k8s快速部署：https://g.hz.netease.com/cloud_ml/documents/blob/master/design_docs/deployment/kubernetes/developer_guide.md
 
+> k8s分为master节点和node节点，etcd数据库底层记录
+
 ### 4.2 Istio
 
 `Istio 被称为 Service Mesh 架构`,是一个完全开源的服务网格。
+
+Istio 是目前比较流行的服务网格框架，`相比于 K8S 注重运行容器的管理， Istio 则是更注重容器之间组成的服务网格的流量传输`。
 
 Istio 提供一种简单的方式来为已部署的服务建立网络，该网络具有负载均衡、服务间认证、监控等功能，只需要对服务的代码进行一点或不需要做任何改动。想要让服务支持 Istio，只需要在您的环境中部署一个特殊的 sidecar 代理，使用 Istio 控制平面功能配置和管理代理，拦截微服务之间的所有网络通信。
 
@@ -303,6 +307,13 @@ Service Mesh 通常是通过一组轻量级网络代理（Sidecar proxy），与
 Istio 的工具集：Grafana。Grafana 是一个非常著名的开源项目。它是一个 Web 应用，可以提供丰富的监控仪表盘。它的后端支持 graphite、 InfluxDB 或 opentsdb。
 
 > 监控框架Prometheus也常用到Grafana工具，来进行优美的数据展示。
+
+#### 4.2.3 Ingress
+
+L7层负载均衡配置， 可以根据不同的域名或者路径等信息指向不同的 Service， `Ingress 和 Nginx 很像`。
+
+* 南北流量：从网址到pod。 LB + 映射关系，映射哪个app + 实例。四层LB叫LoadBlance，7层LB叫Ingress
+* 东西流量：pod间通信。都得申请Services
 
 ### 4.3 kubeflow
 

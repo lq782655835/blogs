@@ -58,6 +58,26 @@
     * Observer监听data，Dep对象（观察者模式）收集模板与data依赖关系。当数据变化时，Dep通知Watcher去更新视图。
 * 说说小程序原理
     * 小程序底层还是Hybrid技术，微信小程序基于双模型，即视图层以及逻辑层。
+* node事件模型？
+    * 宿主Libuv
+    * ss
+        1. timers: 执行setTimeout() 和 setInterval() 预先设定的回调函数。
+        1. I/O callbacks: 大部分执行都是timers 阶段或是setImmediate() 预先设定的并且出现异常的回调函数事件。
+        1. idle, prepare: nodejs 内部函数调用。
+        1. poll: 搜寻I/O事件，nodejs进程在这个阶段会选择在该阶段适当的阻塞一段时间。
+        1. check: setImmediate() 函数会在这个阶段执行。
+        1. close callbacks: 执行一些诸如关闭事件的回调函数，如socket.on('close', ...) 。
+* node自动启动多个进程- cluster模块？
+    * Master节点和Worker节点
+    * 节点间使用postmessage通信
+
+* K8s
+    * 打包优化
+        1. Docker优化：使用stage、使用小的基础包
+        2. Webpack使用HappyPack加速、使用DLLPlugin（vendor配置分割module）
+* [Webpack DLLPlugin](https://www.jianshu.com/p/d6e0ab2fed25)实现原理
+    1. 根据vendor作为entry，生成一份vendor文件，一份mainfest.json文件
+    2. 将manifest的文件依赖，以external形式打包
 
 ### 回答提问
 Why do you want to leave your current/last company?
