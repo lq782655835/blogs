@@ -155,6 +155,17 @@ this在运行时绑定，并不是在编写时绑定。
 
 [《你不知道的JavaScript》 - this](https://lq782655835.github.io/blogs/read-books/book-you-dont-know-javascript.html#this)
 
+## 其他
+
+变量提升
+
+使用 var 来声明变量的时候，会提到当前作用域的顶端，而赋值操作在原处不变
+
+``` js
+console.log(a);
+var a = 1;// 输出 undefined
+```
+
 # CSS
 
 ## flex
