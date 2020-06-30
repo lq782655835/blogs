@@ -110,6 +110,48 @@ fi
 VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g');
 ```
 
+### 实践案例
+
+#### 1. sed内容正则替换
+
+要求：把main.txt文件内容，所有“[data-v-*]”内容，替换为空字符串
+
+```
+sed -i ''  's/\[data-v-.*\]//g' main.txt
+```
+
+说明：
+* 格式： `sed -i '' 's/oldValue/newValue/g' file.txt`
+* sed替换后面加 `-i ''`，因为不加的表示备份，加上则直接替换原文件。
+
+#### 2. shell编程批量把markdown文件转为docx文件
+
+要求：对文件夹中的markdown文件，批量转换为同名的docx文件。
+
+pandoc命令：该命令需要安装homebrew install pandoc
+
+```
+cd ./docs/vue1;
+for file in ./*\.md;
+do
+    echo $file;
+    # 格式：${string//substring/replacement}  使用$replacement, 代替所有匹配的$substring
+    # filename=${file//'.md'/''}; # 替换普通文字
+    # echo $filename;
+    
+    # 根据basename函数获取文件名
+    filename=$(basename $file);
+    echo $filename;
+    filenameNoSuffix=$(basename $file .md)
+    echo $filenameNoSuffix;
+    
+    # 执行命令
+    echo "pandoc -f markdown -t docx "$file" -o "$filenameNoSuffix".docx";
+    pandoc -f markdown -t docx "$file" -o "$filenameNoSuffix".docx
+    ## (cd "$dir" && echo '111');
+done
+```
+
 ## Vim
 
 1. 编辑模式
