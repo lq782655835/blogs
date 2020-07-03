@@ -76,7 +76,7 @@ TCP四次挥手
 2. `CSRF`（Cross-site request forgery）：一种`跨站请求伪造`，冒充用户发起请求，完成一些违背用户请求的行为。比如，你开发的网站中，有一个购买商品的操作，使用get接口。那么黑客网站就可以通过<image src="开发网站地址"，去调用你的开发网站（比如刷票）。
 防范：
     * 尽量对要修改数据的请求使用post而不是get
-    * 给每一次用户登陆分配一个临时token，用服务端的setCookie头将此token种入用户cookie中，每次请求比对用户方token与服务器端token是否吻合。
+    * 给每一次用户登陆分配一个临时token，用服务端的setCookie头将此token种入用户cookie中，每次请求比对用户方token与服务器端token是否吻合。(有可能token被中间人盗取，此时根据解决方案是使用https服务。)
     * 服务器禁止跨域请求
     * 及时清除用户的无效cookie
 
