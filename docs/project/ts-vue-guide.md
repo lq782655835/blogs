@@ -374,7 +374,16 @@ export class MyComp extends Vue {
 
 typescript的描述文件，以d.ts结尾的文件名，比如xxx.d.ts。大部分编辑器能识别d.ts文件，当你写js代码的时候给你智能提示。declare 全局声明，使得ts可以找到并识别出。
 
-### 5.1 全局变量/函数/类
+在我们尝试给一个 npm 包创建声明文件之前，需要先看看它的声明文件是否已经存在。一般来说，npm 包的声明文件可能存在于两个地方：
+
+* 与该 npm 包绑定在一起。判断依据是 package.json 中有 types 字段，或者有一个 index.d.ts 声明文件。这种模式不需要额外安装其他包，是最为推荐的，所以以后我们自己创建 npm 包的时候，最好也将声明文件与 npm 包绑定在一起。
+* 发布到 @types 里。我们只需要尝试安装一下对应的 @types 包就知道是否存在该声明文件，安装命令是 npm install @types/foo --save-dev。这种模式一般是由于 npm 包的维护者没有提供声明文件，所以只能由其他人将声明文件发布到 @types 里了。
+
+假如以上两种方式都没有找到对应的声明文件，那么我们就需要自己为它写声明文件了。
+
+### 5.1 全局变量 - 应用端补充
+
+针对的是在应用端，`无import写法 + 补充npm包的全局变量`，（通过 \<script> 标签引入第三方库，注入全局变量）。
 
 ``` ts
 // 变量
@@ -401,58 +410,30 @@ declare class Person {
 getName(aaa) // 不会报错
 ```
 
-### 5.2 对象namespace
+> 对象嵌套使用declare namespace 关键字
 
-对象上可能有变量/函数/类
+### 5.2 npm包 - 应用端补充
+
+针对的是在应用端，`import写法 + 补充npm包的变量`（适用于：通过 import foo from 'foo' 导入，符合 ES6 模块规范）
+
+核心：`只有在声明文件中使用 export 导出，然后在使用方 import 导入后，才会应用到这些类型声明`。
+
+#### 方法一： 文件位置随意，源码中指定 `declare module xxx`
 ``` ts
-// 对象
-declare namespace myLib {
-    function makeGreeting(s: string): string;
-    let numberOfGreetings: number;
-}
-
-// 调用
-// 假设全局变量window.myLib存在
-let result = myLib.makeGreeting("hello, world");
-let count = myLib.numberOfGreetings;
-```
-``` ts
-// namespace作为定义数据类型
-declare namespace Ajax {
-    // axios 返回数据
-    interface AxiosResponse {
-        data: AjaxResponse
-    }
-
-    // 请求接口数据
-    interface AjaxResponse {
-        success: boolean
-        data: any
-    }
-}
-
-// 调用
-(response: Ajax.AxiosResponse) => {
-    const res: Ajax.AjaxResponse = response.data
-}
-```
-
-### 5.3 模块化module
-
-模块可能包括变量/函数/类/对象。解决require或import引入类库
-``` ts
-// 模块化
+// types/any.d.ts
 declare module "abcde" {
+    // 导出需要的变量、函数（匹配export导出）
     export let a: number
     export function b(): number
     export namespace c{
         let cd: string
     }
 }
-// 调用
+
 let aaa = require('abcde');
 aaa.b()
 ```
+
 ``` ts
 // 导出是函数本身
 declare module "app" {
@@ -464,29 +445,58 @@ let app = app();
 app(some)
 ```
 
-### 5.4 interface
+#### 方法二：源码直接export，但文件位置有要求
 
-定义可重用类型（接口），可搭配declare使用
-``` ts
-// 实例方法
-interface People{
-    name: string
-    age: number
-    getName(): string
-    getAge():number
+指定到对应的`@types/moduleName/index.d.ts`文件，自动去该文件找出export，此时就不需要declare module 'moudleName'了
+
+``` js
+// types/abcde/index.d.ts
+export let a: number
+export function b(): number
+```
+
+> 总结：d.ts文件（A.d.ts）文件放到哪个目录里，如果是模块化的话那就放到和源码（A.js）文件同一个目录下，如果是全局变量的话理论上放到哪里都可以。————以上说的是未在tsconfig.json 文件里面特殊配置过。
+
+### 5.3 [扩展npm包](https://ts.xcatliu.com/basics/declaration-files.html#%E6%A8%A1%E5%9D%97%E6%8F%92%E4%BB%B6) - 应用端补充
+
+有时通过 import 导入一个模块插件，可以改变另一个原有模块的结构。此时如果原有模块已经有了类型声明文件，而插件模块没有类型声明文件(最常见的是自定义扩展Vue.prototype.$xxx)，就会导致类型不完整，缺少插件部分的类型。
+
+ts 提供了一个语法 declare module，它可以用来扩展原有模块的类型。
+
+``` js
+// 如果是需要扩展原有模块的话，需要在类型声明文件中先引用原有模块，再使用 declare module 扩展原有模块
+import Vue from "vue"; // 记得import Vue,引入原有模块
+
+declare module 'vue/types/vue' {
+  interface Vue {
+    $openDialog: Function;
+    $closeDialog: Function;
+  }
 }
-interface People_Static{
-    new (name: string, age: number): People
-    /** 静态方法 */
-    staticA():number
+```
 
-    (w:number):number
-}
-declare var People:People_Static // 声明全局的静态类
+> 在全局变量的声明文件中，是不允许出现 import, export 关键字的。一旦出现了，那么他就会被视为一个 npm 包或 UMD 库，就不再是全局变量的声明文件了。
 
-// 使用
-People.staticA()
-(new People(name, age)).getName()
+### 5.4 发布npm包 - npm源码端补充
+
+#### 1. [自动生成声明文件](https://ts.xcatliu.com/basics/declaration-files.html#%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6)
+
+如果库的源码本身就是由 ts 写的，那么在使用 tsc 脚本将 ts 编译为 js 的时候，添加 declaration 选项，就可以同时也生成 .d.ts 声明文件了。此时每个ts文件都会生成.d.ts文件，使得使用方可以单独import每一个ts子文件。
+
+#### 2. [发布声明文件](https://ts.xcatliu.com/basics/declaration-files.html#%E5%8F%91%E5%B8%83%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6)
+
+1. 如果声明文件是`通过 tsc 自动生成`的，那么无需做任何其他配置，只需要把编译好的文件也发布到 npm 上，使用方就可以获取到类型提示了（因为每一个ts文件，都有对应的.d.ts文件）。
+2. 如果是`手动写的声明文件`，那么需要满足以下条件之一，才能被正确的识别：
+    1. 给 package.json 中的 types 或 typings 字段指定一个类型声明文件地址
+    1. 在项目根目录下，编写一个 index.d.ts 文件
+    1. 针对入口文件（package.json 中的 main 字段指定的入口文件），编写一个同名不同后缀的 .d.ts 文件
+
+**使用ts书写源码时，自动生成同时，也可以手动设置d.ts文件**。
+``` js
+declare module 'xxx'
+
+export * from '../lib' // lib是源码入口
+
 ```
 
 ## 6. tsconfig.json
