@@ -1,6 +1,6 @@
 # Vue项目TypeScript指南
 
-## TypeScript优势
+## 1. TypeScript优势
 
 * Javascript的超集，完美兼容js
   * 从核心语言方面和类概念的模塑方面对 JavaScript 对象模型进行扩展。
@@ -12,7 +12,7 @@
 * 微软大厂保证
 * 社区统一共识，npm下载量非常高，复杂业务不再慌。
 
-## TypeScript类型
+## 2. TypeScript类型
 
 * 原始类型
   * boolean
@@ -80,15 +80,144 @@ let name: {
 }
 ```
 
-## TypeScript Vue环境配置
+### 2.1 Interface & type
+
+两者基本没什么差别，平时开发能用Interface尽量用
+
+``` ts
+interface Person {
+    name: string;
+    age: number;
+}
+
+type Person = {
+    name: string;
+    age: number;
+}
+
+type Animal = Person | string
+```
+
+### 2.2 联合类型
+
+``` ts
+interface Person {
+    name: string;
+    age : number | string;
+}
+```
+
+### 2.3 数组类型
+
+``` ts
+interface Person {
+    name: string;
+    age : number;
+    schools: string[];
+}
+```
+
+### 2.4 元祖
+
+``` ts
+let tom: [string, number] = ['Tom', 25];
+```
+
+### 2.5 可选属性
+
+``` ts
+interface Person {
+    name: string;
+    age ?: number;
+}
+```
+
+### 2.6 任意属性
+
+``` ts
+interface Person {
+    name: string;
+    age: number;
+    [key: string] : string;
+}
+```
+
+### 2.7 简写类型
+
+``` ts
+interface Person {
+    name: string;
+    age: number;
+    attr : { label: string; value: string; color?: string; tips?: string }
+}
+```
+
+### 2.8 泛型
+
+``` ts
+export interface PagingResponseMsg<T> {
+  code: number;
+  message: string;
+  data: T;
+  totalCount?: number; // 数据总条数
+  pageNo?: number; // 当前页码
+  pageSize?: number; // 页大小
+  pageCount?: number; // 总页数
+}
+```
+
+### 2.9 keyof
+
+``` ts
+const todo = {
+    id: 1,
+    name: 'james',
+    address: 'shisanjia'
+}
+
+type K = keyof todo // "id" | "name" | "address"
+```
+
+``` ts
+const todo = {
+    id: 1,
+    name: 'james',
+    address: 'shisanjia'
+}
+
+# K 将是T返回的union类型中的一种
+＃　并且返回值为 K[T] 类型
+function prop<T, K extends keyof T>(obj: T, key: K) {
+    return obj[key];
+}
+
+prop(todo, 'name')
+prop(todo, 'gender') // ts报错
+```
+
+### 2.10 key in keyof T
+
+``` ts
+interface IPoint {
+    x: number
+    y: number
+}
+
+type Name<T> = { [P in keyof T]: T[P]}
+
+type real = Name<IPoint> // {x: number, y: number}
+type test2 = Name<{Job: string, Job2: string}> // {Job: string, Job2: string}
+```
+
+## 3. TypeScript Vue环境配置
 
 vue-cli3.0安装时有typescript选项，可以非常便捷的在vue项目中应用上typescript环境。其实现方式是通过[cli-plugin-typescript](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript)插件。如果想知道其过程，可以看其源码或者笔者之前改造的基于vue-cli2.x项目博客文章：[TypeScript开发Vue应用](../project/ts-in-vue-project.md)。
 
-## TypeScript Vue使用
+## 4. TypeScript Vue使用
 
 TS除了类型系统以及IDE提示外，最重要特性之一就是可以使用装饰器。使用装饰器可以用极简的代码代替以前冗长的代码。以下介绍在Vue 2.x工程项目(Vue3.0计划原生支持Typescript，所以将来或许存在变数)中，必备的三个工具包。
 
-### vue-class-component
+### 4.1 vue-class-component
 
 [vue-class-component](https://github.com/vuejs/vue-class-component)是官方维护的TypeScript装饰器,它是基于类的 API，Vue对其做到完美兼容。因为是vue官方出的，所以可以保证其稳定性，但缺点是特性太少了，只有三个feature：
 * Component 官方提供的Component装饰器
@@ -129,7 +258,7 @@ export default class App extends Vue {
 }
 ```
 
-### vue-property-decorator
+### 4.2 vue-property-decorator
 
 [vue-property-decorator](https://github.com/kaorun343/vue-property-decorator)完全基于vue-class-component，但它扩展了很多特性，极大的方便Vue的写法。它包含7个装饰器以及1个函数：
 * @Prop
@@ -177,7 +306,7 @@ export default class YourComponent extends Vue {
 ```
 更多详细用法看[vue-property-decorator README](https://github.com/kaorun343/vue-property-decorator)，讲解的非常清晰易懂
 
-### Vuex-Class
+### 4.3 Vuex-Class
 
 [vuex-class](https://github.com/ktsn/vuex-class)是基于基于vue-class-component对Vuex提供的装饰器。它的作者同时也是vue-class-component的主要贡献者，质量还是有保证的。但不知道vue3.0出来后是否会有官方维护的针对Vuex的TypeScript装饰器。
 * @State
@@ -241,11 +370,11 @@ export class MyComp extends Vue {
 }
 ```
 
-## TypeScript 描述文件
+## 5. TypeScript 描述文件
 
 typescript的描述文件，以d.ts结尾的文件名，比如xxx.d.ts。大部分编辑器能识别d.ts文件，当你写js代码的时候给你智能提示。declare 全局声明，使得ts可以找到并识别出。
 
-### 全局变量/函数/类
+### 5.1 全局变量/函数/类
 
 ``` ts
 // 变量
@@ -272,7 +401,7 @@ declare class Person {
 getName(aaa) // 不会报错
 ```
 
-### 对象namespace
+### 5.2 对象namespace
 
 对象上可能有变量/函数/类
 ``` ts
@@ -308,7 +437,7 @@ declare namespace Ajax {
 }
 ```
 
-### 模块化module
+### 5.3 模块化module
 
 模块可能包括变量/函数/类/对象。解决require或import引入类库
 ``` ts
@@ -335,7 +464,7 @@ let app = app();
 app(some)
 ```
 
-### interface
+### 5.4 interface
 
 定义可重用类型（接口），可搭配declare使用
 ``` ts
@@ -360,7 +489,7 @@ People.staticA()
 (new People(name, age)).getName()
 ```
 
-## tsconfig.json
+## 6. tsconfig.json
 
 这个章节内容有点多，另开[Typescript tsconfig.json全解析](../project/ts-tsconfig.md)专题
 
