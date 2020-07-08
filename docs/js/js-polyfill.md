@@ -2,9 +2,10 @@
 
 重点考察JS原理及应用
 
-## call/apply
+## 1. call/apply
 
 ### 问题
+
 ``` js
 var foo = { value: 1 }
 function bar() { console.log(this.value) }
@@ -38,7 +39,7 @@ Function.prototype.apply = function(context, ...args) {
 }
 ```
 
-## bind
+## 2. bind
 
 ### 问题
 
@@ -50,6 +51,7 @@ barBind() // 期待打印：1
 ```
 
 ### 思路
+
 通过apply改变this，并且返回一个函数
 ``` js
 Function.prototype.bind = function (context, ...args) {
@@ -60,7 +62,7 @@ Function.prototype.bind = function (context, ...args) {
 }
 ```
 
-## new
+## 3. new
 
 ### 问题
 
@@ -89,7 +91,7 @@ _new(Constructor, ...args) {
 }
 ```
 
-## curry
+## 4. curry
 
 ### 问题
 
@@ -100,6 +102,7 @@ curryFun(1)(2)(3) === 6 // true
 ```
 
 ### 思路
+
 递归，当执行的参数个数等于原本函数的个数，执行函数
 ``` js
 var curry = function(fn) {
@@ -127,13 +130,15 @@ var curry = function(fn, ...args) {
 }
 ```
 
-## pipe/compose
+## 5. pipe/compose
 
 ### pipe
+
 * pipe(fn1,fn2,fn3,fn4)(args)等价于fn4(fn3(fn2(fn1(args)))
 * 第一个函数的结果，作为第二个函数的参数，以此类推...
 
 ### compose
+
 * compose(fn1,fn2,fn3,fn4)(args)等价于fn1(fn2(fn3(fn4(args)))
 * 与pipe相反，先计算倒数第一个结果，作为倒数第二的参数，以此类推...
 
@@ -150,9 +155,10 @@ const example = pipe(
 console.log(example(3, 4)) // 13
 ```
 
-## flatten
+## 6. flatten
 
 ### 深度为1的展平
+
 ``` js
 // before：[1, 2, [3, 4, [5, 6]]]
 // after flat: [1, 2, 3, 4, [5, 6]]
@@ -167,6 +173,7 @@ let flatSingle = arr => [].concat(...arr)
 ```
 
 ### 深度无限的展平
+
 ``` js
 // before: [1,2,3,[1,2,3,4, [2,3,4]]]
 // after flatDeep: [1, 2, 3, 1, 2, 3, 4, 2, 3, 4]
@@ -196,6 +203,7 @@ function flatDeep(arr) {
 ```
 
 ### 指定深度的展平
+
 深度的含义是指每一项展平的次数
 ``` js
 // before: [1,2,3,[1, [2]], [1, [2, [3]]]]
@@ -207,7 +215,8 @@ function flatDeep(arr, depth = 1) {
 }
 ```
 
-## 去重
+## 7. 去重
+
 数组去除重复
 
 ``` js
@@ -223,7 +232,7 @@ let removeRepeat = arr =>  Array.from(new Set(arr))
 let removeRepeat = arr =>  [...new Set(arr)]
 ```
 
-## 浅拷贝/深拷贝
+## 8. 浅拷贝/深拷贝
 
 ``` js
 // 浅拷贝
@@ -306,7 +315,7 @@ const isObject = obj => obj !== null && (typeof obj === 'object' || typeof obj =
 const deepClone = source => JSON.parse(JSON.stringify(source))
 ```
 
-## 防抖/节流
+## 9. 防抖/节流
 
 * 防抖：在事件被触发n秒后再执行回调，如果在这n秒内又被触发，则重新计时。适合多次事件一次响应。
 * 节流：规定一个单位时间，在这个单位时间内，只能有一次触发事件的回调函数执行，如果在同一个单位时间内某事件被触发多次，只有一次能生效。适合大量事件按时间做平均分配触发。
@@ -380,7 +389,43 @@ function throttle(fn, wait) {
 }
 ```
 
-## 手动实现模版引擎
+## 10. 判断变量是 Proxy 的实例
+
+核心知识：[Symbol.toStringTag](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag)
+
+toString() 方法只能返回特定类型的标签。一些对象类型（如Map,Promise）能toString()识别是因为引擎为它们设置好toStringTag标签
+
+``` js
+Object.prototype.toString.call(new Map());       // "[object Map]"
+Object.prototype.toString.call(function* () {}); // "[object GeneratorFunction]"
+Object.prototype.toString.call(Promise.resolve()); // "[object Promise]"
+
+// 自定义toStringTag
+({[Symbol.toStringTag]: 'Foo'}.toString()) // [object Foo]
+```
+
+### 动手实现判断Proxy思路：
+
+1. Symbol.toStringTag 属性来改写 Object.prototype.toString 方法
+1. Proxy代理construct()方法，设置 Symbol.toStringTag
+
+``` js
+// 通过 Proxy 对 Proxy 本身做代理，然后赋值给 Proxy
+Proxy = new Proxy(Proxy, {
+    construct: function(target, args) {
+        let result = new target(...args) // target为Proxy
+        const originTag = Object.prototype.toString.call(result).slice(1,-1).split(' ')[1]
+        result[Symbol.toStringTag] = 'Proxy-' + originTag
+        return result
+    }
+})
+
+// 测试
+let testProxy = new Proxy([], {})
+Object.prototype.toString.call(testProxy) // [object Proxy-Array]
+```
+
+## 11. 手动实现模版引擎
 
 ### 问题
 
@@ -436,7 +481,7 @@ function tmpl(str, data) {
 };
 ```
 
-## Injector
+## 12. Injector
 
 ### 问题
 
@@ -472,7 +517,7 @@ var injector = {
 }
 ```
 
-## 实现ajax.get()
+## 13. 实现ajax.get()
 
 说明：考查Promise能力
 
@@ -499,7 +544,7 @@ get('http://api.wwnight.cn').then((value, that)=>{
 })
 ```
 
-## 图片懒加载
+## 14. 图片懒加载
 
 ``` js
 // 方法一
@@ -568,7 +613,9 @@ const io = new IntersectionObserver(ioes => {
 })
 ```
 
-## 手写发布订阅/依赖者模式
+## 15. 手写发布订阅/依赖者模式
+
+前端必备设计模式案例
 
 ```js
 // 发布订阅
