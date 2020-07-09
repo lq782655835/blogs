@@ -130,6 +130,24 @@ var curry = function(fn, ...args) {
 }
 ```
 
+### 变种思考
+
+这道题也有很多变种，比如如下考察闭包:实现curry(1,3, 4)(1, 2)(1)() = 12
+
+``` js
+const curry = (...arg) => {
+    return (...arg2) => {
+        if (arg2.length === 0) {
+            return arg.reduce((sum, val) =>  sum += val, 0)
+        } else {
+            return curry(...arg, ...arg2)
+        }
+    }
+}
+
+console.log(curry(1,3, 4)(1, 2)(1)()) // 12
+```
+
 ## 5. pipe/compose
 
 ### pipe
