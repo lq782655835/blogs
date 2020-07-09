@@ -25,7 +25,8 @@ then must return a promise
 
 ## 动手实现promise
 
-以下是简化说明版，详细版本可以看我的[github promise-es5](https://github.com/lq782655835/promise-es5)
+以下是简化说明版，详细版本可以看我的github [build-your-own-promise](https://github.com/lq782655835/build-your-own-promise)
+
 ``` js
 function Promise(executor) {
     var self = this

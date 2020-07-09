@@ -544,6 +544,95 @@ get('http://api.wwnight.cn').then((value, that)=>{
 })
 ```
 
+更进一步，实现 Promise 的catch、finally、race、all实现，Promise更多细节内容可看笔者另外一篇文章：[动手实现Promise](https://lq782655835.github.io/blogs/js/js-base-4.promise.html):
+
+### 1. Promise.prototype.catch
+
+``` js
+Promise.prototype.catch = function(onRejected) {
+    return this.then(null, onRejected)
+}
+```
+
+### 2. Promise.prototype.finally(cb)
+
+#### finally分析
+
+1. finally(cb)方法中的回调函数，都会执行
+1. finally后依然可以添加then方法，then参数值为上一个then的返回值
+
+``` js
+let p1 = new Promise((resolve, reject) => {
+    resolve('value')
+})
+
+p1.then(val => 'next-' + val)
+    .finally(() => console.log('finally'))
+    .then(val => console.log(val)) // 'next-value'
+```
+
+#### 思路
+
+finally() 等同于 .then(onFinally, onFinally)
+
+``` js
+Promise.prototype.finally = function (cb) {
+    const Promise = this.constructor
+    return this.then(
+        val => Promise.resolve(cb()).then(() => value),
+        err => Promise.resolve(cb()).then(() => throw err)
+    )
+}
+```
+
+### 3. Promise.all
+
+Promise.all可以将多个Promise实例包装成一个新的Promise实例。同时，成功和失败的返回值是不同的，成功的时候返回的是一个结果数组，而失败的时候则返回最先被reject失败状态的值（失败优先）。
+
+``` js
+Promise.all = (promises) => {
+    return new Promise((onResolve, onReject) => {
+        let result = [], ;
+
+        // promise为空时，直接return
+        if (!promises.length) {
+            onResolve(result)
+            return
+        }
+
+        let pending = i = promises.length
+        let processPromise = (i) => {
+            promises[i].then(value => {
+                result[i] = value // 收集结果
+                // 当收集完时，onResolve返回
+                if (!--pending) {
+                    onResolve(result)
+                }
+            }, onReject)
+        }
+
+        while(i--) {
+            processPromise(i)
+        }
+    })
+}
+```
+
+### 4. Promise.race
+
+race就是赛跑的意思。哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态。
+
+```js
+Promise.race = (promises) => {
+    return new Promise((onResolve, onReject) => {
+        for (p of promises) {
+            // 谁快谁先onResolve输出
+            Promise.resolve(p).then(onResolve, onReject)
+        }
+    })
+}
+```
+
 ## 14. 图片懒加载
 
 ``` js
