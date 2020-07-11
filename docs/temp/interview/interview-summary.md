@@ -38,6 +38,7 @@
 
 ### 面试题
 * vue3 proxy
+    * [Symbol.toStringTag](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toStringTag)
     * 如何判断一个值是proxy （weakMap？）
 * vue3最新特性
     * 关注[vue rfcs](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0004-global-api-treeshaking.md)可知，目前已经确定的提案有4个，分别是v-slot新语法、v-slot的简写、模板动态参数以及vue全局api应用treeshaking方式。除此之外，在issue中也有非常多的正在讨论的题案，最重要的就是已经确定的基于函数式的组件，即Function-based Component API，表现形式是组件只有template以及setup方法，以前的data（vue3中是value）、computed，watch等参数都包裹在Vue下。其灵感来自React Hooks，使得组件更加纯粹以及更易测试。其他还有比如state、value、computed、watch、observer等底层能力开放，提供给开发者。
