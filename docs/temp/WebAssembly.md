@@ -170,4 +170,5 @@ loadWebAssembly("math.wasm")
 
 ## github参考
 
-https://github.com/Hanks10100/wasm-examples
+* https://github.com/Hanks10100/wasm-examples
+* https://github.com/reklatsmasters/webassembly-examples
