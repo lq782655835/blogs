@@ -299,9 +299,19 @@ export default {
         )
       }
     }
-
 ```
 
+### 2.7 v-model
+
+安装`@vue/babel-sugar-v-model` babel插件后即可自动解析v-model，官方更推荐使用`vModel`或者`value + onInput事件`。
+
+``` js
+<el-input vModel_trim={inputValue}/>
+// 或者使用
+<el-input 
+ value={this.inputValue}
+ onInput={val => this.inputValue = val.trim()}/>
+```
 
 ## 参考文章
 
