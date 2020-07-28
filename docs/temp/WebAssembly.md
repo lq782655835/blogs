@@ -168,6 +168,12 @@ loadWebAssembly("math.wasm")
 * ffmpeg
 * ...
 
+## 其他
+
+浏览器自带关于WebAssembly的 Web API：
+
+![image](https://user-images.githubusercontent.com/6310131/88624244-368e5680-d0d9-11ea-97b1-ec6833ffd2cd.png)
+
 ## github参考
 
 * https://github.com/Hanks10100/wasm-examples
