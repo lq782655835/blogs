@@ -15,13 +15,14 @@
 2. value更名为ref，并提供isRef和toRefs
     * 使用ref来创建包装对象进行传递
 3. computed可传入get和set，用于定义可更改的计算属性
+4. effect 更名为 watchEffect
 
 > Vue官方团队建议在组合函数中都通过返回ref对象。
 
 ### 2. 了解Vue Composition API
 
 ``` ts
-import { reactive, computed, toRefs, effect } from "vue";
+import { reactive, computed, toRefs, watchEffect } from "vue";
 export default {
   setup() {
     const event = reactive({
@@ -29,7 +30,7 @@ export default {
       attending: ["Tim", "Bob", "Joe"],
       spacesLeft: computed(() => { return event.capacity - event.attending.length; })
     });
-    effect(() => console.log(event.capacity))
+    watchEffect(() => console.log(event.capacity))
     function increaseCapacity() {
       event.capacity++;
     }
@@ -48,7 +49,9 @@ export default {
 
 ### 1. ref
 
-先从入口ref看起,**ref常用于基本类型，reactive用于引用类型**。如果ref传入对象，其实内部会自动变为reactive：
+先从入口ref看起,**ref常用于基本类型，reactive用于引用类型**。如果ref传入对象，其实内部会自动变为reactive。
+
+ref本质上是把js 基本类型（string/number/bool）包装为引用对象，使得具有响应式特性。
 
 ``` ts
 export function ref(raw: unknown) {
@@ -57,6 +60,8 @@ export function ref(raw: unknown) {
   }
   // ref常用于基本类型，reactive用于引用类型。如果ref传入对象，其实内部会自动变为reactive
   raw = convert(raw)
+
+  // 基本类型，转为含有getter/setter的对象
   const r = {
     _isRef: true, // 判断isRef
     // 基本类型无法被追踪，所以使用ref包装为object，使得可以被追踪

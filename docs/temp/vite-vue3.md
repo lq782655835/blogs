@@ -4,9 +4,10 @@
 1. 把node_modules下的包（如：vue），改写为 ‘@module/vue’，然后使用koa拦截
 1. 把.vue文件拆分为3个请求，跟vue-loader实现一致
 
-## vue3语法
+## Vue3 API 语法说明
 
 ### watch和watchEffect区别
+
 1. 2.x/3的watch，只能监听特定响应式对象，当对象值变化时，进行逻辑函数绑定。而watchEffect默认对响应式对象依赖收集（意味着不是懒加载）。`简单理解：可以把watchEffect当作是特殊的computed，作用一致而且不用return返回对象`（实际源码中的确两者底层都是effect实现）。
 2. watch可以懒加载（值不变动不执行逻辑函数），而watchEffect初始化加载（因为这里就开始依赖收集了）
 3. watch可以拿到preValue/currentValue，watchEffect只拿到currentValue
@@ -97,3 +98,18 @@ setup() {
     }
 }
 ```
+
+### 生命周期钩子函数
+
+只是把以前的`this.$once('hook:mounted', cb)`语法，改为 `onXXX` hooks函数而已
+
+与 2.x 版本生命周期相对应的组合式 API
+* ~~beforeCreate~~ -> 使用 setup()
+* ~~created~~ -> 使用 setup()
+* beforeMount -> onBeforeMount
+* mounted -> onMounted
+* beforeUpdate -> onBeforeUpdate
+* updated -> onUpdated
+* beforeDestroy -> onBeforeUnmount
+* destroyed -> onUnmounted
+* errorCaptured -> onErrorCaptured

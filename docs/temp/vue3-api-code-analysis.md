@@ -1,8 +1,24 @@
-# Vue3源码解析
+# Vue3 API源码解析
+
+## Vue3源码目录结构
+
+* `vue`
+  * @vue/runtime-dom
+* `@vue/runtime-dom`
+  * `createApp、模板上一切api或组件`：v-model、v-show、Transition组件([源码解析]())
+  * @vue/runtime-core
+* `@vue/runtime-core(核心)`
+  * `composition api`
+    * `@vue/reactivity(ref、reactive等)`。([源码解析]())
+    * `apiLifecycle.ts（onMounted等）`。主要依赖injectHooks实现
+    * `apiWatch.ts(watchEffect、watch)`。([源码解析]())
+    * `apiInject.ts(provide、inject)`。([源码解析]())
+  * `scheduler.ts(nextTick)`。vue3源码中使用Promise.resolve()进行下次的微任务执行。
+  * Teleport、Suspense等组件
 
 ## 1. createApp
 
-### api使用
+### api 使用
 
 ``` js
 import { createApp } from 'vue'
@@ -12,6 +28,8 @@ createApp(App).mount('#app')
 ```
 
 ### 源码解析
+
+1. 确定template -> 2. 执行mount，即vnode(patch) -> diff -> dom流程
 
 ``` js
 // https://github.com/vuejs/vue-next/blob/master/packages/runtime-dom/src/index.ts#L53
@@ -46,11 +64,12 @@ export const createApp = ((...args) => {
 
 ### api 使用
 
-`watchEffect`只是简单的副作用函数，只需要在逻辑函数中使用getter对象（ref.value，state.xxx）即可。
+`watchEffect`只是简单的副作用函数，只需要在逻辑函数中使用到getter对象（ref.value，state.xxx）即可，getter对象自动依赖收集callback。
 
-`watch`就跟vue2.x中的watch api类似，需要监听某个响应式对象的变化，并给出currentValue/preValue。但在vue3中响应式对象又分为ref和reactive对象。难以区分第一个参数到底怎么传？告诉一个法则即可：（源码解析在后面）
+`watch` api 跟vue2.x中的watch api类似，需要监听某个响应式对象的变化，并给出currentValue/preValue。但在vue3中响应式对象又分为ref和reactive对象。难以区分第一个参数到底怎么传？告诉一个法则即可：（源码里都会处理为返回getter函数，源码解析在后面）
+
 * ref/reactive完整对象直接使用
-* reactive.xxx对象使用函数返回
+* reactive.xxx对象使用函数包装
 
 ``` js
 let refNum = ref(0)
@@ -90,7 +109,7 @@ watch([refNum, () => state.name], ([numValue, nameValue], [numPreValue, preNameV
 
 watchEffect和watch api底层都调用doWatch函数。可以看下定义的TypeScript类型 `WatchSource`，从这就能看出我们的api方式是支持3种的。
 
-**api第一个参数看上去有3种形态，其实核心还是为了拿到响应式数据的值**。
+**api第一个参数看上去有3种形态，底层都会返回getter函数，`其核心还是为了拿到响应式数据的值`**。
 
 ``` js
 // https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/src/apiWatch.ts#:L75
@@ -108,6 +127,7 @@ export function watch<T = any>(source: WatchSource<T> | WatchSource<T>[], cb: Wa
 看下`doWatch`实现。**本质上watch意义就是，当依赖的响应式对象值改变时，执行callback函数**。（effect作用就是把响应式数据 与 callback函数绑定在一起）
 
 对应的核心代码是这段：
+
 ``` js
 // effect作用 = getter（响应式数据） + callback连接
 const runner = effect(getter, {
@@ -116,6 +136,7 @@ const runner = effect(getter, {
     onTrigger,
     scheduler // 存放callback，当getter内的响应式数据值变化时，执行scheduler（也即执行callback）
   })
+oldValue = runner()
 ```
 
 watch api核心流程：
@@ -125,7 +146,7 @@ watch api核心流程：
 4. job中执行cb回调函数
 
 ``` js
-// 核心：当source内的响应式对象变化时，cb执行
+// 核心：当source内的响应式对象变化时，cb执行。依赖收集的核心在effect函数中
 function doWatch(source: WatchSource | WatchSource[] | WatchEffect,
   cb: WatchCallback | null,
   { immediate, deep, flush, onTrack, onTrigger }: WatchOptions = EMPTY_OBJ,
@@ -207,8 +228,144 @@ function doWatch(source: WatchSource | WatchSource[] | WatchEffect,
     scheduler // 简单理解：scheduler == job == cb
   })
   oldValue = runner() // runner执行 = getter()拿到响应式数据oldValue + 把getter中的响应式数据与cb关联
-
-
-  // ...
 }
 ```
+
+## 3. computed
+
+### api 使用
+
+``` js
+// ref
+const count = ref(1)
+const plusOne = computed(() => count.value + 1) //  2
+count.value += 1
+
+// 支持get/set方式
+const plusOne = computed({
+  get: () => count.value + 1,
+  set: (val) => {
+    count.value = val - 1
+  },
+})
+
+
+// reactive computed
+const state = reactive({ count: 1})
+const plus = computed(() => state.count + 1) // 2
+state.count += 1
+```
+
+### 源码解析
+
+`computed和watch原理基本一致，都是依赖effect函数完成响应式数据和callback连接`。
+
+所以computed api接受一个getter函数，并且可以返回新的响应式数据。关于computed api设计思想，推荐[官方computed教程](https://composition-api.vuejs.org/zh/#%E8%AE%A1%E7%AE%97%E7%8A%B6%E6%80%81-%E4%B8%8E-ref)。
+
+理解以上effect的作用，代码就简单多了：
+
+``` js
+export function computed<T>(
+  getterOrOptions: ComputedGetter<T> | WritableComputedOptions<T>
+) {
+  // 1. 第一个参数，支持function和object(get/set)两种api。最终还是要拿到getter函数
+  let getter: ComputedGetter<T>
+  let setter: ComputedSetter<T>
+
+  if (isFunction(getterOrOptions)) {
+    getter = getterOrOptions
+    setter =  NOOP
+  } else {
+    getter = getterOrOptions.get
+    setter = getterOrOptions.set
+  }
+
+  let dirty = true
+  let value: T
+  let computed: ComputedRef<T>
+
+  // 2. effect：连接 响应式数据 + callback
+  const runner = effect(getter, {
+    lazy: true,
+    scheduler: () => {
+      if (!dirty) {
+        dirty = true
+        trigger(computed, TriggerOpTypes.SET, 'value')
+      }
+    }
+  })
+
+  // 3. 返回computed响应式对象
+  computed = {
+    __v_isRef: true,
+    // expose effect so computed can be stopped
+    effect: runner,
+    get value() {
+      // 3.1 当用到computed值时，实时计算runner()值
+      if (dirty) {
+        value = runner()
+        dirty = false
+      }
+      // 3.2 对computed依赖收集
+      track(computed, TrackOpTypes.GET, 'value')
+      return value
+    },
+    set value(newValue: T) {
+      setter(newValue)
+    }
+  } as any
+  return computed
+}
+```
+
+> computed和watch api，第一个参数都是传入getter函数，本质上是因为底层effect需要对getter里的响应式对象依赖收集。
+
+## 4. provide/inject
+
+### api 使用
+
+``` js
+const StoreSymbol = Symbol()
+
+provide(StoreSymbol, value) // provide：对外提供value值
+
+const store = inject(StoreSymbol) // inject：获得key对应的value值
+```
+
+### 源码解析
+
+provide api 等同于在`全局hash`存储key/value，inject api就是根据从key中拿到value值
+
+``` js
+export function provide<T>(key: InjectionKey<T> | string, value: T) {
+    let provides = currentInstance.provides
+
+    const parentProvides =
+      currentInstance.parent && currentInstance.parent.provides
+    if (parentProvides === provides) {
+      provides = currentInstance.provides = Object.create(parentProvides)
+    }
+    // TS doesn't allow symbol as index type
+    provides[key as string] = value
+}
+
+export function inject(
+  key: InjectionKey<any> | string,
+  defaultValue?: unknown
+) {
+  // fallback to `currentRenderingInstance` so that this can be called in
+  // a functional component
+  const instance = currentInstance || currentRenderingInstance
+  if (instance) {
+    const provides = instance.provides
+    if (key in provides) {
+      // TS doesn't allow symbol as index type
+      return provides[key as string]
+    } else if (arguments.length > 1) {
+      return defaultValue
+    }
+  }
+}
+```
+
+## nextTick
