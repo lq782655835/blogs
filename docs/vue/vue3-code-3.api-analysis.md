@@ -1,4 +1,4 @@
-# Vue3 API源码解析
+# Vue3 API 源码解析
 
 ## Vue3源码目录结构
 
@@ -15,6 +15,9 @@
     * `apiInject.ts(provide、inject)`。([源码解析]())
   * `scheduler.ts(nextTick)`。vue3源码中使用Promise.resolve()进行下次的微任务执行。
   * Teleport、Suspense等组件
+* @vue/server-renderer: ssr
+* @vue/share: 记录一些共享的配置
+* @vue/template-explorer: 实时查看vue3 template模板编译为render函数的[网站](https://vue-next-template-explorer.netlify.app/)。核心代码： Vue.compile(source)
 
 ## 1. createApp
 
@@ -261,6 +264,8 @@ state.count += 1
 `computed和watch原理基本一致，都是依赖effect函数完成响应式数据和callback连接`。
 
 所以computed api接受一个getter函数，并且可以返回新的响应式数据。关于computed api设计思想，推荐[官方computed教程](https://composition-api.vuejs.org/zh/#%E8%AE%A1%E7%AE%97%E7%8A%B6%E6%80%81-%E4%B8%8E-ref)。
+
+![](https://pic3.zhimg.com/80/v2-45e267f596f73aed518069be9a456d71_720w.jpg)
 
 理解以上effect的作用，代码就简单多了：
 
