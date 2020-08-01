@@ -4,7 +4,7 @@
 
 * `vue`
   * @vue/runtime-dom
-* `@vue/runtime-dom`
+* `@vue/runtime-dom`：运行时，支持把render函数反应到dom上
   * `createApp、模板上一切api或组件`：v-model、v-show、Transition组件([源码解析]())
   * @vue/runtime-core
 * `@vue/runtime-core(核心)`
@@ -18,6 +18,9 @@
 * @vue/server-renderer: ssr
 * @vue/share: 记录一些共享的配置
 * @vue/template-explorer: 实时查看vue3 template模板编译为render函数的[网站](https://vue-next-template-explorer.netlify.app/)。核心代码： Vue.compile(source)
+* `@vue/compiler-dom`: 编译时，支持把template模板代码，编译为render函数
+  * @vue/compiler-core
+* @vue/compiler-core: compiler核心实现，涉及到template -> baseParse(parse.ts) -> ast -> generate(codegen.ts)
 
 ## 1. createApp
 
