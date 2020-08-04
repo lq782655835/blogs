@@ -1,6 +1,12 @@
-# Koa洋葱模型
+# Koa 洋葱模型原理分析
 
-## 解释洋葱模型
+Koa 有两个核心知识点：一个是中间件ctx，一个就是洋葱模型。
+
+中间件ctx利用js原型，很巧妙的把request和response对象封装在里面。详细的实现可看笔者实现的简版koa [build-your-own-koa](https://github.com/lq782655835/build-your-own-koa)。
+
+另外一个核心就是本文要分析的洋葱模型。
+
+## 1. 认识洋葱模型
 
 ``` js
 const Koa = require('koa');
@@ -41,10 +47,11 @@ console.log(`http://localhost:${PORT}`);
 
 当程序运行到await next()的时候就会暂停当前程序，进入下一个中间件，**处理完之后才会回过头来继续处理**。
 
-## 原理
+## 2. 原理
 
-核心：
-* 中间件的管理和next的实现
+`核心：中间件管理和next实现`，其中next是巧妙的使用了Promise特性。洋葱模型，本质上是Promise.resolve()的递归。
+
+### 2.1 中间件管理
 
 app.listen使用了this.callback()来生成node的httpServer的回调函数。
 ``` js
@@ -80,7 +87,7 @@ use(fn) {
 }
 ```
 
-### 中间件的管理和next的实现
+### 2.2 next实现
 
 dispatch函数，它将遍历整个middleware，然后将context和dispatch(i + 1)传给middleware中的方法。
 
@@ -116,14 +123,13 @@ function compose (middleware) {
 }
 ```
 
-## 思考
+## 3. 思考
 
 洋葱模型实现原理，等同于如下代码：
 
-** next()返回的是promise，需要使用await去等待promise的resolve值。**
+**next()返回的是promise，需要使用await去等待promise的resolve值。**
 
 promise的嵌套就像是洋葱模型的形状就是一层包裹着一层，直到await到最里面一层的promise的resolve值返回。
-
 
 ``` js
 Promise.resolve(middleware1(context, async() => { // 注意async关键字不能省略
