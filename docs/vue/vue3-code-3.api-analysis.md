@@ -377,3 +377,45 @@ export function inject(
 ```
 
 ## nextTick
+
+## createRenderer
+
+自定义render渲染器
+
+``` js
+// @vue/runtime-core
+// 使用： const {render, createApp} = createRenderer(options)
+
+export function createRenderer<
+  HostNode extends object = any,
+  HostElement extends HostNode = any
+>(
+  options: RendererOptions<HostNode, HostElement>
+): {
+  render: RootRenderFunction<HostNode, HostElement>
+  createApp: () => App<HostElement>
+} {
+  // 新老vnode对比patch（diff）
+  const render: RootRenderFunction<
+    HostNode,
+    HostElement & {
+      _vnode: HostVNode | null
+    }
+  > = (vnode, container) => {
+    if (vnode == null) {
+      if (container._vnode) {
+        unmount(container._vnode, null, null, true)
+      }
+    } else {
+      patch(container._vnode || null, vnode, container)
+    }
+    flushPostFlushCbs()
+    container._vnode = vnode
+  }
+
+  return {
+    render,
+    createApp: createAppAPI(render) // 最终对外使用的函数对象
+  }
+}
+```
