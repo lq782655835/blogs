@@ -1,6 +1,6 @@
 # React源码分析 - 四大组件
 
-上节[React源码分析 - 挂载和渲染]()了解了React挂载和渲染整体流程，但没详细分析，VNode到生成真实DOM做了哪些内容。这就要看上节instantiateReactComponent函数中提到的React四大组件。
+上节[React源码分析 - 挂载和渲染](https://lq782655835.github.io/blogs/react/react-code-1.mount.html)了解了React挂载和渲染整体流程，但没详细分析，VNode到生成真实DOM做了哪些内容。这就要看上节instantiateReactComponent函数中提到的React四大组件。
 
 ## VNode对象 --> Component对象 --> HTML字符串
 

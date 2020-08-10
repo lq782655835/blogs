@@ -1,6 +1,6 @@
 # React setState是异步吗
 
-react官网对于setState的说明：
+React官网对于setState的说明：
 
 将setState()认为是一次请求而**不是一次立即执行更新组件的命令**。为了更为可观的性能，React可能会推迟它，稍后会一次性更新这些组件。React不会保证在setState之后，能够立刻拿到改变的结果。
 
