@@ -1,4 +1,4 @@
-# rxjs
+# RxJS入门实践
 
 在 RxJS 中用来解决异步事件管理的的基本概念是：
 
@@ -9,9 +9,9 @@
 * Subject (主体): 相当于 EventEmitter，并且是将值或事件多路推送给多个 Observer 的唯一方式。
 * Schedulers (调度器): 用来控制并发并且是中央集权的调度员，允许我们在发生计算时进行协调，例如 setTimeout 或requestAnimationFrame 或其他 。
 
-## Observable
+## 1. Observable
 
-#### 1. Observable 剖析
+### 1.1 Observable 剖析
 
 Observables 是使用 `Rx.Observable.create 或创建操作符创建的，并使用观察者来订阅它，然后执行它并发送 next / error / complete 通知给观察者`，而且执行可能会被清理。
 
@@ -57,7 +57,7 @@ oddNums.subscribe({
 });
 ```
 
-#### 2. 执行 Observables
+### 1.2 执行 Observables
 
 Observable.create(function subscribe(observer) {...}) 中...的代码表示 “Observable 执行”，`它是惰性运算，只有在每个观察者订阅后才会执行`。随着时间的推移，执行会以同步或异步的方式产生多个值。
 
@@ -80,7 +80,7 @@ var observable = Rx.Observable.create(function subscribe(observer) {
 });
 ```
 
-#### 3. 清理 Observable 执行
+### 1.3 清理 Observable 执行
 
 ``` js
 var observable = Rx.Observable.from([10, 20, 30]);
@@ -89,9 +89,9 @@ var subscription = observable.subscribe(x => console.log(x));
 subscription.unsubscribe();
 ```
 
-#### 4. 源码解析
+### 1.4 源码解析
 
-4.1. Observable：
+#### 1.4.1 Observable
 
 ``` js
 export class Observable<T> implements Subscribable<T> {
@@ -107,7 +107,7 @@ export class Observable<T> implements Subscribable<T> {
 }
 ```
 
-4.2 [of操作符](https://github.com/ReactiveX/rxjs/blob/e0fcd6d0fcf0de897739806091fd9e4f8eadd02a/src/internal/observable/of.ts)：
+#### 1.4.2 [of操作符](https://github.com/ReactiveX/rxjs/blob/e0fcd6d0fcf0de897739806091fd9e4f8eadd02a/src/internal/observable/of.ts)
 
 ``` js
 /**
@@ -167,7 +167,7 @@ const of = (arr) => new Observable(function subscribe(observer) {
 })
 ```
 
-## Subject
+## 2. Subject
 
 什么是 Subject？ - RxJS Subject 是一种特殊类型的 Observable，它允许将值多播给多个观察者，所以 Subject 是多播的，而普通的 Observables 是单播的(每个已订阅的观察者都拥有 Observable 的独立执行)。
 
@@ -190,7 +190,37 @@ subject.next(1);
 subject.next(2);
 ```
 
-#### 源码解析
+### 2.1 单播与多播
+
+单播示例
+
+```js
+let observable = Rx.Observable.create(function subscribe(obsever) {
+  observer.next(1)
+  observer.next(2)
+})
+observable.subscribe(v => console.log(v))
+observable.subscribe(v => console.log(v))
+
+// 输出两份 1, 2
+```
+
+多播示例
+
+```js
+let observable = Rx.Observable.create(function subscribe(obsever) {
+  observer.next(1)
+  observer.next(2)
+})
+let subject = new Rx.Subject()
+subject.subscribe(v => console.log(v))
+subject.subscribe(v => console.log(v))
+observable.subscribe(subject)
+
+// 输出 1, 1; 2, 2;
+```
+
+### 2.2 源码解析
 
 SubJect是典型的`依赖收集设计模式`
 
@@ -218,7 +248,7 @@ export class Subject<T> extends Observable<T> implements SubscriptionLike {
 }
 ```
 
-## Operators
+## 3. Operators
 
 尽管 RxJS 的根基是 Observable，但最有用的还是它的操作符。操作符是允许复杂的异步代码以声明式的方式进行轻松组合的基础代码单元。
 
@@ -245,7 +275,62 @@ get<T = any>(url: string, params?: Record<string, any>): Observable<Response<T>>
   }
 ```
 
-## Rxjs API 参考
+## 4. Pipeable 操作符
+
+从5.5版本开始我们提供了 “pipeable 操作符”，它们可以通过 rxjs/operators 来访问 (注意 "operators" 是复数)。相比较于通过在 rxjs/add/operator/* 中以“打补丁”的方式来获取需要用到的操作符，这是一种更好的方式。
+
+v5.5 以前: 链式调用
+
+```js
+const source$ = Rx.Observable.range(0, 10);
+
+source$
+  .filter(x => x % 2 === 0)
+  .map(x => x + x)
+  .scan((acc, x) => acc + x, 0)
+  .subscribe(x => console.log(x)
+```
+
+现在的方式：
+
+``` js
+import { range } from 'rxjs/observable/range';
+import { map, filter, scan } from 'rxjs/operators';
+
+const source$ = range(0, 10);
+
+source$.pipe(
+  filter(x => x % 2 === 0),
+  map(x => x + x),
+  scan((acc, x) => acc + x, 0)
+)
+.subscribe(x => console.log(x))
+```
+
+### 4.1 为什么需要 pipeable 操作符？
+
+打补丁的操作符主要是为了链式调用，但它存在如下问题:
+
+* 任何导入了补丁操作符的库都会导致该库的所有消费者的 Observable.prototype 增大，这会创建一种依赖上的盲区。如果此库移除了某个操作符的导入，这会在无形之中破坏其他所有人的使用。使用 pipeable 操作符的话，你必须在每个用到它们的页面中都导入你所需要用到的操作符。
+
+* 通过打补丁的方式将操作符挂在原型上是无法通过像 rollup 或 webpack 这样的工具进行“摇树优化” ( tree-shakeable ) 。而 pipeable 操作符只是直接从模块中提取的函数而已。
+
+* 对于在应用中导入的未使用过的操作符，任何类型的构建工具或 lint 规则都无法可靠地检测出它们。例如，比如你导入了 scan，但后来不再使用了，但它仍会被添加到打包后的文件中。使用 pipeable 操作符的话，如果你不再使用它的简化，lint 规则可以帮你检测到。
+
+* 函数组合 ( functional composition )很棒。创建自定义操作符也变得非常简单，它们就像 rxjs 中的其他所有操作符一样。你不再需要扩展 Observable 或重写 lift 。
+
+### 4.2 什么是 pipeable 操作符
+
+Observable 中有一个内置的 pipe 方法 (`Observable.prototype.pipe`)，它可以用类似于之前的链式调用的方式来组合操作符
+
+重命名的操作符：由于操作符要从 Observable 中独立出来，所以操作符的名称不能和 JavaScript 的关键字冲突。因此一些操作符的 pipeable 版本的名称做出了修改。这些操作符是:
+
+* do -> tap
+* catch -> catchError
+* switch -> switchAll
+* finally -> finalize
+
+## 5. Rxjs API 参考
 
 * [rxjs](https://github.com/ReactiveX/rxjs/blob/master/src/index.ts)
     * `Observable`
@@ -260,42 +345,61 @@ get<T = any>(url: string, params?: Record<string, any>): Observable<Response<T>>
     * `map((value, index) =>{})`:将给定的 project 函数应用于源 Observable 发出的每个值，并将结果值作为 Observable 发出。
     * `switchMap((value, index)=> {}): Observable`:将每个源值投射成 Observable，该 Observable 会合并到输出 Observable 中， 并且只发出最新投射的 Observable 中的值。
     * `filter()`: 通过只发送源 Observable 的中满足指定 predicate 函数的项来进行过滤。
-    * `scan()`: scan 操作符的工作原理与数组的 reduce 类似,它需要一个暴露给回调函数当参数的初始值。每次回调函数运行后的`返回值会作为下次回调函数运行时的参数`。
+    * `scan()`: `scan 操作符的工作原理与数组的 reduce 类似`,它需要一个暴露给回调函数当参数的初始值。每次回调函数运行后的`返回值会作为下次回调函数运行时的参数`。
     * `find/findIndex/first/last/forEach/reduce/groupBy/count`
     * `debounce/delay`
 * rxjs/ajax
     * `.pipe()`
-
 * [Observable实例](https://cn.rx.js.org/class/es6/Observable.js~Observable.html)
     * `.subscribe()`
     * `.pipe()`: Observable 中有一个内置的 pipe 方法 (`Observable.prototype.pipe`)，它可以用类似于之前的链式调用的方式来组合操作符
-
-> 返回为Observable都有.pipe() 方法（pipe 是 Observable 的一部分）。
 
 ![](https://pic1.zhimg.com/v2-1bc126d4f7032e6b6ec5c57e1d1242ca_b.jpg)
 
 ![](https://pic4.zhimg.com/v2-e93be46f0198acdac8d91b125ca91684_b.jpg)
 
+``` js
+import {
+    of, from, fromEvent, range, interval,
+    Observable, Subject
+} from 'rxjs';
+import { map, filter, switchMap } from "rxjs/operators";
 
-## Pipeable 操作符
+of(1, 2, 3).subscribe((val) => console.log(val))
+console.log(from([2, 3, 4]))
+console.log(fromEvent(document.querySelector('div'), 'click'))
+range(1, 10)
+    .pipe(
+        filter(x => x % 2 === 1),
+        map(x => x + x)
+    )
+    .subscribe(x => console.log(x))
 
-从5.5版本开始我们提供了 “pipeable 操作符”，它们可以通过 rxjs/operators 来访问 (注意 "operators" 是复数)。相比较于通过在 rxjs/add/operator/* 中以“打补丁”的方式来获取需要用到的操作符，这是一种更好的方式，
+// Observable.create静态方法 等同于 new Observable
+Observable.create(observer => observer.next(1)).subscribe(val => console.log(val, 'Observable.create'))
+new Observable(observer => observer.next(1)).subscribe(val => console.log(val, 'new Observable'))
+```
 
-什么是 pipeable 操作符： Observable 中有一个内置的 pipe 方法 (`Observable.prototype.pipe`)，它可以用类似于之前的链式调用的方式来组合操作符 
+> 1. 返回为Observable都有.pipe() 方法（pipe 是 Observable 的一部分）。 2. map()解决同步问题，switchMap可能里面有异步操作(返回值要是另外一个Observable)。
 
-重命名的操作符：由于操作符要从 Observable 中独立出来，所以操作符的名称不能和 JavaScript 的关键字冲突。因此一些操作符的 pipeable 版本的名称做出了修改。这些操作符是:
+### 5.1 Operater API解释
 
-do -> tap
-catch -> catchError
-switch -> switchAll
-finally -> finalize
+* `timer – 定时器流`: 它有两个数字型的参数，第一个是首次等待时间，第二个是重复间隔时间。从图上可以看出，它实际上是个无尽流 —— 没有终止线。因此它会按照预定的规则往流中不断重复发出数据。要注意，虽然名字有相关性，但它不是 setTimeout 的等价物，`事实上它的行为更像是 setInterval`。
 
+* `interval – 定时器流`: 它和 timer 唯一的差别是它只接受一个参数。事实上，`它就是一个语法糖，相当于 timer(1000, 1000)`，也就是说初始等待时间和间隔时间是一样的。
 
+* `delay – 延迟`: `这才是真正的 setTimeout 的等价操作`。它接受一个毫秒数（图中是 20 毫秒），每当它从输入流中读取一个数据之后，会先等待 20 毫秒，然后再放到输出流中。
 
-### 杂谈
+* `merge – 并联`: 两个流中的内容被合并到了一个流中。并联在什么情况下起作用呢？举个例子吧：有一个列表需要每隔 5 秒钟定时刷新一次，但是一旦用户按了搜索按钮，就必须立即刷新，而不能等待 5 秒间隔。这时候就可以用一个定时器流和一个自定义的用户操作流（subject）merge 在一起。这样，无论哪个流中出现了数据，都会进行刷新。
 
-简单的map operator就是observer.next(map(value))
+* `concat – 串联`: 两个流中的内容被按照顺序放进了输出流中。前面的流尚未结束时（注意竖线），后面的流就会一直等待。串联的适用场景就很容易想象了，比如我们需要先通过 Web API 进行登录，然后取学生名册。这两个操作就是异步且串联工作的。
+
+> map operator原理，就是observer.next(map(value))
 
 ## 参考
 
+* [RxJS 快速入门](https://zhuanlan.zhihu.com/p/53618435)
+* https://cn.rx.js.org/manual/overview.html
+* https://zhuanlan.zhihu.com/p/23331432
 * https://www.zhihu.com/topic/20036245/hot
+* https://hijiangtao.github.io/2020/01/13/RxJS-Introduction-and-Actions/
