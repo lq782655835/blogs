@@ -1,4 +1,4 @@
-# 为何Vue3响应式 Proxy 更快
+# 为何Vue3 Proxy 更快
 
 proxy优势：
 
@@ -8,7 +8,6 @@ proxy优势：
 
 假设有如下的响应式对象时：
 ``` js
-
 data() {
     return { a: { b: { c: { d: { e: 11 } } } } }
 }
@@ -99,7 +98,6 @@ function createReactiveObject(target: Target) {
 
 ``` js
 // https://github.com/vuejs/vue-next/blob/master/packages/reactivity/src/baseHandlers.ts
-
 const get = createGetter()
 
 function createGetter(isReadonly = false, shallow = false) {
