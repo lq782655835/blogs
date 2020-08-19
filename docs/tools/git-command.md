@@ -62,7 +62,10 @@ git tag -a <tag-name> -m <comment> # 新建tag
 git push origin --tags # 推送tag
 ```
 
-# 4. 常用
+## 4. 常用
+
+### 4.1 部署gh-pages
+
 ``` bash
 // 部署gh-pages主页(一直在master分支上执行)
 
@@ -78,7 +81,42 @@ git subtree push --prefix dist origin gh-pages
 "deploy": "npm run build && git commit -am 'deploy' && git subtree push --prefix dist origin gh-pages",
 ```
 
-## git emoji
+> 以上是使用原生git命令，实际项目中更推荐[gh-pages]()这样的工具包。
+
+### 4.2 fork仓库同步代码
+
+将源项目代码同步到Fork出来的个人项目上
+
+``` sh
+#拉取Fork出来的分支
+git clone Fork的分支url
+
+#注意：进入项目根目录，执行下面操作
+
+#查看所有远程库(remote repo)的远程url
+git remote -v
+
+#添加源分支url
+git remote add upstream 替换成源项目url
+
+#查看所有远程库(remote repo)的远程url
+git remote -v
+
+#从源分支获取最新的代码
+git fetch upstream
+
+#切换到主分支
+git checkout master
+
+#合并本地分支和源分支,本地库和远程的github原仓库同步
+git merge upstream/master
+
+#push到fork分支,本地的仓库提交到github
+git push origin master
+```
+
+### 4.3 git emoji
+
 执行 git commit 时使用 emoji 为本次提交打上一个 "标签", 使得此次 commit 的主要工作得以凸现，也能够使得其在整个提交历史中易于区分与查找。
 
 emoji                                   | emoji 代码                   | commit 说明
