@@ -9,6 +9,8 @@
 * Subject (主体): 相当于 EventEmitter，并且是将值或事件多路推送给多个 Observer 的唯一方式。
 * Schedulers (调度器): 用来控制并发并且是中央集权的调度员，允许我们在发生计算时进行协调，例如 setTimeout 或requestAnimationFrame 或其他 。
 
+> rxjs实践可查看个人github： [rxjs-exercise-case](https://github.com/lq782655835/)
+
 ## 1. Observable
 
 ### 1.1 Observable 剖析

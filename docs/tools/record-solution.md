@@ -71,6 +71,8 @@
 
 * [.npmrc指定scope域对应的源路径registry](https://docs.npmjs.com/using-npm/scope.html): @myscope:registry=https://mycustomregistry.example.org
 
+* [骨架屏通过ssr注入到html template文件中 - github中项目源码](https://github.com/cklwblove/vue-cli3-template/blob/dev/src/skeleton/skeleton.js)
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)
@@ -104,6 +106,7 @@
     * [react-redux-todo](https://codesandbox.io/s/9on71rvnyo) 经典的react-redux TodoList示例
     * [react-pxq](https://github.com/bailicangdu/react-pxq) 清晰易懂的react入门项目
     * [git-history](https://github.com/pomber/git-history/blob/master/src/slide.js) react hooks实例
+    * [redux后台管理系统](https://github.com/loveRandy/react-admin): redux
 * NodeJS
     * [node-elm](https://github.com/bailicangdu/node-elm) 基于express的项目
     * [koa-ts]() 基于koa + typescript的项目模板：   

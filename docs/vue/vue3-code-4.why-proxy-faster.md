@@ -1,12 +1,15 @@
 # 为何Vue3 Proxy 更快
 
-proxy优势：
+相比于Vue2.x Object.defineProperty的响应式原理，Vue3 Proxy的优势在哪里呢。以下我们从两者源码角度分析下使用Proxy的优势。
 
-1. ES6原生Proxy语法，更快的初始化，懒加载，不用递归的定义defineProperty
+Proxy优势：
+
+1. ES6原生Proxy语法，更快的初始化，懒加载，不用递归的定义Object.defineProperty
 2. 支持动态的添加object新属性
 3. 支持原生array数组操作
 
 假设有如下的响应式对象时：
+
 ``` js
 data() {
     return { a: { b: { c: { d: { e: 11 } } } } }
@@ -79,7 +82,13 @@ export function defineReactive (
 
 ## Vue3 Proxy处理
 
-Vue3中定义响应式对象API是：`reactive(data)`
+Vue3中定义响应式对象API是：`reactive(data)`。
+
+Proxy提供了对JS的元数据编程，即可以使用JS提供的语法特性，创建新的JS语法。
+
+可以看到Vue3中定义响应式非常简单，即原生的 new Proxy(target, handlers)。此时这里没有递归调用初始化，即可看成是懒加载去依赖收集（用到才去依赖收集）。
+
+再看看代理操作baseHandlers中get定义是如何的。
 
 ``` js
 // https://github.com/vuejs/vue-next/blob/master/packages/reactivity/src/reactive.ts
@@ -95,6 +104,8 @@ function createReactiveObject(target: Target) {
   return observed
 }
 ```
+
+get定义，主要用来依赖收集，同时如果属性的value为Object对象时，自定进行Proxy代理。
 
 ``` js
 // https://github.com/vuejs/vue-next/blob/master/packages/reactivity/src/baseHandlers.ts

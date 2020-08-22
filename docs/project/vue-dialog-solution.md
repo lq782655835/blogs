@@ -2,6 +2,10 @@
 
 在做业务代码的modal弹窗时，总是围绕visible变量以及控制visible变量逻辑，能否简化弹窗相关逻辑呢？
 
+如果想直接使用该解决方案，可以安装对应npm包，详细说明文档请在github中 查看：[@springleo/el-dialog-helper](https://github.com/lq782655835/el-dialog-helper)
+
+该方案配合ElementUI或AntdV等组件库的modal组件更佳。
+
 ## 背景
 
 在业务中，如下代码一定不会陌生：
