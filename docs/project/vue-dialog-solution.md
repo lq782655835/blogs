@@ -2,7 +2,7 @@
 
 在做业务代码的modal弹窗时，总是围绕visible变量以及控制visible变量逻辑，能否简化弹窗相关逻辑呢？
 
-如果想直接使用该解决方案，可以安装对应npm包，详细说明文档请在github中 查看：[@springleo/el-dialog-helper](https://github.com/lq782655835/el-dialog-helper)
+如果想直接使用该解决方案，可以安装对应npm包，详细说明文档请在github中查看：[@springleo/el-dialog-helper](https://github.com/lq782655835/el-dialog-helper)
 
 该方案配合ElementUI或AntdV等组件库的modal组件更佳。
 
@@ -57,9 +57,9 @@ export default {
 
 它存在的问题在于：
 
-* Dialog弹窗过多时，visible变量也相应增加
-* 每个Dialog在组件中都需要注册并相应的初始化，繁琐并增加页面组件初始化时间
-* visible变量控制繁琐
+1. Dialog弹窗过多时，visible变量也相应增加
+1. 每个Dialog在组件中都需要注册并相应的初始化，繁琐并增加页面组件初始化时间
+1. visible变量控制繁琐
 
 有没有更好的方式呢？
 
@@ -107,8 +107,70 @@ $confirm是因为有固定流程以及样式的ConfirmDialog组件，所以实�
 
 ## 实现机制
 
-核心使用`Vue.extend()`这个API。
+要实现上述API的Dialog弹窗解决方案，需要做到2步： 1. dialog组件自动挂载到页面 2. API设计Promise化
 
-待更新
+### 1. dialog组件自动挂载到页面
 
-代码可以见：https://github.com/lq782655835/el-dialog-helper/blob/master/src/components/dialog.js
+通过vue源码我们知道，一个.vue文件，其实就是个Object对象（tempalte模板会被编译为对象的render函数）。同时也知道Vue Option API是通过new Vue({ Option API })方式转换为组件实例的。
+
+此时我们这里如何把Object对象转换为Vue组件呢？Vue官方提供了[Vue.extend](https://cn.vuejs.org/v2/api/#Vue-extend)这个API来返回Vue构造器。有了该构造函数，只需要实例化即可把Object Vue对象转为真正的具有上下文关系的Vue组件。同时执行`$mount()`方法即可挂载到指定节点上，并在UI上更新。
+
+``` js
+const $openDialog = (component, propsData) => {
+    const ComponentConstructor = Vue.extend(component);
+    let instance = new ComponentConstructor({
+      propsData,
+    }).$mount(document.body);
+    return instance
+}
+```
+
+### 2. API设计Promise化
+
+以上只是考虑了通过js api方式，手动添加Dialog，还需要考虑当用户关闭弹窗时，如何正常销毁Dialog。同时考虑到现实业务中，弹窗关闭通常都由弹窗内逻辑控制，所以需要设计相关API，把弹窗内逻辑和当前页逻辑进行解耦。
+
+销毁Dialog的DOM，必然需要找到包裹的parent DOM，所以需要使用闭包来保存parent DOM。
+
+Vue2.x组件实例本身也是一个发布订阅系统，其支持通过`$emit`和`$once`方式进行事件发布和订阅。所以当Dialog弹窗内完成业务时，只需要发布关闭事件即可，完全的业务方自主可控。同时为了业务方使用简化，API设计为Promise，使用.then/.catch来代替弹窗业务成功/失败。
+
+``` js
+const $openDialog = (component) => {
+  // 闭包存储
+  const div = document.createElement('div');
+  const el = document.createElement('div');
+  div.appendChild(el);
+  document.body.appendChild(div);
+
+  const ComponentConstructor = Vue.extend(component);
+  return (propsData = {}, parent = undefined) => {
+    // 手动弹窗
+    let instance = new ComponentConstructor({
+      propsData,
+      parent, // 父级上下文，设置了此参数可获得$store/$router等Provide对象
+    }).$mount(el);
+
+    // 关闭弹窗
+    const destroyDialog = () => {
+      if (instance && div.parentNode) {
+        instance.$destroy();
+        instance = null
+        div.parentNode && div.parentNode.removeChild(div);
+      }
+    };
+
+    // 使用.then/.catch来代替弹窗业务成功/失败
+    return new Promise((resolve, reject) => {
+      instance.$once("done", data => {
+        destroyDialog();
+        resolve(data);
+      });
+      instance.$once("cancel", data => {
+        destroyDialog();
+        reject(data);
+      });
+    });
+  }
+}
+```
+
+另外方案中还考虑了antdv/element-ui modal的便捷性，增加了visible控制，最终的解决方案源码可以看 [github - /el-dialog-helper](https://github.com/lq782655835/el-dialog-helper)
