@@ -18,7 +18,7 @@
 
 ## 1. new Vue({ optionAPI })流程
 
-问题：下面的js代码如何实现Web UI上的渲染？
+问题：下面的js代码如何实现从js代码到Web UI上的渲染？
 
 ``` js
 new Vue({
@@ -36,7 +36,7 @@ new Vue({
 * VirtualDOM、VNode数据结构（VirtualDOM只是概念，VNode才是虚拟DOM的承载）
 * VNode + Diff = patch
 
-### 问题
+### 衍生问题
 
 1. 为什么要有VDOM/VNode？答：1. 找到最小更新DOM操作集 2. 给Web之外的终端UI提供可能（比如Native、webgl）
     * 思考：js引擎 / 渲染引擎 （互斥） -> js单线程 （node(libuv)，callback，event loop）
@@ -144,19 +144,3 @@ dep(new Watcher(() => computed())) // computed Watcher
 
 // 最终根据规则依次执行：[computedCB(), selfWatcher(), WatcherRender]
 ```
-
-## 3. 学习能力 & 创新能力
-
-1. new App() -> UI (DOM)
-    * VirtualDOM -> VNode(Tree) -> 数据结构
-1. Vue.nextTick()
-    * eventloop(js引擎/渲染引擎 -> v8(node-> libuv))，mic（Promise）/mac -> Promise规范，1. 三种状态 2. .then返回新的Promise -> Promise.all/race()
-1. 依赖收集：Object.defineProperty -> Dep/Watcher
-    * 依赖者设计模式
-1. vue的设计模式有哪些?
-1. Vue3新特性： 6个亮点
-    * 更快
-        * Proxy -> 自己写Proxy实现
-        * 重写Diff
-            * patchFlag
-            * BlockTree
