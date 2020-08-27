@@ -111,7 +111,32 @@
 
 ## 8. 《深入浅出NodeJS》
 
+### Node为什么选择Javascript
+
+* 高性能 - V8
+* 符合事件驱动
+* 没有历史包袱
+
+### Node实现
+
+传统JS只能运行在浏览器中（沙箱环境），除了V8解释JS语法字符串外，还有WebKit（渲染内核）、HTML/DOM接口以及浏览器环境提供的事件循环。
+
+Node去除跟UI相关的WebKit、HTML/DOM等接口，使用Libuv作为环境提供事件循环，使得使用上基本一致（浏览器通过事件驱动服务界面交互，Node通过事件驱动服务I/O）。
+
+Node意义：Node打破了过去JavaScript只能在浏览器中运行的局面。前后端编程环境统一，大大降低前后端切换所需要的上下文交换代价。
+
+### Node网络编程
+
+HTTP基于请求响应，一问一答。
+从协议角度看，**浏览器其实是一个HTTP的代理**，用户的行为将会通过它转换为HTTP请求，发送给服务端。 
+
+* node封装了http服务（应用层），它还提供tcp/udp（传输层）服务
+* 请求头解析：req.method/url/headers
+* 响应头设置：setHeader可进行多次，只有调用writeHeader后才会把报头写入到连接中。
+* 响应正体设置：res.write/end，end如果带数据，等同于write + end
+
 ### request
+
 对TCP连接的读操作，http模块将其封装为ServerRequest对象。报文头通过http_parser进行解析
 * `报文头第一行（请求行）`如： GET / HTTP/1.1
     * req.method
@@ -164,3 +189,84 @@ function(req, res) {
 * 判断一件物品是否值得留下：当你看到它是否还是有怦然心动的感觉。
 * 只留下让你怦然心动的，其他的统统“扔掉”。
 * 贵买贱用才是最大浪费。
+
+## 12.《ES6标准入门》
+
+必读书，阮一峰老师经典书籍。
+
+### 对象解构
+
+``` js
+let a = [{a: 1}, {a:2}]
+let b = a.map(i => ({...i, label: i.a, value: i.a}))
+// or Object.assign浅拷贝
+// let b = a.map(i => Object.assign({}, i, { label: i.a, value: i.a }))
+console.log(b) // [ { a: 1, label: 1, value: 1 }, { a: 2, label: 2, value: 2 } ]
+```
+
+### Proxy
+
+代理。Proxy用于修改某些操作（如in/apply/get/set等）的默认行为，相当于**对编程语言进行编程**。
+
+``` js
+function createProxyArray(arr) {
+    return new Proxy(arr, {
+        get(target, propKey, receiver) {
+            console.log(target, propKey, receiver) // target: [1, 2, 3] propKey: '-1' receiver: Proxy
+            let index = Number(propKey)
+            // 负数处理
+            if (index < 0) propKey = String(target.length + index)
+
+            return Reflect.get(target, propKey, receiver)
+        }
+    })
+}
+
+// 拦截数组可为负数
+let arr = createProxyArray([1, 2, 3])
+arr[-1]
+```
+
+### 修饰器
+
+`修饰器只能作用在类或类的方法上`，不能作用在普通函数上，因为存在变量提升问题。
+
+作用在类上：
+``` js
+@decorator
+class A {}
+
+// 等同于
+
+class A {}
+A = decorator || A
+```
+
+作用在类的方法上：
+``` js
+class A {
+    @readonly
+    name() {
+        console.log(1)
+    }
+}
+
+// 等同于
+
+readonly(target, name, descriptor) // 装饰器内可修改descriptor值
+Objeact.defineProperty(A.prototype, 'name', descriptor)
+```
+
+举例mixin：
+``` js
+function mixin(...args) {
+    return function(target) {
+        Object.assign(target.prototype, ...args)
+    }
+}
+
+@mixin({ foo() {console.log(1)} })
+class MyClass() {}
+
+new MyClass().foo() // 1
+```
