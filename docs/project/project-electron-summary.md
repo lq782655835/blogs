@@ -93,7 +93,7 @@ scripts: {
 "build": {
     /** 最终可执行文件名称：${productName}-${version}.${ext} **/
     "productName": "sight-electron-app",
-    "appId": "netease.sight.controller",
+    "appId": "sight.controller",
     /** 压缩形式，默认normal;store打包最快，适合测试;maximum打包体积最小，适合生产模式 **/
     "compression": "maximum",
     /** 是否将多个文件合并为tar风格的归档模式 **/

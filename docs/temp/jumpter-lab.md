@@ -1,15 +1,3 @@
-基础服务
-
-Inspire by http://seven-kl.netease.com/docs/27432/#/component/layout
-
-* 一期
-    * [x] 组件 element，必要时自定义样式
-    * [x] AI组件 + kaola组件
-    * [ ] 模板
-    * [ ] 官网 Vuepress
-* 二期
-    * 区块物料
-
 
 # jumpter lab
 

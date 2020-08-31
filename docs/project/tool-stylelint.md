@@ -1,6 +1,6 @@
 # Stylelint样式规范工具
 
-笔者近期做代码优化，其中就重要的一块就是代码规范。之前的文章写过[ESLint](http://doc.hz.netease.com/pages/viewpage.action?pageId=105038244)，用来规范js写法，现在使用StyleLint来规范css写法。
+笔者近期做代码优化，其中就重要的一块就是代码规范。之前的文章写过[ESLint]()，用来规范js写法，现在使用StyleLint来规范css写法。
 
 * 安装和使用
 * 添加例外

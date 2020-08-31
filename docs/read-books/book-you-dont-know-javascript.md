@@ -233,7 +233,7 @@ function *main() {
     console.log(text)
 }
 function foo(x, y) {
-    let url = `http://netease/${x + y}`
+    let url = `http://xxx/${x + y}`
     // it来自main()
     // it.next再次进入main中，第二次返回data，赋值给text变量
     ajax(url, data => it.next(data))
