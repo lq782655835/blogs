@@ -191,8 +191,6 @@ margin/padding顺序是：上右下左；
 }
 ```
 
-
-
 更多：https://mp.weixin.qq.com/s/e_gXXJTFocNxDaG0U_iB_g
 
 ## 4. 清除浮动
@@ -206,3 +204,21 @@ margin/padding顺序是：上右下左；
     }
 }
 ```
+
+## 5. 其他
+
+``` css
+/*
+  linear-gradient： 方向：0deg = to top。
+  https://developer.mozilla.org/en-US/docs/Web/CSS/linear-gradient
+*/
+background: linear-gradient(135deg, #30D2FF, #4526F6);
+
+/*
+  offset-x | offset-y | blur-radius | spread-radius | color
+  https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+ */
+box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+```
+
+
