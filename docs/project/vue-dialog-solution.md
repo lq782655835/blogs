@@ -173,4 +173,4 @@ const $openDialog = (component) => {
 }
 ```
 
-另外方案中还考虑了antdv/element-ui modal的便捷性，增加了visible控制，最终的解决方案源码可以看 [github - /el-dialog-helper](https://github.com/lq782655835/el-dialog-helper)
+另外方案中还考虑了antdv/element-ui modal的便捷性，增加了visible控制，最终的解决方案源码可以看 [lq782655835/el-dialog-helper](https://github.com/lq782655835/el-dialog-helper)
