@@ -1,6 +1,6 @@
 # React 知识图谱
 
-有段时间没有使用React，没想到发展这么快，React-Router都出了V4版本，而且API相对于V3改动也较大。Redux也是React项目必备生态库。[React与Vue比较](./diff-vue-vs-react.md)也阐述了两者的异同点，以下总结一些切换到React领域需要准备的知识。
+有段时间没有使用React，没想到发展这么快，React-Router都出了V4版本，而且API相对于V3改动也较大。Redux也是React项目必备生态库。[React与Vue比较](../vue/diff-vue-vs-react.md)也阐述了两者的异同点，以下总结一些切换到React领域需要准备的知识。
 * class -> className
 * onclick -> onClick
 
