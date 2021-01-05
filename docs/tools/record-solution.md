@@ -73,6 +73,10 @@
 
 * [骨架屏通过ssr注入到html template文件中 - github中项目源码](https://github.com/cklwblove/vue-cli3-template/blob/dev/src/skeleton/skeleton.js)
 
+* [MacOS 本地80端口被占用](https://www.jianshu.com/p/866758e55997)
+    1. 查询：sudo lsof -n -P | grep :80
+    2. 杀掉其中的node应用id：sudo kill 1000
+
 ## 技术选型
 
 * svg图标: [vue-svgicon](https://github.com/MMF-FE/vue-svgicon)

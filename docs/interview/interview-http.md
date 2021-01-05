@@ -81,7 +81,7 @@ TCP四次挥手
     * 及时清除用户的无效cookie
 
 3. 网络劫持攻击。防范：https加密
-4. [cookie](./cookie-google-rule.md)(附google最新策略)
+4. [cookie](../temp/cookie-google-rule.md)(附google最新策略)
 
 ## 5. session实现原理
 
