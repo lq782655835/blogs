@@ -150,7 +150,6 @@ module.exports = {
                     'project/axios-usage-theory.md',
                     'project/css-layout-skill.md',
                     'project/deep-learn-term.md',
-                    'project/deep-learning-base.md',
                     'project/grow-up-front.md',
                     'project/grow-up-life-it.md',
                     'project/markdown-it-code.md',
@@ -159,12 +158,14 @@ module.exports = {
                     'project/project-h5-video-summary.md',
                     'project/puppeteer.md',
                     'project/refactor-your-js-code.md',
+                    'project/rxjs-introduce.md',
                     'project/think-cli-official-website.md',
                     'project/tool-stylelint.md',
                     'project/ts-in-vue-project.md',
                     'project/ts-tsconfig.md',
                     'project/ts-vue-guide.md',
                     'project/ts-vue-shortcoming.md',
+                    'project/vue-dialog-solution.md',
                     'project/vue-jsx.md',
                     'project/webpack4-1.module.md',
                     'project/webpack4-2.config-setting.md',
@@ -209,6 +210,7 @@ module.exports = {
                 title: 'NodeJS',
                 collapsable: true,
                 children: [
+                    'node/koa-compose-modal.md',
                     'node/nginx.md',
                     'node/node-code-connect.md',
                     'node/node-code-express.md',
@@ -240,8 +242,12 @@ module.exports = {
                     'vue/vue-code-91.v-model.md',
                     'vue/vue-code-vue-cli3-plugin.md',
                     'vue/vue-code-vue-loader.md',
-                    'vue/vue3-design-thought.md',
-                    'vue/vue3-reactive.md'
+                    'vue/vue3-code-1.design-thought.md',
+                    'vue/vue3-code-1.rfcs.md',
+                    'vue/vue3-code-2.reactive.md',
+                    'vue/vue3-code-3.api-analysis.md',
+                    'vue/vue3-code-4.why-proxy-faster.md',
+                    'vue/vue3-code-5.core-thought.md'
                 ]
             },
             {
@@ -251,14 +257,17 @@ module.exports = {
                 children: [
                     'react/diff-vuex-redux.md',
                     'react/function-program.md',
+                    'react/react-basic.md',
                     'react/react-code-1.mount.md',
                     'react/react-code-2.component.md',
                     'react/react-code-3.setState.md',
                     'react/react-component-best.md',
                     'react/react-eslint.md',
-                    'react/react-native-debug-skill.md',
-                    'react/react-native-environment-mac.md',
-                    'react/react.md'
+                    'react/react-native-1.environment-mac.md',
+                    'react/react-native-2.debug-skill.md',
+                    'react/react-redux-1.code-analysis.md',
+                    'react/react-redux-actions.md',
+                    'react/react-redux-saga.md'
                 ]
             },
             {
