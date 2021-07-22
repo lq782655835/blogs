@@ -98,6 +98,20 @@ cd /usr/local/mongodb/bin
     * sort() 可以通过参数指定排序的字段，并使用 1 和 -1 来指定排序的方式
 ``` sql
 db.col.find({}).limit(5).skip(1).sort({"likes":-1})
+
+// 批量删除
+db.getCollection('cainiao-pref-statistic').deleteMany({ds: 20210715})
+
+// 查询
+db.getCollection('cainiao-pref-statistic').find({ ds: { '$gte': 20210716, '$lte': 20210717 } }).count()
+db.getCollection('cainiao-pref-statistic').find({  })
+
+// 更改状态
+db.getCollection('cainiao-pref-statistic').find({  }).forEach(function(obj) {
+    obj.ds = new NumberInt(obj.ds);
+    obj.total = new NumberInt(obj.total);
+    db.getCollection('cainiao-pref-statistic').save(obj);
+});
 ```
 > 在mongodb中,Collection类似于传统SQL的table；Document类似于SQL中的一行记录row；Field类似于SQL中的一列column。
 
