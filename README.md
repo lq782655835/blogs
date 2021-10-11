@@ -19,6 +19,7 @@
 * [谈谈前端天花板问题](https://lq782655835.github.io/blogs/project/grow-up-front.html)
 * [一个程序员的成长之路](https://lq782655835.github.io/blogs/project/grow-up-life-it.html)
 * [Markdown-It 解析原理](https://lq782655835.github.io/blogs/project/markdown-it-code.html)
+* [minipack源码解析](https://lq782655835.github.io/blogs/project/minipack-code-analysis.html)
 * [PostCSS](https://lq782655835.github.io/blogs/project/postcss.html)
 * [Electron工程踩坑记录](https://lq782655835.github.io/blogs/project/project-electron-summary.html)
 * [H5 Video踩坑记录](https://lq782655835.github.io/blogs/project/project-h5-video-summary.html)

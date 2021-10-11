@@ -153,6 +153,7 @@ module.exports = {
                     'project/grow-up-front.md',
                     'project/grow-up-life-it.md',
                     'project/markdown-it-code.md',
+                    'project/minipack-code-analysis.md',
                     'project/postcss.md',
                     'project/project-electron-summary.md',
                     'project/project-h5-video-summary.md',
